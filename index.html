@@ -1,0 +1,2538 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="记录打怪升级之路">
+<meta property="og:type" content="website">
+<meta property="og:title" content="个人博客">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="个人博客">
+<meta property="og:description" content="记录打怪升级之路">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="个人博客">
+<meta name="twitter:description" content="记录打怪升级之路">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/">
+
+
+
+
+
+  <title>个人博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/Docker-杂记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嘿嘿嘿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/14/Docker-杂记/" itemprop="url">Docker 杂记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-14T15:48:18+08:00">
+                2019-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  0
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嘿嘿嘿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/14/hello-world/" itemprop="url">Hello World</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-14T15:02:31+08:00">
+                2019-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  73
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/06/2019-08-06-nodejs-异步编程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嘿嘿嘿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/06/2019-08-06-nodejs-异步编程/" itemprop="url">nodejs-异步编程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-06T00:00:00+08:00">
+                2018-10-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  92
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="异步编程"><a href="#异步编程" class="headerlink" title="异步编程"></a>异步编程</h2><h3 id="callback瀑布级回调"><a href="#callback瀑布级回调" class="headerlink" title="callback瀑布级回调"></a>callback瀑布级回调</h3><h3 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h3><h3 id="Generator"><a href="#Generator" class="headerlink" title="Generator"></a>Generator</h3><h3 id="Async-和-Await"><a href="#Async-和-Await" class="headerlink" title="Async 和 Await"></a>Async 和 Await</h3><ul>
+<li><p>在函数体前通过关键字async可以将函数变为async函数</p>
+</li>
+<li><p>在async函数中对需要异步执行的函数前需加await关键字</p>
+</li>
+<li><p>await后的函数必须使用Promise对象封装</p>
+</li>
+<li><p>async函数执行后返回的是一个Promise对象</p>
+</li>
+</ul>
+<h2 id="NodeJs单线程是怎么保证效率的"><a href="#NodeJs单线程是怎么保证效率的" class="headerlink" title="NodeJs单线程是怎么保证效率的"></a>NodeJs单线程是怎么保证效率的</h2>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/06/2018-10-06-Ethereum-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嘿嘿嘿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/06/2018-10-06-Ethereum-1/" itemprop="url">以太坊</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-06T00:00:00+08:00">
+                2018-10-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  11
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="什么是以太坊"><a href="#什么是以太坊" class="headerlink" title="什么是以太坊"></a>什么是以太坊</h2><p>简单来说，以太坊就是一个基于交易的状态机。什么是状态机呢？可以将其理解成一台机器，这台机器维护着一些状态，在以太坊交易发生时，这些状态会从一个状态转化到另一个状态。以太坊时基于区块链构建的，区块链上保存着状态和交易。当我们与以太坊交互时，其实就是在执行交易、改变系统状态。</p>
+<p>引用一个公式表示就是：</p>
+<blockquote>
+<p>σ′ =Υ(σ,T)</p>
+</blockquote>
+<p>Υ是状态转换函数，T是交易，σ是状态，σ′转换后的状态。</p>
+<p>从创世区块开始，无尽的交易不断的刷新着系统当前状态，每产生一个区块就对当前状态做一次快照（patricia trie根）存入区块头中。</p>
+<h2 id="以太坊可以干什么？"><a href="#以太坊可以干什么？" class="headerlink" title="以太坊可以干什么？"></a>以太坊可以干什么？</h2><p>以太坊作为一个开发的区块链平台，它允许任何人在平台中建立和使用通过区块链技术运行的去中心化应用。可将之类比为Internet平台，而我们可以在其上面开发web网站。（但是似乎在以太坊上面只能开发智能合约？）</p>
+<h2 id="什么是智能合约？"><a href="#什么是智能合约？" class="headerlink" title="什么是智能合约？"></a>什么是智能合约？</h2><p>智能合约就是以太坊平台上运行的程序。一旦事件触发合约中的条款，代码自动执行。智能合约的功能是由开发者自行设计的。</p>
+<h3 id="智能合约的工作原理"><a href="#智能合约的工作原理" class="headerlink" title="智能合约的工作原理"></a>智能合约的工作原理</h3><p>构建 → 存储 → 执行</p>
+<ol>
+<li><p>智能合约由区块链内的多个用户共同参与制定，可用于用户之间的任何交易行为。协议中明确了双方的权利和义务，开发人员将这些权利和义务以电子化的方式进行编程，<strong>代码中包含会触发合约自动执行的条件</strong>。比方说，你把一套闲置的房子租给A，那么，这份智能租约中就规定了A必须在每月5号之前给你打房租、你必须在收到房租时马上给对方钥匙［2］等条款。</p>
+</li>
+<li><p>一旦编码完成，这份智能合约就被上传到区块链网络上，即全网验证节点都会接收到你和A的租房合约。</p>
+</li>
+<li><p>智能合约会定期检查是否存在 <strong>相关事件和触发条件</strong>；满足条件的事件将会推送到待验证的队列中。假设A在4号提前打房租给你，这个事件就成了该合约的触发条件（每月5号以前）。</p>
+</li>
+<li><p>区块链上的验证节点先对该 <strong>事件进行签名验证</strong> 以确保其有效性；等大多数验证节点对该事件达成共识后，智能合约将成功执行，并通知用户。</p>
+</li>
+<li><p>成功执行的合约将移出区块。而未执行的合约则继续等待下一轮处理，直至成功执行。</p>
+</li>
+</ol>
+<p>部署到以太坊上的智能合约是要消耗以太币的。就好像把现实中的仲裁人、法官、执行人搬到了区块链上，尽管他们成了一行行的代码，但也是珍贵的计算机资源。智能合约也遵循“Less is more”，逻辑应尽可能地简单。逻辑越复杂，消耗的以太币就越多。</p>
+<p>既然执行要消费以太币，如何支付呢？智能合约是预支付，为了合约顺利执行，一般提前多打一点以太币。如果预支付的以太币不足以支撑整个执行过程，就算进行到半路，合约也会回到初始状态；并且消耗的以太币也不会退回给合约发起人。</p>
+<h3 id="如何触发智能合约？"><a href="#如何触发智能合约？" class="headerlink" title="如何触发智能合约？"></a>如何触发智能合约？</h3><p>智能合约本身规定了触发的条件，只要满足了条件的情况下，合约就会自动触发（比如时间到了自动缴房租）。也可以由外部账户触发。</p>
+<h2 id="以太坊的区块结构"><a href="#以太坊的区块结构" class="headerlink" title="以太坊的区块结构"></a>以太坊的区块结构</h2><p>区块链上最重要的结构莫过于区块的结构，以太坊的区块结构和区块链的类似，但是又有着诸多不同。</p>
+<p>以太坊区块是由三大部分组成：区块头，叔块，交易列表。</p>
+<ul>
+<li><p>区块头由15个字段组成。</p>
+</li>
+<li><p>叔块其实就是孤块，是由于某个区块上产生了多分支。因以太坊出块速度很快平均十几秒就会打包生成一个块，所以矿工挖矿的竞争性很高，可能同时产出几个都合法的区块，以太坊为了一些安全性起见，允许竞争块也挂在到主链上，同时给与挖出这些孤块的矿工们少许奖励增加工作的公平性。这些孤块最多允许6个高度，这也是6个区块确认主链说法的来源。</p>
+</li>
+<li><p>交易列表，存储的是本区块中所有的交易内容。</p>
+</li>
+</ul>
+<p>看一下一个实际的区块信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&quot;blocks&quot; : [</span><br><span class="line">            &#123;</span><br><span class="line">                &quot;blockHeader&quot; : &#123;</span><br><span class="line">                    &quot;bloom&quot; : &quot;0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000&quot;,</span><br><span class="line">                    &quot;coinbase&quot; : &quot;0x3535353535353535353535353535353535353535&quot;,</span><br><span class="line">                    &quot;difficulty&quot; : &quot;0x020000&quot;,</span><br><span class="line">                    &quot;extraData&quot; : &quot;&quot;,</span><br><span class="line">                    &quot;gasLimit&quot; : &quot;0x05f5e100&quot;,</span><br><span class="line">                    &quot;gasUsed&quot; : &quot;0x014fa1&quot;,</span><br><span class="line">                    &quot;hash&quot; : &quot;0x39f4659b079e257df8fd7e699528531e97a6b8a442ca0d11200c4a2f7433c483&quot;,</span><br><span class="line">                    &quot;mixHash&quot; : &quot;0x7379f33af4ae2db7e293f808a165135d0b1a99572cc96fb9f7d17ef64a751969&quot;,</span><br><span class="line">                    &quot;nonce&quot; : &quot;0x8e08d7aabeee8773&quot;,</span><br><span class="line">                    &quot;number&quot; : &quot;0x01&quot;,</span><br><span class="line">                    &quot;parentHash&quot; : &quot;0xadbef3bf0b3b7b14f6e7b1a45d240ecc863543a279a86c23f60170e8e7a6bcc3&quot;,</span><br><span class="line">                    &quot;receiptTrie&quot; : &quot;0xb21660268480338c0cd0613358315359b619bd527d5850949c4863cddaec316b&quot;,</span><br><span class="line">                    &quot;stateRoot&quot; : &quot;0xde4ce9b5b2f88ab1680962c64281224b1743bdf94bd6a9e390ea779ff616c1f7&quot;,</span><br><span class="line">                    &quot;timestamp&quot; : &quot;0x03e8&quot;,</span><br><span class="line">                    &quot;transactionsTrie&quot; : &quot;0x56445ba866f3e41851154fb8700dcec8556a178f1833021e030b8a47b494769d&quot;,</span><br><span class="line">                    &quot;uncleHash&quot; : &quot;0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">                &quot;rlp&quot; : &quot;0xf90308f901f9a0adbef3bf0b3b7b14f6e7b1a45d240ecc863543a279a86c23f60170e8e7a6bcc3a01dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347943535353535353535353535353535353535353535a0de4ce9b5b2f88ab1680962c64281224b1743bdf94bd6a9e390ea779ff616c1f7a056445ba866f3e41851154fb8700dcec8556a178f1833021e030b8a47b494769da0b21660268480338c0cd0613358315359b619bd527d5850949c4863cddaec316bb901000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000083020000018405f5e10083014fa18203e880a07379f33af4ae2db7e293f808a165135d0b1a99572cc96fb9f7d17ef64a751969888e08d7aabeee8773f90108f90105460183030d4094c305c901078781c232a2a521c2af7980f8385ee980b8a430c8d1da000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000230644e72e131a029b85045b68181585d2833e84879b9709143e1f593f00000001ba021a28cc82b40931239f8653ffa5300e1a506c0ef7fb79a663772cafe6558ab44a075af23441f7f176a2770af41142c77b671391209b15d59144e7a1332179b5e14c0&quot;,</span><br><span class="line">                &quot;transactions&quot; : [</span><br><span class="line">                    &#123;</span><br><span class="line">                        &quot;data&quot; : &quot;0x30c8d1da000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000230644e72e131a029b85045b68181585d2833e84879b9709143e1f593f0000000&quot;,</span><br><span class="line">                        &quot;gasLimit&quot; : &quot;0x030d40&quot;,</span><br><span class="line">                        &quot;gasPrice&quot; : &quot;0x01&quot;,</span><br><span class="line">                        &quot;nonce&quot; : &quot;0x46&quot;,</span><br><span class="line">                        &quot;r&quot; : &quot;0x21a28cc82b40931239f8653ffa5300e1a506c0ef7fb79a663772cafe6558ab44&quot;,</span><br><span class="line">                        &quot;s&quot; : &quot;0x75af23441f7f176a2770af41142c77b671391209b15d59144e7a1332179b5e14&quot;,</span><br><span class="line">                        &quot;to&quot; : &quot;0xc305c901078781c232a2a521c2af7980f8385ee9&quot;,</span><br><span class="line">                        &quot;v&quot; : &quot;0x1b&quot;,</span><br><span class="line">                        &quot;value&quot; : &quot;0x00&quot;</span><br><span class="line">                    &#125;</span><br><span class="line">                ],</span><br><span class="line">                &quot;uncleHeaders&quot; : [</span><br><span class="line">                ]</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br></pre></td></tr></table></figure>
+
+<h3 id="区块头的结构"><a href="#区块头的结构" class="headerlink" title="区块头的结构"></a>区块头的结构</h3><p>区块头包含15个字段，介绍如下：</p>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Header <span class="keyword">struct</span> &#123;</span><br><span class="line">        ParentHash  common.Hash    <span class="comment">//Hp，上一区块全部内容的hash，区块因它而成链！</span></span><br><span class="line">        UncleHash   common.Hash    <span class="comment">//Ho，本区块的ommers（所有叔块）列表的hash</span></span><br><span class="line">        Coinbase    common.Address <span class="comment">//Hc，成功挖出本区块的矿工地址，用于接收矿工费</span></span><br><span class="line">        Root        common.Hash    <span class="comment">//Hr，本区块所有交易的状态tree的根hash</span></span><br><span class="line">        TxHash      common.Hash    <span class="comment">//Ht，本区块所有交易tree的根hash</span></span><br><span class="line">        ReceiptHash common.Hash    <span class="comment">//He，本区块所有交易的收据的tree的根hash</span></span><br><span class="line">        Bloom       Bloom          <span class="comment">//Hb，交易收据日志组成的Bloom过滤器 </span></span><br><span class="line">        Difficulty  *big.Int       <span class="comment">//Hd，本区块难度级别</span></span><br><span class="line">        Number      *big.Int       <span class="comment">//Hi，区块序号，从创世块0递增</span></span><br><span class="line">        GasLimit    <span class="keyword">uint64</span>         <span class="comment">//Hl，每个区块当前的gas limit</span></span><br><span class="line">        GasUsed     <span class="keyword">uint64</span>         <span class="comment">//Hg，本区块交易消耗的总gas</span></span><br><span class="line">        Time        *big.Int       <span class="comment">//Hs，本区块创建时的Unix时间戳</span></span><br><span class="line">        Extra       []<span class="keyword">byte</span>         <span class="comment">//Hx，区块附加数据，&lt;=32字节</span></span><br><span class="line">        MixDigest   common.Hash    <span class="comment">//Hm，256位的hash，与nonce组合证明出块执行了足够的计算</span></span><br><span class="line">        Nonce       BlockNonce     <span class="comment">//Hn，64位的hash，与MixDigest组合证明出块执行了足够的计算</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>有三个特别的字段保存的是patricia trie树的hash值，Root（状态hash）、TxHash（交易列表hash）、ReceiptHash(收据列表hash)。这个Root就是系统状态hash。系统状态就是以太坊整个网络中所有账户的状态，就是world state，它是一个merkle patricia trie结构。这个树（包括所有patricia trie）并不存在于区块，而存在于节点的levelDB中。只有它的根hash存在于区块头Root中，每一个区块头里的Root都是区块被挖出确认时的快照，而world state指现在所有账户的状态。</p>
+<h3 id="什么是-world-state？"><a href="#什么是-world-state？" class="headerlink" title="什么是 world state？"></a>什么是 world state？</h3><p>world state是一颗全局状态树，被存储在每个节点的levelDB里，它被持续地更新。这棵树包含了以太坊网络里每一个账户的key/value映射。所以它表示的是整个以太坊系统所有账户当前的状态。树的一个叶子节点是一个key/value映射，key是KEC(a)即160位的账户地址的哈希，value是账户（nonce、balance、storageRoot、codeHash）的RLP格式序列化字节。</p>
+<h3 id="什么是账户？"><a href="#什么是账户？" class="headerlink" title="什么是账户？"></a>什么是账户？</h3><p>以太坊中有两种账户</p>
+<ul>
+<li><p>外部拥有账户（EOA），一般指自然人拥有的账户。</p>
+</li>
+<li><p>合约账户（CA），为智能合约分配的账户。</p>
+</li>
+</ul>
+<p>看一下账户的源码定义：</p>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Account <span class="keyword">struct</span> &#123;</span><br><span class="line">    Nonce    <span class="keyword">uint64</span>      <span class="comment">// 若为EOA是发送的交易序号，如为CA是合约创建的序号。</span></span><br><span class="line">    Balance  *big.Int    <span class="comment">// 这个地址的余额。</span></span><br><span class="line">    Root     common.Hash <span class="comment">// 账户自身内容RPL编码组成的Merkle Trie的根哈希</span></span><br><span class="line">    CodeHash []<span class="keyword">byte</span>      <span class="comment">// 账户绑定的EVM Code，账户一经创建不可修改。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>EOA特征：</p>
+<ul>
+<li><p>codeHash为空</p>
+</li>
+<li><p>storageRoot为空</p>
+</li>
+<li><p>通过私钥控制</p>
+</li>
+<li><p>发起交易（转移以太币或触发合约代码）</p>
+</li>
+</ul>
+<p>CA特征：</p>
+<ul>
+<li><p>不能主动发起交易</p>
+</li>
+<li><p>可以被触发执行合约代码（通过EOA发起的交易或者从其他CA接收的消息调用激活）<br>怎么判断一个账户是空账户？</p>
+</li>
+</ul>
+<h3 id="交易"><a href="#交易" class="headerlink" title="交易"></a>交易</h3><p>以太坊是一个基于交易的状态机。任意两个账户之间的交易都会引起world state的改变。</p>
+<p>交易基本定义：【从外部拥有账户】发送的加密签名序列化指令。换句话说交易必须是从EOA发起的才能叫交易，CA之间的通信叫消息也有叫内部交易的。</p>
+<p>交易类型有两种：</p>
+<ul>
+<li><p>消息调用（Td）</p>
+</li>
+<li><p>合约创建（Ti）</p>
+</li>
+</ul>
+<p>从EOA到EOA的交易仅是转账，EOA到CA可以激活各种操作。</p>
+<p>存储交易数据的结构体：</p>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> txdata <span class="keyword">struct</span> &#123;</span><br><span class="line">    AccountNonce <span class="keyword">uint64</span>          <span class="comment">//Tn</span></span><br><span class="line">    Price        *big.Int        <span class="comment">//Tp</span></span><br><span class="line">    GasLimit     <span class="keyword">uint64</span>          <span class="comment">//Tg</span></span><br><span class="line">    Recipient    *common.Address <span class="comment">//Tt</span></span><br><span class="line">    Amount       *big.Int        <span class="comment">//Tv</span></span><br><span class="line">    Payload      []<span class="keyword">byte</span>          <span class="comment">//Td || Ti </span></span><br><span class="line">    V *big.Int</span><br><span class="line">    R *big.Int</span><br><span class="line">    S *big.Int</span><br><span class="line">    <span class="comment">// This is only used when marshaling to JSON.</span></span><br><span class="line">    Hash *common.Hash</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Tn必须等于发起交易的账户的nonce（翻阅前面说法可知，账户nonce是该账户发起的第几笔交易的序号，如果是创建合约则代表第几次创建合约的序号）</p>
+</li>
+<li><p>Tp是这笔交易消耗的gas单价</p>
+</li>
+<li><p>Tg是你愿意为这笔交易最多可以支付的上限</p>
+</li>
+<li><p>Tt是接收账户的地址，如果为空说明接受账户是一个CA，否则是EOA</p>
+</li>
+<li><p>Tv是到接收者的额度</p>
+</li>
+<li><p>Td或Ti，如果交易类型是消息调用则Payload写为Td，表示输入数据，例如消息的参数，假设有一个注册域名的合约服务，则Td就是该服务需要的参数如IP等。如果交易类型是创建合约，则Payload写为Ti，表示一段代码，这段代码用于创建合约账户，这段初始化代码只会被执行一次就丢弃掉，第二次执行的是创建完的合约代码体。</p>
+</li>
+</ul>
+<h3 id="什么是费用？"><a href="#什么是费用？" class="headerlink" title="什么是费用？"></a>什么是费用？</h3><p>以太坊网络里任何计算都要支付gas（燃料），为什么不直接用eth做费用呢？答案是用两个概念gas和eth区别价值和价格，gas是一种固定衡量的价值，而eth是市场上快速变化的价格，很多EVM（以太坊虚拟机）的操作指令都需要消耗固定的费用就用gas来计价，gas的最小单位是wei，1eth = 1018wei = 109gwei。所以eth和gas之间是有汇率的。</p>
+<blockquote>
+<p>GasPrice：燃料单价<br>GasLimit：愿意支付的燃料上限<br>GasLimit × GasPrice = 愿意支付的最大费用</p>
+</blockquote>
+<p>一笔交易中，你设置的最大费用如果没有消耗完，多出的会返回给你。如果最大费用不够计算的花费，那么交易会终止、已改变的状态会回滚、但是钱被消耗不会退回了。这些已消耗的费用都奖励给矿工了。</p>
+<p>费用的三种不同构成：</p>
+<ul>
+<li><p>计算操作的固定费用</p>
+</li>
+<li><p>交易（合约创建或消息调用）费用</p>
+</li>
+<li><p>存储（内存、存储账户合约数据）费用</p>
+</li>
+</ul>
+<p>存储收费是因为假如你的合约使得状态数据库存储增大，所有节点都会增加存储。以太币是鼓励尽量保持少量存储的。<br>但是如果有操作是清除一个存储条目，这个操作的费用不但会被免除，而且由于释放空间还会获得退款。</p>
+<h2 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h2><h3 id="什么是RLP编码？"><a href="#什么是RLP编码？" class="headerlink" title="什么是RLP编码？"></a>什么是RLP编码？</h3><h3 id="什么是Patricia-Trie？"><a href="#什么是Patricia-Trie？" class="headerlink" title="什么是Patricia Trie？"></a>什么是Patricia Trie？</h3>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/05/2018-10-05-blockchain-tx/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嘿嘿嘿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/05/2018-10-05-blockchain-tx/" itemprop="url">区块链的运转流程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-05T00:00:00+08:00">
+                2018-10-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.7k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="区块链的运转流程"><a href="#区块链的运转流程" class="headerlink" title="区块链的运转流程"></a>区块链的运转流程</h2><p>当一笔交易经由某个节点或钱包产生时，这笔交易需要被转播给其他的节点来做验证。</p>
+<ol>
+<li><p>产生一笔新交易</p>
+<p> 一笔新交易产生时，会被广播到区块链中的其他参与节点</p>
+</li>
+<li><p>各节点将多笔交易一起放进区块</p>
+<p> 每个节点会将数笔未验证的交易的hash值收集到区块中，每个区块可以包含数百笔或上千笔交易</p>
+</li>
+<li><p>决定由谁来打包区块</p>
+<p> 各个节点进行POW，来决定谁可以获得区块的打包权，由最快算出结果的节点打包该区块</p>
+</li>
+<li><p>各节点验证打包的区块</p>
+<p> 其他节点会确认这个区块所包含的交易是否有效，确认没被重复花费且具有有效数位签章后，接受该区块，此时该区块才能正式接上区块链</p>
+</li>
+<li><p>交易验证完成</p>
+<p> 所有节点一旦接受该区块后，先前没计算完POW工作的区块将会失效，各节点会重新建立一个区块，并开始下一轮POW计算工作</p>
+</li>
+</ol>
+<h2 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h2><h3 id="节点如何验证某个区块的有效性？"><a href="#节点如何验证某个区块的有效性？" class="headerlink" title="节点如何验证某个区块的有效性？"></a>节点如何验证某个区块的有效性？</h3><p>当某个节点收到某个区块后，需要验证的信息有三个：</p>
+<ul>
+<li><p>区块编号有效</p>
+<p>  对区块的header进行2次hash计算，计算出来的值就是当前区块的hash值</p>
+</li>
+<li><p>区块的上一个区块hash值有效</p>
+<p>  对比区块里的上一个区块hash值和当前节点区块链里的最后一个区块的编号（每个节点都有着一条完整的区块链数据），如果相同则验证通过，如果不同，需要顺着已有链往前查找，直到找到这个编号的页（找到了又怎么样呢？这就代表上一个区块后面已经有别的区块链啊？？？这就形成了多分支了）。如果没有找到，则验证不通过。</p>
+</li>
+<li><p>交易清单有效</p>
+<p>  这里即是确认每笔交易的付款人是否有足够的余额来支付这笔钱。确认交易输入的UTXO是否存在，且在此之前没有支付给别人，另外，产生交易的节点本身并不验证交易输入的UTXO是否有效，即不验证交易输出用户的余额是否充足，余额的验证是让其他节点来做的</p>
+</li>
+</ul>
+<h3 id="当节点收到一笔新交易时，是否会立即开始打包成区块的操作？"><a href="#当节点收到一笔新交易时，是否会立即开始打包成区块的操作？" class="headerlink" title="当节点收到一笔新交易时，是否会立即开始打包成区块的操作？"></a>当节点收到一笔新交易时，是否会立即开始打包成区块的操作？</h3><p>矿工是一直在收集交易信息的，但只有等到上一个区块生成后，拿到上一个区块的hash值时，才会将收集到的交易信息打包新的区块，并进行POW工作</p>
+<h3 id="当一个区块发现它的上一个区块已经连接上了新的区块后，如何处理？"><a href="#当一个区块发现它的上一个区块已经连接上了新的区块后，如何处理？" class="headerlink" title="当一个区块发现它的上一个区块已经连接上了新的区块后，如何处理？"></a>当一个区块发现它的上一个区块已经连接上了新的区块后，如何处理？</h3><p>这就是区块链的多分支问题，当矿工收到两份不一样的区块，它们都基于当前这个矿工节点的链上的最后一个节点，并且内容都合法，都应将其保留，按分支的形式组织起来。区块链规定，任何时刻，都以最长的链作为主链，当某个分支的长度长于另外的分支后，该分支就称为主分支了，其他分支就会被遗忘。</p>
+<h3 id="由于多分支问题产生的双花问题该如何解决？"><a href="#由于多分支问题产生的双花问题该如何解决？" class="headerlink" title="由于多分支问题产生的双花问题该如何解决？"></a>由于多分支问题产生的双花问题该如何解决？</h3><p>中本聪给出的解决方案是，建议收款人不要在公告挂出时立即确认交易完成，而是应该再看一段时间，等待各个挖矿小组再挂出6张确认账簿，并且之前的账簿没有被取消，才确认钱已到账。</p>
+<p>中本聪解释道，之前设定变态的编号规则，正是为了防御这一点。根据前面所述，生成有效账簿页不是那么简单的，要花费大量的人力反复试不同的幸运数 字，而且过程完全是碰运气。如果某账簿页包含你收到钱的确认，并且在后面又延续了6个，那么攻击者想要在落后6页的情况下从另一个分支赶超当前主分支是非 常困难的，除非攻击者拥有非常多的人力，超过其他所有诚实矿工的人力之和。</p>
+<p>而且，如果攻击者有如此多人力，与其花这么大力气搞这种攻击，还不如做良民挖矿来的收益大。这就从动机上杜绝了攻击的形成。</p>
+<h3 id="每个节点打包到区块里的交易都是一样的吗？"><a href="#每个节点打包到区块里的交易都是一样的吗？" class="headerlink" title="每个节点打包到区块里的交易都是一样的吗？"></a>每个节点打包到区块里的交易都是一样的吗？</h3><p>区块的打包是由矿工来做的，矿工可能是随机地选取某几笔交易进行打包，也可能是挑选交易手续费较高的交易进行打包，因此，每个节点产生的区块是不一样的。</p>
+<h3 id="如果各个节点打包的区块交易是完全不同的，那会怎么样？"><a href="#如果各个节点打包的区块交易是完全不同的，那会怎么样？" class="headerlink" title="如果各个节点打包的区块交易是完全不同的，那会怎么样？"></a>如果各个节点打包的区块交易是完全不同的，那会怎么样？</h3><p>比如，节点A打包了一个区块，所含的交易是1和2；节点B也打包了一个区块，所含的交易是3和4；由于两个节点打包的区块的前驱节点都是一致的，如果这两个区块都合法，且都被其他节点验证通过了，那么就会在链上形成分支。</p>
+<h3 id="当一个节点完成POW工作后，广播给其他节点验证时，如果有某个节点此时在进行着其他交易（即不包含相同的交易）的POW工作，会怎么样？"><a href="#当一个节点完成POW工作后，广播给其他节点验证时，如果有某个节点此时在进行着其他交易（即不包含相同的交易）的POW工作，会怎么样？" class="headerlink" title="当一个节点完成POW工作后，广播给其他节点验证时，如果有某个节点此时在进行着其他交易（即不包含相同的交易）的POW工作，会怎么样？"></a>当一个节点完成POW工作后，广播给其他节点验证时，如果有某个节点此时在进行着其他交易（即不包含相同的交易）的POW工作，会怎么样？</h3><p>会停止当前工作，先验证区块的有效性</p>
+<h3 id="矿工是不间断地进行挖矿工作的吗？可以光挖矿而不打包普通交易吗？"><a href="#矿工是不间断地进行挖矿工作的吗？可以光挖矿而不打包普通交易吗？" class="headerlink" title="矿工是不间断地进行挖矿工作的吗？可以光挖矿而不打包普通交易吗？"></a>矿工是不间断地进行挖矿工作的吗？可以光挖矿而不打包普通交易吗？</h3><p>矿工基本上就是在不间断地做POW工作的，矿工的收入主要来源于挖矿和手续费。一般来说，币的数量是有限的，前期矿工应该可以只挖矿，但为了获得更大的收益，都会选择打包有手续费的交易</p>
+<h3 id="产生一笔交易的时候，就会产生一个区块吗？"><a href="#产生一笔交易的时候，就会产生一个区块吗？" class="headerlink" title="产生一笔交易的时候，就会产生一个区块吗？"></a>产生一笔交易的时候，就会产生一个区块吗？</h3><p>并不是，收集多少笔交易之后开始打包成区块，是由挖矿策略或者挖矿程序决定的。</p>
+<h3 id="是否有可能区块生成时，块里没有交易数据？"><a href="#是否有可能区块生成时，块里没有交易数据？" class="headerlink" title="是否有可能区块生成时，块里没有交易数据？"></a>是否有可能区块生成时，块里没有交易数据？</h3><p>可能存在区块里有零笔普通交易，但有一个系统给予的挖矿奖励的交易。对于空交易的区块，由于数量量小，算出满足条件的区块hash值更快。据说早期的区块大都是这种。系统给予奖励，矿工们才有挖矿的热情。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/04/2018-10-04-Nat/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嘿嘿嘿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/04/2018-10-04-Nat/" itemprop="url">Nat技术详解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-04T00:00:00+08:00">
+                2018-10-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4.7k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  16
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="提出问题"><a href="#提出问题" class="headerlink" title="提出问题"></a>提出问题</h2><h3 id="什么是Nat？"><a href="#什么是Nat？" class="headerlink" title="什么是Nat？"></a>什么是Nat？</h3><p>Nat全称Network Address Translation，即网络地址转换，就是替换IP报文头部的地址信息。Nat通常部署在一个组织的网络出口位置，通过将内部网络IP地址替换为出口网络的IP地址，从而提供公网连通内部网络的能力。</p>
+<h3 id="为什么需要Nat技术？"><a href="#为什么需要Nat技术？" class="headerlink" title="为什么需要Nat技术？"></a>为什么需要Nat技术？</h3><p>解决IPV4地址即将耗尽的问题，对于有网络访问需求而内部又使用私有地址的网络，就要在组织的出口位置部署NAT网关，在报文离开私网进入Internet时，将源IP替换为公网地址，通常是出口设备的接口地址。在接收方收到访问请求后，在接收方看来，此次请求是来自组织的出口设备的，因此接收方会将响应消息发送回出口网关。出口网关再将目的地址替换为私网的源主机地址，发回内网。依据这种模型，数量庞大的内网主机就不需要公有IP地址来。</p>
+<h2 id="Nat网络的种类"><a href="#Nat网络的种类" class="headerlink" title="Nat网络的种类"></a>Nat网络的种类</h2><h3 id="一对一"><a href="#一对一" class="headerlink" title="一对一"></a>一对一</h3><p>一个内部主机占用一个公网IP，一般是用来隐藏内部主机的真实IP</p>
+<h3 id="一对多"><a href="#一对多" class="headerlink" title="一对多"></a>一对多</h3><p>典型的应用。即在一个组织网络的出口位置部署Nat网关，所有对公网的访问表现为一台主机。这里面就有产生一个问题：当有多个内部主机去访问同一个服务器时，从返回的信息不足以区分response应该转发到哪个内部主机。因此，这就需要Nat设备根据传输层信息或其他的上层协议去区分不同的会话，<strong>这里引出了后面的很多坑</strong>，这种一对多的方式也被称为端口转换PAT，NAPT或IP伪装。</p>
+<p>在一对多模型中，按照NAT端口映射方式分类又可做进一步划分，为方便描述，将IP和端口标记为(nAddr)</p>
+<ul>
+<li><p>全锥型（谁都可以找我）</p>
+<p>  一旦内部主机的IP和端口被Nat网关映射到某个地址A上，之后该主机的所有出口报文的源IP都会是A这个地址。<strong>任何一个外部主机</strong> 发送到A地址上时，都会被转发到该内部主机。</p>
+</li>
+<li><p>限制锥型（我先找你，你才能找我）</p>
+<p>  一旦内部主机的IP和端口被Nat网关映射到某个地址A上，之后该主机的所有出口报文的源IP都会是A这个地址。只有该内部主机向特定的外部主机H发送过数据，那么后续<strong>H主机从任意端口</strong>发送到地址A的报文都会被转发到该内部主机</p>
+</li>
+<li><p>端口限制锥型（我从某个port找过你，以后你找我也要从这个port）</p>
+<p>  基本跟限制锥型是一样的，内部主机发数据到特定外部主机的特定端口上，之后只有这个外部主机从这个特定端口发过来的数据才会被转化到该内部主机</p>
+</li>
+<li><p>对称型 （我从某个port找你，但你要）</p>
+<p>  同一内网主机同一端口号，当与同一外部主机通信时，NAT分配的端口号不变；每一次与不同的外网主机通讯，就重新分配另一个端口号</p>
+</li>
+</ul>
+<h2 id="Nat的弊端"><a href="#Nat的弊端" class="headerlink" title="Nat的弊端"></a>Nat的弊端</h2><p>Nat技术最大的弊端在于 <strong>破坏了IP端到端通信的能力</strong>，首先，Nat使IP会话的保持时效变短，因为一个会话建立后会在Nat设备上建立一个关联表，在会话静默的这段时间，Nat网关会进行老化操作，会回收资源。一般基于UDP的通信协议很难确定何时通信结束，所以Nat网关主要依赖超时机制回收外部端口。如果应用需要维持连接的时间大于Nat网关的设置，通信就会意外中断。因为网关回收相关转换表资源以后，新的数据到达时就找不到相关的转换信息，必须建立新的连接。</p>
+<p>当这个新数据是由公网侧向内网侧发送时，就会发生无法出发新连接建立，也不能通知到内网侧的主机去重建连接的情况，这时候通信就会中断。</p>
+<p>即使新数据是从内网侧发向公网侧，因为重建的会话表往往使用不同于之前的公网IP和端口地址，公网侧的主机也无法对应到之前的通信上。</p>
+<p>连接保活机制</p>
+<h2 id="Nat穿透技术"><a href="#Nat穿透技术" class="headerlink" title="Nat穿透技术"></a>Nat穿透技术</h2><p>前面提出来了Nat的弊端，为例解决IP端到端应用在Nat环境下遇到的问题，一般由如下的解决方式，只是每一种方法都不完美，需要内部主机，应用程序或Nat网关上增加额外的处理。</p>
+<h3 id="应用层网关"><a href="#应用层网关" class="headerlink" title="应用层网关"></a>应用层网关</h3><p>因为Nat不感知应用协议，所以有必要额外为每个应用协议定制协议分析方法。</p>
+<h3 id="探针技术-STUN和TURN"><a href="#探针技术-STUN和TURN" class="headerlink" title="探针技术 STUN和TURN"></a>探针技术 STUN和TURN</h3><p>所谓的探针技术，是通过在所有参与通信的实体上安装探测插件，以检测网络中是否存在Nat网关，并对不同模型实施不同穿透方法的一种技术。</p>
+<h3 id="中间件技术"><a href="#中间件技术" class="headerlink" title="中间件技术"></a>中间件技术</h3><p>通过开发通用方法解决Nat穿透，客户端会参与网关公网映射信息的维护，此时Nat网关只要理解客户端的请求并按照要求去分配转换表，不需要自己去分析客户端的应用层数据，其中典型的技术由 <strong>UPNP</strong>。</p>
+<p>UPNP，即通用即插即用，是一个通用的网络终端与网关的通信协议，具备发布和管理控制的能力，其中，网关映射请求可以为客户动态添加映射表项。此时Nat不再需要理解应用层携带的信息，只转换IP地址和端口信息，而客户端通过控制 <strong>消息或信令</strong> 发到公网侧的信息中，直接携带公网映射的IP地址和端口，接收端可以按照此信息建立数据连接。Nat网关在接受数据或着连接请求时，按照UPNP建立的表项只转换地址和端口信息，不关心内容，再将数据转发到内网。这种方案需要网关，内部主机和应用程序都支持UPNP技术，且组网允许内部主机和Nat网关之间可以直接交换UPNP信令才能实施。</p>
+<h3 id="中继代理技术"><a href="#中继代理技术" class="headerlink" title="中继代理技术"></a>中继代理技术</h3><p>在Nat网关所在位置旁边放置一个应用服务器，这个服务器在内部网络和外部公网分别由自己的网络连接，客户端特定的应用产生网络请求时，将定向发送到应用代理服务器，应用代理服务器根据代理协议解析客户端的请求，再从服务器的公网侧发起一个新的请求，把客户端请求的内容中继到外部网络上，返回的相应反方向中继。</p>
+<h3 id="特定协议的自穿越技术"><a href="#特定协议的自穿越技术" class="headerlink" title="特定协议的自穿越技术"></a>特定协议的自穿越技术</h3><h2 id="基于UDP协议的P2P打洞技术详解"><a href="#基于UDP协议的P2P打洞技术详解" class="headerlink" title="基于UDP协议的P2P打洞技术详解"></a>基于UDP协议的P2P打洞技术详解</h2><h3 id="什么是UDP打洞？"><a href="#什么是UDP打洞？" class="headerlink" title="什么是UDP打洞？"></a>什么是UDP打洞？</h3><p>Nat技术和P2P技术在现有网络上都有着广泛应用，P2P主机位于Nat网关后面的情况屡见不鲜，Nat技术虽然在一定程度上解决了IPv4地址短缺的问题，在构建防火墙，保证网络安全方面都发挥了一定的作用，但却破坏了端到端的网络通信，Nat阻碍主机进行P2P通信的主要原因是Nat不允许外部主机主动访问内网主机，但是P2P技术却要求通信双方都能主动发起访问，所以要在Nat网络环境中进行有效的P2P通信，就必须采用新的解决方案。</p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>UDP打洞技术是通过集中服务器的协助，在各自的Nat网关上建立相应的表项，使P2P连接的双方发送的报文能够直接穿透对方的Nat网关 ，从而实现P2P客户端的互联。</p>
+<h3 id="什么是集中服务器"><a href="#什么是集中服务器" class="headerlink" title="什么是集中服务器"></a>什么是集中服务器</h3><p>集中服务器本质是一台被设置在公网的服务器，建立P2P的双方都可以直接访问到这台服务器，位于Nat网关后面的客户端A和客户端B都可以与一台已知的集中服务器建立连接，并通过这台服务器了解对方的信息并中转各自的信息。</p>
+<p>同时集中服务器的另一个重要的作用是判断某个客户端是否在Nat网关之后。具体的方法是：一个客户端在集中服务器登陆的时候，服务器记录下该客户端的两对二元组信息 {IP地址: UDP端口}，其中一对可以看作是内网IP和端口，另一对可以看作是外网IP和端口。如果该客户端不是位于Nat设备后面，那么两对IP端口应该是一样的。</p>
+<h3 id="打洞session的建立"><a href="#打洞session的建立" class="headerlink" title="打洞session的建立"></a>打洞session的建立</h3><p>假设A要向B发起连接请求，具体的打洞过程如下：</p>
+<ol>
+<li><p>A最初不知道如何向B发起连接，于是A向集中服务器发送消息，请求集中服务器帮助建立与B的UDP连接</p>
+</li>
+<li><p>B同样不知如何向A发起请求，于是B也向集中服务器发送消息，请求集中服务器帮助建立与A的连接，此时洞的指向为</p>
+</li>
+<li><p>集中服务器将含有B的外网和内网的二元组发送给A，同时，集中服务器将包含有A的外网和内网的地址二元组信息也发送给B。这样一来，A和B都知道对方外网和内网的地址二元组信息了。</p>
+</li>
+<li><p>此时，A经由自己的路由器A，去请求B的外网地址端口（这一个请求的作用是告诉自己的路由器A，之后如果收到了B外网地址端口的请求，则不要拦截）。对于这个请求报文，B的路由器收到后不回转发给B，而是丢弃，因为它认为这个是来路不明的包</p>
+</li>
+<li><p>B请求A的外网地址端口（也会告诉路由器B不要拦截A的请求了），由于路由器A在上一步已经知道不要拦截B的请求了，所以A和B成功建立双向通信</p>
+</li>
+</ol>
+<h3 id="打洞过程中要注意的问题"><a href="#打洞过程中要注意的问题" class="headerlink" title="打洞过程中要注意的问题"></a>打洞过程中要注意的问题</h3><ol>
+<li><p>处于不同网络环境下的打洞方法</p>
+</li>
+<li><p>UDP在空闲状态下的超时</p>
+<p> 由于UDP转换协议提供的洞不是绝对可靠的，多数Nat设备内部都有一个UDP转换的空闲状态计数器，如果在一段时间内没有UDP数据通信，Nat设备会关掉这个洞，如果P2P应用程序希望洞的存活时间不受Nat网关的限制，最好在穿透Nat以后设定一个穿透的有效期。</p>
+<p> 对于有效期的设置目前没有标准值，它与Nat设备内部的配置有关。在这个有效期内，即使没有P2P数据包需要传输，应用程序为了维持洞可以正常工作，也必须向对方发送“打洞”心跳包。两方都必须发；</p>
+<p> 另外的一个方法就是，在当前洞超时之前，双方重新打洞，舍弃原来的洞。</p>
+</li>
+</ol>
+<h1 id="基于TCP协议的P2P打洞技术详解"><a href="#基于TCP协议的P2P打洞技术详解" class="headerlink" title="基于TCP协议的P2P打洞技术详解"></a>基于TCP协议的P2P打洞技术详解</h1><p>建立穿越NAT设备的P2P的TCP连接只比UDP复杂一点点，TCP协议的”“打洞”从协议层来看是与UDP的“打洞”过程非常相似的。尽管如此，基于TCP协议的打洞至今为止还没有被很好的理解，这也造成了的对其提供支持的NAT设备不是很多。在NAT设备支持的前提下，基于TCP的“打洞”技术实际上与基于UDP的“打洞”技术一样快捷、可靠。实际上，只要NAT设备支持的话，基于TCP的P2P技术的健壮性将比基于UDP技术的更强一些，因为TCP协议的状态机给出了一种标准的方法来精确的获取某个TCP session的生命期，而UDP协议则无法做到这一点。</p>
+<h3 id="套接字和TCP端口的重用"><a href="#套接字和TCP端口的重用" class="headerlink" title="套接字和TCP端口的重用"></a>套接字和TCP端口的重用</h3><p>实现基于TCP协议的P2P打洞过程中，最主要的问题不是来自于TCP协议，而是来自于应用程序的API接口。这是由于标准的伯克利(Berkeley)套接字的API是围绕着构建客户端/服务器程序而设计的，API允许TCP流套接字通过调用connect()函数来建立向外的连接，或者通过listen()和accept函数接受来自外部的连接，但是，API不提供类似UDP那样的，同一个端口既可以向外连接，又能够接受来自外部的连接。而且更糟的是，TCP的套接字通常仅允许建立1对1的响应，即应用程序在将一个套接字绑定到本地的一个端口以后，任何试图将第二个套接字绑定到该端口的操作都会失败。</p>
+<p>为了让TCP“打洞”能够顺利工作，我们需要使用一个本地的TCP端口来监听来自外部的TCP连接，同时建立多个向外的TCP连接。幸运的是，所有的主流操作系统都能够支持特殊的TCP套接字参数，通常叫做“SO_REUSEADDR”，该参数允许应用程序将多个套接字绑定到本地的一个地址二元组（只要所有要绑定的套接字都设置了SO_REUSEADDR参数即可）。BSD系统引入了SO_REUSEPORT参数，该参数用于区分端口重用还是地址重用，在这样的系统里面，上述所有的参数必须都设置才行。</p>
+<h3 id="TCP打洞过程"><a href="#TCP打洞过程" class="headerlink" title="TCP打洞过程"></a>TCP打洞过程</h3><p>假设客户端A希望建立与B的TCP连接。我们像通常一样假定A和B已经与公网上的已知服务器建立了TCP连接。服务器记录下来每个接入的客户端的公网和内网的地址二元组，如同为UDP服务的时候一样。</p>
+<p>从协议层来看，TCP“打洞”与UDP“打洞”是几乎完全相同的过程：</p>
+<ol>
+<li><p>客户端A使用其与服务器的连接向服务器发送请求，要求服务器协助其连接客户端B；</p>
+</li>
+<li><p>服务器将B的公网和内网的TCP地址的二元组信息返回给A，同时，服务器将A的公网和内网的地址二元组也发送给B；</p>
+</li>
+<li><p>客户端A和B使用连接服务器的端口异步地发起向对方的公网、内网地址二元组的TCP连接，同时监听各自的本地TCP端口是否有外部的连接联入；</p>
+</li>
+<li><p>A和B开始等待向外的连接是否成功，检查是否有新连接联入。如果向外的连接由于某种网络错误而失败，如：“连接被重置”或者“节点无法访问”，客户端只需要延迟一小段时间（例如延迟一秒钟），然后重新发起连接即可，延迟的时间和重复连接的次数可以由应用程序编写者来确定；</p>
+</li>
+<li><p>TCP连接建立起来以后，客户端之间应该开始鉴权操作，确保目前联入的连接就是所希望的连接。如果鉴权失败，客户端将关闭连接，并且继续等待新的连接联入。客户端通常采用“先入为主”的策略，只接受第一个通过鉴权操作的客户端，然后将进入P2P通信过程不再继续等待是否有新的连接联入。</p>
+</li>
+</ol>
+<h3 id="从应用程序的角度来看TCP打洞"><a href="#从应用程序的角度来看TCP打洞" class="headerlink" title="从应用程序的角度来看TCP打洞"></a>从应用程序的角度来看TCP打洞</h3><p>从应用程序的角度来看，在进行TCP“打洞”的时候都发生了什么呢？假定A首先向B发出SYN包，该包发往B的公网地址二元组，并且被B的NAT设备丢弃，但是B发往A的公网地址二元组的SYN包则通过A的NAT到达了A，然后，会发生以下的两种结果中的一种，具体是哪一种取决于操作系统对TCP协议的实现：</p>
+<ol>
+<li><p>A的TCP实现会发现收到的SYN包就是其发起连接并希望联入的B的SYN包，通俗一点来说就是“说曹操，曹操到”的意思，本来A要去找B，结果B自己找上门来了。A的TCP协议栈因此会把B作为A向B发起连接connect的一部分，并认为连接已经成功。程序A调用的异步connect()函数将成功返回，A的listen()等待从外部联入的函数将没有任何反映。此时，B联入A的操作在A程序的内部被理解为A联入B连接成功，并且A开始使用这个连接与B开始P2P通信。</p>
+<p> 由于收到的SYN包中不包含A需要的ACK数据，因此，A的TCP将用SYN-ACK包回应B的公网地址二元组，并且将使用先前A发向B的SYN包一样的序列号。一旦B的TCP收到由A发来的SYN-ACK包，则把自己的ACK包发给A，然后两端建立起TCP连接。简单的说，第一种，就是即使A发往B的SYN包被B的NAT丢弃了，但是由于B发往A的包到达了A。结果是，A认为自己连接成功了，B也认为自己连接成功了，不管是谁成功了，总之连接是已经建立起来了。</p>
+</li>
+<li><p>另外一种结果是，A的TCP实现没有像（1）中所讲的那么“智能”，它没有发现现在联入的B就是自己希望联入的。就好比在机场接人，明明遇到了自己想要接的人却不认识，误认为是其他的人，安排别人给接走了，后来才知道是自己错过了机会，但是无论如何，人已经接到了任务已经完成了。然后，A通过常规的listen()函数和accept()函数得到与B的连接，而由A发起的向B的公网地址二元组的连接会以失败告终。尽管A向B的连接失败，A仍然得到了B发起的向A的连接，等效于A与B之间已经联通，不管中间过程如何，A与B已经连接起来了，结果是A和B的基于TCP协议的P2P连接已经建立起来了。</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/04/2018-10-04-UTXO/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嘿嘿嘿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/04/2018-10-04-UTXO/" itemprop="url">UTXO</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-04T00:00:00+08:00">
+                2018-10-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="UTXO模型"><a href="#UTXO模型" class="headerlink" title="UTXO模型"></a>UTXO模型</h1><h2 id="什么是UXTO？"><a href="#什么是UXTO？" class="headerlink" title="什么是UXTO？"></a>什么是UXTO？</h2><p>在区块链里，账本里记录的是一笔又一笔的交易。每笔交易都有若干交易输入，也就是资金来源；也有若干交易输出，也就是资金去向。一般来说，每一笔交易都要花费一笔输入，产生一笔输出，而当其所产生的输出，并被其他交易所花费时，这笔输出就可以被称为 “未花费过的交易输出”，也就是UTXO。</p>
+<h2 id="比特币中交易过程的实现"><a href="#比特币中交易过程的实现" class="headerlink" title="比特币中交易过程的实现"></a>比特币中交易过程的实现</h2><p>在比特币的世界里，记录交易记录正是基于UTXO模型。要理解UTXO，最简单的方法就是把一枚比特币从诞生到交易的经历描述一下。</p>
+<p>假设，张三通过挖矿得到了12.5枚比特币。过了几天，他把其中2.5枚比特币交给了李四。再过几天，他和李四各出资2.5比特币凑成5比特币给王五，整个交易过程再UTXO模型里的记录是这样的：</p>
+<p><img src="https://camo.githubusercontent.com/ae0ba5ef28f5390fa49d22007bf9673b78cc0baf/687474703a2f2f386274632e636f6d2f646174612f6174746163686d656e742f706f7274616c2f3230313730322f30332f313430343437716537766f33767437673232736c65762e6a7067" alt="此处输入图片的描述"></p>
+<p>从图上可以看出，当张三付给李四2.5个比特币时这笔交易时，收款人有两个，分别是李四和张三他自己，张三收到了余额10枚比特币，李四收到了2.5枚比特币，此时，张三原有的挖矿所得的12.5的记录因为以及消费，已经不能算是UTXO的记录了，因此，张三此时的余额就是10枚比特币。</p>
+<blockquote>
+<p>可以看出，从消费这一点来看，UTXO类似日常生活中的纸币消费，当你拿10块钱买了3块钱的肥宅快乐水时，你需要付给老板3块，同时老板会找零给你7块。此时你原来的10块钱就不存在了。</p>
+</blockquote>
+<p>当李四给了王五2.5枚比特币之后，李四的已经没有比特币了，因此没有李四的交易输出了；同时，王五同时收到了两个人的比特币，收款数额直接计算总数，并合并成一条数额为5的记录。<strong>这里似乎是可以不合并分开成两条输出记录的，待确定 ！！！</strong></p>
+<blockquote>
+<p>由上面的例子说明，其实并没有什么比特币，只有 UTXO。当我们说张三拥有10枚比特币的时候，我实际上是说，当前区块链账本中，有若干笔交易的UTXO 项收款人写的是张三的地址，而这些UTXO项的数额总和是 10。</p>
+</blockquote>
+<h3 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h3><ul>
+<li><p>Coinbase交易是指矿工挖矿所得比特币的交易，这种交易比较特殊，交易输入并不是来自前面某一个或者某几个交易的UTXO。</p>
+</li>
+<li><p>每一笔交易的交易输入必须等于交易输出</p>
+</li>
+<li><p>计算某个人的账户余额时，只计算 <strong>未花费的</strong> 交易输出</p>
+</li>
+</ul>
+<h2 id="怎么确定交易输入是有效的？"><a href="#怎么确定交易输入是有效的？" class="headerlink" title="怎么确定交易输入是有效的？"></a>怎么确定交易输入是有效的？</h2><p>当节点接收到一笔交易的时候，它需要去 UTXO 数据库里查，看看这笔交易所引用的 UTXO 是否存在，它的收款人（拥有者）是不是当前新交易的付款者。</p>
+<h2 id="怎么保证一笔交易所引用的UTXO没有被重复消费？"><a href="#怎么保证一笔交易所引用的UTXO没有被重复消费？" class="headerlink" title="怎么保证一笔交易所引用的UTXO没有被重复消费？"></a>怎么保证一笔交易所引用的UTXO没有被重复消费？</h2><p>当某一笔比特币交易被创建—签名—广播到区块链网络之中后，每一个节点（比特币交易参与者）会对这笔交易进行验证，看交易的输出是否存在于UTXO。</p>
+<p>如果A拥有1枚比特币被证实确实是“未花费过的交易输出”，他要是将这1枚比特币同事转账给B1、B2两个人，挖矿节点会选择性的记录一笔交易，或许是最先收到的，或许是手续费更高的。</p>
+<p>情况1：</p>
+<p>如果这两笔交易是先后被挖矿节点接收到的，那依据时间戳（时间戳是矿工打包区块时的时间），先被接收到的交易会被验证成功，而后被接收到的交易则会因交易输入已经不存在于UTXO而验证失败。</p>
+<p>情况2：</p>
+<p>如果两个挖矿节点分别 <strong>同时</strong> 记录了这两笔交易，并且这两笔交易被分别证明是合法的，此时这两个挖矿节点会将各自挖到的新区块广播到全网。这时链就会 <strong>分叉</strong>。当其中一笔交易（是交易被确认还是新区块被确认？？？）被6个节点确认后，它将获得最终的确认，成为最长链，记录在最长链上的交易最终会被认证是成功的，而记录在另一条链上的交易则不会被认证。</p>
+<h2 id="UTXO模型是怎么计算余额的？"><a href="#UTXO模型是怎么计算余额的？" class="headerlink" title="UTXO模型是怎么计算余额的？"></a>UTXO模型是怎么计算余额的？</h2><p>我们知道，要计算A的余额，在UTXO模型里，其实就是计算有多少笔交易的收款人的地址写的A，且这条交易输出没有被花费，那么这个余额怎么才能快速计算出来呢？</p>
+<p>比特币客户端的实现维护一个UTXO数据库，也称UTXO池，是区块链中所有未支付交易输出的集合。“UTXO池”的名字听上去与交易池相似，但它代表了不同的数据集。UTXO池不同于交易池和孤立交易池的地方在于，它在初始化时不为空，而是包含了数以百万计的未支付交易输出条目，有些条目的历史甚至可以追溯至2009年。UTXO池可能会被安置在本地内存，或者作为一个包含索引的数据库表安置在永久性存储设备中。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/03/2018-10-03-Kadamlia/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嘿嘿嘿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/03/2018-10-03-Kadamlia/" itemprop="url">Kadamlia</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-03T00:00:00+08:00">
+                2018-10-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Kademlia算法是区块链底层实现点对点通信时所用的算法，它通过对节点之间的数学操作，获得逻辑上的节点距离，并用这个距离构建一个不同层次的路由表。通过对该路由表的查询，更新等操作，使节点与节点之间能够相互发现。</p>
+<h2 id="主要概念"><a href="#主要概念" class="headerlink" title="主要概念"></a>主要概念</h2><h3 id="NodeID"><a href="#NodeID" class="headerlink" title="NodeID"></a>NodeID</h3><p>Kadamlia算法使用160bit（20字节）的哈希值作为节点的唯一标识，当一个节点新加入网络时，会被分配这个NodeID</p>
+<h3 id="距离"><a href="#距离" class="headerlink" title="距离"></a>距离</h3><p>节点与节点之间的距离，是将两个节点的NodeID进行XOR操作后得到值，一般将得到的二进制数转化为十进制数后的值作为距离，例如对于NodeID分别为 0011 和 1011 的节点，异或之后得到的值为1000（二进制），即距离为4（十进制） </p>
+<h3 id="公共前缀长度-Common-Prefix-Length（CPL）"><a href="#公共前缀长度-Common-Prefix-Length（CPL）" class="headerlink" title="公共前缀长度 Common Prefix Length（CPL）"></a>公共前缀长度 Common Prefix Length（CPL）</h3><p>举个列子，假设NodeID为3位，那么对于节点 110，它与周围节点的CPL分别为</p>
+<table>
+<thead>
+<tr>
+<th>CPL</th>
+<th>所含节点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>000 001 010 011</td>
+</tr>
+<tr>
+<td>1</td>
+<td>100 101</td>
+</tr>
+<tr>
+<td>2</td>
+<td>111</td>
+</tr>
+<tr>
+<td>3</td>
+<td>110（自身）</td>
+</tr>
+</tbody></table>
+<p>可以看出，节点间CPL越大，则节点XOR之后的值越小，即两节点的逻辑距离越小</p>
+<h3 id="二叉前缀树"><a href="#二叉前缀树" class="headerlink" title="二叉前缀树"></a>二叉前缀树</h3><p>一个完整的网络空间可以被表示成为一颗二叉树，树的叶子节点代表网络节点<br><img src="http://upload-images.jianshu.io/upload_images/14287187-19606d7f4576e17d.jpg" alt="图片发自简书App"></p>
+<h3 id="K-Bucket"><a href="#K-Bucket" class="headerlink" title="K-Bucket"></a>K-Bucket</h3><p>K-Bucket又称为K桶，Bucket里存的是一组CLP的长度一样的节点<br><img src="http://upload-images.jianshu.io/upload_images/14287187-40f7475486bfba81.jpg" alt="图片发自简书App"></p>
+<h3 id="路由表"><a href="#路由表" class="headerlink" title="路由表"></a>路由表</h3><p>一个由K-Bucket构成的链表</p>
+<h3 id="分裂"><a href="#分裂" class="headerlink" title="分裂"></a>分裂</h3><p>某些Kadamlia算法的实现是一开始仅有一个Bucket，当Bucket的容量超过限制时，将最小的cpl的节点和其他节点分裂开的操作</p>
+<p>仍以上面的例子为例，如果一开始仅有一个Bucket，那么 000 ～ 111 的 8 个节点都存在一个Bucket中，假设此时Bucket的容量K为1，即现有的8个节点超过了容量，需要将之分裂</p>
+<p>第一次分裂</p>
+<p>Old Bucket = （000 001 010 011）<br>New Bucket = （100 101 111）</p>
+<p>New Bucket仍然超过了限制，继续分裂</p>
+<p>Old Bucket = （100 101）<br>New Bucket = （111）</p>
+<h3 id="节点的查找"><a href="#节点的查找" class="headerlink" title="节点的查找"></a>节点的查找</h3><p>当某个节点需要寻找另一个节点时，通常先在自己的路由表里查找，如果查找得到，直接获取该节点，否则，朝着与目标节点距离更新的一组节点发起查询请求，以此往复，直到查找到目标节点；这个过程称之为 <strong>逐步迭代，递进查找</strong></p>
+<p>在一个对等网络中，某个节点要查询其他节点的信息时，它可依赖的信息只有两个：</p>
+<p>目标节点ID；<br>当前节点维护的路由表；<br>其查询的核心思想是：逐步迭代，递近查找。其基本过程如下：</p>
+<ol>
+<li><p>发起者首先计算自身(​ L )与目标节点(​ T )的距离，即​ cpl ，查询本地维护的路由表，计算方法是​ Bucket = local.Buckets[cpl] ，这个 Bucket ​中的节点与目标节点有着公共前缀。然后再从该 Bucket ​中选择与目标节点有最长​ cpl  的节点​，接下来本地节点向​发起查询请求(​ QueryPeers )，因为​距离 T ​更近，相当于第一次缩短了与目标节点​ T 的距离；</p>
+</li>
+<li><p>​ X 收到 L ​发起的对目标节点 T ​的定位消息(Message_FIND_NODE)时，会根据自身维护的路由表信息，返回距离​ T 更近的节点供查询发起者继续查询。当然，如果目标节点就是​自身，那直接返回自身信息即可。需要说明的是：​给​返回的响应并非是距离目标节点最近的那一个节点，而是一批节点（即协议中定义的​值 K ）。这样做有几点好处：1). 避免单个节点不可用导致的查询失败；2). 查询发起者可以根据响应结果进行并发查询，提升查询速度。</p>
+</li>
+<li><p>查询发起者 L 收到响应后，会将被这些作为接下来的查询对象继续进行查询。查询收到响应时，会对响应中的结果进行过滤：如果该节点在之前已经被询问过，便不再加入待查询列表，保证查询的收敛性。<br>查询的最终结果是得到了一批距离目标节点很近的节点列表，然后从节点列表中选择出最接近目标的​个节点。</p>
+</li>
+</ol>
+<h3 id="节点加入"><a href="#节点加入" class="headerlink" title="节点加入"></a>节点加入</h3><p>当某个节点新加入网络时，需要为其提供一个Seeder种子节点；通过向Seeder节点发起查找自身节点的请求，使Seeder知道该节点的加入，步骤如下：</p>
+<p>​1. 将 S 加入本地路由表，​成为 N ​的种子节点；</p>
+<ol start="2">
+<li><p>​向 S ​发起一次节点查询请求(FIND_NODE)，查询的目的节点其实是​自身；该请求的目的有二：第一告诉 S ​新增了节点 N ​，第二​通过​ S 发现集群中更多的节点。而​发起了指向自身的查询请求也很有意思：其一是因为 N ​此时还不知道系统更多的节点信息；其二是通过这种方式​ N 可以快速地找到更多距离自己更接近的节点。</p>
+</li>
+<li><p>S 收到 N ​的查询目标节点​请求，首先将​节点 N 加入自身的路由表中，然后给​ N 最多返回​ K 个距离 N ​更接近的节点信息；<br>​</p>
+</li>
+<li><p>N 收到​ S 的响应，将响应中的节点加入自身路由表，然后对这些节点分别发起查询请求，当然，查询的目标还是​自身。</p>
+</li>
+</ol>
+<h3 id="节点更新"><a href="#节点更新" class="headerlink" title="节点更新"></a>节点更新</h3><p>当某一个节点更新时，需要通知路由表里的节点做两方更新操作 </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/03/2018-10-03-pow/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嘿嘿嘿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/03/2018-10-03-pow/" itemprop="url">Pow算法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-03T00:00:00+08:00">
+                2018-10-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  302
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="什么是Pow算法？"><a href="#什么是Pow算法？" class="headerlink" title="什么是Pow算法？"></a>什么是Pow算法？</h2><p>Pow的全称是Proof of Work，即工作量证明，是区块链中用来判断由哪个矿工获得区块打包权的算法。</p>
+<h2 id="区块链的块的结构"><a href="#区块链的块的结构" class="headerlink" title="区块链的块的结构"></a>区块链的块的结构</h2><p>在聊Pow之前，首先，必须先认识区块的结构，基本的区块结构如下</p>
+<table>
+<thead>
+<tr>
+<th>区块结构</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>当前块的hash值</td>
+</tr>
+<tr>
+<td>前一个区块的哈希值</td>
+</tr>
+<tr>
+<td>Merkle根哈希值</td>
+</tr>
+<tr>
+<td>时间戳</td>
+</tr>
+<tr>
+<td>难度值</td>
+</tr>
+<tr>
+<td>随机数Nonce</td>
+</tr>
+<tr>
+<td>区块包含的交易列表</td>
+</tr>
+</tbody></table>
+<h2 id="Merkle根"><a href="#Merkle根" class="headerlink" title="Merkle根"></a>Merkle根</h2><p>交易列表里记录的每一笔交易都有一个唯一的哈希值，将交易的hash值两两组合，最后生成Merkle根</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/14287187-67ad38c09a390d78.jpg" alt="图片发自简书App"></p>
+<p>Merkle保证了区块的交易信息不会被串改</p>
+<h2 id="Nonce值"><a href="#Nonce值" class="headerlink" title="Nonce值"></a>Nonce值</h2><p>矿工挖矿的过程其实就是对交易数据进行打包后，算出一个符合如下公式的Nonce值的过程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CryptoJS.SHA256(index + previousHash + timestamp + data + nonce)</span><br></pre></td></tr></table></figure>
+
+<p>该公式的结果是一个hash值，而挖矿的难度就是这个hash值的前面有几个0，难度越大，即要求的0的个数越多，就越难算出来，这个算的过程就是矿工工作的过程，所以这个算法才叫工作量证明算法。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/04/2018-09-05-webpack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嘿嘿嘿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/04/2018-09-05-webpack/" itemprop="url">Webpack</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-04T00:00:00+08:00">
+                2018-09-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Webpack-杂记"><a href="#Webpack-杂记" class="headerlink" title="Webpack 杂记"></a>Webpack 杂记</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>首先我们要消除一个常见的误解。webpack 是一个模块打包器(module bundler)（例如，Browserify 或 Brunch）。它不是一个任务执行器(task runner)（例如，Make, Grunt 或者 Gulp ）。任务执行器就是用来自动化处理常见的开发任务，例如项目的检查(lint)、构建(build)、测试(test)。相对于打包器(bundler)，任务执行器则聚焦在偏重上层的问题上面。你可以得益于，使用上层的工具，而将打包部分的问题留给 webpack。</p>
+<p>打包器(bundler)帮助您取得准备用于部署的 JavaScript 和样式表，将它们转换为适合浏览器的可用格式。例如，JavaScript 可以压缩、拆分 chunk 和懒加载，以提高性能。打包是 web 开发中最重要的挑战之一，解决此问题可以消除开发过程中的大部分痛点。</p>
+<h2 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h2><ul>
+<li><p>安装</p>
+<blockquote>
+<p>$ npm install –save-dev webpack</p>
+</blockquote>
+</li>
+<li><p>新建webpack.config.js配置文件，并写入以下内容</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">　　entry: &apos;./src/scripts/app.js&apos;,</span><br><span class="line">　　output: &#123;</span><br><span class="line">        filename: &apos;bundle.js&apos;,</span><br><span class="line">        path: path.resolve(__dirname, &apos;dist/scripts&apos;)</span><br><span class="line">　　&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>执行编译</p>
+<blockquote>
+<p>$ ./node_modules/.bin/webpack webpack.config.js</p>
+</blockquote>
+</li>
+<li><p>使用npm脚本来方便启动webpack，在package.json中加入:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;build&quot;: &quot;webpack&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>  现在，可以使用 npm run build 命令，来替代我们之前用到的较长命令。注意，使用 npm 的 scripts，我们可以通过模块名，来引用本地安装的 npm 包，而不是写出完整路径。这是大多数基于 npm 的项目遵循的标准，允许我们直接调用 webpack，而不是去调用 ./node_modules/.bin/webpack。</p>
+</li>
+</ul>
+<h2 id="资源管理"><a href="#资源管理" class="headerlink" title="资源管理"></a>资源管理</h2><p>在 webpack 出现之前，前端开发人员会使用 grunt 和 gulp 等工具来处理资源，并将它们从 <code>/src</code> 文件夹移动到 <code>/dist</code> 或 <code>/build</code> 目录中。同样方式也被用于 JavaScript 模块，但是，像 webpack 这样的工具，将动态打包(dynamically bundle)所有依赖项（创建所谓的依赖图(dependency graph)）。这是极好的创举，因为现在每个模块都可以_明确表述它自身的依赖，我们将避免打包未使用的模块。</p>
+<p>webpack 最出色的功能之一就是，除了 JavaScript，还可以通过 loader 引入任何其他类型的文件。也就是说，以上列出的那些 JavaScript 的优点（例如显式依赖），同样可以用来构建网站或 web 应用程序中的所有非 JavaScript 内容。让我们从 CSS 开始起步，或许你可能已经熟悉了这个设置过程。</p>
+<hr>
+<h3 id="加载css"><a href="#加载css" class="headerlink" title="加载css"></a>加载css</h3><ul>
+<li><p>为了从 JavaScript 模块中 import 一个 CSS 文件，需要安装加载css的插件</p>
+<blockquote>
+<p>$ npm install –save-dev style-loader css-loader</p>
+</blockquote>
+</li>
+<li><p>在 module 配置中 添加 style-loader 和 css-loader</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  module: &#123;</span><br><span class="line">    // 通过匹配不同正则表达式的，调用相应的loader</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        // webpack 根据正则表达式，来确定应该查找哪些文件，并将其提供给指定的 loader</span><br><span class="line">        test: /\.css$/,</span><br><span class="line">        use: [&apos;style-loader&apos;, &apos;css-loader&apos;]</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在app.js中通过import引入css文件</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import &apos;../styles/app.css&apos;;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<hr>
+<h3 id="加载图片"><a href="#加载图片" class="headerlink" title="加载图片"></a>加载图片</h3><ul>
+<li><p>安装读取文件的loader</p>
+<blockquote>
+<p>$ npm install –save-dev file-loader</p>
+</blockquote>
+</li>
+<li><p>在app.js文件中引入图片</p>
+<blockquote>
+<p>$ import Icon from ‘../images/th.jpeg’</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h3 id="加载数据"><a href="#加载数据" class="headerlink" title="加载数据"></a>加载数据</h3><ul>
+<li><p>安装csv和xml加载器</p>
+<blockquote>
+<p>$ npm install –save-dev csv-loader xml-loader</p>
+</blockquote>
+</li>
+<li><p>配置</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">module: &#123;</span><br><span class="line">  rules: [</span><br><span class="line">    &#123;</span><br><span class="line">      test: /\.(csv|tsv)$/,</span><br><span class="line">      use: [&apos;csv-loader&apos;]</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      test: /\.xml$/,</span><br><span class="line">      use: [&apos;xml-loader&apos;]</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="管理输出"><a href="#管理输出" class="headerlink" title="管理输出"></a>管理输出</h2><ul>
+<li>html页面自动引入资源</li>
+</ul>
+<p>目前，我们在 index.html 文件中手动引入所有资源，然而随着应用程序增长，并且一旦开始对文件名使用哈希(hash)]并输出多个 bundle，手动地对 index.html 文件进行管理，一切就会变得困难起来。然而，可以通过一些插件，会使这个过程更容易操控。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const path = require(&apos;path&apos;)</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  entry: &#123;</span><br><span class="line">    app: &apos;./src/scripts/app.js&apos;,</span><br><span class="line">    common: &apos;./src/scripts/common.js&apos;</span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: &apos;[name].bundle.js&apos;,</span><br><span class="line">    path: path.resolve(__dirname, &apos;dist/scripts&apos;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当有多个入口文件时，会编译成多个bundle.js文件，每次改动都需要在页面中手动引入。此时，需要用到 `html-webpack-plugin</p>
+<blockquote>
+<p>$ npm install –save-dev html-webpack-plugin</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">const HtmlWebpackPlugin = require(&apos;html-webpack-plugin&apos;)</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  entry: &#123;</span><br><span class="line">    app: &apos;./src/scripts/app.js&apos;,</span><br><span class="line">    common: &apos;./src/scripts/common.js&apos;</span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: &apos;[name].bundle.js&apos;,</span><br><span class="line">    path: path.resolve(__dirname, &apos;dist/scripts&apos;)</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    new HtmlWebpackPlugin(&#123;</span><br><span class="line">      title: &apos;Hi webpack&apos;</span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>清理旧的输出文件</li>
+</ul>
+<blockquote>
+<p>$ npm install clean-webpack-plugin –save-dev</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const CleanWebpackPlugin = require(&apos;clean-webpack-plugin&apos;);</span><br><span class="line"></span><br><span class="line">plugins: [</span><br><span class="line">    new CleanWebpackPlugin([&apos;dist&apos;]),</span><br><span class="line">    new HtmlWebpackPlugin(&#123;</span><br><span class="line">      title: &apos;Hi webpack&apos;</span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br></pre></td></tr></table></figure>
+
+<h2 id="开发实践"><a href="#开发实践" class="headerlink" title="开发实践"></a>开发实践</h2><ul>
+<li><p>使用 <code>source map</code> 定位错误</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">   devtool: &apos;inline-source-map&apos;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用webpack-dev-server，为你提供了一个简单的 web 服务器，并且能够实时重新加载(live reloading)。</p>
+<blockquote>
+<p>$ npm install –save-dev webpack-dev-server</p>
+</blockquote>
+<p>  修改配置文件，告诉开发服务器(dev server)，在哪里查找文件</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">    devServer: &#123;</span><br><span class="line">        contentBase: &apos;./dist&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>  以上配置告知 webpack-dev-server，在 localhost:8080 下建立服务，将 dist 目录下的文件，作为可访问文件。</p>
+<p>  在package.json中添加一个脚本配置</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;start&quot;: &quot;webpack-dev-server --open&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="代码分离"><a href="#代码分离" class="headerlink" title="代码分离"></a>代码分离</h2><p>  代码分离是 webpack 中最引人注目的特性之一。此特性能够把代码分离到不同的 bundle 中，然后可以按需加载或并行加载这些文件。代码分离可以用于获取更小的 bundle，以及控制资源加载优先级，如果使用合理，会极大影响加载时间。</p>
+<p>有三种常用的代码分离方法：</p>
+<ul>
+<li>入口起点：使用 entry 配置手动地分离代码。</li>
+<li>防止重复：使用 CommonsChunkPlugin 去重和分离 chunk。</li>
+<li>动态导入：通过模块的内联函数调用来分离代码。</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://s2.ax1x.com/2019/08/14/mFInYj.jpg" alt="嘿嘿嘿">
+            
+              <p class="site-author-name" itemprop="name">嘿嘿嘿</p>
+              <p class="site-description motion-element" itemprop="description">记录打怪升级之路</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/yourname" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:yourname@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">嘿嘿嘿</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
