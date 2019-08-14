@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="操作系统,os,">
+  <meta name="keywords" content="Javascript,NodeJs,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="产生死锁的原因和必要条件在多道程序系统中，虽可借助于多个进程的并发执行来改善系统的资源利用率，提高系统的吞吐量，但可能发生一种危险——死锁。所谓死锁(Deadlock)，是指多个进程在运行过程中因争夺资源而造成的一种僵局(DeadlyEmbrace)，当进程处于这种僵持状态时，若无外力作用，它们都将无法再向前推进。 产生死锁的必要条件 互斥条件  指进程对所分配到的资源进行排它性使用，即在一段时间">
-<meta name="keywords" content="操作系统,os">
+<meta name="description" content="NodeJS的module对于 circle.js 1234567891011121314151617// 这种导出方式，相当于将变量地址导出，会被外界修改exports.varA = &apos;varA&apos;exports.func1 = () =&amp;gt; &amp;#123;  console.log(&apos;func1&apos;)&amp;#125;module.exports.varB = &apos;varB&apos;// 以上写法等价于modu">
+<meta name="keywords" content="Javascript,NodeJs">
 <meta property="og:type" content="article">
-<meta property="og:title" content="产生死锁的原因和必要条件">
-<meta property="og:url" content="http://yoursite.com/2018/09/02/2018-09-02-产生死锁的原因和必要条件/index.html">
+<meta property="og:title" content="NodeJS与ES6的模块化">
+<meta property="og:url" content="http://yoursite.com/2019/08/14/2019-08-14-NodeJS与ES6的模块化/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="产生死锁的原因和必要条件在多道程序系统中，虽可借助于多个进程的并发执行来改善系统的资源利用率，提高系统的吞吐量，但可能发生一种危险——死锁。所谓死锁(Deadlock)，是指多个进程在运行过程中因争夺资源而造成的一种僵局(DeadlyEmbrace)，当进程处于这种僵持状态时，若无外力作用，它们都将无法再向前推进。 产生死锁的必要条件 互斥条件  指进程对所分配到的资源进行排它性使用，即在一段时间">
+<meta property="og:description" content="NodeJS的module对于 circle.js 1234567891011121314151617// 这种导出方式，相当于将变量地址导出，会被外界修改exports.varA = &apos;varA&apos;exports.func1 = () =&amp;gt; &amp;#123;  console.log(&apos;func1&apos;)&amp;#125;module.exports.varB = &apos;varB&apos;// 以上写法等价于modu">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-05T09:53:07.082Z">
+<meta property="og:updated_time" content="2019-08-14T09:35:32.539Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="产生死锁的原因和必要条件">
-<meta name="twitter:description" content="产生死锁的原因和必要条件在多道程序系统中，虽可借助于多个进程的并发执行来改善系统的资源利用率，提高系统的吞吐量，但可能发生一种危险——死锁。所谓死锁(Deadlock)，是指多个进程在运行过程中因争夺资源而造成的一种僵局(DeadlyEmbrace)，当进程处于这种僵持状态时，若无外力作用，它们都将无法再向前推进。 产生死锁的必要条件 互斥条件  指进程对所分配到的资源进行排它性使用，即在一段时间">
+<meta name="twitter:title" content="NodeJS与ES6的模块化">
+<meta name="twitter:description" content="NodeJS的module对于 circle.js 1234567891011121314151617// 这种导出方式，相当于将变量地址导出，会被外界修改exports.varA = &apos;varA&apos;exports.func1 = () =&amp;gt; &amp;#123;  console.log(&apos;func1&apos;)&amp;#125;module.exports.varB = &apos;varB&apos;// 以上写法等价于modu">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/02/2018-09-02-产生死锁的原因和必要条件/">
+  <link rel="canonical" href="http://yoursite.com/2019/08/14/2019-08-14-NodeJS与ES6的模块化/">
 
 
 
 
 
-  <title>产生死锁的原因和必要条件 | 个人博客</title>
+  <title>NodeJS与ES6的模块化 | 个人博客</title>
   
 
 
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/hexo-blog/2018/09/02/2018-09-02-产生死锁的原因和必要条件/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/hexo-blog/2019/08/14/2019-08-14-NodeJS与ES6的模块化/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="嘿嘿嘿">
@@ -280,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">产生死锁的原因和必要条件</h1>
+          <h1 class="post-title" itemprop="name headline">NodeJS与ES6的模块化</h1>
         
 
         <div class="post-meta">
@@ -292,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-02T00:00:00+08:00">
-                2018-09-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-14T00:00:00+08:00">
+                2019-08-14
               </time>
             
 
@@ -304,8 +304,6 @@
 
           
 
-          
-            
           
 
           
@@ -324,7 +322,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  771
+                  399
                 </span>
               
 
@@ -340,7 +338,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  1
                 </span>
               
             </div>
@@ -361,35 +359,23 @@
       
 
       
-        <h2 id="产生死锁的原因和必要条件"><a href="#产生死锁的原因和必要条件" class="headerlink" title="产生死锁的原因和必要条件"></a>产生死锁的原因和必要条件</h2><p>在多道程序系统中，虽可借助于多个进程的并发执行来改善系统的资源利用率，提高系统的吞吐量，但可能发生一种危险——死锁。所谓死锁(Deadlock)，是指多个进程在运行过程中因争夺资源而造成的一种僵局(DeadlyEmbrace)，当进程处于这种僵持状态时，若无外力作用，它们都将无法再向前推进。</p>
-<h3 id="产生死锁的必要条件"><a href="#产生死锁的必要条件" class="headerlink" title="产生死锁的必要条件"></a>产生死锁的必要条件</h3><ul>
-<li><p>互斥条件</p>
-<p> 指进程对所分配到的资源进行排它性使用，即在一段时间内某资源只由<br>一个进程占用。如果此时还有其它进程请求该资源，则请求者只能等待，直至占有该资源的进程用毕释放。</p>
-</li>
-<li><p>请求和保持条件</p>
-<p>  指进程已经保持了至少一个资源，但又提出了新的资源请求，而该资源又已被其它进程占有，此时请求进程阻塞，但又对自己已获得的其它资源保持不放。</p>
-</li>
-<li><p>不剥夺条件</p>
-<p>  指进程已获得的资源，在未使用完之前，不能被剥夺，只能在使用完<br>时由自己释放。</p>
-</li>
-<li><p>环路等待条件</p>
-<p>  指在发生死锁时，必然存在一个进程——资源的环形链，即进程集合{P0，P1，P2，…，Pn}中的 P0正在等待一个 P1占用的资源； P1正在等待 P2占用的资源，……，Pn正在等待已被 P0占用的资源。</p>
-</li>
-</ul>
-<h3 id="处理死锁的基本方法"><a href="#处理死锁的基本方法" class="headerlink" title="处理死锁的基本方法"></a>处理死锁的基本方法</h3><ul>
-<li><p>预防死锁</p>
-<p>  该方法是通过设置某些限制条件，去破坏产生死锁的四个必要条件中的一个或几个条件，来预防发生死锁。预防死锁是一种较易实现的方法，已被广泛使用。但由于所施加的限制条件往往太严格，因而可能会导致系统资源利用率和系统吞吐量降低。</p>
-</li>
-<li><p>避免死锁</p>
-<p>  是在资源的动态分配过程中，用某种方法去防止系统进入不安全状态，从而避免发生死锁</p>
-</li>
-<li><p>检测死锁</p>
-<p>  这种方法并不须事先采取任何限制性措施，也不必检查系统是否已经进<br>入不安全区，而是允许系统在运行过程中发生死锁。但可通过系统所设置的检测机构，及时地检测出死锁的发生，并精确地确定与死锁有关的进程和资源； 然后，采取适当措施，从系统中将已发生的死锁清除掉</p>
-</li>
-<li><p>解除死锁</p>
-<p>  这是与检测死锁相配套的一种措施。当检测到系统中已发生死锁时，须<br>将进程从死锁状态中解脱出来。常用的实施方法是撤消或挂起一些进程，以便回收一些资源，再将这些资源分配给已处于阻塞状态的进程，使之转为就绪状态，以继续运行</p>
-</li>
-</ul>
+        <h2 id="NodeJS的module"><a href="#NodeJS的module" class="headerlink" title="NodeJS的module"></a>NodeJS的module</h2><p>对于 <code>circle.js</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这种导出方式，相当于将变量地址导出，会被外界修改</span></span><br><span class="line">exports.varA = <span class="string">'varA'</span></span><br><span class="line"></span><br><span class="line">exports.func1 = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'func1'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports.varB = <span class="string">'varB'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 以上写法等价于</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  varA: <span class="string">'varA'</span>,</span><br><span class="line">  varB: <span class="string">'varB'</span>,</span><br><span class="line">  func1 () &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'func'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>main.js</code> 中可以这么引入</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> math = <span class="built_in">require</span>(<span class="string">'./utils/math'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(math.varA)</span><br><span class="line"><span class="built_in">console</span>.log(math.varB)</span><br><span class="line">math.func1()</span><br><span class="line"></span><br><span class="line">math.varA = <span class="string">'A'</span>;</span><br><span class="line">math.varB = <span class="string">'B'</span>;</span><br><span class="line">math.func1 = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'another func'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> math2 = <span class="built_in">require</span>(<span class="string">'./utils/math'</span>)</span><br><span class="line"><span class="comment">// varA, varB 和 func1 都发生了改变，证明import进来的模块是单例的</span></span><br><span class="line"><span class="built_in">console</span>.log(math2.varA)</span><br><span class="line"><span class="built_in">console</span>.log(math2.varB)</span><br><span class="line">math2.func1()</span><br></pre></td></tr></table></figure>
+
+<h2 id="ES6的module"><a href="#ES6的module" class="headerlink" title="ES6的module"></a>ES6的module</h2><p>ES6 模块不是对象，而是通过export命令显式指定输出的代码，再通过import命令输入。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES6模块</span></span><br><span class="line"><span class="keyword">import</span> &#123; stat, exists, readFile &#125; <span class="keyword">from</span> <span class="string">'fs'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码的实质是从fs模块加载3个方法，其他方法不加载。这种加载称为“编译时加载”或者静态加载，即 ES6 可以在编译时就完成模块加载，效率要比 CommonJS 模块的加载方式高。当然，这也导致了没法引用 ES6 模块本身，因为它不是对象。</p>
+<p>模块功能主要由两个命令构成：<code>export</code> 和 <code>import</code>。export命令用于规定模块的对外接口，import命令用于输入其他模块提供的功能。</p>
+<p>对于 <code>math.js</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> func1 = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'func1'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> varA = <span class="string">'varA'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> defaultFunc = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'defaultFunc'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123;</span><br><span class="line">  func1,</span><br><span class="line">  varA</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">let</span> varB = <span class="string">'varB'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">let</span> func2 = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'func2'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defaultFunc</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>main.js</code> 可以这么引入</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; func1, func2, varA, varB &#125; <span class="keyword">from</span> <span class="string">'./utils/string'</span></span><br><span class="line"><span class="keyword">import</span> defaultFunc <span class="keyword">from</span> <span class="string">'./utils/string'</span></span><br><span class="line"></span><br><span class="line">func1()</span><br><span class="line">func2()</span><br><span class="line">defaultFunc()</span><br><span class="line"><span class="built_in">console</span>.log(varA)</span><br><span class="line"><span class="built_in">console</span>.log(varB)</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -407,9 +393,9 @@
       
         <div class="post-tags">
           
-            <a href="/hexo-blog/tags/操作系统/" rel="tag"># 操作系统</a>
+            <a href="/hexo-blog/tags/Javascript/" rel="tag"># Javascript</a>
           
-            <a href="/hexo-blog/tags/os/" rel="tag"># os</a>
+            <a href="/hexo-blog/tags/NodeJs/" rel="tag"># NodeJs</a>
           
         </div>
       
@@ -422,8 +408,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/hexo-blog/2012/05/22/2018-09-01-java-golang-defference/" rel="next" title="Java和Golang的区别">
-                <i class="fa fa-chevron-left"></i> Java和Golang的区别
+              <a href="/hexo-blog/2018/10/06/2019-08-06-nodejs-异步编程/" rel="next" title="nodejs-异步编程">
+                <i class="fa fa-chevron-left"></i> nodejs-异步编程
               </a>
             
           </div>
@@ -432,8 +418,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/hexo-blog/2018/09/02/2018-09-02-分段存储管理方式/" rel="prev" title="基本分段存储管理方式">
-                基本分段存储管理方式 <i class="fa fa-chevron-right"></i>
+              <a href="/hexo-blog/2019/08/14/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -462,10 +448,6 @@
 
 
           
-
-  
-
-
 
         </div>
         
@@ -575,7 +557,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#产生死锁的原因和必要条件"><span class="nav-number">1.</span> <span class="nav-text">产生死锁的原因和必要条件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#产生死锁的必要条件"><span class="nav-number">1.1.</span> <span class="nav-text">产生死锁的必要条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#处理死锁的基本方法"><span class="nav-number">1.2.</span> <span class="nav-text">处理死锁的基本方法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NodeJS的module"><span class="nav-number">1.</span> <span class="nav-text">NodeJS的module</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6的module"><span class="nav-number">2.</span> <span class="nav-text">ES6的module</span></a></li></ol></div>
             
 
           </div>

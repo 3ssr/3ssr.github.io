@@ -575,6 +575,329 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/hexo-blog/2019/08/14/2019-08-14-NodeJS与ES6的模块化/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嘿嘿嘿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/hexo-blog/2019/08/14/2019-08-14-NodeJS与ES6的模块化/" itemprop="url">NodeJS与ES6的模块化</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-14T00:00:00+08:00">
+                2019-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  399
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="NodeJS的module"><a href="#NodeJS的module" class="headerlink" title="NodeJS的module"></a>NodeJS的module</h2><p>对于 <code>circle.js</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这种导出方式，相当于将变量地址导出，会被外界修改</span></span><br><span class="line">exports.varA = <span class="string">'varA'</span></span><br><span class="line"></span><br><span class="line">exports.func1 = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'func1'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports.varB = <span class="string">'varB'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 以上写法等价于</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  varA: <span class="string">'varA'</span>,</span><br><span class="line">  varB: <span class="string">'varB'</span>,</span><br><span class="line">  func1 () &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'func'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>main.js</code> 中可以这么引入</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> math = <span class="built_in">require</span>(<span class="string">'./utils/math'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(math.varA)</span><br><span class="line"><span class="built_in">console</span>.log(math.varB)</span><br><span class="line">math.func1()</span><br><span class="line"></span><br><span class="line">math.varA = <span class="string">'A'</span>;</span><br><span class="line">math.varB = <span class="string">'B'</span>;</span><br><span class="line">math.func1 = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'another func'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> math2 = <span class="built_in">require</span>(<span class="string">'./utils/math'</span>)</span><br><span class="line"><span class="comment">// varA, varB 和 func1 都发生了改变，证明import进来的模块是单例的</span></span><br><span class="line"><span class="built_in">console</span>.log(math2.varA)</span><br><span class="line"><span class="built_in">console</span>.log(math2.varB)</span><br><span class="line">math2.func1()</span><br></pre></td></tr></table></figure>
+
+<h2 id="ES6的module"><a href="#ES6的module" class="headerlink" title="ES6的module"></a>ES6的module</h2><p>ES6 模块不是对象，而是通过export命令显式指定输出的代码，再通过import命令输入。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES6模块</span></span><br><span class="line"><span class="keyword">import</span> &#123; stat, exists, readFile &#125; <span class="keyword">from</span> <span class="string">'fs'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码的实质是从fs模块加载3个方法，其他方法不加载。这种加载称为“编译时加载”或者静态加载，即 ES6 可以在编译时就完成模块加载，效率要比 CommonJS 模块的加载方式高。当然，这也导致了没法引用 ES6 模块本身，因为它不是对象。</p>
+<p>模块功能主要由两个命令构成：<code>export</code> 和 <code>import</code>。export命令用于规定模块的对外接口，import命令用于输入其他模块提供的功能。</p>
+<p>对于 <code>math.js</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> func1 = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'func1'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> varA = <span class="string">'varA'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> defaultFunc = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'defaultFunc'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123;</span><br><span class="line">  func1,</span><br><span class="line">  varA</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">let</span> varB = <span class="string">'varB'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">let</span> func2 = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'func2'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defaultFunc</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>main.js</code> 可以这么引入</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; func1, func2, varA, varB &#125; <span class="keyword">from</span> <span class="string">'./utils/string'</span></span><br><span class="line"><span class="keyword">import</span> defaultFunc <span class="keyword">from</span> <span class="string">'./utils/string'</span></span><br><span class="line"></span><br><span class="line">func1()</span><br><span class="line">func2()</span><br><span class="line">defaultFunc()</span><br><span class="line"><span class="built_in">console</span>.log(varA)</span><br><span class="line"><span class="built_in">console</span>.log(varB)</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/hexo-blog/2018/10/06/2019-08-06-nodejs-异步编程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嘿嘿嘿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/hexo-blog/2018/10/06/2019-08-06-nodejs-异步编程/" itemprop="url">nodejs-异步编程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-06T00:00:00+08:00">
+                2018-10-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  92
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="异步编程"><a href="#异步编程" class="headerlink" title="异步编程"></a>异步编程</h2><h3 id="callback瀑布级回调"><a href="#callback瀑布级回调" class="headerlink" title="callback瀑布级回调"></a>callback瀑布级回调</h3><h3 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h3><h3 id="Generator"><a href="#Generator" class="headerlink" title="Generator"></a>Generator</h3><h3 id="Async-和-Await"><a href="#Async-和-Await" class="headerlink" title="Async 和 Await"></a>Async 和 Await</h3><ul>
+<li><p>在函数体前通过关键字async可以将函数变为async函数</p>
+</li>
+<li><p>在async函数中对需要异步执行的函数前需加await关键字</p>
+</li>
+<li><p>await后的函数必须使用Promise对象封装</p>
+</li>
+<li><p>async函数执行后返回的是一个Promise对象</p>
+</li>
+</ul>
+<h2 id="NodeJs单线程是怎么保证效率的"><a href="#NodeJs单线程是怎么保证效率的" class="headerlink" title="NodeJs单线程是怎么保证效率的"></a>NodeJs单线程是怎么保证效率的</h2>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/hexo-blog/2018/10/06/2018-10-06-Ethereum-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -789,164 +1112,6 @@
 </ul>
 <p>存储收费是因为假如你的合约使得状态数据库存储增大，所有节点都会增加存储。以太币是鼓励尽量保持少量存储的。<br>但是如果有操作是清除一个存储条目，这个操作的费用不但会被免除，而且由于释放空间还会获得退款。</p>
 <h2 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h2><h3 id="什么是RLP编码？"><a href="#什么是RLP编码？" class="headerlink" title="什么是RLP编码？"></a>什么是RLP编码？</h3><h3 id="什么是Patricia-Trie？"><a href="#什么是Patricia-Trie？" class="headerlink" title="什么是Patricia Trie？"></a>什么是Patricia Trie？</h3>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/hexo-blog/2018/10/06/2019-08-06-nodejs-异步编程/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="嘿嘿嘿">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/hexo-blog/2018/10/06/2019-08-06-nodejs-异步编程/" itemprop="url">nodejs-异步编程</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-06T00:00:00+08:00">
-                2018-10-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  92
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="异步编程"><a href="#异步编程" class="headerlink" title="异步编程"></a>异步编程</h2><h3 id="callback瀑布级回调"><a href="#callback瀑布级回调" class="headerlink" title="callback瀑布级回调"></a>callback瀑布级回调</h3><h3 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h3><h3 id="Generator"><a href="#Generator" class="headerlink" title="Generator"></a>Generator</h3><h3 id="Async-和-Await"><a href="#Async-和-Await" class="headerlink" title="Async 和 Await"></a>Async 和 Await</h3><ul>
-<li><p>在函数体前通过关键字async可以将函数变为async函数</p>
-</li>
-<li><p>在async函数中对需要异步执行的函数前需加await关键字</p>
-</li>
-<li><p>await后的函数必须使用Promise对象封装</p>
-</li>
-<li><p>async函数执行后返回的是一个Promise对象</p>
-</li>
-</ul>
-<h2 id="NodeJs单线程是怎么保证效率的"><a href="#NodeJs单线程是怎么保证效率的" class="headerlink" title="NodeJs单线程是怎么保证效率的"></a>NodeJs单线程是怎么保证效率的</h2>
           
         
       
@@ -1588,6 +1753,191 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/hexo-blog/2018/10/03/2018-10-03-pow/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嘿嘿嘿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/hexo-blog/2018/10/03/2018-10-03-pow/" itemprop="url">Pow算法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-03T00:00:00+08:00">
+                2018-10-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  302
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="什么是Pow算法？"><a href="#什么是Pow算法？" class="headerlink" title="什么是Pow算法？"></a>什么是Pow算法？</h2><p>Pow的全称是Proof of Work，即工作量证明，是区块链中用来判断由哪个矿工获得区块打包权的算法。</p>
+<h2 id="区块链的块的结构"><a href="#区块链的块的结构" class="headerlink" title="区块链的块的结构"></a>区块链的块的结构</h2><p>在聊Pow之前，首先，必须先认识区块的结构，基本的区块结构如下</p>
+<table>
+<thead>
+<tr>
+<th>区块结构</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>当前块的hash值</td>
+</tr>
+<tr>
+<td>前一个区块的哈希值</td>
+</tr>
+<tr>
+<td>Merkle根哈希值</td>
+</tr>
+<tr>
+<td>时间戳</td>
+</tr>
+<tr>
+<td>难度值</td>
+</tr>
+<tr>
+<td>随机数Nonce</td>
+</tr>
+<tr>
+<td>区块包含的交易列表</td>
+</tr>
+</tbody></table>
+<h2 id="Merkle根"><a href="#Merkle根" class="headerlink" title="Merkle根"></a>Merkle根</h2><p>交易列表里记录的每一笔交易都有一个唯一的哈希值，将交易的hash值两两组合，最后生成Merkle根</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/14287187-67ad38c09a390d78.jpg" alt="图片发自简书App"></p>
+<p>Merkle保证了区块的交易信息不会被串改</p>
+<h2 id="Nonce值"><a href="#Nonce值" class="headerlink" title="Nonce值"></a>Nonce值</h2><p>矿工挖矿的过程其实就是对交易数据进行打包后，算出一个符合如下公式的Nonce值的过程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CryptoJS.SHA256(index + previousHash + timestamp + data + nonce)</span><br></pre></td></tr></table></figure>
+
+<p>该公式的结果是一个hash值，而挖矿的难度就是这个hash值的前面有几个0，难度越大，即要求的0的个数越多，就越难算出来，这个算的过程就是矿工工作的过程，所以这个算法才叫工作量证明算法。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/hexo-blog/2018/10/03/2018-10-03-Kadamlia/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1783,463 +2133,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/hexo-blog/2018/10/03/2018-10-03-pow/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="嘿嘿嘿">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/hexo-blog/2018/10/03/2018-10-03-pow/" itemprop="url">Pow算法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-03T00:00:00+08:00">
-                2018-10-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  302
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="什么是Pow算法？"><a href="#什么是Pow算法？" class="headerlink" title="什么是Pow算法？"></a>什么是Pow算法？</h2><p>Pow的全称是Proof of Work，即工作量证明，是区块链中用来判断由哪个矿工获得区块打包权的算法。</p>
-<h2 id="区块链的块的结构"><a href="#区块链的块的结构" class="headerlink" title="区块链的块的结构"></a>区块链的块的结构</h2><p>在聊Pow之前，首先，必须先认识区块的结构，基本的区块结构如下</p>
-<table>
-<thead>
-<tr>
-<th>区块结构</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>当前块的hash值</td>
-</tr>
-<tr>
-<td>前一个区块的哈希值</td>
-</tr>
-<tr>
-<td>Merkle根哈希值</td>
-</tr>
-<tr>
-<td>时间戳</td>
-</tr>
-<tr>
-<td>难度值</td>
-</tr>
-<tr>
-<td>随机数Nonce</td>
-</tr>
-<tr>
-<td>区块包含的交易列表</td>
-</tr>
-</tbody></table>
-<h2 id="Merkle根"><a href="#Merkle根" class="headerlink" title="Merkle根"></a>Merkle根</h2><p>交易列表里记录的每一笔交易都有一个唯一的哈希值，将交易的hash值两两组合，最后生成Merkle根</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/14287187-67ad38c09a390d78.jpg" alt="图片发自简书App"></p>
-<p>Merkle保证了区块的交易信息不会被串改</p>
-<h2 id="Nonce值"><a href="#Nonce值" class="headerlink" title="Nonce值"></a>Nonce值</h2><p>矿工挖矿的过程其实就是对交易数据进行打包后，算出一个符合如下公式的Nonce值的过程</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CryptoJS.SHA256(index + previousHash + timestamp + data + nonce)</span><br></pre></td></tr></table></figure>
-
-<p>该公式的结果是一个hash值，而挖矿的难度就是这个hash值的前面有几个0，难度越大，即要求的0的个数越多，就越难算出来，这个算的过程就是矿工工作的过程，所以这个算法才叫工作量证明算法。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/hexo-blog/2018/09/04/2018-09-04-grunt/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="嘿嘿嘿">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/hexo-blog/2018/09/04/2018-09-04-grunt/" itemprop="url">Grunt</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-04T00:00:00+08:00">
-                2018-09-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.1k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  4
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Grunt-杂记"><a href="#Grunt-杂记" class="headerlink" title="Grunt 杂记"></a>Grunt 杂记</h1><p><img src="https://img.shields.io/badge/js-grunt-brightgreen.svg" alt="grunt"></p>
-<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Grunt是一个基于NodeJS，可用于自动化构建、测试、生成文档的项目管理工具。</p>
-<h3 id="Grunt-能做什么"><a href="#Grunt-能做什么" class="headerlink" title="Grunt 能做什么"></a>Grunt 能做什么</h3><p>Grunt可以自动化我们的整个开发流程，简单地说，就是用JavaScript去执行一些程序来完成一些任务。比如说将css、Javascript、图像等资源压缩；将Sass和Less通过预处理器编译成Css；将Coffeescript、Typescript等转化为Javascript；实时监听文件的变化，并执行自动编译任务；</p>
-<p>在Grunt工具箱中，按任务目标我们可以分为：</p>
-<ul>
-<li>编译文档型：比如编译LESS、Sass、Stylus、Coffeescript等；</li>
-<li>文件操作型：比如说合并、压缩JavaScript、CSS、图片等；</li>
-<li>质量保障型：比如JSHint、Jasmin、Mocha等；</li>
-<li>类库构建型：比如说Backbone.js、ember.js、angular.js等。</li>
-</ul>
-<p>这些任务都依赖于给Grunt提供的插件来完成的，但很多工作依旧需要在命令终端手工输入命令来完成这些操作。为此在Grunt中可以使用watch任务来实现一些监听文件改变、自动触发构建等功能。从而减少人工去每次操作任务。</p>
-<h3 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h3><p>Grunt的使用非常简单，仅需下载相应的命令行工具，针对不同的任务下载不同的插件，即可完成整个自动化过程。</p>
-<ul>
-<li><p>将grunt-cli（grunt命令行工具）作为全局模块安装</p>
-<blockquote>
-<p>$ npm install -g grunt-cli</p>
-</blockquote>
-</li>
-<li><p>通过npm初始化，为我们生成一份package.json文件</p>
-<blockquote>
-<p>$ mkdir grunt-app &amp;&amp; cd grunt-app<br>$ npm init</p>
-</blockquote>
-</li>
-<li><p>为项目安装grunt作为依赖</p>
-<blockquote>
-<p>$ npm install –save-dev grunt</p>
-</blockquote>
-<p>  至此grunt已经安装完毕，但它还没有特殊的功能，要使用grunt的各种功能，需要建一份Gruntfile.js文件，并为之安装相应的插件。</p>
-</li>
-<li><p>新建Gruntfile.js，并写入以下内容</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">module.exports = function(grunt) &#123;</span><br><span class="line"></span><br><span class="line">  // 之后所有的配置都是配在传递给grunt.initConfig这个方法的对象中</span><br><span class="line">  grunt.initConfig(&#123;</span><br><span class="line">    // 将package.json文件作为一个json对象读入</span><br><span class="line">    pkg: grunt.file.readJSON(&apos;package.json&apos;),</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  // 加载grunt的插件，这里的 grunt-contrib-uglify 是一个例子</span><br><span class="line">  grunt.loadNpmTasks(&apos;grunt-contrib-uglify&apos;);</span><br><span class="line"></span><br><span class="line">  // 注册一个grunt任务，第一个参数为任务的名字，当任务的名字default时，通过grunt运行项目时，会默认执行该任务；第二个参数是一个数组，是后续所要执行任务名字的集合。</span><br><span class="line">  grunt.registerTask(&apos;default&apos;, [&apos;uglify&apos;]);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="安装grunt插件"><a href="#安装grunt插件" class="headerlink" title="安装grunt插件"></a>安装grunt插件</h3><p>在安装grunt插件时，需要考虑自己需要哪些功能，下面罗列出开发中需要的大部分功能。并举个简单的例子，详细用法可参考 <a href="https://github.com/gruntjs" title="Gruntjs的github链接" target="_blank" rel="noopener">Gruntjs</a>。</p>
-<ol>
-<li><p><a href="https://github.com/gruntjs/grunt-contrib-uglify" title="grunt uglify" target="_blank" rel="noopener">grunt-contrib-uglify</a> （混淆并压缩js文件）</p>
-<ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install grunt-contrib-uglify –save-dev</p>
-</blockquote>
-</li>
-<li><p>配置task</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">    uglify: &#123;</span><br><span class="line">        my_target: &#123;</span><br><span class="line">          files: &#123;</span><br><span class="line">            &apos;dest/output.min.js&apos;: [&apos;src/input1.js&apos;, &apos;src/input2.js&apos;]</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">grunt.loadNpmTasks(&apos;grunt-contrib-uglify&apos;);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><a href="https://github.com/gruntjs/grunt-contrib-cssmin" title="grunt cssmin" target="_blank" rel="noopener">grunt-contrib-cssmin</a> （压缩css）</p>
-<ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install grunt-contrib-cssmin –save-dev</p>
-</blockquote>
-</li>
-<li><p>配置task</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">    target: &#123;</span><br><span class="line">        files: &#123;</span><br><span class="line">          &apos;output.css&apos;: [&apos;foo.css&apos;, &apos;bar.css&apos;]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">grunt.loadNpmTasks(&apos;grunt-contrib-cssmin&apos;);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><a href="https://github.com/gruntjs/grunt-contrib-clean" title="grunt clean" target="_blank" rel="noopener">grunt-contrib-clean</a> （清除文件和目录，一般用来清除上一次编译生成的文件）</p>
-<ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install grunt-contrib-clean –save-dev</p>
-</blockquote>
-</li>
-<li><p>配置task</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">    clean: &#123;</span><br><span class="line">        build: &#123;</span><br><span class="line">            src: [&apos;path/to/dir/one&apos;, &apos;path/to/dir/two&apos;]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">grunt.loadNpmTasks(&apos;grunt-contrib-clean&apos;);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><a href="https://github.com/gruntjs/grunt-contrib-watch" title="grunt watch" target="_blank" rel="noopener">grunt-contrib-watch</a> （监听文件的变化，并自动执行任务）</p>
-<ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install grunt-contrib-watch –save-dev</p>
-</blockquote>
-</li>
-<li><p>配置task</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">    watch: &#123;</span><br><span class="line">        scripts: &#123;</span><br><span class="line">            files: [&apos;**/*.coffee&apos;],</span><br><span class="line">            // 监听到文件变化后执行的task</span><br><span class="line">            tasks: [&apos;coffee&apos;],</span><br><span class="line">            options: &#123;</span><br><span class="line">                spawn: false,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">        css: &#123;</span><br><span class="line">            files: &apos;**/*.sass&apos;,</span><br><span class="line">            tasks: [&apos;sass&apos;],</span><br><span class="line">            options: &#123;</span><br><span class="line">                livereload: true,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">grunt.loadNpmTasks(&apos;grunt-contrib-watch&apos;);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><a href="https://github.com/gruntjs/grunt-contrib-connect" title="grunt connect" target="_blank" rel="noopener">grunt-contrib-connect</a> （开启一个服务器，使我们可以通过 <code>ip:端口号</code> 的方式访问目录下的资源）</p>
-<ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install grunt-contrib-connect –save-dev</p>
-</blockquote>
-</li>
-<li><p>配置task</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">    connect: &#123;</span><br><span class="line">        server: &#123;</span><br><span class="line">            options: &#123;</span><br><span class="line">                port: 9001,</span><br><span class="line">                base: &apos;www-root&apos;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">grunt.loadNpmTasks(&apos;grunt-contrib-connect&apos;);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><a href="https://github.com/gruntjs/grunt-contrib-less" title="grunt less" target="_blank" rel="noopener">grunt-contrib-less</a> （将less编译为css）</p>
-<ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install grunt-contrib-less –save-dev</p>
-</blockquote>
-</li>
-<li><p>配置task</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">    development: &#123;</span><br><span class="line">        files: &#123;</span><br><span class="line">            &apos;path/to/result.css&apos;: &apos;path/to/source.less&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">grunt.loadNpmTasks(&apos;grunt-contrib-less&apos;);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><a href="https://github.com/gruntjs/grunt-contrib-coffee" title="grunt coffeescript" target="_blank" rel="noopener">grunt-contrib-coffee</a> （将coffeescript编译成javascript）</p>
-<ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install grunt-contrib-coffee –save-dev</p>
-</blockquote>
-</li>
-<li><p>配置task</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">    development: &#123;</span><br><span class="line">        files: &#123;</span><br><span class="line">            &apos;path/to/result.js&apos;: &apos;path/to/source.coffee&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">grunt.loadNpmTasks(&apos;grunt-contrib-coffee&apos;);</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2292,7 +2185,7 @@
               
                 <a href="/hexo-blog/archives/">
               
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
