@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/02/2018-09-02-进程控制/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/02/2018-09-02-经典进程的同步问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="嘿嘿嘿">
@@ -281,7 +281,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/02/2018-09-02-进程控制/" itemprop="url">进程控制</a></h1>
+                <a class="post-title-link" href="/2018/09/02/2018-09-02-经典进程的同步问题/" itemprop="url">经典进程的同步问题</a></h1>
         
 
         <div class="post-meta">
@@ -325,7 +325,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.5k
+                  695
                 </span>
               
 
@@ -341,7 +341,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5
+                  3
                 </span>
               
             </div>
@@ -364,50 +364,404 @@
       
         
           
-            <h1 id="进程控制"><a href="#进程控制" class="headerlink" title="进程控制"></a>进程控制</h1><h2 id="进程图"><a href="#进程图" class="headerlink" title="进程图"></a>进程图</h2><p>子进程可以继承父进程所拥有的资源，例如，继承父进程打开的文件，继承父进程所分配到的缓冲区等。当子进程被撤消时，应将其从父进程那里获得的资源归还给父进程。此外，在撤消父进程时，也必须同时撤消其所有的子进程。为了标识进程之间的家族关系，在PCB中都设置了家族关系表项，以标明自己的父进程及所有的子进程。</p>
-<p><img src="https://s1.ax1x.com/2018/09/01/Px1Bp6.jpg" alt="此处输入图片的描述"></p>
-<h2 id="进程的创建"><a href="#进程的创建" class="headerlink" title="进程的创建"></a>进程的创建</h2><p>一旦操作系统发现了要求创建新进程的事件后，便调用进程创建原语 Creat( )按下述步骤创建一个新进程。</p>
+            <h2 id="经典进程的同步问题"><a href="#经典进程的同步问题" class="headerlink" title="经典进程的同步问题"></a>经典进程的同步问题</h2><h3 id="生产者—消费者问题"><a href="#生产者—消费者问题" class="headerlink" title="生产者—消费者问题"></a>生产者—消费者问题</h3><ul>
+<li><p>利用记录型信号量解决</p>
+<p>  假定在生产者和消费者之间的公用缓冲池中，具有n个缓冲区，这时可利用互斥信号量mutex实现诸进程对缓冲池的互斥使用。利用信号量emptyCount和fullCount分别表示缓冲池中 <code>空缓冲区</code> 和 <code>满缓冲区</code> 的数量</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">mutex, emptyCount, fullCount := 1, n, 0</span><br><span class="line"></span><br><span class="line">func proceducer() &#123;</span><br><span class="line">    wait(emptyCount)</span><br><span class="line">    wait(mutex)</span><br><span class="line"></span><br><span class="line">    // 生产一个产品，放入一个空的缓冲区中</span><br><span class="line"></span><br><span class="line">    signal(mutex)</span><br><span class="line">    signal(fullCount)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func consumer() &#123;</span><br><span class="line">    wait(fullCount)</span><br><span class="line">    wait(mutex)；</span><br><span class="line"></span><br><span class="line">    // 消费一个产品，取走一个满缓冲区的内容</span><br><span class="line"></span><br><span class="line">    signal(mutex)；</span><br><span class="line">    signal(emptyCount)；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>利用 AND 信号量解决</p>
+<p>  对于生产者—消费者问题，也可利用AND信号量来解决，即用 <code>Swait(empty，mutex)</code> 来代替 <code>wait(empty)</code> 和 <code>wait(mutex)</code>；用 <code>Ssignal(mutex，full)</code> 来代替 <code>signal(mutex)</code> 和 <code>signal(full)</code> ；用 <code>Swait(full，mutex)</code> 来代替 <code>wait(full)</code> 和 <code>wait(mutex)</code>，以及用 <code>Ssignal(mutex，empty)</code> 代替 <code>Signal(mutex)</code> 和 <code>Signal(empty)</code>。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mutex, emptyCount, fullCount := 1, n, 0</span><br><span class="line"></span><br><span class="line">func proceducer() &#123;</span><br><span class="line">    Swait(emptyCount, mutex)</span><br><span class="line">    // 生产一个产品，放入一个空的缓冲区中</span><br><span class="line">    Ssignal(mutex，fullCount)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func consumer() &#123;</span><br><span class="line">    Swait(fullCount，mutex)</span><br><span class="line">    // 消费一个产品，取走一个满缓冲区的内容</span><br><span class="line">    Ssignal(mutex，emptyCount)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>利用管程解决</p>
+<p>  在利用管程方法来解决生产者—消费者问题时，首先便是为它们建立一个管程，并命名为 ProclucerConsumer，或简称为 PC。其中包括两个过程：</p>
 <ul>
-<li><p>申请空白 PCB</p>
-<p>  为新进程申请获得惟一的数字标识符，并从 PCB 集合中索取一个<br>空白 PCB。</p>
+<li><p>put(item)过程。生产者利用该过程将自己生产的产品投放到缓冲池中，并用整型变量 count 来表示在缓冲池中已有的产品数目，当 count≥n 时，表示缓冲池已满，生产者须等待。</p>
 </li>
-<li><p>为新进程分配资源</p>
-<p>  为新进程的程序和数据以及用户栈分配必要的内存空间。</p>
-</li>
-<li><p>初始化进程控制块</p>
-<ul>
-<li><p>初始化标识信息</p>
-<p>  将系统分配的标识符和父进程标识符填入新 PCB 中</p>
-</li>
-<li><p>初始化处理机状态信息</p>
-<p>  使程序计数器指向程序的入口地址，使栈指针指向栈顶；</p>
-</li>
-<li><p>初始化处理机控制信息</p>
-<p>  将进程的状态设置为就绪状态或静止就绪状态，对于优先级，通常是将它设置为最低优先级，除非用户以显式方式提出高优先级要求。</p>
-</li>
-<li><p>将新进程插入就绪队列</p>
-<p>  如果进程就绪队列能够接纳新进程，便将新进程插入就绪队列</p>
+<li><p>get(item)过程。消费者利用该过程从缓冲池中取出一个产品，当 count≤0 时，表示缓冲池中已无可取用的产品，消费者应等待</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">var notfull，notempty condition</span><br><span class="line"></span><br><span class="line">type condition struct &#123;</span><br><span class="line">    queue []processes</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func (c *condition) wait() &#123;&#125;</span><br><span class="line">func (c *condition) signal() &#123;&#125;</span><br><span class="line"></span><br><span class="line">type ProclucerConsumer struct &#123;</span><br><span class="line">    buffer make([]int, count)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func (pc *ProclucerConsumer) put(item int) &#123;</span><br><span class="line">    if count &gt;= len(pc.buffer) &#123;</span><br><span class="line">        // 等待非满信号</span><br><span class="line">        notfull.wait()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    pc.buffer = pc.buffer.append(item)</span><br><span class="line"></span><br><span class="line">    // 在非空队列有进程等待时，唤醒一个等待的进程</span><br><span class="line">    if len(notempty.queue) &gt; 0 &#123;</span><br><span class="line">        notempty.signal()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func (pc *ProclucerConsumer) get() int &#123;</span><br><span class="line">    if count &lt;= 0 &#123;</span><br><span class="line">        // 等待非空信号</span><br><span class="line">        notEmpty.wait()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    item = pc.buffer[-1]</span><br><span class="line"></span><br><span class="line">    if len(notFull.queue) &gt; 0 &#123;</span><br><span class="line">        notFull.signal()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return item</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 </li>
 </ul>
 </li>
 </ul>
-<h2 id="进程的终止"><a href="#进程的终止" class="headerlink" title="进程的终止"></a>进程的终止</h2><p>如果系统中发生了上述要求终止进程的某事件，OS便调用进程终止原语，按下述过程去终止指定的进程。</p>
-<ul>
-<li><p>根据被终止进程的标识符，从PCB集合中检索出该进程的PCB，从中读出该进程的状态。</p>
-</li>
-<li><p>若被终止进程正处于执行状态，应立即终止该进程的执行，并置调度标志为真，用于指示该进程被终止后应重新进行调度。</p>
-</li>
-<li><p>若该进程还有子孙进程，还应将其所有子孙进程予以终止，以防它们成为不可控的进程。</p>
-</li>
-<li><p>将被终止进程所拥有的全部资源，或者归还给其父进程，或者归还给系统。</p>
-</li>
-<li><p>将被终止进程(PCB)从所在队列(或链表)中移出，等待其他程序来搜集信息。</p>
+<h3 id="哲学家进餐问题"><a href="#哲学家进餐问题" class="headerlink" title="哲学家进餐问题"></a>哲学家进餐问题</h3><ul>
+<li><p>利用 AND 信号量机制解决</p>
+<p>  当哲学家饥饿时，总是先去拿他左边的筷子，即执行 wait(chopstick[i])；成功后，再去拿他右边的筷子，即执行 wait(chopstick[(i+1)mod 5])</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Var chopsiick array of semaphore := (1, 1, 1, 1, 1)；</span><br><span class="line">processi</span><br><span class="line">    repeat</span><br><span class="line">        think；</span><br><span class="line">        Sswait(chopstick[(i+1) mod 5]，chopstick[i])；</span><br><span class="line">        eat；</span><br><span class="line">        Ssignat(chopstick[(i+1) mod 5]，chopstick[i])；</span><br><span class="line">    until false；</span><br></pre></td></tr></table></figure>
+
 </li>
 </ul>
-<h2 id="进程的阻塞"><a href="#进程的阻塞" class="headerlink" title="进程的阻塞"></a>进程的阻塞</h2><p>正在执行的进程，当发现上述某事件时，由于无法继续执行，于是进程便通过调用阻塞原语 <code>block</code> 把自己阻塞。可见，进程的阻塞是进程自身的一种主动行为。进入 block过程后，由于此时该进程还处于执行状态，所以应先立即停止执行，把进控制块中的现行状态由“执行”改为“阻塞”，并将PCB插入阻塞队列。如果系统中设置了因不同事件而阻塞的多个阻塞队列，则应将本进程插入到具有相同事件的阻塞(等待)队列。最后，转调度程序进行重新调度，将处理机分配给另一就绪进程并进行切换，亦即，保留被阻塞进程的处理机状态(在 PCB 中)，再按新进程的 PCB 中的处理机状态设置 CPU 的环境。</p>
-<h2 id="进程唤醒过程"><a href="#进程唤醒过程" class="headerlink" title="进程唤醒过程"></a>进程唤醒过程</h2><p>当被阻塞进程所期待的事件出现时，如I/O完成或其所期待的数据已经到达，则由有关进程(比如用完并释放了该I/O设备的进程)调用唤醒原语wakeup()，将等待该事件的进程唤醒。唤醒原语执行的过程是：首先把被阻塞的进程从等待该事件的阻塞队列中移出，将其PCB中的现行状态由阻塞改为就绪，然后再将该 PCB 插入到就绪队列中。</p>
-<h2 id="进程的挂起"><a href="#进程的挂起" class="headerlink" title="进程的挂起"></a>进程的挂起</h2><p>当出现了引起进程挂起的事件时，比如，用户进程请求将自己挂起，或父进程请求将自己的某个子进程挂起，系统将利用挂起原语suspend()将指定进程或处于阻塞状态的进程挂起。挂起原语的执行过程是：首先检查被挂起进程的状态，若处于活动就绪状态，便将其改为静止就绪；对于活动阻塞状态的进程，则将之改为静止阻塞。为了方便用户或父进程考查该进程的运行情况而把该进程的 PCB 复制到某指定的内存区域。最后，若被挂起的进程正在执行，则转向调度程序重新调度。</p>
-<h2 id="进程的激活过程"><a href="#进程的激活过程" class="headerlink" title="进程的激活过程"></a>进程的激活过程</h2><p>当发生激活进程的事件时，例如，父进程或用户进程请求激活指定进程，若该进程驻留在外存而内存中已有足够的空间时，则可将在外存上处于静止就绪状态的该进程换入内存。这时，系统将利用激活原语active()将指定进程激活。激活原语先将进程从外存调入内存，检查该进程的现行状态，若是静止就绪，便将之改为活动就绪；若为静止阻塞，便将之改为活动阻塞。假如采用的是抢占调度策略，则每当有新进程进入就绪队列时，应检查是否要进行重新调度，即由调度程序将被激活进程与当前进程进行优先级的比较，如果被激活进程的优先级更低，就不必重新调度；否则，立即剥夺当前进程的运行，把处理机分配给刚被激活的进程。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/02/2018-09-02-虚拟存储器的基本概念/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嘿嘿嘿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/02/2018-09-02-虚拟存储器的基本概念/" itemprop="url">虚拟存储器的基本概念</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-02T00:00:00+08:00">
+                2018-09-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  983
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="虚拟存储器的基本概念"><a href="#虚拟存储器的基本概念" class="headerlink" title="虚拟存储器的基本概念"></a>虚拟存储器的基本概念</h2><h3 id="虚拟存储器的引入"><a href="#虚拟存储器的引入" class="headerlink" title="虚拟存储器的引入"></a>虚拟存储器的引入</h3><ul>
+<li><p>常规存储器管理方式的特征</p>
+<ul>
+<li><p>一次性。在前面所介绍的几种存储管理方式中，都要求将作业全部装入内存后方能运行，即作业在运行前需一次性地全部装入内存，而正是这一特征导致了上述两种情况的发生。此外，还有许多作业在每次运行时，并非其全部程序和数据都要用到。如果一次性地装入其全部程序，也是一种对内存空间的浪费。</p>
+</li>
+<li><p>驻留性。作业装入内存后，便一直驻留在内存中，直至作业运行结束。尽管运行中的进程会因 I/O 而长期等待，或有的程序模块在运行过一次后就不再需要(运行)了，但它们都仍将继续占用宝贵的内存资源。</p>
+</li>
+</ul>
+</li>
+<li><p>局部性原理</p>
+<ul>
+<li><p>程序执行时，除了少部分的转移和过程调用指令外，在大多数情况下仍是顺序执行的。该论点也在后来的许多学者对高级程序设计语言(如 FORTRAN 语言、PASCAL 语言)及 C 语言规律的研究中被证实。</p>
+</li>
+<li><p>过程调用将会使程序的执行轨迹由一部分区域转至另一部分区域，但经研究看出，过程调用的深度在大多数情况下都不超过</p>
+</li>
+<li><p>这就是说，程序将会在一段时间内都局限在这些过程的范围内运行。</p>
+</li>
+<li><p>程序中存在许多循环结构，这些虽然只由少数指令构成，但是它们将多次执行。</p>
+</li>
+<li><p>程序中还包括许多对数据结构的处理，如对数组进行操作，它们往往都局限于很小的范围内。</p>
+</li>
+<li><p>时间局限性。如果程序中的某条指令一旦执行，则不久以后该指令可能再次执行；如果某数据被访问过，则不久以后该数据可能再次被访问。产生时间局限性的典型原因是由于在程序中存在着大量的循环操作。</p>
+</li>
+<li><p>空间局限性。一旦程序访问了某个存储单元，在不久之后，其附近的存储单元也将被访问，即程序在一段时间内所访问的地址，可能集中在一定的范围之内，其典型情况便是程序的顺序执行。</p>
+</li>
+</ul>
+</li>
+<li><p>虚拟存储器的定义</p>
+<p>  基于局部性原理，应用程序在运行之前，没有必要全部装入内存，仅须将那些当前要运行的少数页面或段先装入内存便可运行，其余部分暂留在盘上。程序在运行时，如果它所要访问的页(段)已调入内存，便可继续执行下去；但如果程序所要访问的页(段)尚未调入内存(称为缺页或缺段)，此时程序应利用OS所提供的请求调页(段)功能，将它们调入内存，以使进程能继续执行下去。如果此时内存已满，无法再装入新的页(段)，则还须再利用页(段)的置换功能，将内存中暂时不用的页(段)调至盘上，腾出足够的内存空间后，再将要访问的页(段)调入内存，使程序继续执行下去。这样，便可使一个大的用户程序能在较小的内存空间中运行；也可在内存中同时装入更多的进程使它们并发执行。从用户角度看，该系统所具有的内存容量，将比实际内存容量大得多。但须说明，用户所看到的大容量只是一种感觉，是虚的，故人们把这样的存储器称为虚拟存储器。</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/02/2018-09-02-调度算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嘿嘿嘿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/02/2018-09-02-调度算法/" itemprop="url">调度算法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-02T00:00:00+08:00">
+                2018-09-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="调度算法"><a href="#调度算法" class="headerlink" title="调度算法"></a>调度算法</h2><h3 id="先来先服务和短作业-进程-优先调度算法"><a href="#先来先服务和短作业-进程-优先调度算法" class="headerlink" title="先来先服务和短作业(进程)优先调度算法"></a>先来先服务和短作业(进程)优先调度算法</h3><ul>
+<li><p>先来先服务调度算法</p>
+<p>  先来先服务(FCFS)调度算法是一种最简单的调度算法，该算法既可用于作业调度，也可用于进程调度。当在作业调度中采用该算法时，每次调度都是从后备作业队列中选择一个或多个最先进入该队列的作业，将它们调入内存，为它们分配资源、创建进程，然后放入就绪队列。在进程调度中采用 FCFS算法时，则每次调度是从就绪队列中选择一个最先进入该队列的进程，为之分配处理机，使之投入运行。该进程一直运行到完成或发生某事件而阻塞后才放弃处理机。</p>
+</li>
+<li><p>短作业(进程)优先调度算法</p>
+<p>  短作业(进程)优先调度算法SJ(P)F，是指对短作业或短进程优先调度的算法。它们可以分别用于作业调度和进程调度。短作业优先(SJF)的调度算法是从后备队列中选择一个或若干个估计运行时间最短的作业，将它们调入内存运行。而短进程优先(SPF)调度算法则是从就绪队列中选出一个估计运行时间最短的进程，将处理机分配给它，使它立即执行并一直执行到完成，或发生某事件而被阻塞放弃处理机时再重新调度。</p>
+</li>
+</ul>
+<h2 id="高优先权优先调度算法"><a href="#高优先权优先调度算法" class="headerlink" title="高优先权优先调度算法"></a>高优先权优先调度算法</h2><ul>
+<li><p>非抢占式优先权算法</p>
+<p>  在这种方式下，系统一旦把处理机分配给就绪队列中优先权最高的进程后，该进程便一直执行下去，直至完成；或因发生某事件使该进程放弃处理机时，系统方可再将处理机重新分配给另一优先权最高的进程。</p>
+</li>
+<li><p>抢占式优先权调度算法</p>
+<p>  在这种方式下，系统同样是把处理机分配给优先权最高的进程，使之执行。但在其执行期间，只要又出现了另一个其优先权更高的进程，进程调度程序就立即停止当前进程(原优先权最高的进程)的执行，重新将处理机分配给新到的优先权最高的进程</p>
+</li>
+</ul>
+<h2 id="基于时间片的轮转调度算法"><a href="#基于时间片的轮转调度算法" class="headerlink" title="基于时间片的轮转调度算法"></a>基于时间片的轮转调度算法</h2><ul>
+<li><p>时间片轮转法</p>
+<ul>
+<li><p>基本原理</p>
+<p>  在早期的时间片轮转法中，系统将所有的就绪进程按先来先服务的原则排成一个队列，每次调度时，把CPU分配给队首进程，并令其执行一个时间片。时间片的大小从几ms到几百ms。当执行的时间片用完时，由一个计时器发出时钟中断请求，调度程序便据此信号来停止该进程的执行，并将它送往就绪队列的末尾；然后，再把处理机分配给就绪队列中新的队首进程，同时也让它执行一个时间片。这样就可以保证就绪队列中的所有进程在一给定的时间内均能获得一时间片的处理机执行时间。</p>
+</li>
+<li><p>时间片大小的确定</p>
+<p>  在时间片轮转算法中，时间片的大小对系统性能有很大的影响，如选择很小的时间片将有利于短作业，因为它能较快地完成，但会频繁地发生中断、进程上下文的切换，从而增加系统的开销；反之，如选择太长的时间片，使得每个进程都能在一个时间片内完成，时间片轮转算法便退化为 FCFS 算法，无法满足交互式用户的需求。一个较为可取的大小是，时间片略大于一次典型的交互所需要的时间。这样可使大多数进程在一个时间片内完成。</p>
+</li>
+</ul>
+</li>
+<li><p>多级反馈队列调度算法</p>
+<p>  前面介绍的各种用作进程调度的算法都有一定的局限性。如短进程优先的调度算法，仅照顾了短进程而忽略了长进程，而且如果并未指明进程的长度，则短进程优先和基于进程长度的抢占式调度算法都将无法使用。而多级反馈队列调度算法则不必事先知道各种进程所需的执行时间，而且还可以满足各种类型进程的需要，因而它是目前被公认的一种较好的进程调度算法。</p>
+<ul>
+<li><p>应设置多个就绪队列，并为各个队列赋予不同的优先级</p>
+</li>
+<li><p>当一个新进程进入内存后，首先将它放入第一队列的末尾，按 FCFS 原则排队等待调度。当轮到该进程执行时，如它能在该时间片内完成，便可准备撤离系统；如果它在一个时间片结束时尚未完成，调度程序便将该进程转入第二队列的末尾，再同样地按FCFS原则等待调度执行；如果它在第二队列中运行一个时间片后仍未完成，再依次将它放入第三队列，……，如此下去，当一个长作业(进程)从第一队列依次降到第n队列后，在第n队列中便采取按时间片轮转的方式运行。</p>
+</li>
+<li><p>仅当第一队列空闲时，调度程序才调度第二队列中的进程运行</p>
+</li>
+</ul>
+</li>
+</ul>
 
           
         
@@ -1027,6 +1381,684 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/02/2018-09-02-进程控制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嘿嘿嘿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/02/2018-09-02-进程控制/" itemprop="url">进程控制</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-02T00:00:00+08:00">
+                2018-09-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="进程控制"><a href="#进程控制" class="headerlink" title="进程控制"></a>进程控制</h1><h2 id="进程图"><a href="#进程图" class="headerlink" title="进程图"></a>进程图</h2><p>子进程可以继承父进程所拥有的资源，例如，继承父进程打开的文件，继承父进程所分配到的缓冲区等。当子进程被撤消时，应将其从父进程那里获得的资源归还给父进程。此外，在撤消父进程时，也必须同时撤消其所有的子进程。为了标识进程之间的家族关系，在PCB中都设置了家族关系表项，以标明自己的父进程及所有的子进程。</p>
+<p><img src="https://s1.ax1x.com/2018/09/01/Px1Bp6.jpg" alt="此处输入图片的描述"></p>
+<h2 id="进程的创建"><a href="#进程的创建" class="headerlink" title="进程的创建"></a>进程的创建</h2><p>一旦操作系统发现了要求创建新进程的事件后，便调用进程创建原语 Creat( )按下述步骤创建一个新进程。</p>
+<ul>
+<li><p>申请空白 PCB</p>
+<p>  为新进程申请获得惟一的数字标识符，并从 PCB 集合中索取一个<br>空白 PCB。</p>
+</li>
+<li><p>为新进程分配资源</p>
+<p>  为新进程的程序和数据以及用户栈分配必要的内存空间。</p>
+</li>
+<li><p>初始化进程控制块</p>
+<ul>
+<li><p>初始化标识信息</p>
+<p>  将系统分配的标识符和父进程标识符填入新 PCB 中</p>
+</li>
+<li><p>初始化处理机状态信息</p>
+<p>  使程序计数器指向程序的入口地址，使栈指针指向栈顶；</p>
+</li>
+<li><p>初始化处理机控制信息</p>
+<p>  将进程的状态设置为就绪状态或静止就绪状态，对于优先级，通常是将它设置为最低优先级，除非用户以显式方式提出高优先级要求。</p>
+</li>
+<li><p>将新进程插入就绪队列</p>
+<p>  如果进程就绪队列能够接纳新进程，便将新进程插入就绪队列</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="进程的终止"><a href="#进程的终止" class="headerlink" title="进程的终止"></a>进程的终止</h2><p>如果系统中发生了上述要求终止进程的某事件，OS便调用进程终止原语，按下述过程去终止指定的进程。</p>
+<ul>
+<li><p>根据被终止进程的标识符，从PCB集合中检索出该进程的PCB，从中读出该进程的状态。</p>
+</li>
+<li><p>若被终止进程正处于执行状态，应立即终止该进程的执行，并置调度标志为真，用于指示该进程被终止后应重新进行调度。</p>
+</li>
+<li><p>若该进程还有子孙进程，还应将其所有子孙进程予以终止，以防它们成为不可控的进程。</p>
+</li>
+<li><p>将被终止进程所拥有的全部资源，或者归还给其父进程，或者归还给系统。</p>
+</li>
+<li><p>将被终止进程(PCB)从所在队列(或链表)中移出，等待其他程序来搜集信息。</p>
+</li>
+</ul>
+<h2 id="进程的阻塞"><a href="#进程的阻塞" class="headerlink" title="进程的阻塞"></a>进程的阻塞</h2><p>正在执行的进程，当发现上述某事件时，由于无法继续执行，于是进程便通过调用阻塞原语 <code>block</code> 把自己阻塞。可见，进程的阻塞是进程自身的一种主动行为。进入 block过程后，由于此时该进程还处于执行状态，所以应先立即停止执行，把进控制块中的现行状态由“执行”改为“阻塞”，并将PCB插入阻塞队列。如果系统中设置了因不同事件而阻塞的多个阻塞队列，则应将本进程插入到具有相同事件的阻塞(等待)队列。最后，转调度程序进行重新调度，将处理机分配给另一就绪进程并进行切换，亦即，保留被阻塞进程的处理机状态(在 PCB 中)，再按新进程的 PCB 中的处理机状态设置 CPU 的环境。</p>
+<h2 id="进程唤醒过程"><a href="#进程唤醒过程" class="headerlink" title="进程唤醒过程"></a>进程唤醒过程</h2><p>当被阻塞进程所期待的事件出现时，如I/O完成或其所期待的数据已经到达，则由有关进程(比如用完并释放了该I/O设备的进程)调用唤醒原语wakeup()，将等待该事件的进程唤醒。唤醒原语执行的过程是：首先把被阻塞的进程从等待该事件的阻塞队列中移出，将其PCB中的现行状态由阻塞改为就绪，然后再将该 PCB 插入到就绪队列中。</p>
+<h2 id="进程的挂起"><a href="#进程的挂起" class="headerlink" title="进程的挂起"></a>进程的挂起</h2><p>当出现了引起进程挂起的事件时，比如，用户进程请求将自己挂起，或父进程请求将自己的某个子进程挂起，系统将利用挂起原语suspend()将指定进程或处于阻塞状态的进程挂起。挂起原语的执行过程是：首先检查被挂起进程的状态，若处于活动就绪状态，便将其改为静止就绪；对于活动阻塞状态的进程，则将之改为静止阻塞。为了方便用户或父进程考查该进程的运行情况而把该进程的 PCB 复制到某指定的内存区域。最后，若被挂起的进程正在执行，则转向调度程序重新调度。</p>
+<h2 id="进程的激活过程"><a href="#进程的激活过程" class="headerlink" title="进程的激活过程"></a>进程的激活过程</h2><p>当发生激活进程的事件时，例如，父进程或用户进程请求激活指定进程，若该进程驻留在外存而内存中已有足够的空间时，则可将在外存上处于静止就绪状态的该进程换入内存。这时，系统将利用激活原语active()将指定进程激活。激活原语先将进程从外存调入内存，检查该进程的现行状态，若是静止就绪，便将之改为活动就绪；若为静止阻塞，便将之改为活动阻塞。假如采用的是抢占调度策略，则每当有新进程进入就绪队列时，应检查是否要进行重新调度，即由调度程序将被激活进程与当前进程进行优先级的比较，如果被激活进程的优先级更低，就不必重新调度；否则，立即剥夺当前进程的运行，把处理机分配给刚被激活的进程。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/02/2018-09-02-进程的描述/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嘿嘿嘿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/02/2018-09-02-进程的描述/" itemprop="url">进程的描述操作系统引论</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-02T00:00:00+08:00">
+                2018-09-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="进程的描述"><a href="#进程的描述" class="headerlink" title="进程的描述"></a>进程的描述</h2><p>在多道程序环境下，程序的执行属于并发执行，此时它们将失去其封闭性，并具有间断性及不可再现性的特征。这决定了通常的程序是不能参与并发执行的，因为程序执行的结果是不可再现的。这样，程序的运行也就失去了意义。为使程序能并发执行，且为了对并发执行的程序加以描述和控制，人们引入了“进程”的概念。</p>
+<ul>
+<li><p>结构特征</p>
+<p>  通常的程序是不能并发执行的。为使程序(含数据)能独立运行，应为之配置一进程控制块，即PCB(ProcessControlBlock)；而由 <strong>程序段</strong> 、相关的 <strong>数据段</strong> 和 <strong>PCB</strong> 三部分便构了进程实体。所谓创建进程，实质上是创建进程实体<br>中的 PCB；而撤消进程，实质上是撤消进程的 PCB，本</p>
+</li>
+<li><p>动态性</p>
+<p>  进程的实质是进程实体的一次执行过程，“它由创建而产生，由调度而执行，由撤消而消亡</p>
+</li>
+<li><p>并发性</p>
+<p>  这是指多个进程实体同存于内存中，且能在一段时间内同时运行</p>
+</li>
+<li><p>独立性</p>
+<p>  指进程实体是一个能独立运行、独立分配资源和独立接受调<br>度的基本单位</p>
+</li>
+<li><p>异步性</p>
+<p>  指进程按各自独立的、不可预知的速度向前推进，或说进程实体按异步方式运行</p>
+</li>
+</ul>
+<h2 id="进程的三种基本状态"><a href="#进程的三种基本状态" class="headerlink" title="进程的三种基本状态"></a>进程的三种基本状态</h2><ul>
+<li><p>就绪(Ready)状态</p>
+<p>  当进程已分配到除 CPU以外的所有必要资源后，只要再获得CPU，便可立即执行，进程这时的状态称为就绪状态。在一个系统中处于就绪状态的进程可能有多个，通常将它们排成一个队列，称为就绪队列。</p>
+</li>
+</ul>
+<ul>
+<li><p>执行状态</p>
+<p>  进程已获得 CPU，其程序正在执行。在单处理机系统中，只有一个进程处于执行状态；在多处理机系统中，则有多个进程处于执行状态。</p>
+</li>
+<li><p>阻塞状态</p>
+<p>  正在执行的进程由于发生某事件而暂时无法继续执行时，便放弃处理机而处于暂停状态，亦即进程的执行受到阻塞，把这种暂停状态称为阻塞状态。</p>
+</li>
+<li><p>进程状态转化图</p>
+<p>  <img src="https://s1.ax1x.com/2018/09/01/PxMBp8.jpg" alt="进程状态转化图"></p>
+</li>
+</ul>
+<h2 id="挂起状态的引入"><a href="#挂起状态的引入" class="headerlink" title="挂起状态的引入"></a>挂起状态的引入</h2><ul>
+<li><p>引入原因</p>
+<ul>
+<li><p>终端用户的请求。当终端用户在自己的程序运行期间发现有可疑问题时，希望暂时使自己的程序静止下来。亦即，使正在执行的进程暂停执行；若此时用户进程正处于就绪状态而未执行，则该进程暂不接受调度，以便用户研究其执行情况或对程序进行修改。我们把这种静止状态称为挂起状态。</p>
+<ul>
+<li><p>父进程请求。有时父进程希望挂起自己的某个子进程，以便考查和修改该子进程，或者协调各子进程间的活动。</p>
+</li>
+<li><p>负荷调节的需要。当实时系统中的工作负荷较重，已可能影响到对实时任务的控制时，可由系统把一些不重要的进程挂起，以保证系统能正常运行。</p>
+</li>
+<li><p>操作系统的需要。操作系统有时希望挂起某些进程，以便检查运行中的资源使用情况或进行记账。</p>
+</li>
+</ul>
+</li>
+<li><p>状态的切换</p>
+<p>  <img src="https://s1.ax1x.com/2018/09/01/PxMb7R.jpg" alt="状态的切换"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="创建状态和终止状态"><a href="#创建状态和终止状态" class="headerlink" title="创建状态和终止状态"></a>创建状态和终止状态</h2><ul>
+<li><p>创建状态</p>
+<p>  为一个新进程创建PCB，并填写必要的管理信息；其次，把该进程转入就绪状态并插入就绪队列之中。当一个新进程被创建时，系统已为其分配了PCB，填写了进程标识等信息，但由于该进程所必需的资源或其它信息，如主存资源尚未分配等，一般而言，此时的进程已拥有了自己的PCB，但进程自身还未进入主存，即创建工作尚未完成，进程还不能被调度运行，其所处的状态就是创建状态。</p>
+</li>
+<li><p>为什么引入创建状态？</p>
+<p>  引入创建状态，是为了保证进程的调度必须在创建工作完成后进行，以确保对进程控制块操作的完整性。同时，创建状态的引入，也增加了管理的灵活性，操作系统可以根据系统性能或主存容量的限制，推迟创建状态进程的提交。对于处于创建状态的进程，获得了其所必需的资源，以及对其PCB初始化工作完成后，进程状态便可由创建状态转入就绪状态</p>
+</li>
+<li><p>终止状态</p>
+<p>  进程的终止也要通过两个步骤：首先等待操作系统进行善后处理，然后将其 PCB 清零，并将PCB空间返还系统。当一个进程到达了自然结束点，或是出现了无法克服的错误，或是被操作系统所终结，或是被其他有终止权的进程所终结，它将进入终止状态。进入终止态的进程以后不能再执行，但在操作系统中依然保留一个记录，其中保存状态码和一些计时统计数据，供其它进程收集。一旦其它进程完成了对终止状态进程的信息提取之后，操作系统将删除该进程。</p>
+</li>
+<li><p>进程的五种基本状态及转换</p>
+<p>  <img src="https://s1.ax1x.com/2018/09/01/PxQUu4.jpg" alt="此处输入图片的描述"></p>
+</li>
+<li><p>具有创建、终止和挂起状态的进程状态图</p>
+<p>  <img src="https://s1.ax1x.com/2018/09/01/PxQ0ER.jpg" alt="此处输入图片的描述"></p>
+</li>
+</ul>
+<h2 id="进程控制块"><a href="#进程控制块" class="headerlink" title="进程控制块"></a>进程控制块</h2><p>进程控制块的作用是使一个在多道程序环境下不能独立运行的程序(含数据)，成为一个能独立运行的基本单位。</p>
+<ul>
+<li><p>进程控制块中的信息</p>
+<ul>
+<li><p>进程标识符（符用于惟一地标识一个进程）</p>
+<ul>
+<li><p>内部标识符。在所有的操作系统中，都为每一个进程赋予了一个惟一的数字标识符，它通常是一个进程的序号。设置内部标识符主要是为了方便系统使用。</p>
+</li>
+<li><p>外部标识符。它由创建者提供，通常是由字母、数字组成，往往是由用户(进程)在访问该进程时使用。为了描述进程的家族关系，还应设置父进程标识及子进程标识。此外，还可设置用户标识，以指示拥有该进程的用户。</p>
+</li>
+</ul>
+</li>
+<li><p>处理机状态（是进程去记录CPU的状态值，而不是CPU去记录每一个进程的状态值）</p>
+<p>  处理机状态信息主要是由处理机的各种寄存器中的内容组成的。处理机在运行时，许多信息都放在寄存器中。当处理机被中断时，所有这些信息都必须保存在 PCB中，以便在该进程重新执行时，能从断点继续执行。这些寄存器包括：</p>
+<ul>
+<li><p>通用寄存器</p>
+<p>  又称为用户可视寄存器，它们是用户程序可以访问的，用于暂存信息，在大多数处理机中，有 8～32 个通用寄存器，在 RISC 结构的计算机中可超过 100 个；</p>
+</li>
+<li><p>指令计数器</p>
+<p>  其中存放了要访问的下一条指令的地址；</p>
+</li>
+<li><p>程序状态字 PSW</p>
+<p>  其中含有状态信息，如条件码、执行方式、中断屏蔽标志等；</p>
+</li>
+<li><p>用户栈指针</p>
+<p>  指每个用户进程都有一个或若干个与之相关的系统栈，用于存放过程和系统调用参数及调用地址，栈指针指向该栈的栈顶。</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>进程调度信息</p>
+<ul>
+<li><p>进程状态</p>
+<p>  指明进程的当前状态，作为进程调度和对换时的依据</p>
+</li>
+<li><p>进程优先级</p>
+<p>  用于描述进程使用处理机的优先级别的一个整数，优先级高的进程应优先获得处理机</p>
+</li>
+<li><p>进程调度所需的其它信息</p>
+<p>  它们与所采用的进程调度算法有关，比如，进程已等待 CPU 的时间总和、进程已执行的时间总和等</p>
+</li>
+</ul>
+</li>
+<li><p>进程控制信息</p>
+<ul>
+<li><p>程序和数据的地址</p>
+<p>  指进程的程序和数据所在的内存或外存地(首)址，以便再调度到该进程执行时，能从 PCB 中找到其程序和数据</p>
+</li>
+<li><p>进程同步和通信机制</p>
+<p>  指实现进程同步和进程通信时必需的机制，如 <strong>消息队列</strong> 指针、信号量等，它们可能全部或部分地放在 PCB 中</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="进程控制块的组织方式"><a href="#进程控制块的组织方式" class="headerlink" title="进程控制块的组织方式"></a>进程控制块的组织方式</h2><p>在一个系统中，通常可拥有数十个、数百个乃至数千个PCB。为了能对它们加以有效的管理，应该用适当的方式将这些PCB组织起来。目前常用的组织方式有以下两种。</p>
+<ul>
+<li><p>链接方式</p>
+<p>  这是把具有同一状态的PCB，用其中的链接字链接成一个队列。这样，可以形成就绪队列、若干个阻塞队列和空白队列等。对其中的就绪队列常按进程优先级的高低排列，把优先级高的进程的PCB排在队列前面。此外，也可根据阻塞原因的不同而把处于阻塞状态的进程的PCB排成等待I/O操作完成的队列和等待分配内存的队列等。</p>
+</li>
+<li><p>索引方式</p>
+<p>  系统根据所有进程的状态建立几张索引表。例如，就绪索引表、阻塞索引表等，并把各索引表在内存的首地址记录在内存的一些专用单元中。在每个索引表的表目中，记录具有相应状态的某个 PCB 在 PCB 表中的地址。</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/02/2018-09-02-进程通信的类型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嘿嘿嘿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/02/2018-09-02-进程通信的类型/" itemprop="url">进程通信的类型</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-02T00:00:00+08:00">
+                2018-09-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="进程通信的类型"><a href="#进程通信的类型" class="headerlink" title="进程通信的类型"></a>进程通信的类型</h2><h3 id="共享存储器系统"><a href="#共享存储器系统" class="headerlink" title="共享存储器系统"></a>共享存储器系统</h3><p>相互通信的进程共享某些数据结构或共享存储区，进程之间能够通过这些空间进行通信</p>
+<ul>
+<li><p>基于共享数据结构的通信方式</p>
+<p>  在这种通信方式中，要求诸进程公用某些数据结构，借以实现诸进程间的信息交换。如在生产者—消费者问题中，就是用 <code>有界缓冲区</code> 这种数据结构来实现通信的。</p>
+</li>
+<li><p>基于共享存储区的通信方式</p>
+<p>  为了传输大量数据，在存储器中划出了一块 <code>共享存储区</code>，诸进程可通过对共享存储区中数据的读或写来实现通信。这种通信方式属于高级通信。进程在通信前，先向系统申请获得共享存储区中的一个分区，并指定该分区的关键字；若系统已经给其他进程分配了这样的分区，则将该分区的描述符返回给申请者，继之，由申请者把获得的共享存储分区连接到本进程上；此后，便可像读、写普通存储器一样地读、写该公用存储分区。</p>
+</li>
+</ul>
+<h3 id="消息传递系统"><a href="#消息传递系统" class="headerlink" title="消息传递系统"></a>消息传递系统</h3><ul>
+<li><p>进程间的数据交换是以格式化的消息(message)为单位的</p>
+<ul>
+<li><p>直接通信方式</p>
+<p>  这是指发送进程利用OS所提供的发送命令，直接把消息发送给目标进程。此时，要求发送进程和接收进程都以显式方式提供对方的标识符。通常，系统提供下述两条通信命令(原语)：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Send(Receiver，message)； 发送一个消息给接收进程；</span><br><span class="line">Receive(Sender，message)； 接收 Sender 发来的消息；</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>间接通信方式</p>
+<p>  间接通信方式指进程之间的通信需要通过作为共享数据结构的实体。该实体用来暂存发送进程发送给目标进程的消息；接收进程则从该实体中取出对方发送给自己的消息。通常把这种中间实体称为信箱。消息在信箱中可以安全地保存，只允许核准的目标用户随时读取。因此，利用信箱通信方式，既可实现实时通信，又可实现非实时通信</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Send(mailbox，message)； 将一个消息发送到指定信箱；</span><br><span class="line">Receive(mailbox，message)； 从指定信箱中接收一个消息；</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>信箱的分类</p>
+<ul>
+<li><p>私用信箱</p>
+<p>  信箱的拥有者有权从信箱中读取消息，其他用户则只能将自己构成的消息发送到该信箱中。</p>
+</li>
+<li><p>公用信箱<br>  它由操作系统创建，并提供给系统中的所有核准进程使用。核准进程既可把消息发送到该信箱中，也可从信箱中读取发送给自己的消息</p>
+</li>
+<li><p>共享信箱</p>
+<p>  它由某进程创建，在创建时或创建后指明它是可共享的，同时须指出共享进程(用户)的名字。信箱的拥有者和共享者都有权从信箱中取走发送给自己的消息。可以是一对一关系、多对一关系、一对多关系、多对多关系</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="管道通信系统"><a href="#管道通信系统" class="headerlink" title="管道通信系统"></a>管道通信系统</h3><p>所谓“管道”，是指用于连接一个读进程和一个写进程以实现它们之间通信的一个共享文件，又名pipe文件。向管道(共享文件)提供输入的发送进程(即写进程)，以字符流形式将大量的数据送入管道；而接受管道输出的接收进程(即读进程)，则从管道中接收(读)数据。由于发送进程和接收进程是利用管道进行通信的，故又称为管道通信。</p>
+<p>管道机制必须提供以下三方面的协调能力:</p>
+<ul>
+<li><p>互斥</p>
+<p>  当一个进程正在对 pipe执行读/写操作时，其它(另一)进程必须等待。</p>
+</li>
+<li><p>同步</p>
+<p>  指当写(输入)进程把一定数量(如 4 KB)的数据写入pipe，便去睡眠等待，直到读(输出)进程取走数据后，再把它唤醒。当读进程读一空 pipe时，也应睡眠等待，直至写进程将数据写入管道后，才将之唤醒。</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/02/2018-09-02-连续分配存储管理方式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1216,944 +2248,6 @@
 </li>
 <li><p>动态重定位分区分配算法</p>
 <p>  动态重定位分区分配算法与动态分区分配算法基本上相同，差别仅在于：在这种分配算法中，增加了紧凑的功能，通常，在找不到足够大的空闲分区来满足用户需求时进行紧凑。</p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/02/2018-09-02-虚拟存储器的基本概念/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="嘿嘿嘿">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/02/2018-09-02-虚拟存储器的基本概念/" itemprop="url">虚拟存储器的基本概念</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-02T00:00:00+08:00">
-                2018-09-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  983
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  3
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="虚拟存储器的基本概念"><a href="#虚拟存储器的基本概念" class="headerlink" title="虚拟存储器的基本概念"></a>虚拟存储器的基本概念</h2><h3 id="虚拟存储器的引入"><a href="#虚拟存储器的引入" class="headerlink" title="虚拟存储器的引入"></a>虚拟存储器的引入</h3><ul>
-<li><p>常规存储器管理方式的特征</p>
-<ul>
-<li><p>一次性。在前面所介绍的几种存储管理方式中，都要求将作业全部装入内存后方能运行，即作业在运行前需一次性地全部装入内存，而正是这一特征导致了上述两种情况的发生。此外，还有许多作业在每次运行时，并非其全部程序和数据都要用到。如果一次性地装入其全部程序，也是一种对内存空间的浪费。</p>
-</li>
-<li><p>驻留性。作业装入内存后，便一直驻留在内存中，直至作业运行结束。尽管运行中的进程会因 I/O 而长期等待，或有的程序模块在运行过一次后就不再需要(运行)了，但它们都仍将继续占用宝贵的内存资源。</p>
-</li>
-</ul>
-</li>
-<li><p>局部性原理</p>
-<ul>
-<li><p>程序执行时，除了少部分的转移和过程调用指令外，在大多数情况下仍是顺序执行的。该论点也在后来的许多学者对高级程序设计语言(如 FORTRAN 语言、PASCAL 语言)及 C 语言规律的研究中被证实。</p>
-</li>
-<li><p>过程调用将会使程序的执行轨迹由一部分区域转至另一部分区域，但经研究看出，过程调用的深度在大多数情况下都不超过</p>
-</li>
-<li><p>这就是说，程序将会在一段时间内都局限在这些过程的范围内运行。</p>
-</li>
-<li><p>程序中存在许多循环结构，这些虽然只由少数指令构成，但是它们将多次执行。</p>
-</li>
-<li><p>程序中还包括许多对数据结构的处理，如对数组进行操作，它们往往都局限于很小的范围内。</p>
-</li>
-<li><p>时间局限性。如果程序中的某条指令一旦执行，则不久以后该指令可能再次执行；如果某数据被访问过，则不久以后该数据可能再次被访问。产生时间局限性的典型原因是由于在程序中存在着大量的循环操作。</p>
-</li>
-<li><p>空间局限性。一旦程序访问了某个存储单元，在不久之后，其附近的存储单元也将被访问，即程序在一段时间内所访问的地址，可能集中在一定的范围之内，其典型情况便是程序的顺序执行。</p>
-</li>
-</ul>
-</li>
-<li><p>虚拟存储器的定义</p>
-<p>  基于局部性原理，应用程序在运行之前，没有必要全部装入内存，仅须将那些当前要运行的少数页面或段先装入内存便可运行，其余部分暂留在盘上。程序在运行时，如果它所要访问的页(段)已调入内存，便可继续执行下去；但如果程序所要访问的页(段)尚未调入内存(称为缺页或缺段)，此时程序应利用OS所提供的请求调页(段)功能，将它们调入内存，以使进程能继续执行下去。如果此时内存已满，无法再装入新的页(段)，则还须再利用页(段)的置换功能，将内存中暂时不用的页(段)调至盘上，腾出足够的内存空间后，再将要访问的页(段)调入内存，使程序继续执行下去。这样，便可使一个大的用户程序能在较小的内存空间中运行；也可在内存中同时装入更多的进程使它们并发执行。从用户角度看，该系统所具有的内存容量，将比实际内存容量大得多。但须说明，用户所看到的大容量只是一种感觉，是虚的，故人们把这样的存储器称为虚拟存储器。</p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/02/2018-09-02-经典进程的同步问题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="嘿嘿嘿">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/02/2018-09-02-经典进程的同步问题/" itemprop="url">经典进程的同步问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-02T00:00:00+08:00">
-                2018-09-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  695
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  3
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="经典进程的同步问题"><a href="#经典进程的同步问题" class="headerlink" title="经典进程的同步问题"></a>经典进程的同步问题</h2><h3 id="生产者—消费者问题"><a href="#生产者—消费者问题" class="headerlink" title="生产者—消费者问题"></a>生产者—消费者问题</h3><ul>
-<li><p>利用记录型信号量解决</p>
-<p>  假定在生产者和消费者之间的公用缓冲池中，具有n个缓冲区，这时可利用互斥信号量mutex实现诸进程对缓冲池的互斥使用。利用信号量emptyCount和fullCount分别表示缓冲池中 <code>空缓冲区</code> 和 <code>满缓冲区</code> 的数量</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">mutex, emptyCount, fullCount := 1, n, 0</span><br><span class="line"></span><br><span class="line">func proceducer() &#123;</span><br><span class="line">    wait(emptyCount)</span><br><span class="line">    wait(mutex)</span><br><span class="line"></span><br><span class="line">    // 生产一个产品，放入一个空的缓冲区中</span><br><span class="line"></span><br><span class="line">    signal(mutex)</span><br><span class="line">    signal(fullCount)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func consumer() &#123;</span><br><span class="line">    wait(fullCount)</span><br><span class="line">    wait(mutex)；</span><br><span class="line"></span><br><span class="line">    // 消费一个产品，取走一个满缓冲区的内容</span><br><span class="line"></span><br><span class="line">    signal(mutex)；</span><br><span class="line">    signal(emptyCount)；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>利用 AND 信号量解决</p>
-<p>  对于生产者—消费者问题，也可利用AND信号量来解决，即用 <code>Swait(empty，mutex)</code> 来代替 <code>wait(empty)</code> 和 <code>wait(mutex)</code>；用 <code>Ssignal(mutex，full)</code> 来代替 <code>signal(mutex)</code> 和 <code>signal(full)</code> ；用 <code>Swait(full，mutex)</code> 来代替 <code>wait(full)</code> 和 <code>wait(mutex)</code>，以及用 <code>Ssignal(mutex，empty)</code> 代替 <code>Signal(mutex)</code> 和 <code>Signal(empty)</code>。</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mutex, emptyCount, fullCount := 1, n, 0</span><br><span class="line"></span><br><span class="line">func proceducer() &#123;</span><br><span class="line">    Swait(emptyCount, mutex)</span><br><span class="line">    // 生产一个产品，放入一个空的缓冲区中</span><br><span class="line">    Ssignal(mutex，fullCount)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func consumer() &#123;</span><br><span class="line">    Swait(fullCount，mutex)</span><br><span class="line">    // 消费一个产品，取走一个满缓冲区的内容</span><br><span class="line">    Ssignal(mutex，emptyCount)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>利用管程解决</p>
-<p>  在利用管程方法来解决生产者—消费者问题时，首先便是为它们建立一个管程，并命名为 ProclucerConsumer，或简称为 PC。其中包括两个过程：</p>
-<ul>
-<li><p>put(item)过程。生产者利用该过程将自己生产的产品投放到缓冲池中，并用整型变量 count 来表示在缓冲池中已有的产品数目，当 count≥n 时，表示缓冲池已满，生产者须等待。</p>
-</li>
-<li><p>get(item)过程。消费者利用该过程从缓冲池中取出一个产品，当 count≤0 时，表示缓冲池中已无可取用的产品，消费者应等待</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">var notfull，notempty condition</span><br><span class="line"></span><br><span class="line">type condition struct &#123;</span><br><span class="line">    queue []processes</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func (c *condition) wait() &#123;&#125;</span><br><span class="line">func (c *condition) signal() &#123;&#125;</span><br><span class="line"></span><br><span class="line">type ProclucerConsumer struct &#123;</span><br><span class="line">    buffer make([]int, count)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func (pc *ProclucerConsumer) put(item int) &#123;</span><br><span class="line">    if count &gt;= len(pc.buffer) &#123;</span><br><span class="line">        // 等待非满信号</span><br><span class="line">        notfull.wait()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    pc.buffer = pc.buffer.append(item)</span><br><span class="line"></span><br><span class="line">    // 在非空队列有进程等待时，唤醒一个等待的进程</span><br><span class="line">    if len(notempty.queue) &gt; 0 &#123;</span><br><span class="line">        notempty.signal()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func (pc *ProclucerConsumer) get() int &#123;</span><br><span class="line">    if count &lt;= 0 &#123;</span><br><span class="line">        // 等待非空信号</span><br><span class="line">        notEmpty.wait()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    item = pc.buffer[-1]</span><br><span class="line"></span><br><span class="line">    if len(notFull.queue) &gt; 0 &#123;</span><br><span class="line">        notFull.signal()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return item</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="哲学家进餐问题"><a href="#哲学家进餐问题" class="headerlink" title="哲学家进餐问题"></a>哲学家进餐问题</h3><ul>
-<li><p>利用 AND 信号量机制解决</p>
-<p>  当哲学家饥饿时，总是先去拿他左边的筷子，即执行 wait(chopstick[i])；成功后，再去拿他右边的筷子，即执行 wait(chopstick[(i+1)mod 5])</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Var chopsiick array of semaphore := (1, 1, 1, 1, 1)；</span><br><span class="line">processi</span><br><span class="line">    repeat</span><br><span class="line">        think；</span><br><span class="line">        Sswait(chopstick[(i+1) mod 5]，chopstick[i])；</span><br><span class="line">        eat；</span><br><span class="line">        Ssignat(chopstick[(i+1) mod 5]，chopstick[i])；</span><br><span class="line">    until false；</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/02/2018-09-02-基本分页存储管理方式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="嘿嘿嘿">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/02/2018-09-02-基本分页存储管理方式/" itemprop="url">基本分页存储管理方式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-02T00:00:00+08:00">
-                2018-09-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2.2k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  7
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="基本分页存储管理方式"><a href="#基本分页存储管理方式" class="headerlink" title="基本分页存储管理方式"></a>基本分页存储管理方式</h2><p>连续分配方式会形成许多“碎片”，虽然可通过“紧凑”方法将许多碎片拼接成可用的大块空间，但须为之付出很大开销。$\color{maroon}{如果允许将一个进程直接分散地装入到许多不相邻接的分区中}$，则无须再进行“紧凑”。 基于这一思想而产生了离散分配方式。</p>
-<ul>
-<li><p>如果离散分配的基本单位是页，则称为分页存储管理方式；</p>
-</li>
-<li><p>如果离散分配的基本单位是段，则称为分段存储管理方式</p>
-</li>
-</ul>
-<h3 id="页面与页表"><a href="#页面与页表" class="headerlink" title="页面与页表"></a>页面与页表</h3><ul>
-<li><p>页面</p>
-<ul>
-<li><p>页面和物理块</p>
-<p>  分页存储管理是将一个 <strong>进程的逻辑地址空间</strong> 分成若干个大小相等的片，称为页面或页，并为各页加以编号，从 0 开始，如第 0 页、第 1 页等。</p>
-<p>  也把 <strong>内存空间</strong> 分成与页面相同大小的若干个存储块，称为(物理)块或页框(frame)，也同样为它们加以编号，如0#块、1#块等等。</p>
-<p>  在为进程分配内存时，以块为单位将进程中的若干个页分别装入到多个可以不相邻接的物理块中。由于进程的最后一页经常装不满一块而形成了不可利用的碎片，称之为“页内碎片”。</p>
-</li>
-<li><p>页面大小</p>
-<p>  在分页系统中的页面其大小应适中。页面若太小，一方面虽然可使内存碎片减小，从而减少了内存碎片的总空间，有利于提高内存利用率，但另一方面也会使每个进程占用较多的页面，从而导致进程的页表过长，占用大量内存；此外，还会降低页面换进换出的效率。然而，如果选择的页面较大，虽然可以减少页表的长度，提高页面换进换出的速度，但却又会使页内碎片增大。因此，页面的大小应选择适中，且页面大小应是 2 的幂，通常为 512 B～8 KB。</p>
-</li>
-</ul>
-</li>
-<li><p>地址结构</p>
-<p>  <img src="https://s1.ax1x.com/2018/09/03/iSmyi6.png" alt="此处输入图片的描述"></p>
-<p>  前一部分为页号P，后一部分为位移量W(或称为页内地址)。图中的地址长度为32位，其中 0～11 位为页内地址，即每页的大小为4KB；12～31 位为页号，地址空间最多允许有 1 M 页。</p>
-<p>  对于某特定机器，其地址结构是一定的。若给定一个逻辑地址空间中的地址为 A，页面的大小为 L，则页号 P 和页内地址 d可按下式求得：</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">P = INT(A/L)</span><br><span class="line">d = MOD(A/L)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>页面</p>
-<p>  在分页系统中，允许将进程的各个页离散地存储在内存不同的物理块中，但系统应能保证进程的正确运行，即能在内存中找到每个页面所对应的物理块。为此，系统又为每个进程建立了一张页面映像表，简称页表。在进程地址空间内的所有页(0～n)，依次在页表中有一页表项，其中记录了相应页在内存中对应的物理块号。在配置了页表后，进程执行时，通过查找该表，即可找到每页在内存中的物理块号。可见，页表的作用是实现从页号到物理块号的地址映射。</p>
-<p>  <img src="https://s1.ax1x.com/2018/09/03/iSn9YV.png" alt="此处输入图片的描述"></p>
-<p>  即使在简单的分页系统中，也<strong>常在页表的表项中设置一存取控制字段</strong>，用于对该存储块中的内容加以保护。当存取控制字段仅有一位时，可用来规定该存储块中的内容是允许读/写，还是只读；若存取控制字段为二位，则可规定为读/写、只读和只执行等存取方式。如果有一进程试图去写一个只允许读的存储块时，将引起操作系统的一次中断。如果要利用分页系统去实现虚拟存储器，则还须增设一数据项。</p>
-</li>
-<li><p>地址变换机构</p>
-<p>  能将用户地址空间中的逻辑地址变换为内存空间中的物理地址。由于页内地址和物理地址是一一对应的(例如，对于页面大小是 1 KB 的页内地址是 0～1023，其相应的物理块内的地址也是0～1023，无须再进行转换)，因此，地址变换机构的任务实际上只是将逻辑地址中的页号，转换为内存中的物理块号。又因为页面映射表的作用就是用于实现从页号到物理块号的变换，因此，地址变换任务是借助于页表来完成的。</p>
-<ul>
-<li><p>基本的地址变换机构</p>
-<p>  页表的功能可以由一组专门的寄存器来实现。一个页表项用一个寄存器。由于寄存器具有较高的访问速度，因而有利于提高地址变换的速度；但由于寄存器成本较高，且大多数现代计算机的页表又可能很大，使页表项的总数可达几千甚至几十万个，显然这些页表项不可能都用寄存器来实现，因此，页表大多驻留在内存中。在系统中只设置一个页表寄存器PTR(Page-TableRegister)，在其中存放页表在内存的始址和页表的长度。</p>
-<p>平时，进程未执行时，页表的始址和页表长度存放在本进程的PCB中。当调度程序调度到某进时，才将这两个数据装入页表寄存器中。因此，在单处理机环境下，虽然系统中可以运行多个进程，但只需一个页表寄存器。当进程要访问某个逻辑地址中的数据时，分页地址变换机构会自动地将有效地址(相对地址)分为页号和页内地址两部分，再以页号为索引去检索页表。查找操作由硬件执行。在<br>执行检索之前，先将页号与页表长度进行比较，如果页号大于或等于页表长度，则表示本次所访问的地址已超越进程的地址空间。于是，这一错误将被系统发现并产生一地址越界中断。若未出现越界错误，则将<strong>页表始址与页号和页表项长度的乘积相加</strong>，便得到该表项在页表中的位置，于是可从中得到该页的物理块号，将之装入物理地址寄存器中。与此同时，再<strong>将有效地址寄存器中的页内地址送入物理地址寄存器的块内地址字段</strong>中。这样便完成了从逻辑地址到物理地址的变换。</p>
-<p><img src="https://s1.ax1x.com/2018/09/03/iSM01K.png" alt="此处输入图片的描述"></p>
-</li>
-<li><p>具有快表的地址变换机构</p>
-<p>  由于页表是存放在内存中的，这使 CPU 在每存取一个数据时，都要两次访问内存。</p>
-<p>  第一次是访问内存中的页表，从中找到指定页的物理块号，再将块号与页内偏移量W拼接，以形成物理地址。<br>  第二次访问内存时，才是从第一次所得地址中获得所需数据(或向此地址中写入数据)。</p>
-<p>  因此，采用这种方式将使计算机的处理速度降低近 1/2。可见，以此高昂代价来换取存储器空间利用率的提高，是得不偿失的。为了提高地址变换速度，可在地址变换机构中增设一个<strong>具有并行查寻能力</strong>的特殊高速缓冲寄存器，又称为“联想寄存器”(AssociativeMemory)，或称为“快表”，在 IBM 系统中又取名为 TLB(Translation Lookaside Buffer)，用以存放当前访问的那些页表项。</p>
-<p>  此时的地址变换过程是：在CPU给出有效地址后，由地址变换机构自动地将页号 P送入高速缓冲寄存器，并将此页号与高速缓存中的所有页号进行比较，若其中有与此相匹配的页号，便表示所要访问的页表项在快表中。于是，可直接从快表中读出该页所对应的物理块号，并送到物理地址寄存器中。如在块表中未找到对应的页表项，则还须再访问内存中的页表，找到后，把从页表项中读出的物理块号送地址寄存器；同时，再将此页表项存入快表的一个寄存器单元中，亦即，重新修改快表。但如果联想寄存器已满，则 OS 必须找到一个老的且已被认为不再需要的页表项，将它换出。</p>
-<p><img src="https://s1.ax1x.com/2018/09/03/iSM5jS.png" alt="此处输入图片的描述"></p>
-<p>由于成本的关系，快表不可能做得很大，通常只存放 16～512 个页表项</p>
-</li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/02/2018-09-02-对换/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="嘿嘿嘿">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/02/2018-09-02-对换/" itemprop="url">对换</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-02T00:00:00+08:00">
-                2018-09-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  634
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  2
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="对换"><a href="#对换" class="headerlink" title="对换"></a>对换</h3><ul>
-<li><p>对换(Swapping)的引入</p>
-<p>  在多道程序环境下，一方面，在内存中的某些进程由于某事件尚未发生而被阻塞运行，但它却占用了大量的内存空间，甚至有时可能出现在内存中所有进程都被阻塞而迫使CPU停止下来等待的情况；另一方面，却又有着许多作业在外存上等待，因无内存而不能入内存运行的情况。显然这对系统资源是一种严重的浪费，且使系统吞吐量下降。为了解决这一问题，在系统中又增设了对换(也称交换)设施。所谓“对换”，是指把内存中暂时不能运行的进程或者暂时不用的程序和数据调出到外存上，以便腾出足够的内存空间，再把已具备运行条件的进程或进程所需要的程序和数据调入内存。对换是提高内存利用率的有效措施。</p>
-<p>  如果对换是以整个进程为单位的，便称之为“整体对换”或“进程对换”。而如果对换是以“页”或“段”为单位进行的，则分别称之为“页面对换”或“分段对换”，又统称为“部分对换”。</p>
-</li>
-<li><p>实现进程对换，系统必须能实现三方面的功能</p>
-<ul>
-<li><p>对换空间的管理</p>
-<p>  在具有对换功能的OS中，通常把外存分为文件区和对换区。前者用于存放文件，后者用于存放从内存换出的进程。</p>
-</li>
-<li><p>进程的换出</p>
-<p>   每当一进程由于创建子进程而需要更多的内存空间，但又无足够的内存空间等情况发生时，系统应将某进程换出。其过程是：系统首先选择处于阻塞状态且优先级最低的进程作为换出进程，然后启动磁盘，将该进程的程序和数据传送到磁盘的对换区上。若传送过程未出现错误，便可回收该进程所占用的内存空间，并对该进程的进程控制块做相应的修改。</p>
-</li>
-<li><p>进程的换入</p>
-<p> 系统应定时地查看所有进程的状态，从中找出“就绪”状态但已换出的进程，将其中换出时间最久(换出到磁盘上)的进程作为换入进程，将之换入，直至已无可换入的进程或无可换出的进程为止。</p>
-</li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/02/2018-09-02-分段存储管理方式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="嘿嘿嘿">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/02/2018-09-02-分段存储管理方式/" itemprop="url">基本分段存储管理方式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-02T00:00:00+08:00">
-                2018-09-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2.6k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  8
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="基本分段存储管理方式"><a href="#基本分段存储管理方式" class="headerlink" title="基本分段存储管理方式"></a>基本分段存储管理方式</h2><p>如果说推动存储管理方式从固定分区到动态分区分配，进而又发展到分页存储管理方式的主要动力，是提高内存利用率，那么，引入分段存储管理方式的目的，则主要是为了满足用户(程序员)在编程和使用上多方面的要求。</p>
-<h3 id="分段存储管理方式的引入"><a href="#分段存储管理方式的引入" class="headerlink" title="分段存储管理方式的引入"></a>分段存储管理方式的引入</h3><ul>
-<li><p>方便编程</p>
-<p>  通常，用户把自己的作业按照逻辑关系划分为若干个段，每个段都是从 0 开始编址，并有自己的名字和长度。因此，希望要访问的逻辑地址是由段名(段号)和段内偏移量(段内地址)决定的。</p>
-</li>
-<li><p>信息共享</p>
-<p>  在实现对程序和数据的共享时，是以信息的逻辑单位为基础的。比如，共享某个例程<br>和函数。分页系统中的“页”只是存放信息的物理单位(块)，并无完整的意义，不便于实现共享；然而段却是信息的逻辑单位。</p>
-</li>
-<li><p>信息保护</p>
-</li>
-<li><p>动态增长</p>
-<p>  在实际应用中，往往有些段，特别是数据段，在使用过程中会不断地增长，而事先又无法确切地知道数据段会增长到多大。(是哪种情况?)</p>
-</li>
-<li><p>动态链接</p>
-<p>  动态链接是指在作业运行之前，并不把几个目标程序段链接起来。要运行时，先将主程序所对应的目标程序装入内存并启动运行，当运行过程中又需要调用某段时，才将该段(目标程序)调入内存并进行链接。可见，动态链接也要求以段作为管理的单位。</p>
-</li>
-</ul>
-<h3 id="分段系统的基本原理"><a href="#分段系统的基本原理" class="headerlink" title="分段系统的基本原理"></a>分段系统的基本原理</h3><ul>
-<li><p>分段</p>
-<p>  在分段存储管理方式中，作业的地址空间被划分为若干个段，每个段定义了一组逻辑信息。例如，有主程序段MAIN、子程序段X、数据段D及栈段S等。每个段都有自己的名字。为了实现简单起见，通常可用一个段号来代替段名，每个段都从 0开始编址，并采用一段连续的地址空间。段的长度由相应的逻辑信息组的长度决定，因而各段长度不等。</p>
-<p>  <img src="https://imgurl.org/temp/1809/f20be6dc547bcf0c.jpeg" alt="此处输入图片的描述"></p>
-<p>  分段方式已得到许多编译程序的支持，<strong>编译程序</strong> 能自动地根据源程序的情况而产生若干个段。编译程序可以为全局变量、用于存储相应参数及返回地址的过程调用栈、每个过程或函数的代码部分、每个过程或函数的局部变量等等，分别建立各自的段。</p>
-</li>
-<li><p>段表</p>
-<p>  在前面所介绍的动态分区分配方式中，系统为整个进程分配一个连续的内存空间。而在分段式存储管理系统中，则是为每个分段分配一个连续的分区，而进程中的各个段可以离散地移入内存中不同的分区中。为使程序能正常运行，亦即，能从物理内存中找出每个逻辑段所对应的位置，应像分页系统那样，在系统中为每个进程建立一张段映射表，简称“段表”。每个段在表中占有一个表项，其中记录了该段在内存中的<strong>起始地址(又称为“基址”)和段的长度</strong>。段表可以存放在一组寄存器中，这样有利于提高地址转换速度，但更常见的是将段表放在内存中</p>
-<p>  <img src="https://imgurl.org/temp/1809/506390cfad51f3d7.jpeg" alt="此处输入图片的描述"></p>
-</li>
-<li><p>地址变换机构</p>
-<p>  为了实现从进程的逻辑地址到物理地址的变换功能，在系统中设置了段表寄存器，用于存放段表始址和段表长度TL。在进行地址变换时，系统将逻辑地址中的段号与段表长度TL 进行比较。若S&gt;TL，表示段号太大，是访问越界，于是产生越界中断信号；若未越界，则根据段表的始址和该段的段号，计算出该段对应段表项的位置，从中读出该段在内存的起始地址，然后，再检查段内地址d是否超过该段的段长SL。若超过，即 d&gt;SL，同样发出越界中断信号；若未越界，则将该段的基址d与段内地址相加即可得到要访问的内存物理地址。</p>
-<p>  <img src="https://imgurl.org/temp/1809/ed0def4a1147b823.jpeg" alt="此处输入图片的描述"></p>
-<p>  像分页系统一样，当段表放在内存中时，每要访问一个数据，都须访问两次内存，从而极大地降低了计算机的速率。解决的方法也和分页系统类似，再增设一个联想存储器，用于保存最近常用的段表项。</p>
-</li>
-</ul>
-<h3 id="分页和分段的主要区别"><a href="#分页和分段的主要区别" class="headerlink" title="分页和分段的主要区别"></a>分页和分段的主要区别</h3><ul>
-<li><p>两者都采用离散分配方式，且都要通过地址映射机构来实现地址变换。</p>
-</li>
-<li><p>分页仅仅是由于系统管理的需要而不是用户的需要。段则是信息的逻辑单位，它含有一组其意义相对完整的信息</p>
-</li>
-<li><p>页的大小固定且由系统决定，由系统把逻辑地址划分为页号和页内地址两部分，是<br>由机器硬件实现的，因而在系统中只能有一种大小的页面；而段的长度却不固定，决定于用户所编写的程序，通常由编译程序在对源程序进行编译时，根据信息的性质来划分。</p>
-</li>
-<li><p>分页的作业地址空间是一维的，即单一的线性地址空间，程序员只需利用一个记忆<br>符，即可表示一个地址；而分段的作业地址空间则是二维的，程序员在标识一个地址时，既需给出段名，又需给出段内地址</p>
-</li>
-</ul>
-<h3 id="信息共享"><a href="#信息共享" class="headerlink" title="信息共享"></a>信息共享</h3><p>分段系统的一个突出优点，是易于实现段的共享，即允许若干个进程共享一个或多个分段，且对段的保护也十分简单易行。在分页系统中，虽然也能实现程序和数据的共享，但远不如分段系统来得方便。</p>
-<blockquote>
-<p>举个例子<br>有一个多用户系统，可同时接纳 40 个用户，他们都执行一个文本编辑程序(Text Editor)。如果文本编辑程序有 160 KB 的代码和另外 40 KB 的数据区，则总共需有 8 MB 的内存空间来支持 40个用户。如果160KB的代码是可重入的(Reentrant)，则无论是在分页系统还是在分段系统中，该代码都能被共享，在内存中只需保留一份文本编辑程序的副本，此时所需的内存空间仅为1760KB(40×40+160)，而不是8000KB。假定每个页面的大小为 4 KB，那么，160KB的代码将占用40个页面，数据区占10个页面。为实现代码的共享，应在每个进程的页表中都建立40个页表项，它们的物理块号都是21#～60#。在每个进程的页表中，还须为自己的数据区建立页表项，它们的物理块号分别是61#～70#、71#～80#、81#～90#，…，等等。</p>
-</blockquote>
-<p><img src="https://imgurl.org/temp/1809/63e9390247570b5f.jpeg" alt="此处输入图片的描述"></p>
-<p>在分段系统中，实现共享则容易得多，只需在每个进程的段表中为文本编辑程序设置<br>一个段表项。</p>
-<p><img src="https://imgurl.org/temp/1809/9b38a759d8b2b6e5.jpeg" alt="此处输入图片的描述"></p>
-<h2 id="段页式存储管理方式"><a href="#段页式存储管理方式" class="headerlink" title="段页式存储管理方式"></a>段页式存储管理方式</h2><p>分页系统能有效地提高内存利用率，而分段系统则能很好地满足用户需要。如果能对两种存储管理方式“各取所长”，则可以将两者结合成一种新的存储管理方式系统。这种新系统既具有分段系统的便于实现、分段可共享、易于保护、可动态链接等一系列优点，又能像分页系统那样很好地解决内存的外部碎片问题，以及可为各个分段离散地分配内存等问题。把这种结合起来形成的新系统称为“段页式系统”。</p>
-<ul>
-<li><p>基本原理</p>
-<p>  段页式系统的基本原理，是分段和分页原理的结合，即先将用户程序分成若干个段，再把每个段分成若干个页，并为每一个段赋予一个段名。</p>
-</li>
-<li><p>地址变换过程</p>
-<p>  在段页式系统中，为了便于实现地址变换，须配置一个段表寄存器，其中存放段表始址和段表长 TL。进行地址变换时，首先利用段号 S，将它与段表长 TL进行比较。若 S &lt; TL，表示未越界，于是利用段表始址和段号来求出该段所对应的段表项在段表中的位置，从中得到该段的页表始址，并利用逻辑地址中的段内页号P来获得对应页的页表项位置，从中读出该页所在的物理块号b，再利用块号b和页内地址来构成物理地址。</p>
-<p>  在段页式系统中，为了获得一条指令或数据，须三次访问内存。第一次访问是访问内存中的段表，从中取得页表始址；第二次访问是访问内存中的页表，从中取出该页所在的物理块号，并将该块号与页内地址一起形成指令或数据的物理地址；第三次访问才是真正从第二次访问所得的地址中，取出指令或数据。显然，这使访问内存的次数增加了近两倍。为了提高执行速度，在地址变换机构中增设一个高速缓冲寄存器。每次访问它时，都须同时利用段号和页号去检索高速缓存，若找到匹配的表项，便可从中得到相应页的物理块号，用来与页内地址一起形成物理地址；若未找到匹配表项，则仍须再三次访问内存。</p>
 </li>
 </ul>
 
