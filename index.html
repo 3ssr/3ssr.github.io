@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/15/2019-08-16-Linux下统计代码的工具Cloc/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/15/2019-08-15-k8s踩坑集锦/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="嘿嘿嘿">
@@ -281,7 +281,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/08/15/2019-08-16-Linux下统计代码的工具Cloc/" itemprop="url">Linux下统计代码的工具Cloc</a></h1>
+                <a class="post-title-link" href="/2019/08/15/2019-08-15-k8s踩坑集锦/" itemprop="url">未命名</a></h1>
         
 
         <div class="post-meta">
@@ -293,7 +293,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-15T00:00:00+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-15T14:33:24+08:00">
                 2019-08-15
               </time>
             
@@ -305,6 +305,8 @@
 
           
 
+          
+            
           
 
           
@@ -323,7 +325,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  161
+                  356
                 </span>
               
 
@@ -362,13 +364,44 @@
       
         
           
-            <h2 id="Cloc"><a href="#Cloc" class="headerlink" title="Cloc"></a>Cloc</h2><p>cloc是linux平台里可以统计代码的工具，并非简单的统计代码的行数，能同时针对各种语言做分类输出</p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install cloc</span><br></pre></td></tr></table></figure>
+            <h2 id="踩坑集锦"><a href="#踩坑集锦" class="headerlink" title="踩坑集锦"></a>踩坑集锦</h2><p>此篇文章用来记录维护k8s过程中的一系列问题</p>
+<hr>
+<h3 id="kubectl-logs-超时"><a href="#kubectl-logs-超时" class="headerlink" title="kubectl logs 超时"></a>kubectl logs 超时</h3><p>错误类似：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error from server: Get https://172.31.27.3:10250/containerLogs/prod-sfox/a-group-miner-2hshz/miner-idx-1?follow=true&amp;tailLines=20: dial tcp 172.31.27.3:10250: connect: connection timed out</span><br></pre></td></tr></table></figure>
 
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cloc $filePath</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>该操作走内网ip，节点间内网不同</p>
+</li>
+<li><p>10250端口未打开</p>
+</li>
+</ul>
+<hr>
+<h3 id="DNS解析失败"><a href="#DNS解析失败" class="headerlink" title="DNS解析失败"></a>DNS解析失败</h3><p>具体错误信息一般如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">panic: dial tcp: lookup mysql on 10.96.0.10:53: no such host</span><br></pre></td></tr></table></figure>
 
-<p>返回结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">$ cloc .</span><br><span class="line">    1339 text files.</span><br><span class="line">    1302 unique files.                                          </span><br><span class="line">     160 files ignored.</span><br><span class="line"></span><br><span class="line">github.com/AlDanial/cloc v 1.74  T=3.75 s (321.1 files/s, 135799.4 lines/s)</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">Language                      files          blank        comment           code</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">Go                              940          39122          40781         354176</span><br><span class="line">C                                37           6806           9795          31924</span><br><span class="line">Markdown                         49           1854              0           6552</span><br><span class="line">C/C++ Header                     37           1330           3531           3864</span><br><span class="line">Assembly                         38            503            884           2402</span><br><span class="line">YAML                             70            145             18           1955</span><br><span class="line">Bourne Shell                     13            139            323            856</span><br><span class="line">JSON                              1              2              0            637</span><br><span class="line">make                              9             73             96            296</span><br><span class="line">Protocol Buffers                  3             38             27            165</span><br><span class="line">SQL                               1              1              0            155</span><br><span class="line">Python                            1             14             13             99</span><br><span class="line">Bourne Again Shell                1              8              3             52</span><br><span class="line">TOML                              2              5             45             11</span><br><span class="line">Dockerfile                        1              1              0              8</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">SUM:                           1203          50041          55516         403152</span><br><span class="line">--------------------------------------------------------------------------------</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>查看coredns的日志，判断集群内的dns解析是否成功</p>
+</li>
+<li><p>如果集群内成功，是往外网的dns解析出错，检查宿主机的 <code>/etc/resolv.conf</code> 配置</p>
+</li>
+</ul>
+<hr>
+<h3 id="Helm报错"><a href="#Helm报错" class="headerlink" title="Helm报错"></a>Helm报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UPGRADE FAILED</span><br><span class="line">Error: &quot;dev-chain&quot; has no deployed releases</span><br><span class="line">Error: UPGRADE FAILED: &quot;dev-chain&quot; has no deployed releases</span><br></pre></td></tr></table></figure>
+
+<p>原因是helm的bug，如果helm有一次deploy的失败记录就没法重新deploy, 需要手动通过 <code>helm delete</code> 命令删除错误的记录</p>
+<hr>
+<h2 id="容器组离的服务获取不到客户端真实IP"><a href="#容器组离的服务获取不到客户端真实IP" class="headerlink" title="容器组离的服务获取不到客户端真实IP"></a>容器组离的服务获取不到客户端真实IP</h2><p>如果你的服务暴露方式是NodePort，当客户端访问IP所属的Node和服务所在的Node不是同一个Node时，因为内部有SNAT和DNAT的存在，<br>客户端的源IP会丢失，解决方法，在Service的配置中添加 <code>externalTrafficPolicy</code></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Service</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  namespace:</span> <span class="string">dev</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">signal</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  externalTrafficPolicy:</span> <span class="string">Local</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">NodePort</span></span><br><span class="line"><span class="attr">  ports:</span></span><br><span class="line"><span class="attr">    - port:</span> <span class="number">8080</span></span><br><span class="line"><span class="attr">      targetPort:</span> <span class="number">8080</span></span><br><span class="line"><span class="attr">      name:</span> <span class="string">http</span></span><br><span class="line"><span class="attr">      nodePort:</span> <span class="number">30010</span></span><br><span class="line"><span class="attr">  selector:</span></span><br><span class="line"><span class="attr">    app:</span> <span class="string">signal</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="公用解决方法"><a href="#公用解决方法" class="headerlink" title="公用解决方法"></a>公用解决方法</h3><ul>
+<li><p>查看kubelet日志</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl status kubelet</span><br><span class="line">journalctl -xu kubelet</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看docker的日志</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl status docker</span><br><span class="line">journalctl -xu docker</span><br></pre></td></tr></table></figure></li>
+</ul>
+
           
         
       
@@ -519,6 +552,160 @@
             <h2 id="Shell里的变量取值"><a href="#Shell里的变量取值" class="headerlink" title="Shell里的变量取值"></a>Shell里的变量取值</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"># 假如 $file 没有设定，则使用 my.file.txt 作传回值。(空值及非空值时不作处理) </span><br><span class="line">$&#123;file-my.file.txt&#125;</span><br><span class="line"></span><br><span class="line"># 假如 $file 没有设定或为空值，则使用 my.file.txt 作传回值。 (非空值时不作处理)</span><br><span class="line">$&#123;file:-my.file.txt&#125;</span><br><span class="line"></span><br><span class="line"># 假如 $file 设为空值或非空值，均使用 my.file.txt 作传回值。(没设定时不作处理)</span><br><span class="line">$&#123;file+my.file.txt&#125; </span><br><span class="line"></span><br><span class="line"># 若 $file 为非空值，则使用 my.file.txt 作传回值。 (没设定及空值时不作处理)</span><br><span class="line">$&#123;file:+my.file.txt&#125;</span><br><span class="line"></span><br><span class="line"># 若 $file 没设定，则使用 my.file.txt 作传回值，同时将 $file 赋值为 my.file.txt 。 (空值及非空值时不作处理)</span><br><span class="line">$&#123;file=my.file.txt&#125; </span><br><span class="line"></span><br><span class="line"># 若 $file 没设定或为空值，则使用 my.file.txt 作传回值，同时将 $file 赋值为 my.file.txt 。 (非空值时不作处理)</span><br><span class="line">$&#123;file:=my.file.txt&#125;</span><br><span class="line"></span><br><span class="line"># 若 $file 没设定，则将 my.file.txt 输出至 STDERR。 (空值及非空值时不作处理)</span><br><span class="line">$&#123;file?my.file.txt&#125;</span><br><span class="line"></span><br><span class="line"># 若 $file 没设定或为空值，则将 my.file.txt 输出至 STDERR。 (非空值时不作处理)</span><br><span class="line">$&#123;file:?my.file.txt&#125;</span><br></pre></td></tr></table></figure>
 
 
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/15/2019-08-16-Linux下统计代码的工具Cloc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嘿嘿嘿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/15/2019-08-16-Linux下统计代码的工具Cloc/" itemprop="url">Linux下统计代码的工具Cloc</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-15T00:00:00+08:00">
+                2019-08-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  161
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Cloc"><a href="#Cloc" class="headerlink" title="Cloc"></a>Cloc</h2><p>cloc是linux平台里可以统计代码的工具，并非简单的统计代码的行数，能同时针对各种语言做分类输出</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install cloc</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cloc $filePath</span><br></pre></td></tr></table></figure>
+
+<p>返回结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">$ cloc .</span><br><span class="line">    1339 text files.</span><br><span class="line">    1302 unique files.                                          </span><br><span class="line">     160 files ignored.</span><br><span class="line"></span><br><span class="line">github.com/AlDanial/cloc v 1.74  T=3.75 s (321.1 files/s, 135799.4 lines/s)</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">Language                      files          blank        comment           code</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">Go                              940          39122          40781         354176</span><br><span class="line">C                                37           6806           9795          31924</span><br><span class="line">Markdown                         49           1854              0           6552</span><br><span class="line">C/C++ Header                     37           1330           3531           3864</span><br><span class="line">Assembly                         38            503            884           2402</span><br><span class="line">YAML                             70            145             18           1955</span><br><span class="line">Bourne Shell                     13            139            323            856</span><br><span class="line">JSON                              1              2              0            637</span><br><span class="line">make                              9             73             96            296</span><br><span class="line">Protocol Buffers                  3             38             27            165</span><br><span class="line">SQL                               1              1              0            155</span><br><span class="line">Python                            1             14             13             99</span><br><span class="line">Bourne Again Shell                1              8              3             52</span><br><span class="line">TOML                              2              5             45             11</span><br><span class="line">Dockerfile                        1              1              0              8</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">SUM:                           1203          50041          55516         403152</span><br><span class="line">--------------------------------------------------------------------------------</span><br></pre></td></tr></table></figure>
           
         
       
@@ -1881,214 +2068,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/03/2018-10-03-Kadamlia/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="嘿嘿嘿">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/03/2018-10-03-Kadamlia/" itemprop="url">Kadamlia</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-03T00:00:00+08:00">
-                2018-10-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.5k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  5
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Kademlia算法是区块链底层实现点对点通信时所用的算法，它通过对节点之间的数学操作，获得逻辑上的节点距离，并用这个距离构建一个不同层次的路由表。通过对该路由表的查询，更新等操作，使节点与节点之间能够相互发现。</p>
-<h2 id="主要概念"><a href="#主要概念" class="headerlink" title="主要概念"></a>主要概念</h2><h3 id="NodeID"><a href="#NodeID" class="headerlink" title="NodeID"></a>NodeID</h3><p>Kadamlia算法使用160bit（20字节）的哈希值作为节点的唯一标识，当一个节点新加入网络时，会被分配这个NodeID</p>
-<h3 id="距离"><a href="#距离" class="headerlink" title="距离"></a>距离</h3><p>节点与节点之间的距离，是将两个节点的NodeID进行XOR操作后得到值，一般将得到的二进制数转化为十进制数后的值作为距离，例如对于NodeID分别为 0011 和 1011 的节点，异或之后得到的值为1000（二进制），即距离为4（十进制） </p>
-<h3 id="公共前缀长度-Common-Prefix-Length（CPL）"><a href="#公共前缀长度-Common-Prefix-Length（CPL）" class="headerlink" title="公共前缀长度 Common Prefix Length（CPL）"></a>公共前缀长度 Common Prefix Length（CPL）</h3><p>举个列子，假设NodeID为3位，那么对于节点 110，它与周围节点的CPL分别为</p>
-<table>
-<thead>
-<tr>
-<th>CPL</th>
-<th>所含节点</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>0</td>
-<td>000 001 010 011</td>
-</tr>
-<tr>
-<td>1</td>
-<td>100 101</td>
-</tr>
-<tr>
-<td>2</td>
-<td>111</td>
-</tr>
-<tr>
-<td>3</td>
-<td>110（自身）</td>
-</tr>
-</tbody></table>
-<p>可以看出，节点间CPL越大，则节点XOR之后的值越小，即两节点的逻辑距离越小</p>
-<h3 id="二叉前缀树"><a href="#二叉前缀树" class="headerlink" title="二叉前缀树"></a>二叉前缀树</h3><p>一个完整的网络空间可以被表示成为一颗二叉树，树的叶子节点代表网络节点<br><img src="http://upload-images.jianshu.io/upload_images/14287187-19606d7f4576e17d.jpg" alt="图片发自简书App"></p>
-<h3 id="K-Bucket"><a href="#K-Bucket" class="headerlink" title="K-Bucket"></a>K-Bucket</h3><p>K-Bucket又称为K桶，Bucket里存的是一组CLP的长度一样的节点<br><img src="http://upload-images.jianshu.io/upload_images/14287187-40f7475486bfba81.jpg" alt="图片发自简书App"></p>
-<h3 id="路由表"><a href="#路由表" class="headerlink" title="路由表"></a>路由表</h3><p>一个由K-Bucket构成的链表</p>
-<h3 id="分裂"><a href="#分裂" class="headerlink" title="分裂"></a>分裂</h3><p>某些Kadamlia算法的实现是一开始仅有一个Bucket，当Bucket的容量超过限制时，将最小的cpl的节点和其他节点分裂开的操作</p>
-<p>仍以上面的例子为例，如果一开始仅有一个Bucket，那么 000 ～ 111 的 8 个节点都存在一个Bucket中，假设此时Bucket的容量K为1，即现有的8个节点超过了容量，需要将之分裂</p>
-<p>第一次分裂</p>
-<p>Old Bucket = （000 001 010 011）<br>New Bucket = （100 101 111）</p>
-<p>New Bucket仍然超过了限制，继续分裂</p>
-<p>Old Bucket = （100 101）<br>New Bucket = （111）</p>
-<h3 id="节点的查找"><a href="#节点的查找" class="headerlink" title="节点的查找"></a>节点的查找</h3><p>当某个节点需要寻找另一个节点时，通常先在自己的路由表里查找，如果查找得到，直接获取该节点，否则，朝着与目标节点距离更新的一组节点发起查询请求，以此往复，直到查找到目标节点；这个过程称之为 <strong>逐步迭代，递进查找</strong></p>
-<p>在一个对等网络中，某个节点要查询其他节点的信息时，它可依赖的信息只有两个：</p>
-<p>目标节点ID；<br>当前节点维护的路由表；<br>其查询的核心思想是：逐步迭代，递近查找。其基本过程如下：</p>
-<ol>
-<li><p>发起者首先计算自身(​ L )与目标节点(​ T )的距离，即​ cpl ，查询本地维护的路由表，计算方法是​ Bucket = local.Buckets[cpl] ，这个 Bucket ​中的节点与目标节点有着公共前缀。然后再从该 Bucket ​中选择与目标节点有最长​ cpl  的节点​，接下来本地节点向​发起查询请求(​ QueryPeers )，因为​距离 T ​更近，相当于第一次缩短了与目标节点​ T 的距离；</p>
-</li>
-<li><p>​ X 收到 L ​发起的对目标节点 T ​的定位消息(Message_FIND_NODE)时，会根据自身维护的路由表信息，返回距离​ T 更近的节点供查询发起者继续查询。当然，如果目标节点就是​自身，那直接返回自身信息即可。需要说明的是：​给​返回的响应并非是距离目标节点最近的那一个节点，而是一批节点（即协议中定义的​值 K ）。这样做有几点好处：1). 避免单个节点不可用导致的查询失败；2). 查询发起者可以根据响应结果进行并发查询，提升查询速度。</p>
-</li>
-<li><p>查询发起者 L 收到响应后，会将被这些作为接下来的查询对象继续进行查询。查询收到响应时，会对响应中的结果进行过滤：如果该节点在之前已经被询问过，便不再加入待查询列表，保证查询的收敛性。<br>查询的最终结果是得到了一批距离目标节点很近的节点列表，然后从节点列表中选择出最接近目标的​个节点。</p>
-</li>
-</ol>
-<h3 id="节点加入"><a href="#节点加入" class="headerlink" title="节点加入"></a>节点加入</h3><p>当某个节点新加入网络时，需要为其提供一个Seeder种子节点；通过向Seeder节点发起查找自身节点的请求，使Seeder知道该节点的加入，步骤如下：</p>
-<p>​1. 将 S 加入本地路由表，​成为 N ​的种子节点；</p>
-<ol start="2">
-<li><p>​向 S ​发起一次节点查询请求(FIND_NODE)，查询的目的节点其实是​自身；该请求的目的有二：第一告诉 S ​新增了节点 N ​，第二​通过​ S 发现集群中更多的节点。而​发起了指向自身的查询请求也很有意思：其一是因为 N ​此时还不知道系统更多的节点信息；其二是通过这种方式​ N 可以快速地找到更多距离自己更接近的节点。</p>
-</li>
-<li><p>S 收到 N ​的查询目标节点​请求，首先将​节点 N 加入自身的路由表中，然后给​ N 最多返回​ K 个距离 N ​更接近的节点信息；<br>​</p>
-</li>
-<li><p>N 收到​ S 的响应，将响应中的节点加入自身路由表，然后对这些节点分别发起查询请求，当然，查询的目标还是​自身。</p>
-</li>
-</ol>
-<h3 id="节点更新"><a href="#节点更新" class="headerlink" title="节点更新"></a>节点更新</h3><p>当某一个节点更新时，需要通知路由表里的节点做两方更新操作 </p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2141,7 +2120,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

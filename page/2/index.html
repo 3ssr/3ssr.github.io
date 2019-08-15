@@ -447,7 +447,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/04/2018-09-05-webpack/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/03/2018-10-03-Kadamlia/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="嘿嘿嘿">
@@ -466,7 +466,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/04/2018-09-05-webpack/" itemprop="url">Webpack</a></h1>
+                <a class="post-title-link" href="/2018/10/03/2018-10-03-Kadamlia/" itemprop="url">Kadamlia</a></h1>
         
 
         <div class="post-meta">
@@ -478,8 +478,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-04T00:00:00+08:00">
-                2018-09-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-03T00:00:00+08:00">
+                2018-10-03
               </time>
             
 
@@ -490,8 +490,6 @@
 
           
 
-          
-            
           
 
           
@@ -526,7 +524,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  6
+                  5
                 </span>
               
             </div>
@@ -549,114 +547,66 @@
       
         
           
-            <h1 id="Webpack-杂记"><a href="#Webpack-杂记" class="headerlink" title="Webpack 杂记"></a>Webpack 杂记</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>首先我们要消除一个常见的误解。webpack 是一个模块打包器(module bundler)（例如，Browserify 或 Brunch）。它不是一个任务执行器(task runner)（例如，Make, Grunt 或者 Gulp ）。任务执行器就是用来自动化处理常见的开发任务，例如项目的检查(lint)、构建(build)、测试(test)。相对于打包器(bundler)，任务执行器则聚焦在偏重上层的问题上面。你可以得益于，使用上层的工具，而将打包部分的问题留给 webpack。</p>
-<p>打包器(bundler)帮助您取得准备用于部署的 JavaScript 和样式表，将它们转换为适合浏览器的可用格式。例如，JavaScript 可以压缩、拆分 chunk 和懒加载，以提高性能。打包是 web 开发中最重要的挑战之一，解决此问题可以消除开发过程中的大部分痛点。</p>
-<h2 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h2><ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install –save-dev webpack</p>
-</blockquote>
+            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Kademlia算法是区块链底层实现点对点通信时所用的算法，它通过对节点之间的数学操作，获得逻辑上的节点距离，并用这个距离构建一个不同层次的路由表。通过对该路由表的查询，更新等操作，使节点与节点之间能够相互发现。</p>
+<h2 id="主要概念"><a href="#主要概念" class="headerlink" title="主要概念"></a>主要概念</h2><h3 id="NodeID"><a href="#NodeID" class="headerlink" title="NodeID"></a>NodeID</h3><p>Kadamlia算法使用160bit（20字节）的哈希值作为节点的唯一标识，当一个节点新加入网络时，会被分配这个NodeID</p>
+<h3 id="距离"><a href="#距离" class="headerlink" title="距离"></a>距离</h3><p>节点与节点之间的距离，是将两个节点的NodeID进行XOR操作后得到值，一般将得到的二进制数转化为十进制数后的值作为距离，例如对于NodeID分别为 0011 和 1011 的节点，异或之后得到的值为1000（二进制），即距离为4（十进制） </p>
+<h3 id="公共前缀长度-Common-Prefix-Length（CPL）"><a href="#公共前缀长度-Common-Prefix-Length（CPL）" class="headerlink" title="公共前缀长度 Common Prefix Length（CPL）"></a>公共前缀长度 Common Prefix Length（CPL）</h3><p>举个列子，假设NodeID为3位，那么对于节点 110，它与周围节点的CPL分别为</p>
+<table>
+<thead>
+<tr>
+<th>CPL</th>
+<th>所含节点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>000 001 010 011</td>
+</tr>
+<tr>
+<td>1</td>
+<td>100 101</td>
+</tr>
+<tr>
+<td>2</td>
+<td>111</td>
+</tr>
+<tr>
+<td>3</td>
+<td>110（自身）</td>
+</tr>
+</tbody></table>
+<p>可以看出，节点间CPL越大，则节点XOR之后的值越小，即两节点的逻辑距离越小</p>
+<h3 id="二叉前缀树"><a href="#二叉前缀树" class="headerlink" title="二叉前缀树"></a>二叉前缀树</h3><p>一个完整的网络空间可以被表示成为一颗二叉树，树的叶子节点代表网络节点<br><img src="http://upload-images.jianshu.io/upload_images/14287187-19606d7f4576e17d.jpg" alt="图片发自简书App"></p>
+<h3 id="K-Bucket"><a href="#K-Bucket" class="headerlink" title="K-Bucket"></a>K-Bucket</h3><p>K-Bucket又称为K桶，Bucket里存的是一组CLP的长度一样的节点<br><img src="http://upload-images.jianshu.io/upload_images/14287187-40f7475486bfba81.jpg" alt="图片发自简书App"></p>
+<h3 id="路由表"><a href="#路由表" class="headerlink" title="路由表"></a>路由表</h3><p>一个由K-Bucket构成的链表</p>
+<h3 id="分裂"><a href="#分裂" class="headerlink" title="分裂"></a>分裂</h3><p>某些Kadamlia算法的实现是一开始仅有一个Bucket，当Bucket的容量超过限制时，将最小的cpl的节点和其他节点分裂开的操作</p>
+<p>仍以上面的例子为例，如果一开始仅有一个Bucket，那么 000 ～ 111 的 8 个节点都存在一个Bucket中，假设此时Bucket的容量K为1，即现有的8个节点超过了容量，需要将之分裂</p>
+<p>第一次分裂</p>
+<p>Old Bucket = （000 001 010 011）<br>New Bucket = （100 101 111）</p>
+<p>New Bucket仍然超过了限制，继续分裂</p>
+<p>Old Bucket = （100 101）<br>New Bucket = （111）</p>
+<h3 id="节点的查找"><a href="#节点的查找" class="headerlink" title="节点的查找"></a>节点的查找</h3><p>当某个节点需要寻找另一个节点时，通常先在自己的路由表里查找，如果查找得到，直接获取该节点，否则，朝着与目标节点距离更新的一组节点发起查询请求，以此往复，直到查找到目标节点；这个过程称之为 <strong>逐步迭代，递进查找</strong></p>
+<p>在一个对等网络中，某个节点要查询其他节点的信息时，它可依赖的信息只有两个：</p>
+<p>目标节点ID；<br>当前节点维护的路由表；<br>其查询的核心思想是：逐步迭代，递近查找。其基本过程如下：</p>
+<ol>
+<li><p>发起者首先计算自身(​ L )与目标节点(​ T )的距离，即​ cpl ，查询本地维护的路由表，计算方法是​ Bucket = local.Buckets[cpl] ，这个 Bucket ​中的节点与目标节点有着公共前缀。然后再从该 Bucket ​中选择与目标节点有最长​ cpl  的节点​，接下来本地节点向​发起查询请求(​ QueryPeers )，因为​距离 T ​更近，相当于第一次缩短了与目标节点​ T 的距离；</p>
 </li>
-<li><p>新建webpack.config.js配置文件，并写入以下内容</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">　　entry: &apos;./src/scripts/app.js&apos;,</span><br><span class="line">　　output: &#123;</span><br><span class="line">        filename: &apos;bundle.js&apos;,</span><br><span class="line">        path: path.resolve(__dirname, &apos;dist/scripts&apos;)</span><br><span class="line">　　&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li><p>​ X 收到 L ​发起的对目标节点 T ​的定位消息(Message_FIND_NODE)时，会根据自身维护的路由表信息，返回距离​ T 更近的节点供查询发起者继续查询。当然，如果目标节点就是​自身，那直接返回自身信息即可。需要说明的是：​给​返回的响应并非是距离目标节点最近的那一个节点，而是一批节点（即协议中定义的​值 K ）。这样做有几点好处：1). 避免单个节点不可用导致的查询失败；2). 查询发起者可以根据响应结果进行并发查询，提升查询速度。</p>
 </li>
-<li><p>执行编译</p>
-<blockquote>
-<p>$ ./node_modules/.bin/webpack webpack.config.js</p>
-</blockquote>
+<li><p>查询发起者 L 收到响应后，会将被这些作为接下来的查询对象继续进行查询。查询收到响应时，会对响应中的结果进行过滤：如果该节点在之前已经被询问过，便不再加入待查询列表，保证查询的收敛性。<br>查询的最终结果是得到了一批距离目标节点很近的节点列表，然后从节点列表中选择出最接近目标的​个节点。</p>
 </li>
-<li><p>使用npm脚本来方便启动webpack，在package.json中加入:</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;build&quot;: &quot;webpack&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>  现在，可以使用 npm run build 命令，来替代我们之前用到的较长命令。注意，使用 npm 的 scripts，我们可以通过模块名，来引用本地安装的 npm 包，而不是写出完整路径。这是大多数基于 npm 的项目遵循的标准，允许我们直接调用 webpack，而不是去调用 ./node_modules/.bin/webpack。</p>
+</ol>
+<h3 id="节点加入"><a href="#节点加入" class="headerlink" title="节点加入"></a>节点加入</h3><p>当某个节点新加入网络时，需要为其提供一个Seeder种子节点；通过向Seeder节点发起查找自身节点的请求，使Seeder知道该节点的加入，步骤如下：</p>
+<p>​1. 将 S 加入本地路由表，​成为 N ​的种子节点；</p>
+<ol start="2">
+<li><p>​向 S ​发起一次节点查询请求(FIND_NODE)，查询的目的节点其实是​自身；该请求的目的有二：第一告诉 S ​新增了节点 N ​，第二​通过​ S 发现集群中更多的节点。而​发起了指向自身的查询请求也很有意思：其一是因为 N ​此时还不知道系统更多的节点信息；其二是通过这种方式​ N 可以快速地找到更多距离自己更接近的节点。</p>
 </li>
-</ul>
-<h2 id="资源管理"><a href="#资源管理" class="headerlink" title="资源管理"></a>资源管理</h2><p>在 webpack 出现之前，前端开发人员会使用 grunt 和 gulp 等工具来处理资源，并将它们从 <code>/src</code> 文件夹移动到 <code>/dist</code> 或 <code>/build</code> 目录中。同样方式也被用于 JavaScript 模块，但是，像 webpack 这样的工具，将动态打包(dynamically bundle)所有依赖项（创建所谓的依赖图(dependency graph)）。这是极好的创举，因为现在每个模块都可以_明确表述它自身的依赖，我们将避免打包未使用的模块。</p>
-<p>webpack 最出色的功能之一就是，除了 JavaScript，还可以通过 loader 引入任何其他类型的文件。也就是说，以上列出的那些 JavaScript 的优点（例如显式依赖），同样可以用来构建网站或 web 应用程序中的所有非 JavaScript 内容。让我们从 CSS 开始起步，或许你可能已经熟悉了这个设置过程。</p>
-<hr>
-<h3 id="加载css"><a href="#加载css" class="headerlink" title="加载css"></a>加载css</h3><ul>
-<li><p>为了从 JavaScript 模块中 import 一个 CSS 文件，需要安装加载css的插件</p>
-<blockquote>
-<p>$ npm install –save-dev style-loader css-loader</p>
-</blockquote>
+<li><p>S 收到 N ​的查询目标节点​请求，首先将​节点 N 加入自身的路由表中，然后给​ N 最多返回​ K 个距离 N ​更接近的节点信息；<br>​</p>
 </li>
-<li><p>在 module 配置中 添加 style-loader 和 css-loader</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  module: &#123;</span><br><span class="line">    // 通过匹配不同正则表达式的，调用相应的loader</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        // webpack 根据正则表达式，来确定应该查找哪些文件，并将其提供给指定的 loader</span><br><span class="line">        test: /\.css$/,</span><br><span class="line">        use: [&apos;style-loader&apos;, &apos;css-loader&apos;]</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li><p>N 收到​ S 的响应，将响应中的节点加入自身路由表，然后对这些节点分别发起查询请求，当然，查询的目标还是​自身。</p>
 </li>
-<li><p>在app.js中通过import引入css文件</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import &apos;../styles/app.css&apos;;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<hr>
-<h3 id="加载图片"><a href="#加载图片" class="headerlink" title="加载图片"></a>加载图片</h3><ul>
-<li><p>安装读取文件的loader</p>
-<blockquote>
-<p>$ npm install –save-dev file-loader</p>
-</blockquote>
-</li>
-<li><p>在app.js文件中引入图片</p>
-<blockquote>
-<p>$ import Icon from ‘../images/th.jpeg’</p>
-</blockquote>
-</li>
-</ul>
-<hr>
-<h3 id="加载数据"><a href="#加载数据" class="headerlink" title="加载数据"></a>加载数据</h3><ul>
-<li><p>安装csv和xml加载器</p>
-<blockquote>
-<p>$ npm install –save-dev csv-loader xml-loader</p>
-</blockquote>
-</li>
-<li><p>配置</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">module: &#123;</span><br><span class="line">  rules: [</span><br><span class="line">    &#123;</span><br><span class="line">      test: /\.(csv|tsv)$/,</span><br><span class="line">      use: [&apos;csv-loader&apos;]</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      test: /\.xml$/,</span><br><span class="line">      use: [&apos;xml-loader&apos;]</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h2 id="管理输出"><a href="#管理输出" class="headerlink" title="管理输出"></a>管理输出</h2><ul>
-<li>html页面自动引入资源</li>
-</ul>
-<p>目前，我们在 index.html 文件中手动引入所有资源，然而随着应用程序增长，并且一旦开始对文件名使用哈希(hash)]并输出多个 bundle，手动地对 index.html 文件进行管理，一切就会变得困难起来。然而，可以通过一些插件，会使这个过程更容易操控。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const path = require(&apos;path&apos;)</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  entry: &#123;</span><br><span class="line">    app: &apos;./src/scripts/app.js&apos;,</span><br><span class="line">    common: &apos;./src/scripts/common.js&apos;</span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: &apos;[name].bundle.js&apos;,</span><br><span class="line">    path: path.resolve(__dirname, &apos;dist/scripts&apos;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>当有多个入口文件时，会编译成多个bundle.js文件，每次改动都需要在页面中手动引入。此时，需要用到 `html-webpack-plugin</p>
-<blockquote>
-<p>$ npm install –save-dev html-webpack-plugin</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">const HtmlWebpackPlugin = require(&apos;html-webpack-plugin&apos;)</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  entry: &#123;</span><br><span class="line">    app: &apos;./src/scripts/app.js&apos;,</span><br><span class="line">    common: &apos;./src/scripts/common.js&apos;</span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: &apos;[name].bundle.js&apos;,</span><br><span class="line">    path: path.resolve(__dirname, &apos;dist/scripts&apos;)</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    new HtmlWebpackPlugin(&#123;</span><br><span class="line">      title: &apos;Hi webpack&apos;</span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>清理旧的输出文件</li>
-</ul>
-<blockquote>
-<p>$ npm install clean-webpack-plugin –save-dev</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const CleanWebpackPlugin = require(&apos;clean-webpack-plugin&apos;);</span><br><span class="line"></span><br><span class="line">plugins: [</span><br><span class="line">    new CleanWebpackPlugin([&apos;dist&apos;]),</span><br><span class="line">    new HtmlWebpackPlugin(&#123;</span><br><span class="line">      title: &apos;Hi webpack&apos;</span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br></pre></td></tr></table></figure>
-
-<h2 id="开发实践"><a href="#开发实践" class="headerlink" title="开发实践"></a>开发实践</h2><ul>
-<li><p>使用 <code>source map</code> 定位错误</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">   devtool: &apos;inline-source-map&apos;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用webpack-dev-server，为你提供了一个简单的 web 服务器，并且能够实时重新加载(live reloading)。</p>
-<blockquote>
-<p>$ npm install –save-dev webpack-dev-server</p>
-</blockquote>
-<p>  修改配置文件，告诉开发服务器(dev server)，在哪里查找文件</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">    devServer: &#123;</span><br><span class="line">        contentBase: &apos;./dist&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>  以上配置告知 webpack-dev-server，在 localhost:8080 下建立服务，将 dist 目录下的文件，作为可访问文件。</p>
-<p>  在package.json中添加一个脚本配置</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;start&quot;: &quot;webpack-dev-server --open&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h2 id="代码分离"><a href="#代码分离" class="headerlink" title="代码分离"></a>代码分离</h2><p>  代码分离是 webpack 中最引人注目的特性之一。此特性能够把代码分离到不同的 bundle 中，然后可以按需加载或并行加载这些文件。代码分离可以用于获取更小的 bundle，以及控制资源加载优先级，如果使用合理，会极大影响加载时间。</p>
-<p>有三种常用的代码分离方法：</p>
-<ul>
-<li>入口起点：使用 entry 配置手动地分离代码。</li>
-<li>防止重复：使用 CommonsChunkPlugin 去重和分离 chunk。</li>
-<li>动态导入：通过模块的内联函数调用来分离代码。</li>
-</ul>
+</ol>
+<h3 id="节点更新"><a href="#节点更新" class="headerlink" title="节点更新"></a>节点更新</h3><p>当某一个节点更新时，需要通知路由表里的节点做两方更新操作 </p>
 
           
         
@@ -705,7 +655,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/04/2018-09-04-grunt/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/04/2018-09-05-gulp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="嘿嘿嘿">
@@ -724,7 +674,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/04/2018-09-04-grunt/" itemprop="url">Grunt</a></h1>
+                <a class="post-title-link" href="/2018/09/04/2018-09-05-gulp/" itemprop="url">Gulp</a></h1>
         
 
         <div class="post-meta">
@@ -768,7 +718,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.1k
+                  1k
                 </span>
               
 
@@ -807,128 +757,104 @@
       
         
           
-            <h1 id="Grunt-杂记"><a href="#Grunt-杂记" class="headerlink" title="Grunt 杂记"></a>Grunt 杂记</h1><p><img src="https://img.shields.io/badge/js-grunt-brightgreen.svg" alt="grunt"></p>
-<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Grunt是一个基于NodeJS，可用于自动化构建、测试、生成文档的项目管理工具。</p>
-<h3 id="Grunt-能做什么"><a href="#Grunt-能做什么" class="headerlink" title="Grunt 能做什么"></a>Grunt 能做什么</h3><p>Grunt可以自动化我们的整个开发流程，简单地说，就是用JavaScript去执行一些程序来完成一些任务。比如说将css、Javascript、图像等资源压缩；将Sass和Less通过预处理器编译成Css；将Coffeescript、Typescript等转化为Javascript；实时监听文件的变化，并执行自动编译任务；</p>
-<p>在Grunt工具箱中，按任务目标我们可以分为：</p>
+            <h1 id="Gulp-杂记"><a href="#Gulp-杂记" class="headerlink" title="Gulp 杂记"></a>Gulp 杂记</h1><h3 id="什么是-gulp"><a href="#什么是-gulp" class="headerlink" title="什么是 gulp?"></a>什么是 gulp?</h3><p>gulp 是一个构建工具，可以通过它自动执行网站开发过程中的公共任务，比如编译 SASS/Less，编译压缩混淆 JavaScript,，合并编译模板和版本控制等。因为 gulp 是基于 Node.js 构建的，所以 gulp 源文件和开发者自己定义的 gulpfile 都被写进 JavaScript 里，前端开发者可以用自己熟悉的语言来编写 gulp 任务。</p>
+<p>gulp 本身并不能完成这么多种任务，不过它可以借助 npm 丰富的插件库。开发者可以在 npm 中搜索 gulpplugin 找到想要的插件。例如本文中将要提到的 gulp-cssmin, gulp-jshint, gulp-concat、gulp-inject 等等。</p>
+<h3 id="为什么选择-gulp？"><a href="#为什么选择-gulp？" class="headerlink" title="为什么选择 gulp？"></a>为什么选择 gulp？</h3><p>其实现有的基于 Node.js 的构建工具有很多，比如 Bower，Yeoman，grunt 等。而且自 2013 年 grunt v0.4.0 发布以后，grunt 已经改变了前端的开发方式。那么为什么我们要选 gulp？</p>
+<p>gulp 最大的特点是所有的任务都是以 Node.js Stream 的形式处理，构建流程可以由 Stream 之间的 pipe 来定义，省去了把中间文件写到磁盘再读取的过程，而且任务都是默认并行，速度比 grunt 快很多，配置也感觉更省心。</p>
 <ul>
-<li>编译文档型：比如编译LESS、Sass、Stylus、Coffeescript等；</li>
-<li>文件操作型：比如说合并、压缩JavaScript、CSS、图片等；</li>
-<li>质量保障型：比如JSHint、Jasmin、Mocha等；</li>
-<li>类库构建型：比如说Backbone.js、ember.js、angular.js等。</li>
+<li>易于使用：采用代码优于配置策略，gulp 让简单的事情继续简单，复杂的任务变得可管理。</li>
+<li>高效：gulp 基于 Node.js 流 Unix 管道连接的方式，不需要往磁盘写中间文件，可以更快地完成构建。</li>
+<li>高质量：gulp 每个 task 只完成一个任务，提高 task 的重用度。</li>
+<li>易于学习：gulp 核心 API 约 5 个，开发者能在很短的时间内学会，之后就可以通过管道流来组合自己需要的 task。</li>
 </ul>
-<p>这些任务都依赖于给Grunt提供的插件来完成的，但很多工作依旧需要在命令终端手工输入命令来完成这些操作。为此在Grunt中可以使用watch任务来实现一些监听文件改变、自动触发构建等功能。从而减少人工去每次操作任务。</p>
-<h3 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h3><p>Grunt的使用非常简单，仅需下载相应的命令行工具，针对不同的任务下载不同的插件，即可完成整个自动化过程。</p>
-<ul>
-<li><p>将grunt-cli（grunt命令行工具）作为全局模块安装</p>
+<h3 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h3><ol>
+<li><p>创建项目，初始化package.json文件，并安装gulp作为开发依赖</p>
 <blockquote>
-<p>$ npm install -g grunt-cli</p>
+<p>$ mkdir gulp-app &amp;&amp; npm init<br>$ npm install –save-dev gulp</p>
 </blockquote>
 </li>
-<li><p>通过npm初始化，为我们生成一份package.json文件</p>
-<blockquote>
-<p>$ mkdir grunt-app &amp;&amp; cd grunt-app<br>$ npm init</p>
-</blockquote>
+<li><p>新建gulpfile.js文件，并写入以下内容</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var gulp = require(&apos;gulp&apos;)</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;default&apos;, () =&gt; &#123;</span><br><span class="line">    console.log(&apos;what the hell&apos;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>为项目安装grunt作为依赖</p>
-<blockquote>
-<p>$ npm install –save-dev grunt</p>
-</blockquote>
-<p>  至此grunt已经安装完毕，但它还没有特殊的功能，要使用grunt的各种功能，需要建一份Gruntfile.js文件，并为之安装相应的插件。</p>
-</li>
-<li><p>新建Gruntfile.js，并写入以下内容</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">module.exports = function(grunt) &#123;</span><br><span class="line"></span><br><span class="line">  // 之后所有的配置都是配在传递给grunt.initConfig这个方法的对象中</span><br><span class="line">  grunt.initConfig(&#123;</span><br><span class="line">    // 将package.json文件作为一个json对象读入</span><br><span class="line">    pkg: grunt.file.readJSON(&apos;package.json&apos;),</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  // 加载grunt的插件，这里的 grunt-contrib-uglify 是一个例子</span><br><span class="line">  grunt.loadNpmTasks(&apos;grunt-contrib-uglify&apos;);</span><br><span class="line"></span><br><span class="line">  // 注册一个grunt任务，第一个参数为任务的名字，当任务的名字default时，通过grunt运行项目时，会默认执行该任务；第二个参数是一个数组，是后续所要执行任务名字的集合。</span><br><span class="line">  grunt.registerTask(&apos;default&apos;, [&apos;uglify&apos;]);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="安装grunt插件"><a href="#安装grunt插件" class="headerlink" title="安装grunt插件"></a>安装grunt插件</h3><p>在安装grunt插件时，需要考虑自己需要哪些功能，下面罗列出开发中需要的大部分功能。并举个简单的例子，详细用法可参考 <a href="https://github.com/gruntjs" title="Gruntjs的github链接" target="_blank" rel="noopener">Gruntjs</a>。</p>
-<ol>
-<li><p><a href="https://github.com/gruntjs/grunt-contrib-uglify" title="grunt uglify" target="_blank" rel="noopener">grunt-contrib-uglify</a> （混淆并压缩js文件）</p>
-<ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install grunt-contrib-uglify –save-dev</p>
-</blockquote>
-</li>
-<li><p>配置task</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">    uglify: &#123;</span><br><span class="line">        my_target: &#123;</span><br><span class="line">          files: &#123;</span><br><span class="line">            &apos;dest/output.min.js&apos;: [&apos;src/input1.js&apos;, &apos;src/input2.js&apos;]</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">grunt.loadNpmTasks(&apos;grunt-contrib-uglify&apos;);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><a href="https://github.com/gruntjs/grunt-contrib-cssmin" title="grunt cssmin" target="_blank" rel="noopener">grunt-contrib-cssmin</a> （压缩css）</p>
-<ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install grunt-contrib-cssmin –save-dev</p>
-</blockquote>
-</li>
-<li><p>配置task</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">    target: &#123;</span><br><span class="line">        files: &#123;</span><br><span class="line">          &apos;output.css&apos;: [&apos;foo.css&apos;, &apos;bar.css&apos;]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">grunt.loadNpmTasks(&apos;grunt-contrib-cssmin&apos;);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><a href="https://github.com/gruntjs/grunt-contrib-clean" title="grunt clean" target="_blank" rel="noopener">grunt-contrib-clean</a> （清除文件和目录，一般用来清除上一次编译生成的文件）</p>
-<ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install grunt-contrib-clean –save-dev</p>
-</blockquote>
-</li>
-<li><p>配置task</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">    clean: &#123;</span><br><span class="line">        build: &#123;</span><br><span class="line">            src: [&apos;path/to/dir/one&apos;, &apos;path/to/dir/two&apos;]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">grunt.loadNpmTasks(&apos;grunt-contrib-clean&apos;);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><a href="https://github.com/gruntjs/grunt-contrib-watch" title="grunt watch" target="_blank" rel="noopener">grunt-contrib-watch</a> （监听文件的变化，并自动执行任务）</p>
-<ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install grunt-contrib-watch –save-dev</p>
-</blockquote>
-</li>
-<li><p>配置task</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">    watch: &#123;</span><br><span class="line">        scripts: &#123;</span><br><span class="line">            files: [&apos;**/*.coffee&apos;],</span><br><span class="line">            // 监听到文件变化后执行的task</span><br><span class="line">            tasks: [&apos;coffee&apos;],</span><br><span class="line">            options: &#123;</span><br><span class="line">                spawn: false,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">        css: &#123;</span><br><span class="line">            files: &apos;**/*.sass&apos;,</span><br><span class="line">            tasks: [&apos;sass&apos;],</span><br><span class="line">            options: &#123;</span><br><span class="line">                livereload: true,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">grunt.loadNpmTasks(&apos;grunt-contrib-watch&apos;);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><a href="https://github.com/gruntjs/grunt-contrib-connect" title="grunt connect" target="_blank" rel="noopener">grunt-contrib-connect</a> （开启一个服务器，使我们可以通过 <code>ip:端口号</code> 的方式访问目录下的资源）</p>
-<ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install grunt-contrib-connect –save-dev</p>
-</blockquote>
-</li>
-<li><p>配置task</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">    connect: &#123;</span><br><span class="line">        server: &#123;</span><br><span class="line">            options: &#123;</span><br><span class="line">                port: 9001,</span><br><span class="line">                base: &apos;www-root&apos;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">grunt.loadNpmTasks(&apos;grunt-contrib-connect&apos;);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><a href="https://github.com/gruntjs/grunt-contrib-less" title="grunt less" target="_blank" rel="noopener">grunt-contrib-less</a> （将less编译为css）</p>
-<ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install grunt-contrib-less –save-dev</p>
-</blockquote>
-</li>
-<li><p>配置task</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">    development: &#123;</span><br><span class="line">        files: &#123;</span><br><span class="line">            &apos;path/to/result.css&apos;: &apos;path/to/source.less&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">grunt.loadNpmTasks(&apos;grunt-contrib-less&apos;);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><a href="https://github.com/gruntjs/grunt-contrib-coffee" title="grunt coffeescript" target="_blank" rel="noopener">grunt-contrib-coffee</a> （将coffeescript编译成javascript）</p>
-<ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install grunt-contrib-coffee –save-dev</p>
-</blockquote>
-</li>
-<li><p>配置task</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">    development: &#123;</span><br><span class="line">        files: &#123;</span><br><span class="line">            &apos;path/to/result.js&apos;: &apos;path/to/source.coffee&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">grunt.loadNpmTasks(&apos;grunt-contrib-coffee&apos;);</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
+<li><p>命令行执行gulp，会看到输出 ‘what the hell’</p>
 </li>
 </ol>
+<h3 id="gulp几个重要的api"><a href="#gulp几个重要的api" class="headerlink" title="gulp几个重要的api"></a>gulp几个重要的api</h3><h3 id="构建自动化流程"><a href="#构建自动化流程" class="headerlink" title="构建自动化流程"></a>构建自动化流程</h3><p>gulp提供了许多可以满足我们工作需求的插件，以下列举部分：</p>
+<ul>
+<li><p><a href="https://www.npmjs.com/package/gulp-uglify" title="gulp-uglify" target="_blank" rel="noopener">gulp-uglify</a></p>
+<ul>
+<li><p>安装</p>
+<blockquote>
+<p>$ npm install –save-dev gulp-uglify</p>
+</blockquote>
+</li>
+<li><p>配置task</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(&apos;default&apos;, () =&gt; &#123;</span><br><span class="line">  gulp</span><br><span class="line">  .src(&apos;src/app.js&apos;)</span><br><span class="line">  .pipe(uglify())</span><br><span class="line">  .pipe(gulp.dest(&apos;dist&apos;))</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><a href="https://www.npmjs.com/package/gulp-less" title="gulp-less" target="_blank" rel="noopener">gulp-less</a></p>
+<ul>
+<li><p>安装</p>
+<blockquote>
+<p>$ npm install –save-dev gulp-less</p>
+</blockquote>
+</li>
+<li><p>配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var less = require(&apos;gulp-less&apos;)</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;default&apos;, () =&gt; &#123;</span><br><span class="line">  gulp.src(&apos;src/styles/app.less&apos;)</span><br><span class="line">  .pipe(less())</span><br><span class="line">  .pipe(gulp.dest(&apos;dist/styles&apos;))</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><a href="https://www.npmjs.com/package/gulp-coffee" title="gulp-coffee" target="_blank" rel="noopener">gulp-coffee</a></p>
+<ul>
+<li><p>安装</p>
+<blockquote>
+<p>$ npm install –save-dev gulp-coffee</p>
+</blockquote>
+</li>
+<li><p>配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var coffee = require(&apos;gulp-coffee&apos;)</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;default&apos;, () =&gt; &#123;</span><br><span class="line">  gulp.src(&apos;src/scripts/app.coffee&apos;).pipe(coffee()).pipe(gulp.dest(&apos;dist/scripts&apos;))</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><a href="https://www.npmjs.com/package/gulp-clean" title="gulp-clean" target="_blank" rel="noopener">gulp-clean</a></p>
+<ul>
+<li><p>安装</p>
+<blockquote>
+<p>$ npm install –save-dev gulp-clean</p>
+</blockquote>
+</li>
+<li><p>配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var clean = require(&apos;gulp-clean&apos;)</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;clean&apos;, () =&gt; &#123;</span><br><span class="line">  gulp.src(&apos;dist/&apos;).pipe(clean())</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><a href="https://www.npmjs.com/package/gulp-autoprefixer" title="autoprefixer" target="_blank" rel="noopener">gulp-autoprefixer</a></p>
+<ul>
+<li><p>安装</p>
+<blockquote>
+<p>$ npm install –save-dev gulp-autoprefixer</p>
+</blockquote>
+</li>
+<li><p>配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var autoPrefixer = require(&apos;gulp-autoprefixer&apos;)</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;css&apos;, () =&gt; &#123;</span><br><span class="line">  gulp.src(&apos;src/styles/app.less&apos;).pipe(less()).pipe(autoPrefixer()).pipe(gulp.dest(&apos;dist/styles&apos;))</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><a href="http://www.gulpjs.com.cn/docs/recipes/server-with-livereload-and-css-injection/" target="_blank" rel="noopener">browser-sync</a> 拥有实时重载（live-reloading）和 CSS 注入的服务器</p>
+<ul>
+<li><p>安装</p>
+<blockquote>
+<p>$ npm install –save-dev browser-sync</p>
+</blockquote>
+</li>
+<li><p>配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">var gulp = require(&apos;gulp&apos;)</span><br><span class="line">var uglify = require(&apos;gulp-uglify&apos;)</span><br><span class="line">var less = require(&apos;gulp-less&apos;)</span><br><span class="line">var coffee = require(&apos;gulp-coffee&apos;)</span><br><span class="line">var clean = require(&apos;gulp-clean&apos;)</span><br><span class="line">var autoPrefixer = require(&apos;gulp-autoprefixer&apos;)</span><br><span class="line">var browserSync = require(&apos;browser-sync&apos;);</span><br><span class="line">var reload = browserSync.reload;</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;clean&apos;, () =&gt; &#123;</span><br><span class="line">  gulp.src(&apos;dist/&apos;).pipe(clean())</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;coffee&apos;, () =&gt; &#123;</span><br><span class="line">  gulp.src(&apos;src/scripts/*.coffee&apos;)</span><br><span class="line">  .pipe(coffee())</span><br><span class="line">  .pipe(uglify())</span><br><span class="line">  .pipe(gulp.dest(&apos;dist/scripts&apos;))</span><br><span class="line">  // .pipe(reload(&#123; stream: true &#125;))</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;less&apos;, () =&gt; &#123;</span><br><span class="line">  gulp.src(&apos;src/styles/app.less&apos;)</span><br><span class="line">  .pipe(less())</span><br><span class="line">  .pipe(autoPrefixer())</span><br><span class="line">  .pipe(gulp.dest(&apos;dist/styles&apos;))</span><br><span class="line">  .pipe(reload(&#123; stream: true &#125;))</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// 监视文件改动并重新载入</span><br><span class="line">gulp.task(&apos;serve&apos;, function() &#123;</span><br><span class="line">  browserSync(&#123;</span><br><span class="line">    server: &#123;</span><br><span class="line">      baseDir: &apos;./&apos;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  gulp.watch(&apos;src/styles/app.less&apos;, [&apos;less&apos;]);</span><br><span class="line">  gulp.watch(&apos;src/scripts/app.coffee&apos;, [&apos;coffee&apos;])</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;default&apos;,[&apos;clean&apos;, &apos;coffee&apos;, &apos;less&apos;, &apos;serve&apos;])</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
 
           
         
@@ -1605,7 +1531,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/04/2018-09-05-gulp/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/04/2018-09-04-grunt/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="嘿嘿嘿">
@@ -1624,7 +1550,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/04/2018-09-05-gulp/" itemprop="url">Gulp</a></h1>
+                <a class="post-title-link" href="/2018/09/04/2018-09-04-grunt/" itemprop="url">Grunt</a></h1>
         
 
         <div class="post-meta">
@@ -1668,7 +1594,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1k
+                  1.1k
                 </span>
               
 
@@ -1707,102 +1633,565 @@
       
         
           
-            <h1 id="Gulp-杂记"><a href="#Gulp-杂记" class="headerlink" title="Gulp 杂记"></a>Gulp 杂记</h1><h3 id="什么是-gulp"><a href="#什么是-gulp" class="headerlink" title="什么是 gulp?"></a>什么是 gulp?</h3><p>gulp 是一个构建工具，可以通过它自动执行网站开发过程中的公共任务，比如编译 SASS/Less，编译压缩混淆 JavaScript,，合并编译模板和版本控制等。因为 gulp 是基于 Node.js 构建的，所以 gulp 源文件和开发者自己定义的 gulpfile 都被写进 JavaScript 里，前端开发者可以用自己熟悉的语言来编写 gulp 任务。</p>
-<p>gulp 本身并不能完成这么多种任务，不过它可以借助 npm 丰富的插件库。开发者可以在 npm 中搜索 gulpplugin 找到想要的插件。例如本文中将要提到的 gulp-cssmin, gulp-jshint, gulp-concat、gulp-inject 等等。</p>
-<h3 id="为什么选择-gulp？"><a href="#为什么选择-gulp？" class="headerlink" title="为什么选择 gulp？"></a>为什么选择 gulp？</h3><p>其实现有的基于 Node.js 的构建工具有很多，比如 Bower，Yeoman，grunt 等。而且自 2013 年 grunt v0.4.0 发布以后，grunt 已经改变了前端的开发方式。那么为什么我们要选 gulp？</p>
-<p>gulp 最大的特点是所有的任务都是以 Node.js Stream 的形式处理，构建流程可以由 Stream 之间的 pipe 来定义，省去了把中间文件写到磁盘再读取的过程，而且任务都是默认并行，速度比 grunt 快很多，配置也感觉更省心。</p>
+            <h1 id="Grunt-杂记"><a href="#Grunt-杂记" class="headerlink" title="Grunt 杂记"></a>Grunt 杂记</h1><p><img src="https://img.shields.io/badge/js-grunt-brightgreen.svg" alt="grunt"></p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Grunt是一个基于NodeJS，可用于自动化构建、测试、生成文档的项目管理工具。</p>
+<h3 id="Grunt-能做什么"><a href="#Grunt-能做什么" class="headerlink" title="Grunt 能做什么"></a>Grunt 能做什么</h3><p>Grunt可以自动化我们的整个开发流程，简单地说，就是用JavaScript去执行一些程序来完成一些任务。比如说将css、Javascript、图像等资源压缩；将Sass和Less通过预处理器编译成Css；将Coffeescript、Typescript等转化为Javascript；实时监听文件的变化，并执行自动编译任务；</p>
+<p>在Grunt工具箱中，按任务目标我们可以分为：</p>
 <ul>
-<li>易于使用：采用代码优于配置策略，gulp 让简单的事情继续简单，复杂的任务变得可管理。</li>
-<li>高效：gulp 基于 Node.js 流 Unix 管道连接的方式，不需要往磁盘写中间文件，可以更快地完成构建。</li>
-<li>高质量：gulp 每个 task 只完成一个任务，提高 task 的重用度。</li>
-<li>易于学习：gulp 核心 API 约 5 个，开发者能在很短的时间内学会，之后就可以通过管道流来组合自己需要的 task。</li>
+<li>编译文档型：比如编译LESS、Sass、Stylus、Coffeescript等；</li>
+<li>文件操作型：比如说合并、压缩JavaScript、CSS、图片等；</li>
+<li>质量保障型：比如JSHint、Jasmin、Mocha等；</li>
+<li>类库构建型：比如说Backbone.js、ember.js、angular.js等。</li>
 </ul>
-<h3 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h3><ol>
-<li><p>创建项目，初始化package.json文件，并安装gulp作为开发依赖</p>
+<p>这些任务都依赖于给Grunt提供的插件来完成的，但很多工作依旧需要在命令终端手工输入命令来完成这些操作。为此在Grunt中可以使用watch任务来实现一些监听文件改变、自动触发构建等功能。从而减少人工去每次操作任务。</p>
+<h3 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h3><p>Grunt的使用非常简单，仅需下载相应的命令行工具，针对不同的任务下载不同的插件，即可完成整个自动化过程。</p>
+<ul>
+<li><p>将grunt-cli（grunt命令行工具）作为全局模块安装</p>
 <blockquote>
-<p>$ mkdir gulp-app &amp;&amp; npm init<br>$ npm install –save-dev gulp</p>
+<p>$ npm install -g grunt-cli</p>
 </blockquote>
 </li>
-<li><p>新建gulpfile.js文件，并写入以下内容</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var gulp = require(&apos;gulp&apos;)</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;default&apos;, () =&gt; &#123;</span><br><span class="line">    console.log(&apos;what the hell&apos;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>命令行执行gulp，会看到输出 ‘what the hell’</p>
-</li>
-</ol>
-<h3 id="gulp几个重要的api"><a href="#gulp几个重要的api" class="headerlink" title="gulp几个重要的api"></a>gulp几个重要的api</h3><h3 id="构建自动化流程"><a href="#构建自动化流程" class="headerlink" title="构建自动化流程"></a>构建自动化流程</h3><p>gulp提供了许多可以满足我们工作需求的插件，以下列举部分：</p>
-<ul>
-<li><p><a href="https://www.npmjs.com/package/gulp-uglify" title="gulp-uglify" target="_blank" rel="noopener">gulp-uglify</a></p>
-<ul>
-<li><p>安装</p>
+<li><p>通过npm初始化，为我们生成一份package.json文件</p>
 <blockquote>
-<p>$ npm install –save-dev gulp-uglify</p>
+<p>$ mkdir grunt-app &amp;&amp; cd grunt-app<br>$ npm init</p>
 </blockquote>
 </li>
-<li><p>配置task</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(&apos;default&apos;, () =&gt; &#123;</span><br><span class="line">  gulp</span><br><span class="line">  .src(&apos;src/app.js&apos;)</span><br><span class="line">  .pipe(uglify())</span><br><span class="line">  .pipe(gulp.dest(&apos;dist&apos;))</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><a href="https://www.npmjs.com/package/gulp-less" title="gulp-less" target="_blank" rel="noopener">gulp-less</a></p>
-<ul>
-<li><p>安装</p>
+<li><p>为项目安装grunt作为依赖</p>
 <blockquote>
-<p>$ npm install –save-dev gulp-less</p>
+<p>$ npm install –save-dev grunt</p>
 </blockquote>
+<p>  至此grunt已经安装完毕，但它还没有特殊的功能，要使用grunt的各种功能，需要建一份Gruntfile.js文件，并为之安装相应的插件。</p>
 </li>
-<li><p>配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var less = require(&apos;gulp-less&apos;)</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;default&apos;, () =&gt; &#123;</span><br><span class="line">  gulp.src(&apos;src/styles/app.less&apos;)</span><br><span class="line">  .pipe(less())</span><br><span class="line">  .pipe(gulp.dest(&apos;dist/styles&apos;))</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><a href="https://www.npmjs.com/package/gulp-coffee" title="gulp-coffee" target="_blank" rel="noopener">gulp-coffee</a></p>
-<ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install –save-dev gulp-coffee</p>
-</blockquote>
-</li>
-<li><p>配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var coffee = require(&apos;gulp-coffee&apos;)</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;default&apos;, () =&gt; &#123;</span><br><span class="line">  gulp.src(&apos;src/scripts/app.coffee&apos;).pipe(coffee()).pipe(gulp.dest(&apos;dist/scripts&apos;))</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><a href="https://www.npmjs.com/package/gulp-clean" title="gulp-clean" target="_blank" rel="noopener">gulp-clean</a></p>
-<ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install –save-dev gulp-clean</p>
-</blockquote>
-</li>
-<li><p>配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var clean = require(&apos;gulp-clean&apos;)</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;clean&apos;, () =&gt; &#123;</span><br><span class="line">  gulp.src(&apos;dist/&apos;).pipe(clean())</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><a href="https://www.npmjs.com/package/gulp-autoprefixer" title="autoprefixer" target="_blank" rel="noopener">gulp-autoprefixer</a></p>
-<ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install –save-dev gulp-autoprefixer</p>
-</blockquote>
-</li>
-<li><p>配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var autoPrefixer = require(&apos;gulp-autoprefixer&apos;)</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;css&apos;, () =&gt; &#123;</span><br><span class="line">  gulp.src(&apos;src/styles/app.less&apos;).pipe(less()).pipe(autoPrefixer()).pipe(gulp.dest(&apos;dist/styles&apos;))</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><a href="http://www.gulpjs.com.cn/docs/recipes/server-with-livereload-and-css-injection/" target="_blank" rel="noopener">browser-sync</a> 拥有实时重载（live-reloading）和 CSS 注入的服务器</p>
-<ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install –save-dev browser-sync</p>
-</blockquote>
-</li>
-<li><p>配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">var gulp = require(&apos;gulp&apos;)</span><br><span class="line">var uglify = require(&apos;gulp-uglify&apos;)</span><br><span class="line">var less = require(&apos;gulp-less&apos;)</span><br><span class="line">var coffee = require(&apos;gulp-coffee&apos;)</span><br><span class="line">var clean = require(&apos;gulp-clean&apos;)</span><br><span class="line">var autoPrefixer = require(&apos;gulp-autoprefixer&apos;)</span><br><span class="line">var browserSync = require(&apos;browser-sync&apos;);</span><br><span class="line">var reload = browserSync.reload;</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;clean&apos;, () =&gt; &#123;</span><br><span class="line">  gulp.src(&apos;dist/&apos;).pipe(clean())</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;coffee&apos;, () =&gt; &#123;</span><br><span class="line">  gulp.src(&apos;src/scripts/*.coffee&apos;)</span><br><span class="line">  .pipe(coffee())</span><br><span class="line">  .pipe(uglify())</span><br><span class="line">  .pipe(gulp.dest(&apos;dist/scripts&apos;))</span><br><span class="line">  // .pipe(reload(&#123; stream: true &#125;))</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;less&apos;, () =&gt; &#123;</span><br><span class="line">  gulp.src(&apos;src/styles/app.less&apos;)</span><br><span class="line">  .pipe(less())</span><br><span class="line">  .pipe(autoPrefixer())</span><br><span class="line">  .pipe(gulp.dest(&apos;dist/styles&apos;))</span><br><span class="line">  .pipe(reload(&#123; stream: true &#125;))</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// 监视文件改动并重新载入</span><br><span class="line">gulp.task(&apos;serve&apos;, function() &#123;</span><br><span class="line">  browserSync(&#123;</span><br><span class="line">    server: &#123;</span><br><span class="line">      baseDir: &apos;./&apos;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  gulp.watch(&apos;src/styles/app.less&apos;, [&apos;less&apos;]);</span><br><span class="line">  gulp.watch(&apos;src/scripts/app.coffee&apos;, [&apos;coffee&apos;])</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;default&apos;,[&apos;clean&apos;, &apos;coffee&apos;, &apos;less&apos;, &apos;serve&apos;])</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<li><p>新建Gruntfile.js，并写入以下内容</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">module.exports = function(grunt) &#123;</span><br><span class="line"></span><br><span class="line">  // 之后所有的配置都是配在传递给grunt.initConfig这个方法的对象中</span><br><span class="line">  grunt.initConfig(&#123;</span><br><span class="line">    // 将package.json文件作为一个json对象读入</span><br><span class="line">    pkg: grunt.file.readJSON(&apos;package.json&apos;),</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  // 加载grunt的插件，这里的 grunt-contrib-uglify 是一个例子</span><br><span class="line">  grunt.loadNpmTasks(&apos;grunt-contrib-uglify&apos;);</span><br><span class="line"></span><br><span class="line">  // 注册一个grunt任务，第一个参数为任务的名字，当任务的名字default时，通过grunt运行项目时，会默认执行该任务；第二个参数是一个数组，是后续所要执行任务名字的集合。</span><br><span class="line">  grunt.registerTask(&apos;default&apos;, [&apos;uglify&apos;]);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
+<h3 id="安装grunt插件"><a href="#安装grunt插件" class="headerlink" title="安装grunt插件"></a>安装grunt插件</h3><p>在安装grunt插件时，需要考虑自己需要哪些功能，下面罗列出开发中需要的大部分功能。并举个简单的例子，详细用法可参考 <a href="https://github.com/gruntjs" title="Gruntjs的github链接" target="_blank" rel="noopener">Gruntjs</a>。</p>
+<ol>
+<li><p><a href="https://github.com/gruntjs/grunt-contrib-uglify" title="grunt uglify" target="_blank" rel="noopener">grunt-contrib-uglify</a> （混淆并压缩js文件）</p>
+<ul>
+<li><p>安装</p>
+<blockquote>
+<p>$ npm install grunt-contrib-uglify –save-dev</p>
+</blockquote>
+</li>
+<li><p>配置task</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">    uglify: &#123;</span><br><span class="line">        my_target: &#123;</span><br><span class="line">          files: &#123;</span><br><span class="line">            &apos;dest/output.min.js&apos;: [&apos;src/input1.js&apos;, &apos;src/input2.js&apos;]</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">grunt.loadNpmTasks(&apos;grunt-contrib-uglify&apos;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><a href="https://github.com/gruntjs/grunt-contrib-cssmin" title="grunt cssmin" target="_blank" rel="noopener">grunt-contrib-cssmin</a> （压缩css）</p>
+<ul>
+<li><p>安装</p>
+<blockquote>
+<p>$ npm install grunt-contrib-cssmin –save-dev</p>
+</blockquote>
+</li>
+<li><p>配置task</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">    target: &#123;</span><br><span class="line">        files: &#123;</span><br><span class="line">          &apos;output.css&apos;: [&apos;foo.css&apos;, &apos;bar.css&apos;]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">grunt.loadNpmTasks(&apos;grunt-contrib-cssmin&apos;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><a href="https://github.com/gruntjs/grunt-contrib-clean" title="grunt clean" target="_blank" rel="noopener">grunt-contrib-clean</a> （清除文件和目录，一般用来清除上一次编译生成的文件）</p>
+<ul>
+<li><p>安装</p>
+<blockquote>
+<p>$ npm install grunt-contrib-clean –save-dev</p>
+</blockquote>
+</li>
+<li><p>配置task</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">    clean: &#123;</span><br><span class="line">        build: &#123;</span><br><span class="line">            src: [&apos;path/to/dir/one&apos;, &apos;path/to/dir/two&apos;]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">grunt.loadNpmTasks(&apos;grunt-contrib-clean&apos;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><a href="https://github.com/gruntjs/grunt-contrib-watch" title="grunt watch" target="_blank" rel="noopener">grunt-contrib-watch</a> （监听文件的变化，并自动执行任务）</p>
+<ul>
+<li><p>安装</p>
+<blockquote>
+<p>$ npm install grunt-contrib-watch –save-dev</p>
+</blockquote>
+</li>
+<li><p>配置task</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">    watch: &#123;</span><br><span class="line">        scripts: &#123;</span><br><span class="line">            files: [&apos;**/*.coffee&apos;],</span><br><span class="line">            // 监听到文件变化后执行的task</span><br><span class="line">            tasks: [&apos;coffee&apos;],</span><br><span class="line">            options: &#123;</span><br><span class="line">                spawn: false,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">        css: &#123;</span><br><span class="line">            files: &apos;**/*.sass&apos;,</span><br><span class="line">            tasks: [&apos;sass&apos;],</span><br><span class="line">            options: &#123;</span><br><span class="line">                livereload: true,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">grunt.loadNpmTasks(&apos;grunt-contrib-watch&apos;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><a href="https://github.com/gruntjs/grunt-contrib-connect" title="grunt connect" target="_blank" rel="noopener">grunt-contrib-connect</a> （开启一个服务器，使我们可以通过 <code>ip:端口号</code> 的方式访问目录下的资源）</p>
+<ul>
+<li><p>安装</p>
+<blockquote>
+<p>$ npm install grunt-contrib-connect –save-dev</p>
+</blockquote>
+</li>
+<li><p>配置task</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">    connect: &#123;</span><br><span class="line">        server: &#123;</span><br><span class="line">            options: &#123;</span><br><span class="line">                port: 9001,</span><br><span class="line">                base: &apos;www-root&apos;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">grunt.loadNpmTasks(&apos;grunt-contrib-connect&apos;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><a href="https://github.com/gruntjs/grunt-contrib-less" title="grunt less" target="_blank" rel="noopener">grunt-contrib-less</a> （将less编译为css）</p>
+<ul>
+<li><p>安装</p>
+<blockquote>
+<p>$ npm install grunt-contrib-less –save-dev</p>
+</blockquote>
+</li>
+<li><p>配置task</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">    development: &#123;</span><br><span class="line">        files: &#123;</span><br><span class="line">            &apos;path/to/result.css&apos;: &apos;path/to/source.less&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">grunt.loadNpmTasks(&apos;grunt-contrib-less&apos;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><a href="https://github.com/gruntjs/grunt-contrib-coffee" title="grunt coffeescript" target="_blank" rel="noopener">grunt-contrib-coffee</a> （将coffeescript编译成javascript）</p>
+<ul>
+<li><p>安装</p>
+<blockquote>
+<p>$ npm install grunt-contrib-coffee –save-dev</p>
+</blockquote>
+</li>
+<li><p>配置task</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">    development: &#123;</span><br><span class="line">        files: &#123;</span><br><span class="line">            &apos;path/to/result.js&apos;: &apos;path/to/source.coffee&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">grunt.loadNpmTasks(&apos;grunt-contrib-coffee&apos;);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/04/2018-09-05-webpack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嘿嘿嘿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/04/2018-09-05-webpack/" itemprop="url">Webpack</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-04T00:00:00+08:00">
+                2018-09-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Webpack-杂记"><a href="#Webpack-杂记" class="headerlink" title="Webpack 杂记"></a>Webpack 杂记</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>首先我们要消除一个常见的误解。webpack 是一个模块打包器(module bundler)（例如，Browserify 或 Brunch）。它不是一个任务执行器(task runner)（例如，Make, Grunt 或者 Gulp ）。任务执行器就是用来自动化处理常见的开发任务，例如项目的检查(lint)、构建(build)、测试(test)。相对于打包器(bundler)，任务执行器则聚焦在偏重上层的问题上面。你可以得益于，使用上层的工具，而将打包部分的问题留给 webpack。</p>
+<p>打包器(bundler)帮助您取得准备用于部署的 JavaScript 和样式表，将它们转换为适合浏览器的可用格式。例如，JavaScript 可以压缩、拆分 chunk 和懒加载，以提高性能。打包是 web 开发中最重要的挑战之一，解决此问题可以消除开发过程中的大部分痛点。</p>
+<h2 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h2><ul>
+<li><p>安装</p>
+<blockquote>
+<p>$ npm install –save-dev webpack</p>
+</blockquote>
+</li>
+<li><p>新建webpack.config.js配置文件，并写入以下内容</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">　　entry: &apos;./src/scripts/app.js&apos;,</span><br><span class="line">　　output: &#123;</span><br><span class="line">        filename: &apos;bundle.js&apos;,</span><br><span class="line">        path: path.resolve(__dirname, &apos;dist/scripts&apos;)</span><br><span class="line">　　&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>执行编译</p>
+<blockquote>
+<p>$ ./node_modules/.bin/webpack webpack.config.js</p>
+</blockquote>
+</li>
+<li><p>使用npm脚本来方便启动webpack，在package.json中加入:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;build&quot;: &quot;webpack&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>  现在，可以使用 npm run build 命令，来替代我们之前用到的较长命令。注意，使用 npm 的 scripts，我们可以通过模块名，来引用本地安装的 npm 包，而不是写出完整路径。这是大多数基于 npm 的项目遵循的标准，允许我们直接调用 webpack，而不是去调用 ./node_modules/.bin/webpack。</p>
+</li>
+</ul>
+<h2 id="资源管理"><a href="#资源管理" class="headerlink" title="资源管理"></a>资源管理</h2><p>在 webpack 出现之前，前端开发人员会使用 grunt 和 gulp 等工具来处理资源，并将它们从 <code>/src</code> 文件夹移动到 <code>/dist</code> 或 <code>/build</code> 目录中。同样方式也被用于 JavaScript 模块，但是，像 webpack 这样的工具，将动态打包(dynamically bundle)所有依赖项（创建所谓的依赖图(dependency graph)）。这是极好的创举，因为现在每个模块都可以_明确表述它自身的依赖，我们将避免打包未使用的模块。</p>
+<p>webpack 最出色的功能之一就是，除了 JavaScript，还可以通过 loader 引入任何其他类型的文件。也就是说，以上列出的那些 JavaScript 的优点（例如显式依赖），同样可以用来构建网站或 web 应用程序中的所有非 JavaScript 内容。让我们从 CSS 开始起步，或许你可能已经熟悉了这个设置过程。</p>
+<hr>
+<h3 id="加载css"><a href="#加载css" class="headerlink" title="加载css"></a>加载css</h3><ul>
+<li><p>为了从 JavaScript 模块中 import 一个 CSS 文件，需要安装加载css的插件</p>
+<blockquote>
+<p>$ npm install –save-dev style-loader css-loader</p>
+</blockquote>
+</li>
+<li><p>在 module 配置中 添加 style-loader 和 css-loader</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  module: &#123;</span><br><span class="line">    // 通过匹配不同正则表达式的，调用相应的loader</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        // webpack 根据正则表达式，来确定应该查找哪些文件，并将其提供给指定的 loader</span><br><span class="line">        test: /\.css$/,</span><br><span class="line">        use: [&apos;style-loader&apos;, &apos;css-loader&apos;]</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在app.js中通过import引入css文件</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import &apos;../styles/app.css&apos;;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<hr>
+<h3 id="加载图片"><a href="#加载图片" class="headerlink" title="加载图片"></a>加载图片</h3><ul>
+<li><p>安装读取文件的loader</p>
+<blockquote>
+<p>$ npm install –save-dev file-loader</p>
+</blockquote>
+</li>
+<li><p>在app.js文件中引入图片</p>
+<blockquote>
+<p>$ import Icon from ‘../images/th.jpeg’</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h3 id="加载数据"><a href="#加载数据" class="headerlink" title="加载数据"></a>加载数据</h3><ul>
+<li><p>安装csv和xml加载器</p>
+<blockquote>
+<p>$ npm install –save-dev csv-loader xml-loader</p>
+</blockquote>
+</li>
+<li><p>配置</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">module: &#123;</span><br><span class="line">  rules: [</span><br><span class="line">    &#123;</span><br><span class="line">      test: /\.(csv|tsv)$/,</span><br><span class="line">      use: [&apos;csv-loader&apos;]</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      test: /\.xml$/,</span><br><span class="line">      use: [&apos;xml-loader&apos;]</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="管理输出"><a href="#管理输出" class="headerlink" title="管理输出"></a>管理输出</h2><ul>
+<li>html页面自动引入资源</li>
+</ul>
+<p>目前，我们在 index.html 文件中手动引入所有资源，然而随着应用程序增长，并且一旦开始对文件名使用哈希(hash)]并输出多个 bundle，手动地对 index.html 文件进行管理，一切就会变得困难起来。然而，可以通过一些插件，会使这个过程更容易操控。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const path = require(&apos;path&apos;)</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  entry: &#123;</span><br><span class="line">    app: &apos;./src/scripts/app.js&apos;,</span><br><span class="line">    common: &apos;./src/scripts/common.js&apos;</span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: &apos;[name].bundle.js&apos;,</span><br><span class="line">    path: path.resolve(__dirname, &apos;dist/scripts&apos;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当有多个入口文件时，会编译成多个bundle.js文件，每次改动都需要在页面中手动引入。此时，需要用到 `html-webpack-plugin</p>
+<blockquote>
+<p>$ npm install –save-dev html-webpack-plugin</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">const HtmlWebpackPlugin = require(&apos;html-webpack-plugin&apos;)</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  entry: &#123;</span><br><span class="line">    app: &apos;./src/scripts/app.js&apos;,</span><br><span class="line">    common: &apos;./src/scripts/common.js&apos;</span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: &apos;[name].bundle.js&apos;,</span><br><span class="line">    path: path.resolve(__dirname, &apos;dist/scripts&apos;)</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    new HtmlWebpackPlugin(&#123;</span><br><span class="line">      title: &apos;Hi webpack&apos;</span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>清理旧的输出文件</li>
+</ul>
+<blockquote>
+<p>$ npm install clean-webpack-plugin –save-dev</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const CleanWebpackPlugin = require(&apos;clean-webpack-plugin&apos;);</span><br><span class="line"></span><br><span class="line">plugins: [</span><br><span class="line">    new CleanWebpackPlugin([&apos;dist&apos;]),</span><br><span class="line">    new HtmlWebpackPlugin(&#123;</span><br><span class="line">      title: &apos;Hi webpack&apos;</span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br></pre></td></tr></table></figure>
+
+<h2 id="开发实践"><a href="#开发实践" class="headerlink" title="开发实践"></a>开发实践</h2><ul>
+<li><p>使用 <code>source map</code> 定位错误</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">   devtool: &apos;inline-source-map&apos;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用webpack-dev-server，为你提供了一个简单的 web 服务器，并且能够实时重新加载(live reloading)。</p>
+<blockquote>
+<p>$ npm install –save-dev webpack-dev-server</p>
+</blockquote>
+<p>  修改配置文件，告诉开发服务器(dev server)，在哪里查找文件</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">    devServer: &#123;</span><br><span class="line">        contentBase: &apos;./dist&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>  以上配置告知 webpack-dev-server，在 localhost:8080 下建立服务，将 dist 目录下的文件，作为可访问文件。</p>
+<p>  在package.json中添加一个脚本配置</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;start&quot;: &quot;webpack-dev-server --open&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="代码分离"><a href="#代码分离" class="headerlink" title="代码分离"></a>代码分离</h2><p>  代码分离是 webpack 中最引人注目的特性之一。此特性能够把代码分离到不同的 bundle 中，然后可以按需加载或并行加载这些文件。代码分离可以用于获取更小的 bundle，以及控制资源加载优先级，如果使用合理，会极大影响加载时间。</p>
+<p>有三种常用的代码分离方法：</p>
+<ul>
+<li>入口起点：使用 entry 配置手动地分离代码。</li>
+<li>防止重复：使用 CommonsChunkPlugin 去重和分离 chunk。</li>
+<li>动态导入：通过模块的内联函数调用来分离代码。</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/02/2018-09-02-虚拟存储器的基本概念/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嘿嘿嘿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/02/2018-09-02-虚拟存储器的基本概念/" itemprop="url">虚拟存储器的基本概念</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-02T00:00:00+08:00">
+                2018-09-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  983
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="虚拟存储器的基本概念"><a href="#虚拟存储器的基本概念" class="headerlink" title="虚拟存储器的基本概念"></a>虚拟存储器的基本概念</h2><h3 id="虚拟存储器的引入"><a href="#虚拟存储器的引入" class="headerlink" title="虚拟存储器的引入"></a>虚拟存储器的引入</h3><ul>
+<li><p>常规存储器管理方式的特征</p>
+<ul>
+<li><p>一次性。在前面所介绍的几种存储管理方式中，都要求将作业全部装入内存后方能运行，即作业在运行前需一次性地全部装入内存，而正是这一特征导致了上述两种情况的发生。此外，还有许多作业在每次运行时，并非其全部程序和数据都要用到。如果一次性地装入其全部程序，也是一种对内存空间的浪费。</p>
+</li>
+<li><p>驻留性。作业装入内存后，便一直驻留在内存中，直至作业运行结束。尽管运行中的进程会因 I/O 而长期等待，或有的程序模块在运行过一次后就不再需要(运行)了，但它们都仍将继续占用宝贵的内存资源。</p>
+</li>
+</ul>
+</li>
+<li><p>局部性原理</p>
+<ul>
+<li><p>程序执行时，除了少部分的转移和过程调用指令外，在大多数情况下仍是顺序执行的。该论点也在后来的许多学者对高级程序设计语言(如 FORTRAN 语言、PASCAL 语言)及 C 语言规律的研究中被证实。</p>
+</li>
+<li><p>过程调用将会使程序的执行轨迹由一部分区域转至另一部分区域，但经研究看出，过程调用的深度在大多数情况下都不超过</p>
+</li>
+<li><p>这就是说，程序将会在一段时间内都局限在这些过程的范围内运行。</p>
+</li>
+<li><p>程序中存在许多循环结构，这些虽然只由少数指令构成，但是它们将多次执行。</p>
+</li>
+<li><p>程序中还包括许多对数据结构的处理，如对数组进行操作，它们往往都局限于很小的范围内。</p>
+</li>
+<li><p>时间局限性。如果程序中的某条指令一旦执行，则不久以后该指令可能再次执行；如果某数据被访问过，则不久以后该数据可能再次被访问。产生时间局限性的典型原因是由于在程序中存在着大量的循环操作。</p>
+</li>
+<li><p>空间局限性。一旦程序访问了某个存储单元，在不久之后，其附近的存储单元也将被访问，即程序在一段时间内所访问的地址，可能集中在一定的范围之内，其典型情况便是程序的顺序执行。</p>
+</li>
+</ul>
+</li>
+<li><p>虚拟存储器的定义</p>
+<p>  基于局部性原理，应用程序在运行之前，没有必要全部装入内存，仅须将那些当前要运行的少数页面或段先装入内存便可运行，其余部分暂留在盘上。程序在运行时，如果它所要访问的页(段)已调入内存，便可继续执行下去；但如果程序所要访问的页(段)尚未调入内存(称为缺页或缺段)，此时程序应利用OS所提供的请求调页(段)功能，将它们调入内存，以使进程能继续执行下去。如果此时内存已满，无法再装入新的页(段)，则还须再利用页(段)的置换功能，将内存中暂时不用的页(段)调至盘上，腾出足够的内存空间后，再将要访问的页(段)调入内存，使程序继续执行下去。这样，便可使一个大的用户程序能在较小的内存空间中运行；也可在内存中同时装入更多的进程使它们并发执行。从用户角度看，该系统所具有的内存容量，将比实际内存容量大得多。但须说明，用户所看到的大容量只是一种感觉，是虚的，故人们把这样的存储器称为虚拟存储器。</p>
 </li>
 </ul>
 
@@ -2123,7 +2512,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/02/2018-09-02-对换/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/02/2018-09-02-进程通信的类型/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="嘿嘿嘿">
@@ -2142,7 +2531,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/02/2018-09-02-对换/" itemprop="url">对换</a></h1>
+                <a class="post-title-link" href="/2018/09/02/2018-09-02-进程通信的类型/" itemprop="url">进程通信的类型</a></h1>
         
 
         <div class="post-meta">
@@ -2186,7 +2575,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  634
+                  1.1k
                 </span>
               
 
@@ -2202,7 +2591,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  3
                 </span>
               
             </div>
@@ -2225,433 +2614,52 @@
       
         
           
-            <h3 id="对换"><a href="#对换" class="headerlink" title="对换"></a>对换</h3><ul>
-<li><p>对换(Swapping)的引入</p>
-<p>  在多道程序环境下，一方面，在内存中的某些进程由于某事件尚未发生而被阻塞运行，但它却占用了大量的内存空间，甚至有时可能出现在内存中所有进程都被阻塞而迫使CPU停止下来等待的情况；另一方面，却又有着许多作业在外存上等待，因无内存而不能入内存运行的情况。显然这对系统资源是一种严重的浪费，且使系统吞吐量下降。为了解决这一问题，在系统中又增设了对换(也称交换)设施。所谓“对换”，是指把内存中暂时不能运行的进程或者暂时不用的程序和数据调出到外存上，以便腾出足够的内存空间，再把已具备运行条件的进程或进程所需要的程序和数据调入内存。对换是提高内存利用率的有效措施。</p>
-<p>  如果对换是以整个进程为单位的，便称之为“整体对换”或“进程对换”。而如果对换是以“页”或“段”为单位进行的，则分别称之为“页面对换”或“分段对换”，又统称为“部分对换”。</p>
-</li>
-<li><p>实现进程对换，系统必须能实现三方面的功能</p>
+            <h2 id="进程通信的类型"><a href="#进程通信的类型" class="headerlink" title="进程通信的类型"></a>进程通信的类型</h2><h3 id="共享存储器系统"><a href="#共享存储器系统" class="headerlink" title="共享存储器系统"></a>共享存储器系统</h3><p>相互通信的进程共享某些数据结构或共享存储区，进程之间能够通过这些空间进行通信</p>
 <ul>
-<li><p>对换空间的管理</p>
-<p>  在具有对换功能的OS中，通常把外存分为文件区和对换区。前者用于存放文件，后者用于存放从内存换出的进程。</p>
+<li><p>基于共享数据结构的通信方式</p>
+<p>  在这种通信方式中，要求诸进程公用某些数据结构，借以实现诸进程间的信息交换。如在生产者—消费者问题中，就是用 <code>有界缓冲区</code> 这种数据结构来实现通信的。</p>
 </li>
-<li><p>进程的换出</p>
-<p>   每当一进程由于创建子进程而需要更多的内存空间，但又无足够的内存空间等情况发生时，系统应将某进程换出。其过程是：系统首先选择处于阻塞状态且优先级最低的进程作为换出进程，然后启动磁盘，将该进程的程序和数据传送到磁盘的对换区上。若传送过程未出现错误，便可回收该进程所占用的内存空间，并对该进程的进程控制块做相应的修改。</p>
-</li>
-<li><p>进程的换入</p>
-<p> 系统应定时地查看所有进程的状态，从中找出“就绪”状态但已换出的进程，将其中换出时间最久(换出到磁盘上)的进程作为换入进程，将之换入，直至已无可换入的进程或无可换出的进程为止。</p>
+<li><p>基于共享存储区的通信方式</p>
+<p>  为了传输大量数据，在存储器中划出了一块 <code>共享存储区</code>，诸进程可通过对共享存储区中数据的读或写来实现通信。这种通信方式属于高级通信。进程在通信前，先向系统申请获得共享存储区中的一个分区，并指定该分区的关键字；若系统已经给其他进程分配了这样的分区，则将该分区的描述符返回给申请者，继之，由申请者把获得的共享存储分区连接到本进程上；此后，便可像读、写普通存储器一样地读、写该公用存储分区。</p>
 </li>
 </ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/02/2018-09-02-基本分页存储管理方式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="嘿嘿嘿">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/02/2018-09-02-基本分页存储管理方式/" itemprop="url">基本分页存储管理方式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-02T00:00:00+08:00">
-                2018-09-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2.2k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  7
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="基本分页存储管理方式"><a href="#基本分页存储管理方式" class="headerlink" title="基本分页存储管理方式"></a>基本分页存储管理方式</h2><p>连续分配方式会形成许多“碎片”，虽然可通过“紧凑”方法将许多碎片拼接成可用的大块空间，但须为之付出很大开销。$\color{maroon}{如果允许将一个进程直接分散地装入到许多不相邻接的分区中}$，则无须再进行“紧凑”。 基于这一思想而产生了离散分配方式。</p>
+<h3 id="消息传递系统"><a href="#消息传递系统" class="headerlink" title="消息传递系统"></a>消息传递系统</h3><ul>
+<li><p>进程间的数据交换是以格式化的消息(message)为单位的</p>
 <ul>
-<li><p>如果离散分配的基本单位是页，则称为分页存储管理方式；</p>
+<li><p>直接通信方式</p>
+<p>  这是指发送进程利用OS所提供的发送命令，直接把消息发送给目标进程。此时，要求发送进程和接收进程都以显式方式提供对方的标识符。通常，系统提供下述两条通信命令(原语)：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Send(Receiver，message)； 发送一个消息给接收进程；</span><br><span class="line">Receive(Sender，message)； 接收 Sender 发来的消息；</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>如果离散分配的基本单位是段，则称为分段存储管理方式</p>
-</li>
-</ul>
-<h3 id="页面与页表"><a href="#页面与页表" class="headerlink" title="页面与页表"></a>页面与页表</h3><ul>
-<li><p>页面</p>
+<li><p>间接通信方式</p>
+<p>  间接通信方式指进程之间的通信需要通过作为共享数据结构的实体。该实体用来暂存发送进程发送给目标进程的消息；接收进程则从该实体中取出对方发送给自己的消息。通常把这种中间实体称为信箱。消息在信箱中可以安全地保存，只允许核准的目标用户随时读取。因此，利用信箱通信方式，既可实现实时通信，又可实现非实时通信</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Send(mailbox，message)； 将一个消息发送到指定信箱；</span><br><span class="line">Receive(mailbox，message)； 从指定信箱中接收一个消息；</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li><p>页面和物理块</p>
-<p>  分页存储管理是将一个 <strong>进程的逻辑地址空间</strong> 分成若干个大小相等的片，称为页面或页，并为各页加以编号，从 0 开始，如第 0 页、第 1 页等。</p>
-<p>  也把 <strong>内存空间</strong> 分成与页面相同大小的若干个存储块，称为(物理)块或页框(frame)，也同样为它们加以编号，如0#块、1#块等等。</p>
-<p>  在为进程分配内存时，以块为单位将进程中的若干个页分别装入到多个可以不相邻接的物理块中。由于进程的最后一页经常装不满一块而形成了不可利用的碎片，称之为“页内碎片”。</p>
-</li>
-<li><p>页面大小</p>
-<p>  在分页系统中的页面其大小应适中。页面若太小，一方面虽然可使内存碎片减小，从而减少了内存碎片的总空间，有利于提高内存利用率，但另一方面也会使每个进程占用较多的页面，从而导致进程的页表过长，占用大量内存；此外，还会降低页面换进换出的效率。然而，如果选择的页面较大，虽然可以减少页表的长度，提高页面换进换出的速度，但却又会使页内碎片增大。因此，页面的大小应选择适中，且页面大小应是 2 的幂，通常为 512 B～8 KB。</p>
-</li>
-</ul>
-</li>
-<li><p>地址结构</p>
-<p>  <img src="https://s1.ax1x.com/2018/09/03/iSmyi6.png" alt="此处输入图片的描述"></p>
-<p>  前一部分为页号P，后一部分为位移量W(或称为页内地址)。图中的地址长度为32位，其中 0～11 位为页内地址，即每页的大小为4KB；12～31 位为页号，地址空间最多允许有 1 M 页。</p>
-<p>  对于某特定机器，其地址结构是一定的。若给定一个逻辑地址空间中的地址为 A，页面的大小为 L，则页号 P 和页内地址 d可按下式求得：</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">P = INT(A/L)</span><br><span class="line">d = MOD(A/L)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>页面</p>
-<p>  在分页系统中，允许将进程的各个页离散地存储在内存不同的物理块中，但系统应能保证进程的正确运行，即能在内存中找到每个页面所对应的物理块。为此，系统又为每个进程建立了一张页面映像表，简称页表。在进程地址空间内的所有页(0～n)，依次在页表中有一页表项，其中记录了相应页在内存中对应的物理块号。在配置了页表后，进程执行时，通过查找该表，即可找到每页在内存中的物理块号。可见，页表的作用是实现从页号到物理块号的地址映射。</p>
-<p>  <img src="https://s1.ax1x.com/2018/09/03/iSn9YV.png" alt="此处输入图片的描述"></p>
-<p>  即使在简单的分页系统中，也<strong>常在页表的表项中设置一存取控制字段</strong>，用于对该存储块中的内容加以保护。当存取控制字段仅有一位时，可用来规定该存储块中的内容是允许读/写，还是只读；若存取控制字段为二位，则可规定为读/写、只读和只执行等存取方式。如果有一进程试图去写一个只允许读的存储块时，将引起操作系统的一次中断。如果要利用分页系统去实现虚拟存储器，则还须增设一数据项。</p>
-</li>
-<li><p>地址变换机构</p>
-<p>  能将用户地址空间中的逻辑地址变换为内存空间中的物理地址。由于页内地址和物理地址是一一对应的(例如，对于页面大小是 1 KB 的页内地址是 0～1023，其相应的物理块内的地址也是0～1023，无须再进行转换)，因此，地址变换机构的任务实际上只是将逻辑地址中的页号，转换为内存中的物理块号。又因为页面映射表的作用就是用于实现从页号到物理块号的变换，因此，地址变换任务是借助于页表来完成的。</p>
+<li><p>信箱的分类</p>
 <ul>
-<li><p>基本的地址变换机构</p>
-<p>  页表的功能可以由一组专门的寄存器来实现。一个页表项用一个寄存器。由于寄存器具有较高的访问速度，因而有利于提高地址变换的速度；但由于寄存器成本较高，且大多数现代计算机的页表又可能很大，使页表项的总数可达几千甚至几十万个，显然这些页表项不可能都用寄存器来实现，因此，页表大多驻留在内存中。在系统中只设置一个页表寄存器PTR(Page-TableRegister)，在其中存放页表在内存的始址和页表的长度。</p>
-<p>平时，进程未执行时，页表的始址和页表长度存放在本进程的PCB中。当调度程序调度到某进时，才将这两个数据装入页表寄存器中。因此，在单处理机环境下，虽然系统中可以运行多个进程，但只需一个页表寄存器。当进程要访问某个逻辑地址中的数据时，分页地址变换机构会自动地将有效地址(相对地址)分为页号和页内地址两部分，再以页号为索引去检索页表。查找操作由硬件执行。在<br>执行检索之前，先将页号与页表长度进行比较，如果页号大于或等于页表长度，则表示本次所访问的地址已超越进程的地址空间。于是，这一错误将被系统发现并产生一地址越界中断。若未出现越界错误，则将<strong>页表始址与页号和页表项长度的乘积相加</strong>，便得到该表项在页表中的位置，于是可从中得到该页的物理块号，将之装入物理地址寄存器中。与此同时，再<strong>将有效地址寄存器中的页内地址送入物理地址寄存器的块内地址字段</strong>中。这样便完成了从逻辑地址到物理地址的变换。</p>
-<p><img src="https://s1.ax1x.com/2018/09/03/iSM01K.png" alt="此处输入图片的描述"></p>
+<li><p>私用信箱</p>
+<p>  信箱的拥有者有权从信箱中读取消息，其他用户则只能将自己构成的消息发送到该信箱中。</p>
 </li>
-<li><p>具有快表的地址变换机构</p>
-<p>  由于页表是存放在内存中的，这使 CPU 在每存取一个数据时，都要两次访问内存。</p>
-<p>  第一次是访问内存中的页表，从中找到指定页的物理块号，再将块号与页内偏移量W拼接，以形成物理地址。<br>  第二次访问内存时，才是从第一次所得地址中获得所需数据(或向此地址中写入数据)。</p>
-<p>  因此，采用这种方式将使计算机的处理速度降低近 1/2。可见，以此高昂代价来换取存储器空间利用率的提高，是得不偿失的。为了提高地址变换速度，可在地址变换机构中增设一个<strong>具有并行查寻能力</strong>的特殊高速缓冲寄存器，又称为“联想寄存器”(AssociativeMemory)，或称为“快表”，在 IBM 系统中又取名为 TLB(Translation Lookaside Buffer)，用以存放当前访问的那些页表项。</p>
-<p>  此时的地址变换过程是：在CPU给出有效地址后，由地址变换机构自动地将页号 P送入高速缓冲寄存器，并将此页号与高速缓存中的所有页号进行比较，若其中有与此相匹配的页号，便表示所要访问的页表项在快表中。于是，可直接从快表中读出该页所对应的物理块号，并送到物理地址寄存器中。如在块表中未找到对应的页表项，则还须再访问内存中的页表，找到后，把从页表项中读出的物理块号送地址寄存器；同时，再将此页表项存入快表的一个寄存器单元中，亦即，重新修改快表。但如果联想寄存器已满，则 OS 必须找到一个老的且已被认为不再需要的页表项，将它换出。</p>
-<p><img src="https://s1.ax1x.com/2018/09/03/iSM5jS.png" alt="此处输入图片的描述"></p>
-<p>由于成本的关系，快表不可能做得很大，通常只存放 16～512 个页表项</p>
+<li><p>公用信箱<br>  它由操作系统创建，并提供给系统中的所有核准进程使用。核准进程既可把消息发送到该信箱中，也可从信箱中读取发送给自己的消息</p>
+</li>
+<li><p>共享信箱</p>
+<p>  它由某进程创建，在创建时或创建后指明它是可共享的，同时须指出共享进程(用户)的名字。信箱的拥有者和共享者都有权从信箱中取走发送给自己的消息。可以是一对一关系、多对一关系、一对多关系、多对多关系</p>
 </li>
 </ul>
 </li>
 </ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/02/2018-09-02-分段存储管理方式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="嘿嘿嘿">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/02/2018-09-02-分段存储管理方式/" itemprop="url">基本分段存储管理方式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-02T00:00:00+08:00">
-                2018-09-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2.6k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  8
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="基本分段存储管理方式"><a href="#基本分段存储管理方式" class="headerlink" title="基本分段存储管理方式"></a>基本分段存储管理方式</h2><p>如果说推动存储管理方式从固定分区到动态分区分配，进而又发展到分页存储管理方式的主要动力，是提高内存利用率，那么，引入分段存储管理方式的目的，则主要是为了满足用户(程序员)在编程和使用上多方面的要求。</p>
-<h3 id="分段存储管理方式的引入"><a href="#分段存储管理方式的引入" class="headerlink" title="分段存储管理方式的引入"></a>分段存储管理方式的引入</h3><ul>
-<li><p>方便编程</p>
-<p>  通常，用户把自己的作业按照逻辑关系划分为若干个段，每个段都是从 0 开始编址，并有自己的名字和长度。因此，希望要访问的逻辑地址是由段名(段号)和段内偏移量(段内地址)决定的。</p>
-</li>
-<li><p>信息共享</p>
-<p>  在实现对程序和数据的共享时，是以信息的逻辑单位为基础的。比如，共享某个例程<br>和函数。分页系统中的“页”只是存放信息的物理单位(块)，并无完整的意义，不便于实现共享；然而段却是信息的逻辑单位。</p>
-</li>
-<li><p>信息保护</p>
-</li>
-<li><p>动态增长</p>
-<p>  在实际应用中，往往有些段，特别是数据段，在使用过程中会不断地增长，而事先又无法确切地知道数据段会增长到多大。(是哪种情况?)</p>
-</li>
-<li><p>动态链接</p>
-<p>  动态链接是指在作业运行之前，并不把几个目标程序段链接起来。要运行时，先将主程序所对应的目标程序装入内存并启动运行，当运行过程中又需要调用某段时，才将该段(目标程序)调入内存并进行链接。可见，动态链接也要求以段作为管理的单位。</p>
 </li>
 </ul>
-<h3 id="分段系统的基本原理"><a href="#分段系统的基本原理" class="headerlink" title="分段系统的基本原理"></a>分段系统的基本原理</h3><ul>
-<li><p>分段</p>
-<p>  在分段存储管理方式中，作业的地址空间被划分为若干个段，每个段定义了一组逻辑信息。例如，有主程序段MAIN、子程序段X、数据段D及栈段S等。每个段都有自己的名字。为了实现简单起见，通常可用一个段号来代替段名，每个段都从 0开始编址，并采用一段连续的地址空间。段的长度由相应的逻辑信息组的长度决定，因而各段长度不等。</p>
-<p>  <img src="https://imgurl.org/temp/1809/f20be6dc547bcf0c.jpeg" alt="此处输入图片的描述"></p>
-<p>  分段方式已得到许多编译程序的支持，<strong>编译程序</strong> 能自动地根据源程序的情况而产生若干个段。编译程序可以为全局变量、用于存储相应参数及返回地址的过程调用栈、每个过程或函数的代码部分、每个过程或函数的局部变量等等，分别建立各自的段。</p>
-</li>
-<li><p>段表</p>
-<p>  在前面所介绍的动态分区分配方式中，系统为整个进程分配一个连续的内存空间。而在分段式存储管理系统中，则是为每个分段分配一个连续的分区，而进程中的各个段可以离散地移入内存中不同的分区中。为使程序能正常运行，亦即，能从物理内存中找出每个逻辑段所对应的位置，应像分页系统那样，在系统中为每个进程建立一张段映射表，简称“段表”。每个段在表中占有一个表项，其中记录了该段在内存中的<strong>起始地址(又称为“基址”)和段的长度</strong>。段表可以存放在一组寄存器中，这样有利于提高地址转换速度，但更常见的是将段表放在内存中</p>
-<p>  <img src="https://imgurl.org/temp/1809/506390cfad51f3d7.jpeg" alt="此处输入图片的描述"></p>
-</li>
-<li><p>地址变换机构</p>
-<p>  为了实现从进程的逻辑地址到物理地址的变换功能，在系统中设置了段表寄存器，用于存放段表始址和段表长度TL。在进行地址变换时，系统将逻辑地址中的段号与段表长度TL 进行比较。若S&gt;TL，表示段号太大，是访问越界，于是产生越界中断信号；若未越界，则根据段表的始址和该段的段号，计算出该段对应段表项的位置，从中读出该段在内存的起始地址，然后，再检查段内地址d是否超过该段的段长SL。若超过，即 d&gt;SL，同样发出越界中断信号；若未越界，则将该段的基址d与段内地址相加即可得到要访问的内存物理地址。</p>
-<p>  <img src="https://imgurl.org/temp/1809/ed0def4a1147b823.jpeg" alt="此处输入图片的描述"></p>
-<p>  像分页系统一样，当段表放在内存中时，每要访问一个数据，都须访问两次内存，从而极大地降低了计算机的速率。解决的方法也和分页系统类似，再增设一个联想存储器，用于保存最近常用的段表项。</p>
 </li>
 </ul>
-<h3 id="分页和分段的主要区别"><a href="#分页和分段的主要区别" class="headerlink" title="分页和分段的主要区别"></a>分页和分段的主要区别</h3><ul>
-<li><p>两者都采用离散分配方式，且都要通过地址映射机构来实现地址变换。</p>
-</li>
-<li><p>分页仅仅是由于系统管理的需要而不是用户的需要。段则是信息的逻辑单位，它含有一组其意义相对完整的信息</p>
-</li>
-<li><p>页的大小固定且由系统决定，由系统把逻辑地址划分为页号和页内地址两部分，是<br>由机器硬件实现的，因而在系统中只能有一种大小的页面；而段的长度却不固定，决定于用户所编写的程序，通常由编译程序在对源程序进行编译时，根据信息的性质来划分。</p>
-</li>
-<li><p>分页的作业地址空间是一维的，即单一的线性地址空间，程序员只需利用一个记忆<br>符，即可表示一个地址；而分段的作业地址空间则是二维的，程序员在标识一个地址时，既需给出段名，又需给出段内地址</p>
-</li>
-</ul>
-<h3 id="信息共享"><a href="#信息共享" class="headerlink" title="信息共享"></a>信息共享</h3><p>分段系统的一个突出优点，是易于实现段的共享，即允许若干个进程共享一个或多个分段，且对段的保护也十分简单易行。在分页系统中，虽然也能实现程序和数据的共享，但远不如分段系统来得方便。</p>
-<blockquote>
-<p>举个例子<br>有一个多用户系统，可同时接纳 40 个用户，他们都执行一个文本编辑程序(Text Editor)。如果文本编辑程序有 160 KB 的代码和另外 40 KB 的数据区，则总共需有 8 MB 的内存空间来支持 40个用户。如果160KB的代码是可重入的(Reentrant)，则无论是在分页系统还是在分段系统中，该代码都能被共享，在内存中只需保留一份文本编辑程序的副本，此时所需的内存空间仅为1760KB(40×40+160)，而不是8000KB。假定每个页面的大小为 4 KB，那么，160KB的代码将占用40个页面，数据区占10个页面。为实现代码的共享，应在每个进程的页表中都建立40个页表项，它们的物理块号都是21#～60#。在每个进程的页表中，还须为自己的数据区建立页表项，它们的物理块号分别是61#～70#、71#～80#、81#～90#，…，等等。</p>
-</blockquote>
-<p><img src="https://imgurl.org/temp/1809/63e9390247570b5f.jpeg" alt="此处输入图片的描述"></p>
-<p>在分段系统中，实现共享则容易得多，只需在每个进程的段表中为文本编辑程序设置<br>一个段表项。</p>
-<p><img src="https://imgurl.org/temp/1809/9b38a759d8b2b6e5.jpeg" alt="此处输入图片的描述"></p>
-<h2 id="段页式存储管理方式"><a href="#段页式存储管理方式" class="headerlink" title="段页式存储管理方式"></a>段页式存储管理方式</h2><p>分页系统能有效地提高内存利用率，而分段系统则能很好地满足用户需要。如果能对两种存储管理方式“各取所长”，则可以将两者结合成一种新的存储管理方式系统。这种新系统既具有分段系统的便于实现、分段可共享、易于保护、可动态链接等一系列优点，又能像分页系统那样很好地解决内存的外部碎片问题，以及可为各个分段离散地分配内存等问题。把这种结合起来形成的新系统称为“段页式系统”。</p>
+<h3 id="管道通信系统"><a href="#管道通信系统" class="headerlink" title="管道通信系统"></a>管道通信系统</h3><p>所谓“管道”，是指用于连接一个读进程和一个写进程以实现它们之间通信的一个共享文件，又名pipe文件。向管道(共享文件)提供输入的发送进程(即写进程)，以字符流形式将大量的数据送入管道；而接受管道输出的接收进程(即读进程)，则从管道中接收(读)数据。由于发送进程和接收进程是利用管道进行通信的，故又称为管道通信。</p>
+<p>管道机制必须提供以下三方面的协调能力:</p>
 <ul>
-<li><p>基本原理</p>
-<p>  段页式系统的基本原理，是分段和分页原理的结合，即先将用户程序分成若干个段，再把每个段分成若干个页，并为每一个段赋予一个段名。</p>
+<li><p>互斥</p>
+<p>  当一个进程正在对 pipe执行读/写操作时，其它(另一)进程必须等待。</p>
 </li>
-<li><p>地址变换过程</p>
-<p>  在段页式系统中，为了便于实现地址变换，须配置一个段表寄存器，其中存放段表始址和段表长 TL。进行地址变换时，首先利用段号 S，将它与段表长 TL进行比较。若 S &lt; TL，表示未越界，于是利用段表始址和段号来求出该段所对应的段表项在段表中的位置，从中得到该段的页表始址，并利用逻辑地址中的段内页号P来获得对应页的页表项位置，从中读出该页所在的物理块号b，再利用块号b和页内地址来构成物理地址。</p>
-<p>  在段页式系统中，为了获得一条指令或数据，须三次访问内存。第一次访问是访问内存中的段表，从中取得页表始址；第二次访问是访问内存中的页表，从中取出该页所在的物理块号，并将该块号与页内地址一起形成指令或数据的物理地址；第三次访问才是真正从第二次访问所得的地址中，取出指令或数据。显然，这使访问内存的次数增加了近两倍。为了提高执行速度，在地址变换机构中增设一个高速缓冲寄存器。每次访问它时，都须同时利用段号和页号去检索高速缓存，若找到匹配的表项，便可从中得到相应页的物理块号，用来与页内地址一起形成物理地址；若未找到匹配表项，则仍须再三次访问内存。</p>
+<li><p>同步</p>
+<p>  指当写(输入)进程把一定数量(如 4 KB)的数据写入pipe，便去睡眠等待，直到读(输出)进程取走数据后，再把它唤醒。当读进程读一空 pipe时，也应睡眠等待，直至写进程将数据写入管道后，才将之唤醒。</p>
 </li>
 </ul>
 
@@ -2741,7 +2749,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
