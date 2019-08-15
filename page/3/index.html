@@ -1445,184 +1445,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/02/2018-09-02-经典进程的同步问题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="嘿嘿嘿">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/02/2018-09-02-经典进程的同步问题/" itemprop="url">经典进程的同步问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-02T00:00:00+08:00">
-                2018-09-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  695
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  3
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="经典进程的同步问题"><a href="#经典进程的同步问题" class="headerlink" title="经典进程的同步问题"></a>经典进程的同步问题</h2><h3 id="生产者—消费者问题"><a href="#生产者—消费者问题" class="headerlink" title="生产者—消费者问题"></a>生产者—消费者问题</h3><ul>
-<li><p>利用记录型信号量解决</p>
-<p>  假定在生产者和消费者之间的公用缓冲池中，具有n个缓冲区，这时可利用互斥信号量mutex实现诸进程对缓冲池的互斥使用。利用信号量emptyCount和fullCount分别表示缓冲池中 <code>空缓冲区</code> 和 <code>满缓冲区</code> 的数量</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">mutex, emptyCount, fullCount := 1, n, 0</span><br><span class="line"></span><br><span class="line">func proceducer() &#123;</span><br><span class="line">    wait(emptyCount)</span><br><span class="line">    wait(mutex)</span><br><span class="line"></span><br><span class="line">    // 生产一个产品，放入一个空的缓冲区中</span><br><span class="line"></span><br><span class="line">    signal(mutex)</span><br><span class="line">    signal(fullCount)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func consumer() &#123;</span><br><span class="line">    wait(fullCount)</span><br><span class="line">    wait(mutex)；</span><br><span class="line"></span><br><span class="line">    // 消费一个产品，取走一个满缓冲区的内容</span><br><span class="line"></span><br><span class="line">    signal(mutex)；</span><br><span class="line">    signal(emptyCount)；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>利用 AND 信号量解决</p>
-<p>  对于生产者—消费者问题，也可利用AND信号量来解决，即用 <code>Swait(empty，mutex)</code> 来代替 <code>wait(empty)</code> 和 <code>wait(mutex)</code>；用 <code>Ssignal(mutex，full)</code> 来代替 <code>signal(mutex)</code> 和 <code>signal(full)</code> ；用 <code>Swait(full，mutex)</code> 来代替 <code>wait(full)</code> 和 <code>wait(mutex)</code>，以及用 <code>Ssignal(mutex，empty)</code> 代替 <code>Signal(mutex)</code> 和 <code>Signal(empty)</code>。</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mutex, emptyCount, fullCount := 1, n, 0</span><br><span class="line"></span><br><span class="line">func proceducer() &#123;</span><br><span class="line">    Swait(emptyCount, mutex)</span><br><span class="line">    // 生产一个产品，放入一个空的缓冲区中</span><br><span class="line">    Ssignal(mutex，fullCount)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func consumer() &#123;</span><br><span class="line">    Swait(fullCount，mutex)</span><br><span class="line">    // 消费一个产品，取走一个满缓冲区的内容</span><br><span class="line">    Ssignal(mutex，emptyCount)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>利用管程解决</p>
-<p>  在利用管程方法来解决生产者—消费者问题时，首先便是为它们建立一个管程，并命名为 ProclucerConsumer，或简称为 PC。其中包括两个过程：</p>
-<ul>
-<li><p>put(item)过程。生产者利用该过程将自己生产的产品投放到缓冲池中，并用整型变量 count 来表示在缓冲池中已有的产品数目，当 count≥n 时，表示缓冲池已满，生产者须等待。</p>
-</li>
-<li><p>get(item)过程。消费者利用该过程从缓冲池中取出一个产品，当 count≤0 时，表示缓冲池中已无可取用的产品，消费者应等待</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">var notfull，notempty condition</span><br><span class="line"></span><br><span class="line">type condition struct &#123;</span><br><span class="line">    queue []processes</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func (c *condition) wait() &#123;&#125;</span><br><span class="line">func (c *condition) signal() &#123;&#125;</span><br><span class="line"></span><br><span class="line">type ProclucerConsumer struct &#123;</span><br><span class="line">    buffer make([]int, count)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func (pc *ProclucerConsumer) put(item int) &#123;</span><br><span class="line">    if count &gt;= len(pc.buffer) &#123;</span><br><span class="line">        // 等待非满信号</span><br><span class="line">        notfull.wait()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    pc.buffer = pc.buffer.append(item)</span><br><span class="line"></span><br><span class="line">    // 在非空队列有进程等待时，唤醒一个等待的进程</span><br><span class="line">    if len(notempty.queue) &gt; 0 &#123;</span><br><span class="line">        notempty.signal()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func (pc *ProclucerConsumer) get() int &#123;</span><br><span class="line">    if count &lt;= 0 &#123;</span><br><span class="line">        // 等待非空信号</span><br><span class="line">        notEmpty.wait()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    item = pc.buffer[-1]</span><br><span class="line"></span><br><span class="line">    if len(notFull.queue) &gt; 0 &#123;</span><br><span class="line">        notFull.signal()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return item</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="哲学家进餐问题"><a href="#哲学家进餐问题" class="headerlink" title="哲学家进餐问题"></a>哲学家进餐问题</h3><ul>
-<li><p>利用 AND 信号量机制解决</p>
-<p>  当哲学家饥饿时，总是先去拿他左边的筷子，即执行 wait(chopstick[i])；成功后，再去拿他右边的筷子，即执行 wait(chopstick[(i+1)mod 5])</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Var chopsiick array of semaphore := (1, 1, 1, 1, 1)；</span><br><span class="line">processi</span><br><span class="line">    repeat</span><br><span class="line">        think；</span><br><span class="line">        Sswait(chopstick[(i+1) mod 5]，chopstick[i])；</span><br><span class="line">        eat；</span><br><span class="line">        Ssignat(chopstick[(i+1) mod 5]，chopstick[i])；</span><br><span class="line">    until false；</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/02/2018-09-02-线程的基本概念/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1869,6 +1691,184 @@
 <p>  在一个系统中的用户级线程数量可能很大，为了节省系统开销，不可能设置太多的LWP，而把这些LWP做成一个缓冲池，称为“线程池”。用户进程中的任一用户线程都可以连接到 LWP 池中的任何一个 LWP 上。为使每一用户级线程都能利用LWP与内核通信，可以使多个用户级线程多路复用一个 LWP，但只有当前连接到LWP上的线程才能与内核通信，其余进程或者阻塞，或者等待 LWP。而每一个 LWP 都要连接到一个内核级线程上，这<br>样，通过 LWP 可把用户级线程与内核线程连接起来，用户级线程可通过 LWP 来访问内核，但内核所看到的总是多个 LWP 而看不到用户级线程。亦即，由 LWP 实现了在内核与用户级线程之间的隔离，从而使用户级线程与内核无关。</p>
 </li>
 </ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/02/2018-09-02-经典进程的同步问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嘿嘿嘿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/02/2018-09-02-经典进程的同步问题/" itemprop="url">经典进程的同步问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-02T00:00:00+08:00">
+                2018-09-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  695
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="经典进程的同步问题"><a href="#经典进程的同步问题" class="headerlink" title="经典进程的同步问题"></a>经典进程的同步问题</h2><h3 id="生产者—消费者问题"><a href="#生产者—消费者问题" class="headerlink" title="生产者—消费者问题"></a>生产者—消费者问题</h3><ul>
+<li><p>利用记录型信号量解决</p>
+<p>  假定在生产者和消费者之间的公用缓冲池中，具有n个缓冲区，这时可利用互斥信号量mutex实现诸进程对缓冲池的互斥使用。利用信号量emptyCount和fullCount分别表示缓冲池中 <code>空缓冲区</code> 和 <code>满缓冲区</code> 的数量</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">mutex, emptyCount, fullCount := 1, n, 0</span><br><span class="line"></span><br><span class="line">func proceducer() &#123;</span><br><span class="line">    wait(emptyCount)</span><br><span class="line">    wait(mutex)</span><br><span class="line"></span><br><span class="line">    // 生产一个产品，放入一个空的缓冲区中</span><br><span class="line"></span><br><span class="line">    signal(mutex)</span><br><span class="line">    signal(fullCount)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func consumer() &#123;</span><br><span class="line">    wait(fullCount)</span><br><span class="line">    wait(mutex)；</span><br><span class="line"></span><br><span class="line">    // 消费一个产品，取走一个满缓冲区的内容</span><br><span class="line"></span><br><span class="line">    signal(mutex)；</span><br><span class="line">    signal(emptyCount)；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>利用 AND 信号量解决</p>
+<p>  对于生产者—消费者问题，也可利用AND信号量来解决，即用 <code>Swait(empty，mutex)</code> 来代替 <code>wait(empty)</code> 和 <code>wait(mutex)</code>；用 <code>Ssignal(mutex，full)</code> 来代替 <code>signal(mutex)</code> 和 <code>signal(full)</code> ；用 <code>Swait(full，mutex)</code> 来代替 <code>wait(full)</code> 和 <code>wait(mutex)</code>，以及用 <code>Ssignal(mutex，empty)</code> 代替 <code>Signal(mutex)</code> 和 <code>Signal(empty)</code>。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mutex, emptyCount, fullCount := 1, n, 0</span><br><span class="line"></span><br><span class="line">func proceducer() &#123;</span><br><span class="line">    Swait(emptyCount, mutex)</span><br><span class="line">    // 生产一个产品，放入一个空的缓冲区中</span><br><span class="line">    Ssignal(mutex，fullCount)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func consumer() &#123;</span><br><span class="line">    Swait(fullCount，mutex)</span><br><span class="line">    // 消费一个产品，取走一个满缓冲区的内容</span><br><span class="line">    Ssignal(mutex，emptyCount)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>利用管程解决</p>
+<p>  在利用管程方法来解决生产者—消费者问题时，首先便是为它们建立一个管程，并命名为 ProclucerConsumer，或简称为 PC。其中包括两个过程：</p>
+<ul>
+<li><p>put(item)过程。生产者利用该过程将自己生产的产品投放到缓冲池中，并用整型变量 count 来表示在缓冲池中已有的产品数目，当 count≥n 时，表示缓冲池已满，生产者须等待。</p>
+</li>
+<li><p>get(item)过程。消费者利用该过程从缓冲池中取出一个产品，当 count≤0 时，表示缓冲池中已无可取用的产品，消费者应等待</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">var notfull，notempty condition</span><br><span class="line"></span><br><span class="line">type condition struct &#123;</span><br><span class="line">    queue []processes</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func (c *condition) wait() &#123;&#125;</span><br><span class="line">func (c *condition) signal() &#123;&#125;</span><br><span class="line"></span><br><span class="line">type ProclucerConsumer struct &#123;</span><br><span class="line">    buffer make([]int, count)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func (pc *ProclucerConsumer) put(item int) &#123;</span><br><span class="line">    if count &gt;= len(pc.buffer) &#123;</span><br><span class="line">        // 等待非满信号</span><br><span class="line">        notfull.wait()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    pc.buffer = pc.buffer.append(item)</span><br><span class="line"></span><br><span class="line">    // 在非空队列有进程等待时，唤醒一个等待的进程</span><br><span class="line">    if len(notempty.queue) &gt; 0 &#123;</span><br><span class="line">        notempty.signal()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func (pc *ProclucerConsumer) get() int &#123;</span><br><span class="line">    if count &lt;= 0 &#123;</span><br><span class="line">        // 等待非空信号</span><br><span class="line">        notEmpty.wait()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    item = pc.buffer[-1]</span><br><span class="line"></span><br><span class="line">    if len(notFull.queue) &gt; 0 &#123;</span><br><span class="line">        notFull.signal()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return item</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="哲学家进餐问题"><a href="#哲学家进餐问题" class="headerlink" title="哲学家进餐问题"></a>哲学家进餐问题</h3><ul>
+<li><p>利用 AND 信号量机制解决</p>
+<p>  当哲学家饥饿时，总是先去拿他左边的筷子，即执行 wait(chopstick[i])；成功后，再去拿他右边的筷子，即执行 wait(chopstick[(i+1)mod 5])</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Var chopsiick array of semaphore := (1, 1, 1, 1, 1)；</span><br><span class="line">processi</span><br><span class="line">    repeat</span><br><span class="line">        think；</span><br><span class="line">        Sswait(chopstick[(i+1) mod 5]，chopstick[i])；</span><br><span class="line">        eat；</span><br><span class="line">        Ssignat(chopstick[(i+1) mod 5]，chopstick[i])；</span><br><span class="line">    until false；</span><br></pre></td></tr></table></figure>
+
 </li>
 </ul>
 
@@ -2550,7 +2550,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

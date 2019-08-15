@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="操作系统,os,">
+  <meta name="keywords" content="k8s,docker,">
 
 
 
@@ -79,20 +79,18 @@
 
 
 
-<meta name="description" content="进程控制进程图子进程可以继承父进程所拥有的资源，例如，继承父进程打开的文件，继承父进程所分配到的缓冲区等。当子进程被撤消时，应将其从父进程那里获得的资源归还给父进程。此外，在撤消父进程时，也必须同时撤消其所有的子进程。为了标识进程之间的家族关系，在PCB中都设置了家族关系表项，以标明自己的父进程及所有的子进程。  进程的创建一旦操作系统发现了要求创建新进程的事件后，便调用进程创建原语 Creat(">
-<meta name="keywords" content="操作系统,os">
+<meta name="description" content="踩坑集锦此篇文章用来记录维护k8s过程中的一系列问题  kubectl logs 超时错误类似： 1Error from server: Get https://172.31.27.3:10250/containerLogs/prod-sfox/a-group-miner-2hshz/miner-idx-1?follow=true&amp;amp;tailLines=20: dial tcp 172.31">
+<meta name="keywords" content="k8s,docker">
 <meta property="og:type" content="article">
-<meta property="og:title" content="进程控制">
-<meta property="og:url" content="http://yoursite.com/2018/09/02/2018-09-02-进程控制/index.html">
+<meta property="og:title" content="k8s踩坑集锦">
+<meta property="og:url" content="http://yoursite.com/2019/08/14/2019-08-15-k8s踩坑集锦/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="进程控制进程图子进程可以继承父进程所拥有的资源，例如，继承父进程打开的文件，继承父进程所分配到的缓冲区等。当子进程被撤消时，应将其从父进程那里获得的资源归还给父进程。此外，在撤消父进程时，也必须同时撤消其所有的子进程。为了标识进程之间的家族关系，在PCB中都设置了家族关系表项，以标明自己的父进程及所有的子进程。  进程的创建一旦操作系统发现了要求创建新进程的事件后，便调用进程创建原语 Creat(">
+<meta property="og:description" content="踩坑集锦此篇文章用来记录维护k8s过程中的一系列问题  kubectl logs 超时错误类似： 1Error from server: Get https://172.31.27.3:10250/containerLogs/prod-sfox/a-group-miner-2hshz/miner-idx-1?follow=true&amp;amp;tailLines=20: dial tcp 172.31">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://s1.ax1x.com/2018/09/01/Px1Bp6.jpg">
-<meta property="og:updated_time" content="2019-08-05T09:53:07.086Z">
+<meta property="og:updated_time" content="2019-08-15T06:38:06.721Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="进程控制">
-<meta name="twitter:description" content="进程控制进程图子进程可以继承父进程所拥有的资源，例如，继承父进程打开的文件，继承父进程所分配到的缓冲区等。当子进程被撤消时，应将其从父进程那里获得的资源归还给父进程。此外，在撤消父进程时，也必须同时撤消其所有的子进程。为了标识进程之间的家族关系，在PCB中都设置了家族关系表项，以标明自己的父进程及所有的子进程。  进程的创建一旦操作系统发现了要求创建新进程的事件后，便调用进程创建原语 Creat(">
-<meta name="twitter:image" content="https://s1.ax1x.com/2018/09/01/Px1Bp6.jpg">
+<meta name="twitter:title" content="k8s踩坑集锦">
+<meta name="twitter:description" content="踩坑集锦此篇文章用来记录维护k8s过程中的一系列问题  kubectl logs 超时错误类似： 1Error from server: Get https://172.31.27.3:10250/containerLogs/prod-sfox/a-group-miner-2hshz/miner-idx-1?follow=true&amp;amp;tailLines=20: dial tcp 172.31">
 
 
 
@@ -122,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/02/2018-09-02-进程控制/">
+  <link rel="canonical" href="http://yoursite.com/2019/08/14/2019-08-15-k8s踩坑集锦/">
 
 
 
 
 
-  <title>进程控制 | 个人博客</title>
+  <title>k8s踩坑集锦 | 个人博客</title>
   
 
 
@@ -265,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/02/2018-09-02-进程控制/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/2019-08-15-k8s踩坑集锦/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="嘿嘿嘿">
@@ -282,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">进程控制</h1>
+          <h1 class="post-title" itemprop="name headline">k8s踩坑集锦</h1>
         
 
         <div class="post-meta">
@@ -294,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-02T00:00:00+08:00">
-                2018-09-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-14T00:00:00+08:00">
+                2019-08-14
               </time>
             
 
@@ -306,8 +304,6 @@
 
           
 
-          
-            
           
 
           
@@ -326,7 +322,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.5k
+                  373
                 </span>
               
 
@@ -342,7 +338,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5
+                  1
                 </span>
               
             </div>
@@ -363,50 +359,43 @@
       
 
       
-        <h1 id="进程控制"><a href="#进程控制" class="headerlink" title="进程控制"></a>进程控制</h1><h2 id="进程图"><a href="#进程图" class="headerlink" title="进程图"></a>进程图</h2><p>子进程可以继承父进程所拥有的资源，例如，继承父进程打开的文件，继承父进程所分配到的缓冲区等。当子进程被撤消时，应将其从父进程那里获得的资源归还给父进程。此外，在撤消父进程时，也必须同时撤消其所有的子进程。为了标识进程之间的家族关系，在PCB中都设置了家族关系表项，以标明自己的父进程及所有的子进程。</p>
-<p><img src="https://s1.ax1x.com/2018/09/01/Px1Bp6.jpg" alt="此处输入图片的描述"></p>
-<h2 id="进程的创建"><a href="#进程的创建" class="headerlink" title="进程的创建"></a>进程的创建</h2><p>一旦操作系统发现了要求创建新进程的事件后，便调用进程创建原语 Creat( )按下述步骤创建一个新进程。</p>
+        <h2 id="踩坑集锦"><a href="#踩坑集锦" class="headerlink" title="踩坑集锦"></a>踩坑集锦</h2><p>此篇文章用来记录维护k8s过程中的一系列问题</p>
+<hr>
+<h3 id="kubectl-logs-超时"><a href="#kubectl-logs-超时" class="headerlink" title="kubectl logs 超时"></a>kubectl logs 超时</h3><p>错误类似：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error from server: Get https://172.31.27.3:10250/containerLogs/prod-sfox/a-group-miner-2hshz/miner-idx-1?follow=true&amp;tailLines=20: dial tcp 172.31.27.3:10250: connect: connection timed out</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li><p>申请空白 PCB</p>
-<p>  为新进程申请获得惟一的数字标识符，并从 PCB 集合中索取一个<br>空白 PCB。</p>
+<li><p>该操作走内网ip，节点间内网不同</p>
 </li>
-<li><p>为新进程分配资源</p>
-<p>  为新进程的程序和数据以及用户栈分配必要的内存空间。</p>
-</li>
-<li><p>初始化进程控制块</p>
-<ul>
-<li><p>初始化标识信息</p>
-<p>  将系统分配的标识符和父进程标识符填入新 PCB 中</p>
-</li>
-<li><p>初始化处理机状态信息</p>
-<p>  使程序计数器指向程序的入口地址，使栈指针指向栈顶；</p>
-</li>
-<li><p>初始化处理机控制信息</p>
-<p>  将进程的状态设置为就绪状态或静止就绪状态，对于优先级，通常是将它设置为最低优先级，除非用户以显式方式提出高优先级要求。</p>
-</li>
-<li><p>将新进程插入就绪队列</p>
-<p>  如果进程就绪队列能够接纳新进程，便将新进程插入就绪队列</p>
+<li><p>10250端口未打开</p>
 </li>
 </ul>
-</li>
-</ul>
-<h2 id="进程的终止"><a href="#进程的终止" class="headerlink" title="进程的终止"></a>进程的终止</h2><p>如果系统中发生了上述要求终止进程的某事件，OS便调用进程终止原语，按下述过程去终止指定的进程。</p>
+<hr>
+<h3 id="DNS解析失败"><a href="#DNS解析失败" class="headerlink" title="DNS解析失败"></a>DNS解析失败</h3><p>具体错误信息一般如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">panic: dial tcp: lookup mysql on 10.96.0.10:53: no such host</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li><p>根据被终止进程的标识符，从PCB集合中检索出该进程的PCB，从中读出该进程的状态。</p>
+<li><p>查看coredns的日志，判断集群内的dns解析是否成功</p>
 </li>
-<li><p>若被终止进程正处于执行状态，应立即终止该进程的执行，并置调度标志为真，用于指示该进程被终止后应重新进行调度。</p>
-</li>
-<li><p>若该进程还有子孙进程，还应将其所有子孙进程予以终止，以防它们成为不可控的进程。</p>
-</li>
-<li><p>将被终止进程所拥有的全部资源，或者归还给其父进程，或者归还给系统。</p>
-</li>
-<li><p>将被终止进程(PCB)从所在队列(或链表)中移出，等待其他程序来搜集信息。</p>
+<li><p>如果集群内成功，是往外网的dns解析出错，检查宿主机的 <code>/etc/resolv.conf</code> 配置</p>
 </li>
 </ul>
-<h2 id="进程的阻塞"><a href="#进程的阻塞" class="headerlink" title="进程的阻塞"></a>进程的阻塞</h2><p>正在执行的进程，当发现上述某事件时，由于无法继续执行，于是进程便通过调用阻塞原语 <code>block</code> 把自己阻塞。可见，进程的阻塞是进程自身的一种主动行为。进入 block过程后，由于此时该进程还处于执行状态，所以应先立即停止执行，把进控制块中的现行状态由“执行”改为“阻塞”，并将PCB插入阻塞队列。如果系统中设置了因不同事件而阻塞的多个阻塞队列，则应将本进程插入到具有相同事件的阻塞(等待)队列。最后，转调度程序进行重新调度，将处理机分配给另一就绪进程并进行切换，亦即，保留被阻塞进程的处理机状态(在 PCB 中)，再按新进程的 PCB 中的处理机状态设置 CPU 的环境。</p>
-<h2 id="进程唤醒过程"><a href="#进程唤醒过程" class="headerlink" title="进程唤醒过程"></a>进程唤醒过程</h2><p>当被阻塞进程所期待的事件出现时，如I/O完成或其所期待的数据已经到达，则由有关进程(比如用完并释放了该I/O设备的进程)调用唤醒原语wakeup()，将等待该事件的进程唤醒。唤醒原语执行的过程是：首先把被阻塞的进程从等待该事件的阻塞队列中移出，将其PCB中的现行状态由阻塞改为就绪，然后再将该 PCB 插入到就绪队列中。</p>
-<h2 id="进程的挂起"><a href="#进程的挂起" class="headerlink" title="进程的挂起"></a>进程的挂起</h2><p>当出现了引起进程挂起的事件时，比如，用户进程请求将自己挂起，或父进程请求将自己的某个子进程挂起，系统将利用挂起原语suspend()将指定进程或处于阻塞状态的进程挂起。挂起原语的执行过程是：首先检查被挂起进程的状态，若处于活动就绪状态，便将其改为静止就绪；对于活动阻塞状态的进程，则将之改为静止阻塞。为了方便用户或父进程考查该进程的运行情况而把该进程的 PCB 复制到某指定的内存区域。最后，若被挂起的进程正在执行，则转向调度程序重新调度。</p>
-<h2 id="进程的激活过程"><a href="#进程的激活过程" class="headerlink" title="进程的激活过程"></a>进程的激活过程</h2><p>当发生激活进程的事件时，例如，父进程或用户进程请求激活指定进程，若该进程驻留在外存而内存中已有足够的空间时，则可将在外存上处于静止就绪状态的该进程换入内存。这时，系统将利用激活原语active()将指定进程激活。激活原语先将进程从外存调入内存，检查该进程的现行状态，若是静止就绪，便将之改为活动就绪；若为静止阻塞，便将之改为活动阻塞。假如采用的是抢占调度策略，则每当有新进程进入就绪队列时，应检查是否要进行重新调度，即由调度程序将被激活进程与当前进程进行优先级的比较，如果被激活进程的优先级更低，就不必重新调度；否则，立即剥夺当前进程的运行，把处理机分配给刚被激活的进程。</p>
+<hr>
+<h3 id="Helm报错"><a href="#Helm报错" class="headerlink" title="Helm报错"></a>Helm报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UPGRADE FAILED</span><br><span class="line">Error: &quot;dev-chain&quot; has no deployed releases</span><br><span class="line">Error: UPGRADE FAILED: &quot;dev-chain&quot; has no deployed releases</span><br></pre></td></tr></table></figure>
+
+<p>原因是helm的bug，如果helm有一次deploy的失败记录就没法重新deploy, 需要手动通过 <code>helm delete</code> 命令删除错误的记录</p>
+<hr>
+<h3 id="容器组里的服务获取不到客户端真实IP"><a href="#容器组里的服务获取不到客户端真实IP" class="headerlink" title="容器组里的服务获取不到客户端真实IP"></a>容器组里的服务获取不到客户端真实IP</h3><p>如果你的服务暴露方式是NodePort，当客户端访问IP所属的Node和服务所在的Node不是同一个Node时，因为内部有SNAT和DNAT的存在，<br>客户端的源IP会丢失，解决方法，在Service的配置中添加 <code>externalTrafficPolicy</code>, 并用 <code>nodeSelector</code> 将pod固定在nodePort对应的同一台机器上</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Service</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  namespace:</span> <span class="string">dev</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">signal</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  externalTrafficPolicy:</span> <span class="string">Local</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">NodePort</span></span><br><span class="line"><span class="attr">  ports:</span></span><br><span class="line"><span class="attr">    - port:</span> <span class="number">8080</span></span><br><span class="line"><span class="attr">      targetPort:</span> <span class="number">8080</span></span><br><span class="line"><span class="attr">      name:</span> <span class="string">http</span></span><br><span class="line"><span class="attr">      nodePort:</span> <span class="number">30010</span></span><br><span class="line"><span class="attr">  selector:</span></span><br><span class="line"><span class="attr">    app:</span> <span class="string">signal</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="公用解决方法"><a href="#公用解决方法" class="headerlink" title="公用解决方法"></a>公用解决方法</h3><ul>
+<li><p>查看kubelet日志</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl status kubelet</span><br><span class="line">journalctl -xu kubelet</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看docker的日志</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl status docker</span><br><span class="line">journalctl -xu docker</span><br></pre></td></tr></table></figure></li>
+</ul>
 
       
     </div>
@@ -424,9 +413,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/操作系统/" rel="tag"># 操作系统</a>
+            <a href="/tags/k8s/" rel="tag"># k8s</a>
           
-            <a href="/tags/os/" rel="tag"># os</a>
+            <a href="/tags/docker/" rel="tag"># docker</a>
           
         </div>
       
@@ -439,8 +428,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/02/2018-09-02-进程同步/" rel="next" title="进程同步">
-                <i class="fa fa-chevron-left"></i> 进程同步
+              <a href="/2019/08/14/2019-08-14-NodeJS与ES6的模块化/" rel="next" title="NodeJS与ES6的模块化">
+                <i class="fa fa-chevron-left"></i> NodeJS与ES6的模块化
               </a>
             
           </div>
@@ -449,8 +438,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/09/02/2018-09-02-进程的描述/" rel="prev" title="进程的描述操作系统引论">
-                进程的描述操作系统引论 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/14/Docker-杂记/" rel="prev" title="Docker 杂记">
+                Docker 杂记 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -479,10 +468,6 @@
 
 
           
-
-  
-
-
 
         </div>
         
@@ -592,7 +577,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#进程控制"><span class="nav-number">1.</span> <span class="nav-text">进程控制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#进程图"><span class="nav-number">1.1.</span> <span class="nav-text">进程图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程的创建"><span class="nav-number">1.2.</span> <span class="nav-text">进程的创建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程的终止"><span class="nav-number">1.3.</span> <span class="nav-text">进程的终止</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程的阻塞"><span class="nav-number">1.4.</span> <span class="nav-text">进程的阻塞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程唤醒过程"><span class="nav-number">1.5.</span> <span class="nav-text">进程唤醒过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程的挂起"><span class="nav-number">1.6.</span> <span class="nav-text">进程的挂起</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程的激活过程"><span class="nav-number">1.7.</span> <span class="nav-text">进程的激活过程</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#踩坑集锦"><span class="nav-number">1.</span> <span class="nav-text">踩坑集锦</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#kubectl-logs-超时"><span class="nav-number">1.1.</span> <span class="nav-text">kubectl logs 超时</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS解析失败"><span class="nav-number">1.2.</span> <span class="nav-text">DNS解析失败</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Helm报错"><span class="nav-number">1.3.</span> <span class="nav-text">Helm报错</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器组里的服务获取不到客户端真实IP"><span class="nav-number">1.4.</span> <span class="nav-text">容器组里的服务获取不到客户端真实IP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#公用解决方法"><span class="nav-number">1.5.</span> <span class="nav-text">公用解决方法</span></a></li></ol></li></ol></div>
             
 
           </div>
