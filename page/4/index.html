@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="programming language,java,golang,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -79,20 +79,16 @@
 
 
 
-<meta name="description" content="Golang与Java的区别 1. 结构体 -&amp;gt; 类12345678910111213141516171819202122232425// 包名即为包含该文件的目录名字package collection// 声明一个结构体，类似Java中的类type Stack struct &amp;#123;    data []string&amp;#125;// 声明一个Push函数，并通过一个Stack的指针对">
-<meta name="keywords" content="programming language,java,golang">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Java和Golang的区别">
-<meta property="og:url" content="http://yoursite.com/2012/05/22/2018-09-01-java-golang-defference/index.html">
+<meta name="description" content="记录打怪升级之路">
+<meta property="og:type" content="website">
+<meta property="og:title" content="个人博客">
+<meta property="og:url" content="http://yoursite.com/page/4/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="Golang与Java的区别 1. 结构体 -&amp;gt; 类12345678910111213141516171819202122232425// 包名即为包含该文件的目录名字package collection// 声明一个结构体，类似Java中的类type Stack struct &amp;#123;    data []string&amp;#125;// 声明一个Push函数，并通过一个Stack的指针对">
+<meta property="og:description" content="记录打怪升级之路">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://img.shields.io/badge/java-golang-orange.svg">
-<meta property="og:updated_time" content="2019-08-14T09:01:04.056Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java和Golang的区别">
-<meta name="twitter:description" content="Golang与Java的区别 1. 结构体 -&amp;gt; 类12345678910111213141516171819202122232425// 包名即为包含该文件的目录名字package collection// 声明一个结构体，类似Java中的类type Stack struct &amp;#123;    data []string&amp;#125;// 声明一个Push函数，并通过一个Stack的指针对">
-<meta name="twitter:image" content="https://img.shields.io/badge/java-golang-orange.svg">
+<meta name="twitter:title" content="个人博客">
+<meta name="twitter:description" content="记录打怪升级之路">
 
 
 
@@ -122,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2012/05/22/2018-09-01-java-golang-defference/">
+  <link rel="canonical" href="http://yoursite.com/page/4/">
 
 
 
 
 
-  <title>Java和Golang的区别 | 个人博客</title>
+  <title>个人博客</title>
   
 
 
@@ -147,7 +143,8 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -250,9 +247,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -282,7 +279,9 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java和Golang的区别</h1>
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2012/05/22/2018-09-01-java-golang-defference/" itemprop="url">Java和Golang的区别</a></h1>
         
 
         <div class="post-meta">
@@ -363,7 +362,9 @@
       
 
       
-        <h1 id="Golang与Java的区别"><a href="#Golang与Java的区别" class="headerlink" title="Golang与Java的区别"></a>Golang与Java的区别</h1><p><img src="https://img.shields.io/badge/java-golang-orange.svg" alt="java-golang-defference"></p>
+        
+          
+            <h1 id="Golang与Java的区别"><a href="#Golang与Java的区别" class="headerlink" title="Golang与Java的区别"></a>Golang与Java的区别</h1><p><img src="https://img.shields.io/badge/java-golang-orange.svg" alt="java-golang-defference"></p>
 <h2 id="1-结构体-gt-类"><a href="#1-结构体-gt-类" class="headerlink" title="1. 结构体 -&gt; 类"></a>1. 结构体 -&gt; 类</h2><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 包名即为包含该文件的目录名字</span></span><br><span class="line"><span class="keyword">package</span> collection</span><br><span class="line"></span><br><span class="line"><span class="comment">// 声明一个结构体，类似Java中的类</span></span><br><span class="line"><span class="keyword">type</span> Stack <span class="keyword">struct</span> &#123;</span><br><span class="line">    data []<span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 声明一个Push函数，并通过一个Stack的指针对象实现该方法</span></span><br><span class="line"><span class="comment">// 类似声明了Stack的成员方法</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *Stack)</span> <span class="title">Push</span><span class="params">(x <span class="keyword">string</span>)</span></span> &#123;</span><br><span class="line">    s.data = <span class="built_in">append</span>(s.data, x)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *Stack)</span> <span class="title">Pop</span><span class="params">()</span> <span class="title">string</span></span> &#123;</span><br><span class="line">    n := <span class="built_in">len</span>(s.data) - <span class="number">1</span></span><br><span class="line">    res := s.data[n]</span><br><span class="line">    s.data[n] = <span class="string">""</span> <span class="comment">// to avoid memory leak</span></span><br><span class="line">    s.data = s.data[:n]</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *Stack)</span> <span class="title">Size</span><span class="params">()</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">len</span>(s.data)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
@@ -523,6 +524,8 @@
 </li>
 </ul>
 
+          
+        
       
     </div>
     
@@ -537,40 +540,14 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/programming-language/" rel="tag"># programming language</a>
-          
-            <a href="/tags/java/" rel="tag"># java</a>
-          
-            <a href="/tags/golang/" rel="tag"># golang</a>
-          
-        </div>
+
+      
+
       
 
       
       
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/02/2018-09-02-产生死锁的原因和必要条件/" rel="prev" title="产生死锁的原因和必要条件">
-                产生死锁的原因和必要条件 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -580,11 +557,14 @@
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+  </nav>
+
 
 
           </div>
@@ -592,10 +572,6 @@
 
 
           
-
-  
-
-
 
         </div>
         
@@ -616,17 +592,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -695,22 +662,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Golang与Java的区别"><span class="nav-number">1.</span> <span class="nav-text">Golang与Java的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-结构体-gt-类"><span class="nav-number">1.1.</span> <span class="nav-text">1. 结构体 -&gt; 类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主要区别"><span class="nav-number">1.1.1.</span> <span class="nav-text">主要区别</span></a></li></ol></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -846,10 +797,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 
