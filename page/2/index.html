@@ -1060,725 +1060,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/04/2018-09-06-tcp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="嘿嘿嘿">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/04/2018-09-06-tcp/" itemprop="url">TCP协议</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-04T00:00:00+08:00">
-                2018-09-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.8k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  6
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="TCP协议"><a href="#TCP协议" class="headerlink" title="TCP协议"></a>TCP协议</h2><p>TCP（Transmission Control Protocol 传输控制协议）是一种面向连接的、可靠的、基于字节流的传输层通信协议，由IETF的RFC 793定义。在简化的计算机网络OSI模型中，它完成第四层传输层所指定的功能，用户数据报协议（UDP）是同一层内另一个重要的传输协议。</p>
-<h3 id="主要特点"><a href="#主要特点" class="headerlink" title="主要特点"></a>主要特点</h3><ul>
-<li>面向连接</li>
-<li>一对一</li>
-<li>可靠交付</li>
-<li>全双工</li>
-<li>面向字节流</li>
-</ul>
-<h3 id="套接字Socket的含义"><a href="#套接字Socket的含义" class="headerlink" title="套接字Socket的含义"></a>套接字Socket的含义</h3><ul>
-<li>Socket := IP + Port</li>
-<li>TCP连接 ：= {Socket1, Socket2} 解释为两个Socket之间的连接</li>
-</ul>
-<h3 id="TCP可靠传输的工作原理"><a href="#TCP可靠传输的工作原理" class="headerlink" title="TCP可靠传输的工作原理"></a>TCP可靠传输的工作原理</h3><ul>
-<li><p>停止等待协议</p>
-<ul>
-<li>超时重传</li>
-<li>超时计时器</li>
-<li>保留已发送分组的副本</li>
-<li>对数据分组和确认分组的编号</li>
-<li>重传时间的设置</li>
-<li>确认丢失和确认迟到</li>
-<li>信道利用率</li>
-</ul>
-</li>
-<li><p>连续ARQ协议</p>
-<ul>
-<li><p>发送方维持的滑动窗口</p>
-</li>
-<li><p>累计确认</p>
-<ul>
-<li><p>容易实现，即使确认丢失也不必重传</p>
-</li>
-<li><p>不能向发送方反映出接收方以及正确接收到的所有分组的信息</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="TCP报文段的首部格式"><a href="#TCP报文段的首部格式" class="headerlink" title="TCP报文段的首部格式"></a>TCP报文段的首部格式</h3><ul>
-<li><p>源端口和目的端口</p>
-</li>
-<li><p>序号</p>
-</li>
-<li><p>确认号ack</p>
-</li>
-<li><p>数据偏移</p>
-</li>
-<li><p>保留位</p>
-</li>
-<li><p>紧急URG</p>
-</li>
-<li><p>确认位ACK(TCP连接过程中会用到)</p>
-</li>
-<li><p>推送PSH</p>
-</li>
-<li><p>复位RST</p>
-</li>
-<li><p>同步位SYN(在TCP连接过程中会用到)</p>
-</li>
-<li><p>终止FIN (在TCP释放过程中会用到)</p>
-</li>
-<li><p>窗口</p>
-</li>
-<li><p>检验和</p>
-</li>
-<li><p>紧急指针</p>
-</li>
-<li><p>选项</p>
-<ul>
-<li><p>最大报文长度MSS</p>
-</li>
-<li><p>窗口扩大</p>
-</li>
-<li><p>时间戳</p>
-<ul>
-<li><p>计算往返时间RTT</p>
-</li>
-<li><p>防止序号绕回</p>
-</li>
-</ul>
-</li>
-<li><p>选择确认</p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="TCP可靠传输的实现"><a href="#TCP可靠传输的实现" class="headerlink" title="TCP可靠传输的实现"></a>TCP可靠传输的实现</h3><ul>
-<li><p>滑动窗口</p>
-<ul>
-<li><p>以字节为单位的</p>
-</li>
-<li><p>结构划分</p>
-<ul>
-<li><p>已发送并收到确认部分</p>
-</li>
-<li><p>可发送部分</p>
-</li>
-<li><p>不允许发送部分</p>
-</li>
-</ul>
-</li>
-<li><p>发送窗口</p>
-<ul>
-<li><p>描述发送窗口状态的三个指针</p>
-<ul>
-<li><p>P1指向第一个已发送但未收到确认的字节的序号</p>
-</li>
-<li><p>P2指向第一个允许发送但尚未发送的字节的序号</p>
-</li>
-<li><p>P3指向第一个不允许发送的字节的序号</p>
-</li>
-</ul>
-</li>
-<li><p>P3 - P1 通知窗口</p>
-</li>
-<li><p>P2 - P1 已发送但尚未收到确认的字节数</p>
-</li>
-<li><p>P3 - P2 允许发送但尚未发送的字节数</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>超时重传</p>
-<ul>
-<li><p>TCP采用了一种自适应算法，该方法还在逐渐改进中</p>
-</li>
-<li><p>算法中声明的相关变量</p>
-<ul>
-<li><p>RTT(Round-Trip Time) 往返时间</p>
-</li>
-<li><p>RTT的加权平均往返时间RTTs</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<pre><code>    * RTO(RetransmissionTime-Out)超时重传时间
-
-    * RTTd(RTT的偏差的加权平均值)
-
-* 相关公式
-
-    * 新的RTTs = (1 - a) * (旧的RTTs) + a * (新的RTT样本)，a推荐取值0.125
-
-    * RTO = RTTs + 4 * RTTd
-
-    * RTTd = (1 - b) * (旧的RTTd) + b * |RTTs - 新的RTT样本|， b的推荐值是0.25
-
-* 如何确定确认报文是对先发送的报文段的确认，还是对后来重传的报文段的确认？
-
-    * Kran算法
-
-    * 算法的改进
-
-* 选择确认SACK（Selective ACK）
-
-    * 目的： 只传输缺少的数据而不重传已经正确到达接收方的数据
-
-    * 前提：建立TCP连接时，需要在首部选项中加上“允许SACK”的选项</code></pre><ul>
-<li><p>流量控制</p>
-<ul>
-<li><p>接收窗口(rwnd)变化</p>
-</li>
-<li><p>持续计时器 + 零窗口探测报文段（解决非零窗口通知丢失造成死锁）</p>
-</li>
-<li><p>发送方缓存控制</p>
-<ul>
-<li><p>缓存达到MSS(最大报文段长度)后发送</p>
-</li>
-<li><p>发送方应用程序指明要求发送报文段</p>
-</li>
-<li><p>发送方的一个计时器期限到了</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>拥塞控制</p>
-<p>  只要网络没有出现拥塞，拥塞窗口就再增大一些，以便把更多的分组发送出去。但只要网络出现拥塞，拥塞窗口就减小一些，以减少注入到网络中的分组数</p>
-<ul>
-<li><p>原理</p>
-</li>
-<li><p>几种拥塞的控制方法</p>
-<ul>
-<li><p>慢开始</p>
-<p> 当主机开始发送数据时，如果立即所大量数据字节注入到网络，那么就有可能引起网络拥塞，因为现在并不清楚网络的负荷情况。因此，较好的方法是 先探测一下，即由小到大逐渐增大发送窗口，也就是说，由小到大逐渐增大拥塞窗口数值。通常在刚刚开始发送报文段时，先把拥塞窗口 cwnd 设置为一个最大报文段MSS的数值。而在每收到一个对新的报文段的确认后，把拥塞窗口增加至多一个MSS的数值。用这样的方法逐步增大发送方的拥塞窗口 cwnd ，可以使分组注入到网络的速率更加合理。每经过一个传输轮次，拥塞窗口 cwnd 就加倍。一个传输轮次所经历的时间其实就是往返时间RTT。不过“传输轮次”更加强调：把拥塞窗口cwnd所允许发送的报文段都连续发送出去，并收到了对已发送的最后一个字节的确认。另，慢开始的“慢”并不是指cwnd的增长速率慢，而是指在TCP开始发送报文段时先设置cwnd=1，使得发送方在开始时只发送一个报文段（目的是试探一下网络的拥塞情况），然后再逐渐增大cwnd。</p>
-</li>
-<li><p>拥塞避免</p>
-</li>
-<li><p>快重传</p>
-</li>
-<li><p>快恢复</p>
-</li>
-</ul>
-</li>
-<li><p>如何确定网络发生了拥塞？ 答：只要发送方没有按时收到应当到达的确认报名，就可以猜想网络可能出现问题了</p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="运输连接管理"><a href="#运输连接管理" class="headerlink" title="运输连接管理"></a>运输连接管理</h3><ul>
-<li><p>三次握手建立连接</p>
-<ul>
-<li><p>建立连接的过程</p>
-<p>  <img src="https://s1.ax1x.com/2018/09/02/PzpWX8.png" alt="此处输入图片的描述"></p>
-</li>
-<li><p>涉及状态</p>
-<ul>
-<li><p>CLOSED</p>
-</li>
-<li><p>LISTEN</p>
-</li>
-<li><p>SYN-SENT 同步已发送</p>
-</li>
-<li><p>SYN-RCVD 同步确认</p>
-</li>
-<li><p>ESTABLISHED 连接建立</p>
-</li>
-</ul>
-</li>
-<li><p>涉及状态位</p>
-<ul>
-<li><p>SYN 同步位，置1代表请求连接</p>
-</li>
-<li><p>ACK 确认位，置1代表确认收到</p>
-</li>
-<li><p>seq 序号</p>
-</li>
-<li><p>ack 确认号</p>
-</li>
-</ul>
-</li>
-<li><p>为什么需要三次握手？最后A还需要再确认一次？</p>
-<ul>
-<li>为了防止已经失效的连接请求报文段传送到了B</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>四次挥手连接释放</p>
-<ul>
-<li><p>释放连接的过程</p>
-<p>  <img src="https://s1.ax1x.com/2018/09/02/Pz9kjK.png" alt="此处输入图片的描述"></p>
-</li>
-<li><p>涉及状态</p>
-<ul>
-<li><p>ESTABLISHED</p>
-</li>
-<li><p>FIN-WAIT-1 A请求关闭，但还没有收到B的确认</p>
-</li>
-<li><p>CLOSE-WAIT B收到了关闭请求，并且进行了确认，但是还有数据需要传送给A</p>
-</li>
-<li><p>FIN_WAIT-2 A收到了B的确认，但B的数据还没发送完，A还需要接收数据</p>
-</li>
-<li><p>LAST-ACK B没有数据要发送了，请求关闭连接</p>
-</li>
-<li><p>TIME-WAIT A收到了关闭请求，并确认</p>
-</li>
-<li><p>CLOSED B收到了A的关闭确认，A等待2MSL之后</p>
-</li>
-</ul>
-</li>
-<li><p>涉及状态位</p>
-<ul>
-<li>FIN 终止控制位，置1代表请求关闭连接</li>
-<li>ACK</li>
-<li>ack</li>
-<li>seq</li>
-</ul>
-</li>
-<li><p>时间等待计时器</p>
-<ul>
-<li><p>MSL 最长报文段寿命</p>
-</li>
-<li><p>为什么最后A要等2MSL?</p>
-<ul>
-<li>为了保证最后确认能被B收到，如果B没收到，B会超时重发关闭请求，如果A此时直接CLOSED了，就无法接受该请求</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>保活计时器</p>
-<ul>
-<li><p>作用：防止客户端发生故障时，服务器空等请求</p>
-</li>
-<li><p>每次接收请求时更新</p>
-</li>
-<li><p>2小时无响应，就每75分钟发送一个探测报文段，连发10次确认客户端是否出现故障</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/04/2018-09-04-grunt/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="嘿嘿嘿">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/04/2018-09-04-grunt/" itemprop="url">Grunt</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-04T00:00:00+08:00">
-                2018-09-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.1k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  4
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Grunt-杂记"><a href="#Grunt-杂记" class="headerlink" title="Grunt 杂记"></a>Grunt 杂记</h1><p><img src="https://img.shields.io/badge/js-grunt-brightgreen.svg" alt="grunt"></p>
-<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Grunt是一个基于NodeJS，可用于自动化构建、测试、生成文档的项目管理工具。</p>
-<h3 id="Grunt-能做什么"><a href="#Grunt-能做什么" class="headerlink" title="Grunt 能做什么"></a>Grunt 能做什么</h3><p>Grunt可以自动化我们的整个开发流程，简单地说，就是用JavaScript去执行一些程序来完成一些任务。比如说将css、Javascript、图像等资源压缩；将Sass和Less通过预处理器编译成Css；将Coffeescript、Typescript等转化为Javascript；实时监听文件的变化，并执行自动编译任务；</p>
-<p>在Grunt工具箱中，按任务目标我们可以分为：</p>
-<ul>
-<li>编译文档型：比如编译LESS、Sass、Stylus、Coffeescript等；</li>
-<li>文件操作型：比如说合并、压缩JavaScript、CSS、图片等；</li>
-<li>质量保障型：比如JSHint、Jasmin、Mocha等；</li>
-<li>类库构建型：比如说Backbone.js、ember.js、angular.js等。</li>
-</ul>
-<p>这些任务都依赖于给Grunt提供的插件来完成的，但很多工作依旧需要在命令终端手工输入命令来完成这些操作。为此在Grunt中可以使用watch任务来实现一些监听文件改变、自动触发构建等功能。从而减少人工去每次操作任务。</p>
-<h3 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h3><p>Grunt的使用非常简单，仅需下载相应的命令行工具，针对不同的任务下载不同的插件，即可完成整个自动化过程。</p>
-<ul>
-<li><p>将grunt-cli（grunt命令行工具）作为全局模块安装</p>
-<blockquote>
-<p>$ npm install -g grunt-cli</p>
-</blockquote>
-</li>
-<li><p>通过npm初始化，为我们生成一份package.json文件</p>
-<blockquote>
-<p>$ mkdir grunt-app &amp;&amp; cd grunt-app<br>$ npm init</p>
-</blockquote>
-</li>
-<li><p>为项目安装grunt作为依赖</p>
-<blockquote>
-<p>$ npm install –save-dev grunt</p>
-</blockquote>
-<p>  至此grunt已经安装完毕，但它还没有特殊的功能，要使用grunt的各种功能，需要建一份Gruntfile.js文件，并为之安装相应的插件。</p>
-</li>
-<li><p>新建Gruntfile.js，并写入以下内容</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">module.exports = function(grunt) &#123;</span><br><span class="line"></span><br><span class="line">  // 之后所有的配置都是配在传递给grunt.initConfig这个方法的对象中</span><br><span class="line">  grunt.initConfig(&#123;</span><br><span class="line">    // 将package.json文件作为一个json对象读入</span><br><span class="line">    pkg: grunt.file.readJSON(&apos;package.json&apos;),</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  // 加载grunt的插件，这里的 grunt-contrib-uglify 是一个例子</span><br><span class="line">  grunt.loadNpmTasks(&apos;grunt-contrib-uglify&apos;);</span><br><span class="line"></span><br><span class="line">  // 注册一个grunt任务，第一个参数为任务的名字，当任务的名字default时，通过grunt运行项目时，会默认执行该任务；第二个参数是一个数组，是后续所要执行任务名字的集合。</span><br><span class="line">  grunt.registerTask(&apos;default&apos;, [&apos;uglify&apos;]);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="安装grunt插件"><a href="#安装grunt插件" class="headerlink" title="安装grunt插件"></a>安装grunt插件</h3><p>在安装grunt插件时，需要考虑自己需要哪些功能，下面罗列出开发中需要的大部分功能。并举个简单的例子，详细用法可参考 <a href="https://github.com/gruntjs" title="Gruntjs的github链接" target="_blank" rel="noopener">Gruntjs</a>。</p>
-<ol>
-<li><p><a href="https://github.com/gruntjs/grunt-contrib-uglify" title="grunt uglify" target="_blank" rel="noopener">grunt-contrib-uglify</a> （混淆并压缩js文件）</p>
-<ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install grunt-contrib-uglify –save-dev</p>
-</blockquote>
-</li>
-<li><p>配置task</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">    uglify: &#123;</span><br><span class="line">        my_target: &#123;</span><br><span class="line">          files: &#123;</span><br><span class="line">            &apos;dest/output.min.js&apos;: [&apos;src/input1.js&apos;, &apos;src/input2.js&apos;]</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">grunt.loadNpmTasks(&apos;grunt-contrib-uglify&apos;);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><a href="https://github.com/gruntjs/grunt-contrib-cssmin" title="grunt cssmin" target="_blank" rel="noopener">grunt-contrib-cssmin</a> （压缩css）</p>
-<ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install grunt-contrib-cssmin –save-dev</p>
-</blockquote>
-</li>
-<li><p>配置task</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">    target: &#123;</span><br><span class="line">        files: &#123;</span><br><span class="line">          &apos;output.css&apos;: [&apos;foo.css&apos;, &apos;bar.css&apos;]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">grunt.loadNpmTasks(&apos;grunt-contrib-cssmin&apos;);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><a href="https://github.com/gruntjs/grunt-contrib-clean" title="grunt clean" target="_blank" rel="noopener">grunt-contrib-clean</a> （清除文件和目录，一般用来清除上一次编译生成的文件）</p>
-<ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install grunt-contrib-clean –save-dev</p>
-</blockquote>
-</li>
-<li><p>配置task</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">    clean: &#123;</span><br><span class="line">        build: &#123;</span><br><span class="line">            src: [&apos;path/to/dir/one&apos;, &apos;path/to/dir/two&apos;]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">grunt.loadNpmTasks(&apos;grunt-contrib-clean&apos;);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><a href="https://github.com/gruntjs/grunt-contrib-watch" title="grunt watch" target="_blank" rel="noopener">grunt-contrib-watch</a> （监听文件的变化，并自动执行任务）</p>
-<ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install grunt-contrib-watch –save-dev</p>
-</blockquote>
-</li>
-<li><p>配置task</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">    watch: &#123;</span><br><span class="line">        scripts: &#123;</span><br><span class="line">            files: [&apos;**/*.coffee&apos;],</span><br><span class="line">            // 监听到文件变化后执行的task</span><br><span class="line">            tasks: [&apos;coffee&apos;],</span><br><span class="line">            options: &#123;</span><br><span class="line">                spawn: false,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">        css: &#123;</span><br><span class="line">            files: &apos;**/*.sass&apos;,</span><br><span class="line">            tasks: [&apos;sass&apos;],</span><br><span class="line">            options: &#123;</span><br><span class="line">                livereload: true,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">grunt.loadNpmTasks(&apos;grunt-contrib-watch&apos;);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><a href="https://github.com/gruntjs/grunt-contrib-connect" title="grunt connect" target="_blank" rel="noopener">grunt-contrib-connect</a> （开启一个服务器，使我们可以通过 <code>ip:端口号</code> 的方式访问目录下的资源）</p>
-<ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install grunt-contrib-connect –save-dev</p>
-</blockquote>
-</li>
-<li><p>配置task</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">    connect: &#123;</span><br><span class="line">        server: &#123;</span><br><span class="line">            options: &#123;</span><br><span class="line">                port: 9001,</span><br><span class="line">                base: &apos;www-root&apos;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">grunt.loadNpmTasks(&apos;grunt-contrib-connect&apos;);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><a href="https://github.com/gruntjs/grunt-contrib-less" title="grunt less" target="_blank" rel="noopener">grunt-contrib-less</a> （将less编译为css）</p>
-<ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install grunt-contrib-less –save-dev</p>
-</blockquote>
-</li>
-<li><p>配置task</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">    development: &#123;</span><br><span class="line">        files: &#123;</span><br><span class="line">            &apos;path/to/result.css&apos;: &apos;path/to/source.less&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">grunt.loadNpmTasks(&apos;grunt-contrib-less&apos;);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><a href="https://github.com/gruntjs/grunt-contrib-coffee" title="grunt coffeescript" target="_blank" rel="noopener">grunt-contrib-coffee</a> （将coffeescript编译成javascript）</p>
-<ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install grunt-contrib-coffee –save-dev</p>
-</blockquote>
-</li>
-<li><p>配置task</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">    development: &#123;</span><br><span class="line">        files: &#123;</span><br><span class="line">            &apos;path/to/result.js&apos;: &apos;path/to/source.coffee&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">grunt.loadNpmTasks(&apos;grunt-contrib-coffee&apos;);</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/04/2018-09-05-webpack/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2285,6 +1566,278 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/04/2018-09-04-grunt/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嘿嘿嘿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/04/2018-09-04-grunt/" itemprop="url">Grunt</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-04T00:00:00+08:00">
+                2018-09-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Grunt-杂记"><a href="#Grunt-杂记" class="headerlink" title="Grunt 杂记"></a>Grunt 杂记</h1><p><img src="https://img.shields.io/badge/js-grunt-brightgreen.svg" alt="grunt"></p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Grunt是一个基于NodeJS，可用于自动化构建、测试、生成文档的项目管理工具。</p>
+<h3 id="Grunt-能做什么"><a href="#Grunt-能做什么" class="headerlink" title="Grunt 能做什么"></a>Grunt 能做什么</h3><p>Grunt可以自动化我们的整个开发流程，简单地说，就是用JavaScript去执行一些程序来完成一些任务。比如说将css、Javascript、图像等资源压缩；将Sass和Less通过预处理器编译成Css；将Coffeescript、Typescript等转化为Javascript；实时监听文件的变化，并执行自动编译任务；</p>
+<p>在Grunt工具箱中，按任务目标我们可以分为：</p>
+<ul>
+<li>编译文档型：比如编译LESS、Sass、Stylus、Coffeescript等；</li>
+<li>文件操作型：比如说合并、压缩JavaScript、CSS、图片等；</li>
+<li>质量保障型：比如JSHint、Jasmin、Mocha等；</li>
+<li>类库构建型：比如说Backbone.js、ember.js、angular.js等。</li>
+</ul>
+<p>这些任务都依赖于给Grunt提供的插件来完成的，但很多工作依旧需要在命令终端手工输入命令来完成这些操作。为此在Grunt中可以使用watch任务来实现一些监听文件改变、自动触发构建等功能。从而减少人工去每次操作任务。</p>
+<h3 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h3><p>Grunt的使用非常简单，仅需下载相应的命令行工具，针对不同的任务下载不同的插件，即可完成整个自动化过程。</p>
+<ul>
+<li><p>将grunt-cli（grunt命令行工具）作为全局模块安装</p>
+<blockquote>
+<p>$ npm install -g grunt-cli</p>
+</blockquote>
+</li>
+<li><p>通过npm初始化，为我们生成一份package.json文件</p>
+<blockquote>
+<p>$ mkdir grunt-app &amp;&amp; cd grunt-app<br>$ npm init</p>
+</blockquote>
+</li>
+<li><p>为项目安装grunt作为依赖</p>
+<blockquote>
+<p>$ npm install –save-dev grunt</p>
+</blockquote>
+<p>  至此grunt已经安装完毕，但它还没有特殊的功能，要使用grunt的各种功能，需要建一份Gruntfile.js文件，并为之安装相应的插件。</p>
+</li>
+<li><p>新建Gruntfile.js，并写入以下内容</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">module.exports = function(grunt) &#123;</span><br><span class="line"></span><br><span class="line">  // 之后所有的配置都是配在传递给grunt.initConfig这个方法的对象中</span><br><span class="line">  grunt.initConfig(&#123;</span><br><span class="line">    // 将package.json文件作为一个json对象读入</span><br><span class="line">    pkg: grunt.file.readJSON(&apos;package.json&apos;),</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  // 加载grunt的插件，这里的 grunt-contrib-uglify 是一个例子</span><br><span class="line">  grunt.loadNpmTasks(&apos;grunt-contrib-uglify&apos;);</span><br><span class="line"></span><br><span class="line">  // 注册一个grunt任务，第一个参数为任务的名字，当任务的名字default时，通过grunt运行项目时，会默认执行该任务；第二个参数是一个数组，是后续所要执行任务名字的集合。</span><br><span class="line">  grunt.registerTask(&apos;default&apos;, [&apos;uglify&apos;]);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="安装grunt插件"><a href="#安装grunt插件" class="headerlink" title="安装grunt插件"></a>安装grunt插件</h3><p>在安装grunt插件时，需要考虑自己需要哪些功能，下面罗列出开发中需要的大部分功能。并举个简单的例子，详细用法可参考 <a href="https://github.com/gruntjs" title="Gruntjs的github链接" target="_blank" rel="noopener">Gruntjs</a>。</p>
+<ol>
+<li><p><a href="https://github.com/gruntjs/grunt-contrib-uglify" title="grunt uglify" target="_blank" rel="noopener">grunt-contrib-uglify</a> （混淆并压缩js文件）</p>
+<ul>
+<li><p>安装</p>
+<blockquote>
+<p>$ npm install grunt-contrib-uglify –save-dev</p>
+</blockquote>
+</li>
+<li><p>配置task</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">    uglify: &#123;</span><br><span class="line">        my_target: &#123;</span><br><span class="line">          files: &#123;</span><br><span class="line">            &apos;dest/output.min.js&apos;: [&apos;src/input1.js&apos;, &apos;src/input2.js&apos;]</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">grunt.loadNpmTasks(&apos;grunt-contrib-uglify&apos;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><a href="https://github.com/gruntjs/grunt-contrib-cssmin" title="grunt cssmin" target="_blank" rel="noopener">grunt-contrib-cssmin</a> （压缩css）</p>
+<ul>
+<li><p>安装</p>
+<blockquote>
+<p>$ npm install grunt-contrib-cssmin –save-dev</p>
+</blockquote>
+</li>
+<li><p>配置task</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">    target: &#123;</span><br><span class="line">        files: &#123;</span><br><span class="line">          &apos;output.css&apos;: [&apos;foo.css&apos;, &apos;bar.css&apos;]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">grunt.loadNpmTasks(&apos;grunt-contrib-cssmin&apos;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><a href="https://github.com/gruntjs/grunt-contrib-clean" title="grunt clean" target="_blank" rel="noopener">grunt-contrib-clean</a> （清除文件和目录，一般用来清除上一次编译生成的文件）</p>
+<ul>
+<li><p>安装</p>
+<blockquote>
+<p>$ npm install grunt-contrib-clean –save-dev</p>
+</blockquote>
+</li>
+<li><p>配置task</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">    clean: &#123;</span><br><span class="line">        build: &#123;</span><br><span class="line">            src: [&apos;path/to/dir/one&apos;, &apos;path/to/dir/two&apos;]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">grunt.loadNpmTasks(&apos;grunt-contrib-clean&apos;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><a href="https://github.com/gruntjs/grunt-contrib-watch" title="grunt watch" target="_blank" rel="noopener">grunt-contrib-watch</a> （监听文件的变化，并自动执行任务）</p>
+<ul>
+<li><p>安装</p>
+<blockquote>
+<p>$ npm install grunt-contrib-watch –save-dev</p>
+</blockquote>
+</li>
+<li><p>配置task</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">    watch: &#123;</span><br><span class="line">        scripts: &#123;</span><br><span class="line">            files: [&apos;**/*.coffee&apos;],</span><br><span class="line">            // 监听到文件变化后执行的task</span><br><span class="line">            tasks: [&apos;coffee&apos;],</span><br><span class="line">            options: &#123;</span><br><span class="line">                spawn: false,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">        css: &#123;</span><br><span class="line">            files: &apos;**/*.sass&apos;,</span><br><span class="line">            tasks: [&apos;sass&apos;],</span><br><span class="line">            options: &#123;</span><br><span class="line">                livereload: true,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">grunt.loadNpmTasks(&apos;grunt-contrib-watch&apos;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><a href="https://github.com/gruntjs/grunt-contrib-connect" title="grunt connect" target="_blank" rel="noopener">grunt-contrib-connect</a> （开启一个服务器，使我们可以通过 <code>ip:端口号</code> 的方式访问目录下的资源）</p>
+<ul>
+<li><p>安装</p>
+<blockquote>
+<p>$ npm install grunt-contrib-connect –save-dev</p>
+</blockquote>
+</li>
+<li><p>配置task</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">    connect: &#123;</span><br><span class="line">        server: &#123;</span><br><span class="line">            options: &#123;</span><br><span class="line">                port: 9001,</span><br><span class="line">                base: &apos;www-root&apos;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">grunt.loadNpmTasks(&apos;grunt-contrib-connect&apos;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><a href="https://github.com/gruntjs/grunt-contrib-less" title="grunt less" target="_blank" rel="noopener">grunt-contrib-less</a> （将less编译为css）</p>
+<ul>
+<li><p>安装</p>
+<blockquote>
+<p>$ npm install grunt-contrib-less –save-dev</p>
+</blockquote>
+</li>
+<li><p>配置task</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">    development: &#123;</span><br><span class="line">        files: &#123;</span><br><span class="line">            &apos;path/to/result.css&apos;: &apos;path/to/source.less&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">grunt.loadNpmTasks(&apos;grunt-contrib-less&apos;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><a href="https://github.com/gruntjs/grunt-contrib-coffee" title="grunt coffeescript" target="_blank" rel="noopener">grunt-contrib-coffee</a> （将coffeescript编译成javascript）</p>
+<ul>
+<li><p>安装</p>
+<blockquote>
+<p>$ npm install grunt-contrib-coffee –save-dev</p>
+</blockquote>
+</li>
+<li><p>配置task</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">    development: &#123;</span><br><span class="line">        files: &#123;</span><br><span class="line">            &apos;path/to/result.js&apos;: &apos;path/to/source.coffee&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">grunt.loadNpmTasks(&apos;grunt-contrib-coffee&apos;);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/04/2018-09-06-udp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2466,7 +2019,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/02/2018-09-02-经典进程的同步问题/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/04/2018-09-06-tcp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="嘿嘿嘿">
@@ -2485,7 +2038,454 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/02/2018-09-02-经典进程的同步问题/" itemprop="url">经典进程的同步问题</a></h1>
+                <a class="post-title-link" href="/2018/09/04/2018-09-06-tcp/" itemprop="url">TCP协议</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-04T00:00:00+08:00">
+                2018-09-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.8k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="TCP协议"><a href="#TCP协议" class="headerlink" title="TCP协议"></a>TCP协议</h2><p>TCP（Transmission Control Protocol 传输控制协议）是一种面向连接的、可靠的、基于字节流的传输层通信协议，由IETF的RFC 793定义。在简化的计算机网络OSI模型中，它完成第四层传输层所指定的功能，用户数据报协议（UDP）是同一层内另一个重要的传输协议。</p>
+<h3 id="主要特点"><a href="#主要特点" class="headerlink" title="主要特点"></a>主要特点</h3><ul>
+<li>面向连接</li>
+<li>一对一</li>
+<li>可靠交付</li>
+<li>全双工</li>
+<li>面向字节流</li>
+</ul>
+<h3 id="套接字Socket的含义"><a href="#套接字Socket的含义" class="headerlink" title="套接字Socket的含义"></a>套接字Socket的含义</h3><ul>
+<li>Socket := IP + Port</li>
+<li>TCP连接 ：= {Socket1, Socket2} 解释为两个Socket之间的连接</li>
+</ul>
+<h3 id="TCP可靠传输的工作原理"><a href="#TCP可靠传输的工作原理" class="headerlink" title="TCP可靠传输的工作原理"></a>TCP可靠传输的工作原理</h3><ul>
+<li><p>停止等待协议</p>
+<ul>
+<li>超时重传</li>
+<li>超时计时器</li>
+<li>保留已发送分组的副本</li>
+<li>对数据分组和确认分组的编号</li>
+<li>重传时间的设置</li>
+<li>确认丢失和确认迟到</li>
+<li>信道利用率</li>
+</ul>
+</li>
+<li><p>连续ARQ协议</p>
+<ul>
+<li><p>发送方维持的滑动窗口</p>
+</li>
+<li><p>累计确认</p>
+<ul>
+<li><p>容易实现，即使确认丢失也不必重传</p>
+</li>
+<li><p>不能向发送方反映出接收方以及正确接收到的所有分组的信息</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="TCP报文段的首部格式"><a href="#TCP报文段的首部格式" class="headerlink" title="TCP报文段的首部格式"></a>TCP报文段的首部格式</h3><ul>
+<li><p>源端口和目的端口</p>
+</li>
+<li><p>序号</p>
+</li>
+<li><p>确认号ack</p>
+</li>
+<li><p>数据偏移</p>
+</li>
+<li><p>保留位</p>
+</li>
+<li><p>紧急URG</p>
+</li>
+<li><p>确认位ACK(TCP连接过程中会用到)</p>
+</li>
+<li><p>推送PSH</p>
+</li>
+<li><p>复位RST</p>
+</li>
+<li><p>同步位SYN(在TCP连接过程中会用到)</p>
+</li>
+<li><p>终止FIN (在TCP释放过程中会用到)</p>
+</li>
+<li><p>窗口</p>
+</li>
+<li><p>检验和</p>
+</li>
+<li><p>紧急指针</p>
+</li>
+<li><p>选项</p>
+<ul>
+<li><p>最大报文长度MSS</p>
+</li>
+<li><p>窗口扩大</p>
+</li>
+<li><p>时间戳</p>
+<ul>
+<li><p>计算往返时间RTT</p>
+</li>
+<li><p>防止序号绕回</p>
+</li>
+</ul>
+</li>
+<li><p>选择确认</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="TCP可靠传输的实现"><a href="#TCP可靠传输的实现" class="headerlink" title="TCP可靠传输的实现"></a>TCP可靠传输的实现</h3><ul>
+<li><p>滑动窗口</p>
+<ul>
+<li><p>以字节为单位的</p>
+</li>
+<li><p>结构划分</p>
+<ul>
+<li><p>已发送并收到确认部分</p>
+</li>
+<li><p>可发送部分</p>
+</li>
+<li><p>不允许发送部分</p>
+</li>
+</ul>
+</li>
+<li><p>发送窗口</p>
+<ul>
+<li><p>描述发送窗口状态的三个指针</p>
+<ul>
+<li><p>P1指向第一个已发送但未收到确认的字节的序号</p>
+</li>
+<li><p>P2指向第一个允许发送但尚未发送的字节的序号</p>
+</li>
+<li><p>P3指向第一个不允许发送的字节的序号</p>
+</li>
+</ul>
+</li>
+<li><p>P3 - P1 通知窗口</p>
+</li>
+<li><p>P2 - P1 已发送但尚未收到确认的字节数</p>
+</li>
+<li><p>P3 - P2 允许发送但尚未发送的字节数</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>超时重传</p>
+<ul>
+<li><p>TCP采用了一种自适应算法，该方法还在逐渐改进中</p>
+</li>
+<li><p>算法中声明的相关变量</p>
+<ul>
+<li><p>RTT(Round-Trip Time) 往返时间</p>
+</li>
+<li><p>RTT的加权平均往返时间RTTs</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>    * RTO(RetransmissionTime-Out)超时重传时间
+
+    * RTTd(RTT的偏差的加权平均值)
+
+* 相关公式
+
+    * 新的RTTs = (1 - a) * (旧的RTTs) + a * (新的RTT样本)，a推荐取值0.125
+
+    * RTO = RTTs + 4 * RTTd
+
+    * RTTd = (1 - b) * (旧的RTTd) + b * |RTTs - 新的RTT样本|， b的推荐值是0.25
+
+* 如何确定确认报文是对先发送的报文段的确认，还是对后来重传的报文段的确认？
+
+    * Kran算法
+
+    * 算法的改进
+
+* 选择确认SACK（Selective ACK）
+
+    * 目的： 只传输缺少的数据而不重传已经正确到达接收方的数据
+
+    * 前提：建立TCP连接时，需要在首部选项中加上“允许SACK”的选项</code></pre><ul>
+<li><p>流量控制</p>
+<ul>
+<li><p>接收窗口(rwnd)变化</p>
+</li>
+<li><p>持续计时器 + 零窗口探测报文段（解决非零窗口通知丢失造成死锁）</p>
+</li>
+<li><p>发送方缓存控制</p>
+<ul>
+<li><p>缓存达到MSS(最大报文段长度)后发送</p>
+</li>
+<li><p>发送方应用程序指明要求发送报文段</p>
+</li>
+<li><p>发送方的一个计时器期限到了</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>拥塞控制</p>
+<p>  只要网络没有出现拥塞，拥塞窗口就再增大一些，以便把更多的分组发送出去。但只要网络出现拥塞，拥塞窗口就减小一些，以减少注入到网络中的分组数</p>
+<ul>
+<li><p>原理</p>
+</li>
+<li><p>几种拥塞的控制方法</p>
+<ul>
+<li><p>慢开始</p>
+<p> 当主机开始发送数据时，如果立即所大量数据字节注入到网络，那么就有可能引起网络拥塞，因为现在并不清楚网络的负荷情况。因此，较好的方法是 先探测一下，即由小到大逐渐增大发送窗口，也就是说，由小到大逐渐增大拥塞窗口数值。通常在刚刚开始发送报文段时，先把拥塞窗口 cwnd 设置为一个最大报文段MSS的数值。而在每收到一个对新的报文段的确认后，把拥塞窗口增加至多一个MSS的数值。用这样的方法逐步增大发送方的拥塞窗口 cwnd ，可以使分组注入到网络的速率更加合理。每经过一个传输轮次，拥塞窗口 cwnd 就加倍。一个传输轮次所经历的时间其实就是往返时间RTT。不过“传输轮次”更加强调：把拥塞窗口cwnd所允许发送的报文段都连续发送出去，并收到了对已发送的最后一个字节的确认。另，慢开始的“慢”并不是指cwnd的增长速率慢，而是指在TCP开始发送报文段时先设置cwnd=1，使得发送方在开始时只发送一个报文段（目的是试探一下网络的拥塞情况），然后再逐渐增大cwnd。</p>
+</li>
+<li><p>拥塞避免</p>
+</li>
+<li><p>快重传</p>
+</li>
+<li><p>快恢复</p>
+</li>
+</ul>
+</li>
+<li><p>如何确定网络发生了拥塞？ 答：只要发送方没有按时收到应当到达的确认报名，就可以猜想网络可能出现问题了</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="运输连接管理"><a href="#运输连接管理" class="headerlink" title="运输连接管理"></a>运输连接管理</h3><ul>
+<li><p>三次握手建立连接</p>
+<ul>
+<li><p>建立连接的过程</p>
+<p>  <img src="https://s1.ax1x.com/2018/09/02/PzpWX8.png" alt="此处输入图片的描述"></p>
+</li>
+<li><p>涉及状态</p>
+<ul>
+<li><p>CLOSED</p>
+</li>
+<li><p>LISTEN</p>
+</li>
+<li><p>SYN-SENT 同步已发送</p>
+</li>
+<li><p>SYN-RCVD 同步确认</p>
+</li>
+<li><p>ESTABLISHED 连接建立</p>
+</li>
+</ul>
+</li>
+<li><p>涉及状态位</p>
+<ul>
+<li><p>SYN 同步位，置1代表请求连接</p>
+</li>
+<li><p>ACK 确认位，置1代表确认收到</p>
+</li>
+<li><p>seq 序号</p>
+</li>
+<li><p>ack 确认号</p>
+</li>
+</ul>
+</li>
+<li><p>为什么需要三次握手？最后A还需要再确认一次？</p>
+<ul>
+<li>为了防止已经失效的连接请求报文段传送到了B</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>四次挥手连接释放</p>
+<ul>
+<li><p>释放连接的过程</p>
+<p>  <img src="https://s1.ax1x.com/2018/09/02/Pz9kjK.png" alt="此处输入图片的描述"></p>
+</li>
+<li><p>涉及状态</p>
+<ul>
+<li><p>ESTABLISHED</p>
+</li>
+<li><p>FIN-WAIT-1 A请求关闭，但还没有收到B的确认</p>
+</li>
+<li><p>CLOSE-WAIT B收到了关闭请求，并且进行了确认，但是还有数据需要传送给A</p>
+</li>
+<li><p>FIN_WAIT-2 A收到了B的确认，但B的数据还没发送完，A还需要接收数据</p>
+</li>
+<li><p>LAST-ACK B没有数据要发送了，请求关闭连接</p>
+</li>
+<li><p>TIME-WAIT A收到了关闭请求，并确认</p>
+</li>
+<li><p>CLOSED B收到了A的关闭确认，A等待2MSL之后</p>
+</li>
+</ul>
+</li>
+<li><p>涉及状态位</p>
+<ul>
+<li>FIN 终止控制位，置1代表请求关闭连接</li>
+<li>ACK</li>
+<li>ack</li>
+<li>seq</li>
+</ul>
+</li>
+<li><p>时间等待计时器</p>
+<ul>
+<li><p>MSL 最长报文段寿命</p>
+</li>
+<li><p>为什么最后A要等2MSL?</p>
+<ul>
+<li>为了保证最后确认能被B收到，如果B没收到，B会超时重发关闭请求，如果A此时直接CLOSED了，就无法接受该请求</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>保活计时器</p>
+<ul>
+<li><p>作用：防止客户端发生故障时，服务器空等请求</p>
+</li>
+<li><p>每次接收请求时更新</p>
+</li>
+<li><p>2小时无响应，就每75分钟发送一个探测报文段，连发10次确认客户端是否出现故障</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/02/2018-09-02-虚拟存储器的基本概念/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嘿嘿嘿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/02/2018-09-02-虚拟存储器的基本概念/" itemprop="url">虚拟存储器的基本概念</a></h1>
         
 
         <div class="post-meta">
@@ -2529,7 +2529,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  695
+                  983
                 </span>
               
 
@@ -2568,32 +2568,35 @@
       
         
           
-            <h2 id="经典进程的同步问题"><a href="#经典进程的同步问题" class="headerlink" title="经典进程的同步问题"></a>经典进程的同步问题</h2><h3 id="生产者—消费者问题"><a href="#生产者—消费者问题" class="headerlink" title="生产者—消费者问题"></a>生产者—消费者问题</h3><ul>
-<li><p>利用记录型信号量解决</p>
-<p>  假定在生产者和消费者之间的公用缓冲池中，具有n个缓冲区，这时可利用互斥信号量mutex实现诸进程对缓冲池的互斥使用。利用信号量emptyCount和fullCount分别表示缓冲池中 <code>空缓冲区</code> 和 <code>满缓冲区</code> 的数量</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">mutex, emptyCount, fullCount := 1, n, 0</span><br><span class="line"></span><br><span class="line">func proceducer() &#123;</span><br><span class="line">    wait(emptyCount)</span><br><span class="line">    wait(mutex)</span><br><span class="line"></span><br><span class="line">    // 生产一个产品，放入一个空的缓冲区中</span><br><span class="line"></span><br><span class="line">    signal(mutex)</span><br><span class="line">    signal(fullCount)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func consumer() &#123;</span><br><span class="line">    wait(fullCount)</span><br><span class="line">    wait(mutex)；</span><br><span class="line"></span><br><span class="line">    // 消费一个产品，取走一个满缓冲区的内容</span><br><span class="line"></span><br><span class="line">    signal(mutex)；</span><br><span class="line">    signal(emptyCount)；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>利用 AND 信号量解决</p>
-<p>  对于生产者—消费者问题，也可利用AND信号量来解决，即用 <code>Swait(empty，mutex)</code> 来代替 <code>wait(empty)</code> 和 <code>wait(mutex)</code>；用 <code>Ssignal(mutex，full)</code> 来代替 <code>signal(mutex)</code> 和 <code>signal(full)</code> ；用 <code>Swait(full，mutex)</code> 来代替 <code>wait(full)</code> 和 <code>wait(mutex)</code>，以及用 <code>Ssignal(mutex，empty)</code> 代替 <code>Signal(mutex)</code> 和 <code>Signal(empty)</code>。</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mutex, emptyCount, fullCount := 1, n, 0</span><br><span class="line"></span><br><span class="line">func proceducer() &#123;</span><br><span class="line">    Swait(emptyCount, mutex)</span><br><span class="line">    // 生产一个产品，放入一个空的缓冲区中</span><br><span class="line">    Ssignal(mutex，fullCount)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func consumer() &#123;</span><br><span class="line">    Swait(fullCount，mutex)</span><br><span class="line">    // 消费一个产品，取走一个满缓冲区的内容</span><br><span class="line">    Ssignal(mutex，emptyCount)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>利用管程解决</p>
-<p>  在利用管程方法来解决生产者—消费者问题时，首先便是为它们建立一个管程，并命名为 ProclucerConsumer，或简称为 PC。其中包括两个过程：</p>
+            <h2 id="虚拟存储器的基本概念"><a href="#虚拟存储器的基本概念" class="headerlink" title="虚拟存储器的基本概念"></a>虚拟存储器的基本概念</h2><h3 id="虚拟存储器的引入"><a href="#虚拟存储器的引入" class="headerlink" title="虚拟存储器的引入"></a>虚拟存储器的引入</h3><ul>
+<li><p>常规存储器管理方式的特征</p>
 <ul>
-<li><p>put(item)过程。生产者利用该过程将自己生产的产品投放到缓冲池中，并用整型变量 count 来表示在缓冲池中已有的产品数目，当 count≥n 时，表示缓冲池已满，生产者须等待。</p>
+<li><p>一次性。在前面所介绍的几种存储管理方式中，都要求将作业全部装入内存后方能运行，即作业在运行前需一次性地全部装入内存，而正是这一特征导致了上述两种情况的发生。此外，还有许多作业在每次运行时，并非其全部程序和数据都要用到。如果一次性地装入其全部程序，也是一种对内存空间的浪费。</p>
 </li>
-<li><p>get(item)过程。消费者利用该过程从缓冲池中取出一个产品，当 count≤0 时，表示缓冲池中已无可取用的产品，消费者应等待</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">var notfull，notempty condition</span><br><span class="line"></span><br><span class="line">type condition struct &#123;</span><br><span class="line">    queue []processes</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func (c *condition) wait() &#123;&#125;</span><br><span class="line">func (c *condition) signal() &#123;&#125;</span><br><span class="line"></span><br><span class="line">type ProclucerConsumer struct &#123;</span><br><span class="line">    buffer make([]int, count)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func (pc *ProclucerConsumer) put(item int) &#123;</span><br><span class="line">    if count &gt;= len(pc.buffer) &#123;</span><br><span class="line">        // 等待非满信号</span><br><span class="line">        notfull.wait()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    pc.buffer = pc.buffer.append(item)</span><br><span class="line"></span><br><span class="line">    // 在非空队列有进程等待时，唤醒一个等待的进程</span><br><span class="line">    if len(notempty.queue) &gt; 0 &#123;</span><br><span class="line">        notempty.signal()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func (pc *ProclucerConsumer) get() int &#123;</span><br><span class="line">    if count &lt;= 0 &#123;</span><br><span class="line">        // 等待非空信号</span><br><span class="line">        notEmpty.wait()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    item = pc.buffer[-1]</span><br><span class="line"></span><br><span class="line">    if len(notFull.queue) &gt; 0 &#123;</span><br><span class="line">        notFull.signal()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return item</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<li><p>驻留性。作业装入内存后，便一直驻留在内存中，直至作业运行结束。尽管运行中的进程会因 I/O 而长期等待，或有的程序模块在运行过一次后就不再需要(运行)了，但它们都仍将继续占用宝贵的内存资源。</p>
 </li>
 </ul>
 </li>
+<li><p>局部性原理</p>
+<ul>
+<li><p>程序执行时，除了少部分的转移和过程调用指令外，在大多数情况下仍是顺序执行的。该论点也在后来的许多学者对高级程序设计语言(如 FORTRAN 语言、PASCAL 语言)及 C 语言规律的研究中被证实。</p>
+</li>
+<li><p>过程调用将会使程序的执行轨迹由一部分区域转至另一部分区域，但经研究看出，过程调用的深度在大多数情况下都不超过</p>
+</li>
+<li><p>这就是说，程序将会在一段时间内都局限在这些过程的范围内运行。</p>
+</li>
+<li><p>程序中存在许多循环结构，这些虽然只由少数指令构成，但是它们将多次执行。</p>
+</li>
+<li><p>程序中还包括许多对数据结构的处理，如对数组进行操作，它们往往都局限于很小的范围内。</p>
+</li>
+<li><p>时间局限性。如果程序中的某条指令一旦执行，则不久以后该指令可能再次执行；如果某数据被访问过，则不久以后该数据可能再次被访问。产生时间局限性的典型原因是由于在程序中存在着大量的循环操作。</p>
+</li>
+<li><p>空间局限性。一旦程序访问了某个存储单元，在不久之后，其附近的存储单元也将被访问，即程序在一段时间内所访问的地址，可能集中在一定的范围之内，其典型情况便是程序的顺序执行。</p>
+</li>
 </ul>
-<h3 id="哲学家进餐问题"><a href="#哲学家进餐问题" class="headerlink" title="哲学家进餐问题"></a>哲学家进餐问题</h3><ul>
-<li><p>利用 AND 信号量机制解决</p>
-<p>  当哲学家饥饿时，总是先去拿他左边的筷子，即执行 wait(chopstick[i])；成功后，再去拿他右边的筷子，即执行 wait(chopstick[(i+1)mod 5])</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Var chopsiick array of semaphore := (1, 1, 1, 1, 1)；</span><br><span class="line">processi</span><br><span class="line">    repeat</span><br><span class="line">        think；</span><br><span class="line">        Sswait(chopstick[(i+1) mod 5]，chopstick[i])；</span><br><span class="line">        eat；</span><br><span class="line">        Ssignat(chopstick[(i+1) mod 5]，chopstick[i])；</span><br><span class="line">    until false；</span><br></pre></td></tr></table></figure>
-
+</li>
+<li><p>虚拟存储器的定义</p>
+<p>  基于局部性原理，应用程序在运行之前，没有必要全部装入内存，仅须将那些当前要运行的少数页面或段先装入内存便可运行，其余部分暂留在盘上。程序在运行时，如果它所要访问的页(段)已调入内存，便可继续执行下去；但如果程序所要访问的页(段)尚未调入内存(称为缺页或缺段)，此时程序应利用OS所提供的请求调页(段)功能，将它们调入内存，以使进程能继续执行下去。如果此时内存已满，无法再装入新的页(段)，则还须再利用页(段)的置换功能，将内存中暂时不用的页(段)调至盘上，腾出足够的内存空间后，再将要访问的页(段)调入内存，使程序继续执行下去。这样，便可使一个大的用户程序能在较小的内存空间中运行；也可在内存中同时装入更多的进程使它们并发执行。从用户角度看，该系统所具有的内存容量，将比实际内存容量大得多。但须说明，用户所看到的大容量只是一种感觉，是虚的，故人们把这样的存储器称为虚拟存储器。</p>
 </li>
 </ul>
 
