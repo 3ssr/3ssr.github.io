@@ -262,254 +262,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/04/2018-09-05-gulp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="嘿嘿嘿">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/04/2018-09-05-gulp/" itemprop="url">Gulp</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-04T00:00:00+08:00">
-                2018-09-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  4
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Gulp-杂记"><a href="#Gulp-杂记" class="headerlink" title="Gulp 杂记"></a>Gulp 杂记</h1><h3 id="什么是-gulp"><a href="#什么是-gulp" class="headerlink" title="什么是 gulp?"></a>什么是 gulp?</h3><p>gulp 是一个构建工具，可以通过它自动执行网站开发过程中的公共任务，比如编译 SASS/Less，编译压缩混淆 JavaScript,，合并编译模板和版本控制等。因为 gulp 是基于 Node.js 构建的，所以 gulp 源文件和开发者自己定义的 gulpfile 都被写进 JavaScript 里，前端开发者可以用自己熟悉的语言来编写 gulp 任务。</p>
-<p>gulp 本身并不能完成这么多种任务，不过它可以借助 npm 丰富的插件库。开发者可以在 npm 中搜索 gulpplugin 找到想要的插件。例如本文中将要提到的 gulp-cssmin, gulp-jshint, gulp-concat、gulp-inject 等等。</p>
-<h3 id="为什么选择-gulp？"><a href="#为什么选择-gulp？" class="headerlink" title="为什么选择 gulp？"></a>为什么选择 gulp？</h3><p>其实现有的基于 Node.js 的构建工具有很多，比如 Bower，Yeoman，grunt 等。而且自 2013 年 grunt v0.4.0 发布以后，grunt 已经改变了前端的开发方式。那么为什么我们要选 gulp？</p>
-<p>gulp 最大的特点是所有的任务都是以 Node.js Stream 的形式处理，构建流程可以由 Stream 之间的 pipe 来定义，省去了把中间文件写到磁盘再读取的过程，而且任务都是默认并行，速度比 grunt 快很多，配置也感觉更省心。</p>
-<ul>
-<li>易于使用：采用代码优于配置策略，gulp 让简单的事情继续简单，复杂的任务变得可管理。</li>
-<li>高效：gulp 基于 Node.js 流 Unix 管道连接的方式，不需要往磁盘写中间文件，可以更快地完成构建。</li>
-<li>高质量：gulp 每个 task 只完成一个任务，提高 task 的重用度。</li>
-<li>易于学习：gulp 核心 API 约 5 个，开发者能在很短的时间内学会，之后就可以通过管道流来组合自己需要的 task。</li>
-</ul>
-<h3 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h3><ol>
-<li><p>创建项目，初始化package.json文件，并安装gulp作为开发依赖</p>
-<blockquote>
-<p>$ mkdir gulp-app &amp;&amp; npm init<br>$ npm install –save-dev gulp</p>
-</blockquote>
-</li>
-<li><p>新建gulpfile.js文件，并写入以下内容</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var gulp = require(&apos;gulp&apos;)</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;default&apos;, () =&gt; &#123;</span><br><span class="line">    console.log(&apos;what the hell&apos;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>命令行执行gulp，会看到输出 ‘what the hell’</p>
-</li>
-</ol>
-<h3 id="gulp几个重要的api"><a href="#gulp几个重要的api" class="headerlink" title="gulp几个重要的api"></a>gulp几个重要的api</h3><h3 id="构建自动化流程"><a href="#构建自动化流程" class="headerlink" title="构建自动化流程"></a>构建自动化流程</h3><p>gulp提供了许多可以满足我们工作需求的插件，以下列举部分：</p>
-<ul>
-<li><p><a href="https://www.npmjs.com/package/gulp-uglify" title="gulp-uglify" target="_blank" rel="noopener">gulp-uglify</a></p>
-<ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install –save-dev gulp-uglify</p>
-</blockquote>
-</li>
-<li><p>配置task</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(&apos;default&apos;, () =&gt; &#123;</span><br><span class="line">  gulp</span><br><span class="line">  .src(&apos;src/app.js&apos;)</span><br><span class="line">  .pipe(uglify())</span><br><span class="line">  .pipe(gulp.dest(&apos;dist&apos;))</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><a href="https://www.npmjs.com/package/gulp-less" title="gulp-less" target="_blank" rel="noopener">gulp-less</a></p>
-<ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install –save-dev gulp-less</p>
-</blockquote>
-</li>
-<li><p>配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var less = require(&apos;gulp-less&apos;)</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;default&apos;, () =&gt; &#123;</span><br><span class="line">  gulp.src(&apos;src/styles/app.less&apos;)</span><br><span class="line">  .pipe(less())</span><br><span class="line">  .pipe(gulp.dest(&apos;dist/styles&apos;))</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><a href="https://www.npmjs.com/package/gulp-coffee" title="gulp-coffee" target="_blank" rel="noopener">gulp-coffee</a></p>
-<ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install –save-dev gulp-coffee</p>
-</blockquote>
-</li>
-<li><p>配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var coffee = require(&apos;gulp-coffee&apos;)</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;default&apos;, () =&gt; &#123;</span><br><span class="line">  gulp.src(&apos;src/scripts/app.coffee&apos;).pipe(coffee()).pipe(gulp.dest(&apos;dist/scripts&apos;))</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><a href="https://www.npmjs.com/package/gulp-clean" title="gulp-clean" target="_blank" rel="noopener">gulp-clean</a></p>
-<ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install –save-dev gulp-clean</p>
-</blockquote>
-</li>
-<li><p>配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var clean = require(&apos;gulp-clean&apos;)</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;clean&apos;, () =&gt; &#123;</span><br><span class="line">  gulp.src(&apos;dist/&apos;).pipe(clean())</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><a href="https://www.npmjs.com/package/gulp-autoprefixer" title="autoprefixer" target="_blank" rel="noopener">gulp-autoprefixer</a></p>
-<ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install –save-dev gulp-autoprefixer</p>
-</blockquote>
-</li>
-<li><p>配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var autoPrefixer = require(&apos;gulp-autoprefixer&apos;)</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;css&apos;, () =&gt; &#123;</span><br><span class="line">  gulp.src(&apos;src/styles/app.less&apos;).pipe(less()).pipe(autoPrefixer()).pipe(gulp.dest(&apos;dist/styles&apos;))</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><a href="http://www.gulpjs.com.cn/docs/recipes/server-with-livereload-and-css-injection/" target="_blank" rel="noopener">browser-sync</a> 拥有实时重载（live-reloading）和 CSS 注入的服务器</p>
-<ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install –save-dev browser-sync</p>
-</blockquote>
-</li>
-<li><p>配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">var gulp = require(&apos;gulp&apos;)</span><br><span class="line">var uglify = require(&apos;gulp-uglify&apos;)</span><br><span class="line">var less = require(&apos;gulp-less&apos;)</span><br><span class="line">var coffee = require(&apos;gulp-coffee&apos;)</span><br><span class="line">var clean = require(&apos;gulp-clean&apos;)</span><br><span class="line">var autoPrefixer = require(&apos;gulp-autoprefixer&apos;)</span><br><span class="line">var browserSync = require(&apos;browser-sync&apos;);</span><br><span class="line">var reload = browserSync.reload;</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;clean&apos;, () =&gt; &#123;</span><br><span class="line">  gulp.src(&apos;dist/&apos;).pipe(clean())</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;coffee&apos;, () =&gt; &#123;</span><br><span class="line">  gulp.src(&apos;src/scripts/*.coffee&apos;)</span><br><span class="line">  .pipe(coffee())</span><br><span class="line">  .pipe(uglify())</span><br><span class="line">  .pipe(gulp.dest(&apos;dist/scripts&apos;))</span><br><span class="line">  // .pipe(reload(&#123; stream: true &#125;))</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;less&apos;, () =&gt; &#123;</span><br><span class="line">  gulp.src(&apos;src/styles/app.less&apos;)</span><br><span class="line">  .pipe(less())</span><br><span class="line">  .pipe(autoPrefixer())</span><br><span class="line">  .pipe(gulp.dest(&apos;dist/styles&apos;))</span><br><span class="line">  .pipe(reload(&#123; stream: true &#125;))</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// 监视文件改动并重新载入</span><br><span class="line">gulp.task(&apos;serve&apos;, function() &#123;</span><br><span class="line">  browserSync(&#123;</span><br><span class="line">    server: &#123;</span><br><span class="line">      baseDir: &apos;./&apos;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  gulp.watch(&apos;src/styles/app.less&apos;, [&apos;less&apos;]);</span><br><span class="line">  gulp.watch(&apos;src/scripts/app.coffee&apos;, [&apos;coffee&apos;])</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;default&apos;,[&apos;clean&apos;, &apos;coffee&apos;, &apos;less&apos;, &apos;serve&apos;])</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/04/2018-09-04-grunt/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -734,6 +486,187 @@
 </ul>
 </li>
 </ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/04/2018-09-06-udp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嘿嘿嘿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/04/2018-09-06-udp/" itemprop="url">UDP协议</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-04T00:00:00+08:00">
+                2018-09-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  218
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="UDP协议"><a href="#UDP协议" class="headerlink" title="UDP协议"></a>UDP协议</h2><p>UDP协议全称是用户数据报协议，在网络中它与TCP协议一样用于处理数据包，是一种无连接的协议。在OSI模型中，在第四层——传输层，处于IP协议的上一层。UDP有不提供数据包分组、组装和不能对数据包进行排序的缺点，也就是说，当报文发送之后，是无法得知其是否安全完整到达的。</p>
+<ul>
+<li><p>基本特点</p>
+<ul>
+<li><p>无连接的</p>
+</li>
+<li><p>不保证可靠交付</p>
+</li>
+<li><p>面向报文的，在添加了UDP协议的首部后就直接塞给UP层了</p>
+</li>
+<li><p>没有拥塞控制</p>
+</li>
+<li><p>支持一对一，一对多和多对多的交互通信</p>
+</li>
+<li><p>UDP首部开销小</p>
+</li>
+</ul>
+</li>
+<li><p>UDP首部格式</p>
+<ul>
+<li><p>源端口</p>
+</li>
+<li><p>目的端口</p>
+</li>
+<li><p>长度</p>
+</li>
+<li><p>校验和（检测UDP数据包在传输中是否有错，有错就丢弃）</p>
+</li>
+</ul>
+</li>
+</ul>
 
           
         
@@ -1174,7 +1107,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/02/2018-09-02-产生死锁的原因和必要条件/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/02/2018-09-02-对换/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="嘿嘿嘿">
@@ -1193,7 +1126,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/02/2018-09-02-产生死锁的原因和必要条件/" itemprop="url">产生死锁的原因和必要条件</a></h1>
+                <a class="post-title-link" href="/2018/09/02/2018-09-02-对换/" itemprop="url">对换</a></h1>
         
 
         <div class="post-meta">
@@ -1237,7 +1170,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  771
+                  634
                 </span>
               
 
@@ -1276,33 +1209,23 @@
       
         
           
-            <h2 id="产生死锁的原因和必要条件"><a href="#产生死锁的原因和必要条件" class="headerlink" title="产生死锁的原因和必要条件"></a>产生死锁的原因和必要条件</h2><p>在多道程序系统中，虽可借助于多个进程的并发执行来改善系统的资源利用率，提高系统的吞吐量，但可能发生一种危险——死锁。所谓死锁(Deadlock)，是指多个进程在运行过程中因争夺资源而造成的一种僵局(DeadlyEmbrace)，当进程处于这种僵持状态时，若无外力作用，它们都将无法再向前推进。</p>
-<h3 id="产生死锁的必要条件"><a href="#产生死锁的必要条件" class="headerlink" title="产生死锁的必要条件"></a>产生死锁的必要条件</h3><ul>
-<li><p>互斥条件</p>
-<p> 指进程对所分配到的资源进行排它性使用，即在一段时间内某资源只由<br>一个进程占用。如果此时还有其它进程请求该资源，则请求者只能等待，直至占有该资源的进程用毕释放。</p>
+            <h3 id="对换"><a href="#对换" class="headerlink" title="对换"></a>对换</h3><ul>
+<li><p>对换(Swapping)的引入</p>
+<p>  在多道程序环境下，一方面，在内存中的某些进程由于某事件尚未发生而被阻塞运行，但它却占用了大量的内存空间，甚至有时可能出现在内存中所有进程都被阻塞而迫使CPU停止下来等待的情况；另一方面，却又有着许多作业在外存上等待，因无内存而不能入内存运行的情况。显然这对系统资源是一种严重的浪费，且使系统吞吐量下降。为了解决这一问题，在系统中又增设了对换(也称交换)设施。所谓“对换”，是指把内存中暂时不能运行的进程或者暂时不用的程序和数据调出到外存上，以便腾出足够的内存空间，再把已具备运行条件的进程或进程所需要的程序和数据调入内存。对换是提高内存利用率的有效措施。</p>
+<p>  如果对换是以整个进程为单位的，便称之为“整体对换”或“进程对换”。而如果对换是以“页”或“段”为单位进行的，则分别称之为“页面对换”或“分段对换”，又统称为“部分对换”。</p>
 </li>
-<li><p>请求和保持条件</p>
-<p>  指进程已经保持了至少一个资源，但又提出了新的资源请求，而该资源又已被其它进程占有，此时请求进程阻塞，但又对自己已获得的其它资源保持不放。</p>
+<li><p>实现进程对换，系统必须能实现三方面的功能</p>
+<ul>
+<li><p>对换空间的管理</p>
+<p>  在具有对换功能的OS中，通常把外存分为文件区和对换区。前者用于存放文件，后者用于存放从内存换出的进程。</p>
 </li>
-<li><p>不剥夺条件</p>
-<p>  指进程已获得的资源，在未使用完之前，不能被剥夺，只能在使用完<br>时由自己释放。</p>
+<li><p>进程的换出</p>
+<p>   每当一进程由于创建子进程而需要更多的内存空间，但又无足够的内存空间等情况发生时，系统应将某进程换出。其过程是：系统首先选择处于阻塞状态且优先级最低的进程作为换出进程，然后启动磁盘，将该进程的程序和数据传送到磁盘的对换区上。若传送过程未出现错误，便可回收该进程所占用的内存空间，并对该进程的进程控制块做相应的修改。</p>
 </li>
-<li><p>环路等待条件</p>
-<p>  指在发生死锁时，必然存在一个进程——资源的环形链，即进程集合{P0，P1，P2，…，Pn}中的 P0正在等待一个 P1占用的资源； P1正在等待 P2占用的资源，……，Pn正在等待已被 P0占用的资源。</p>
+<li><p>进程的换入</p>
+<p> 系统应定时地查看所有进程的状态，从中找出“就绪”状态但已换出的进程，将其中换出时间最久(换出到磁盘上)的进程作为换入进程，将之换入，直至已无可换入的进程或无可换出的进程为止。</p>
 </li>
 </ul>
-<h3 id="处理死锁的基本方法"><a href="#处理死锁的基本方法" class="headerlink" title="处理死锁的基本方法"></a>处理死锁的基本方法</h3><ul>
-<li><p>预防死锁</p>
-<p>  该方法是通过设置某些限制条件，去破坏产生死锁的四个必要条件中的一个或几个条件，来预防发生死锁。预防死锁是一种较易实现的方法，已被广泛使用。但由于所施加的限制条件往往太严格，因而可能会导致系统资源利用率和系统吞吐量降低。</p>
-</li>
-<li><p>避免死锁</p>
-<p>  是在资源的动态分配过程中，用某种方法去防止系统进入不安全状态，从而避免发生死锁</p>
-</li>
-<li><p>检测死锁</p>
-<p>  这种方法并不须事先采取任何限制性措施，也不必检查系统是否已经进<br>入不安全区，而是允许系统在运行过程中发生死锁。但可通过系统所设置的检测机构，及时地检测出死锁的发生，并精确地确定与死锁有关的进程和资源； 然后，采取适当措施，从系统中将已发生的死锁清除掉</p>
-</li>
-<li><p>解除死锁</p>
-<p>  这是与检测死锁相配套的一种措施。当检测到系统中已发生死锁时，须<br>将进程从死锁状态中解脱出来。常用的实施方法是撤消或挂起一些进程，以便回收一些资源，再将这些资源分配给已处于阻塞状态的进程，使之转为就绪状态，以继续运行</p>
 </li>
 </ul>
 
@@ -1534,175 +1457,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/02/2018-09-02-对换/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="嘿嘿嘿">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/02/2018-09-02-对换/" itemprop="url">对换</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-02T00:00:00+08:00">
-                2018-09-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  634
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  2
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="对换"><a href="#对换" class="headerlink" title="对换"></a>对换</h3><ul>
-<li><p>对换(Swapping)的引入</p>
-<p>  在多道程序环境下，一方面，在内存中的某些进程由于某事件尚未发生而被阻塞运行，但它却占用了大量的内存空间，甚至有时可能出现在内存中所有进程都被阻塞而迫使CPU停止下来等待的情况；另一方面，却又有着许多作业在外存上等待，因无内存而不能入内存运行的情况。显然这对系统资源是一种严重的浪费，且使系统吞吐量下降。为了解决这一问题，在系统中又增设了对换(也称交换)设施。所谓“对换”，是指把内存中暂时不能运行的进程或者暂时不用的程序和数据调出到外存上，以便腾出足够的内存空间，再把已具备运行条件的进程或进程所需要的程序和数据调入内存。对换是提高内存利用率的有效措施。</p>
-<p>  如果对换是以整个进程为单位的，便称之为“整体对换”或“进程对换”。而如果对换是以“页”或“段”为单位进行的，则分别称之为“页面对换”或“分段对换”，又统称为“部分对换”。</p>
-</li>
-<li><p>实现进程对换，系统必须能实现三方面的功能</p>
-<ul>
-<li><p>对换空间的管理</p>
-<p>  在具有对换功能的OS中，通常把外存分为文件区和对换区。前者用于存放文件，后者用于存放从内存换出的进程。</p>
-</li>
-<li><p>进程的换出</p>
-<p>   每当一进程由于创建子进程而需要更多的内存空间，但又无足够的内存空间等情况发生时，系统应将某进程换出。其过程是：系统首先选择处于阻塞状态且优先级最低的进程作为换出进程，然后启动磁盘，将该进程的程序和数据传送到磁盘的对换区上。若传送过程未出现错误，便可回收该进程所占用的内存空间，并对该进程的进程控制块做相应的修改。</p>
-</li>
-<li><p>进程的换入</p>
-<p> 系统应定时地查看所有进程的状态，从中找出“就绪”状态但已换出的进程，将其中换出时间最久(换出到磁盘上)的进程作为换入进程，将之换入，直至已无可换入的进程或无可换出的进程为止。</p>
-</li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/02/2018-09-02-经典进程的同步问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1831,6 +1585,185 @@
 <p>  当哲学家饥饿时，总是先去拿他左边的筷子，即执行 wait(chopstick[i])；成功后，再去拿他右边的筷子，即执行 wait(chopstick[(i+1)mod 5])</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Var chopsiick array of semaphore := (1, 1, 1, 1, 1)；</span><br><span class="line">processi</span><br><span class="line">    repeat</span><br><span class="line">        think；</span><br><span class="line">        Sswait(chopstick[(i+1) mod 5]，chopstick[i])；</span><br><span class="line">        eat；</span><br><span class="line">        Ssignat(chopstick[(i+1) mod 5]，chopstick[i])；</span><br><span class="line">    until false；</span><br></pre></td></tr></table></figure>
 
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/02/2018-09-02-产生死锁的原因和必要条件/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嘿嘿嘿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/02/2018-09-02-产生死锁的原因和必要条件/" itemprop="url">产生死锁的原因和必要条件</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-02T00:00:00+08:00">
+                2018-09-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  771
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="产生死锁的原因和必要条件"><a href="#产生死锁的原因和必要条件" class="headerlink" title="产生死锁的原因和必要条件"></a>产生死锁的原因和必要条件</h2><p>在多道程序系统中，虽可借助于多个进程的并发执行来改善系统的资源利用率，提高系统的吞吐量，但可能发生一种危险——死锁。所谓死锁(Deadlock)，是指多个进程在运行过程中因争夺资源而造成的一种僵局(DeadlyEmbrace)，当进程处于这种僵持状态时，若无外力作用，它们都将无法再向前推进。</p>
+<h3 id="产生死锁的必要条件"><a href="#产生死锁的必要条件" class="headerlink" title="产生死锁的必要条件"></a>产生死锁的必要条件</h3><ul>
+<li><p>互斥条件</p>
+<p> 指进程对所分配到的资源进行排它性使用，即在一段时间内某资源只由<br>一个进程占用。如果此时还有其它进程请求该资源，则请求者只能等待，直至占有该资源的进程用毕释放。</p>
+</li>
+<li><p>请求和保持条件</p>
+<p>  指进程已经保持了至少一个资源，但又提出了新的资源请求，而该资源又已被其它进程占有，此时请求进程阻塞，但又对自己已获得的其它资源保持不放。</p>
+</li>
+<li><p>不剥夺条件</p>
+<p>  指进程已获得的资源，在未使用完之前，不能被剥夺，只能在使用完<br>时由自己释放。</p>
+</li>
+<li><p>环路等待条件</p>
+<p>  指在发生死锁时，必然存在一个进程——资源的环形链，即进程集合{P0，P1，P2，…，Pn}中的 P0正在等待一个 P1占用的资源； P1正在等待 P2占用的资源，……，Pn正在等待已被 P0占用的资源。</p>
+</li>
+</ul>
+<h3 id="处理死锁的基本方法"><a href="#处理死锁的基本方法" class="headerlink" title="处理死锁的基本方法"></a>处理死锁的基本方法</h3><ul>
+<li><p>预防死锁</p>
+<p>  该方法是通过设置某些限制条件，去破坏产生死锁的四个必要条件中的一个或几个条件，来预防发生死锁。预防死锁是一种较易实现的方法，已被广泛使用。但由于所施加的限制条件往往太严格，因而可能会导致系统资源利用率和系统吞吐量降低。</p>
+</li>
+<li><p>避免死锁</p>
+<p>  是在资源的动态分配过程中，用某种方法去防止系统进入不安全状态，从而避免发生死锁</p>
+</li>
+<li><p>检测死锁</p>
+<p>  这种方法并不须事先采取任何限制性措施，也不必检查系统是否已经进<br>入不安全区，而是允许系统在运行过程中发生死锁。但可通过系统所设置的检测机构，及时地检测出死锁的发生，并精确地确定与死锁有关的进程和资源； 然后，采取适当措施，从系统中将已发生的死锁清除掉</p>
+</li>
+<li><p>解除死锁</p>
+<p>  这是与检测死锁相配套的一种措施。当检测到系统中已发生死锁时，须<br>将进程从死锁状态中解脱出来。常用的实施方法是撤消或挂起一些进程，以便回收一些资源，再将这些资源分配给已处于阻塞状态的进程，使之转为就绪状态，以继续运行</p>
 </li>
 </ul>
 
@@ -2413,7 +2346,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
