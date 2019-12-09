@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Javascript,Typescript,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="确定库的类型全局库全局库是指能在全局命名空间下访问的（例如：不需要使用任何形式的import）, 例如JQuery的 $ 如何识别:  顶级的var语句或function声明  一个或多个赋值语句到window.someName  假设DOM原始值像document或window是存在的   模块化库一些库只能工作在模块加载器的环境下, 比如，像 express只能在Node.js里工作所以必须使">
+<meta name="keywords" content="Javascript,Typescript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何为Typescript编写td文件">
+<meta property="og:url" content="http://yoursite.com/2019/09/16/2019-09-16-为typescript编写td文件/index.html">
+<meta property="og:site_name" content="个人博客">
+<meta property="og:description" content="确定库的类型全局库全局库是指能在全局命名空间下访问的（例如：不需要使用任何形式的import）, 例如JQuery的 $ 如何识别:  顶级的var语句或function声明  一个或多个赋值语句到window.someName  假设DOM原始值像document或window是存在的   模块化库一些库只能工作在模块加载器的环境下, 比如，像 express只能在Node.js里工作所以必须使">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-09-16T08:53:42.597Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何为Typescript编写td文件">
+<meta name="twitter:description" content="确定库的类型全局库全局库是指能在全局命名空间下访问的（例如：不需要使用任何形式的import）, 例如JQuery的 $ 如何识别:  顶级的var语句或function声明  一个或多个赋值语句到window.someName  假设DOM原始值像document或window是存在的   模块化库一些库只能工作在模块加载器的环境下, 比如，像 express只能在Node.js里工作所以必须使">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/09/16/2019-09-16-为typescript编写td文件/">
+
+
+
+
+
+  <title>如何为Typescript编写td文件 | 个人博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/16/2019-09-16-为typescript编写td文件/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嘿嘿嘿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">如何为Typescript编写td文件</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-16T00:00:00+08:00">
+                2019-09-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  510
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="确定库的类型"><a href="#确定库的类型" class="headerlink" title="确定库的类型"></a>确定库的类型</h2><h3 id="全局库"><a href="#全局库" class="headerlink" title="全局库"></a>全局库</h3><p>全局库是指能在全局命名空间下访问的（例如：不需要使用任何形式的import）, 例如JQuery的 <code>$</code></p>
+<p><strong>如何识别</strong>:</p>
+<ul>
+<li><p>顶级的var语句或function声明</p>
+</li>
+<li><p>一个或多个赋值语句到window.someName</p>
+</li>
+<li><p>假设DOM原始值像document或window是存在的</p>
+</li>
+</ul>
+<h3 id="模块化库"><a href="#模块化库" class="headerlink" title="模块化库"></a>模块化库</h3><p>一些库只能工作在模块加载器的环境下, 比如，像 express只能在Node.js里工作所以必须使用CommonJS的require函数加载。</p>
+<p><strong>如何识别</strong>:</p>
+<ul>
+<li><p>无条件的调用require或define</p>
+</li>
+<li><p>像import * as a from ‘b’; or export c;这样的声明</p>
+</li>
+<li><p>赋值给exports或module.exports</p>
+</li>
+</ul>
+<h3 id="UMD"><a href="#UMD" class="headerlink" title="UMD"></a>UMD</h3><p>UMD模块是指那些既可以作为模块使用（通过导入）又可以作为全局（在没有模块加载器的环境里）使用的模块。如 <code>Moment.js</code><br>在Node.js或RequireJS里，你可以这样写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import moment = require(&quot;moment&quot;);</span><br><span class="line">console.log(moment.format());</span><br></pre></td></tr></table></figure>
+
+<p>在浏览器中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(moment.format());</span><br></pre></td></tr></table></figure>
+
+<p><strong>如何识别</strong></p>
+<p>UMD模块会检查是否存在模块加载器环境</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(function (root, factory) &#123;</span><br><span class="line">    if (typeof define === &quot;function&quot; &amp;&amp; define.amd) &#123;</span><br><span class="line">        define([&quot;libName&quot;], factory);</span><br><span class="line">    &#125; else if (typeof module === &quot;object&quot; &amp;&amp; module.exports) &#123;</span><br><span class="line">        module.exports = factory(require(&quot;libName&quot;));</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        root.returnExports = factory(root.libName);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;(this, function (b) &#123;&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="模块插件或UMD插件"><a href="#模块插件或UMD插件" class="headerlink" title="模块插件或UMD插件"></a>模块插件或UMD插件</h3><p>一个模块插件可以改变一个模块的结构（UMD或模块）</p>
+<h3 id="全局插件"><a href="#全局插件" class="headerlink" title="全局插件"></a>全局插件</h3><p>一个全局插件是全局代码，它们会改变全局对象的结构。比如，一些库往Array.prototype或String.prototype里添加新的方法。</p>
+<h2 id="使用依赖"><a href="#使用依赖" class="headerlink" title="使用依赖"></a>使用依赖</h2><h3 id="依赖全局库"><a href="#依赖全局库" class="headerlink" title="依赖全局库"></a>依赖全局库</h3><p>如果你的库依赖于某个全局库，使用 <code>/// &lt;reference types=&quot;...&quot; /&gt;</code> 指令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/// &lt;reference types=&quot;someLib&quot; /&gt;</span><br><span class="line">function getThing(): someLib.thing;</span><br></pre></td></tr></table></figure>
+
+<h3 id="依赖模块"><a href="#依赖模块" class="headerlink" title="依赖模块"></a>依赖模块</h3><p>如果你的库依赖于模块，使用import语句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import * as moment from &quot;moment&quot;;</span><br><span class="line"></span><br><span class="line">function getThing(): moment;</span><br></pre></td></tr></table></figure>
+
+<h3 id="依赖UMD库"><a href="#依赖UMD库" class="headerlink" title="依赖UMD库"></a>依赖UMD库</h3><ul>
+<li>从全局库</li>
+</ul>
+<p>如果你的全局库依赖于某个UMD模块，使用<code>/// &lt;reference types</code>指令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/// &lt;reference types=&quot;moment&quot; /&gt;</span><br><span class="line">function getThing(): moment;</span><br></pre></td></tr></table></figure>
+
+<p>从一个模块或UMD库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import * as someLib from &apos;someLib&apos;;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Javascript/" rel="tag"># Javascript</a>
+          
+            <a href="/tags/Typescript/" rel="tag"># Typescript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/26/2019-08-26-Kafka的基本命令/" rel="next" title="Kafka的基本命令">
+                <i class="fa fa-chevron-left"></i> Kafka的基本命令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/03/2019-12-03-什么是https/" rel="prev" title>
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://s2.ax1x.com/2019/08/14/mFInYj.jpg" alt="嘿嘿嘿">
+            
+              <p class="site-author-name" itemprop="name">嘿嘿嘿</p>
+              <p class="site-description motion-element" itemprop="description">记录打怪升级之路</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/yourname" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:yourname@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#确定库的类型"><span class="nav-number">1.</span> <span class="nav-text">确定库的类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#全局库"><span class="nav-number">1.1.</span> <span class="nav-text">全局库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模块化库"><span class="nav-number">1.2.</span> <span class="nav-text">模块化库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UMD"><span class="nav-number">1.3.</span> <span class="nav-text">UMD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模块插件或UMD插件"><span class="nav-number">1.4.</span> <span class="nav-text">模块插件或UMD插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全局插件"><span class="nav-number">1.5.</span> <span class="nav-text">全局插件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用依赖"><span class="nav-number">2.</span> <span class="nav-text">使用依赖</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#依赖全局库"><span class="nav-number">2.1.</span> <span class="nav-text">依赖全局库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#依赖模块"><span class="nav-number">2.2.</span> <span class="nav-text">依赖模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#依赖UMD库"><span class="nav-number">2.3.</span> <span class="nav-text">依赖UMD库</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">嘿嘿嘿</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

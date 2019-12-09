@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="k8s,docker,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -79,18 +79,17 @@
 
 
 
-<meta name="description" content="踩坑集锦此篇文章用来记录维护k8s过程中的一系列问题  kubectl logs 超时错误类似： 1Error from server: Get https://172.31.27.3:10250/containerLogs/prod-sfox/a-group-miner-2hshz/miner-idx-1?follow=true&amp;amp;tailLines=20: dial tcp 172.31">
-<meta name="keywords" content="k8s,docker">
+<meta name="description" content="什么是https首先, 在讲我们为什么需要https之前, 先看看以下两个流程, 描述了A和B之间想要互相通信, 又想让通信的内容安全 流程1 A将对称秘钥发送给B  B使用该秘钥加密数据, 并发送给A  A用秘钥解开B发送的内容, AB成功通信   缺陷: 当中间人C截获了首次通信时, A发送给B的秘钥, 则AB后续所有的交互信息都能被C解开 流程2 A将自己的公钥给B  B收到A的公钥后, 用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="k8s踩坑集锦">
-<meta property="og:url" content="http://yoursite.com/2019/08/14/2019-08-15-k8s踩坑集锦/index.html">
+<meta property="og:title" content="个人博客">
+<meta property="og:url" content="http://yoursite.com/2019/12/03/2019-12-03-什么是https/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="踩坑集锦此篇文章用来记录维护k8s过程中的一系列问题  kubectl logs 超时错误类似： 1Error from server: Get https://172.31.27.3:10250/containerLogs/prod-sfox/a-group-miner-2hshz/miner-idx-1?follow=true&amp;amp;tailLines=20: dial tcp 172.31">
+<meta property="og:description" content="什么是https首先, 在讲我们为什么需要https之前, 先看看以下两个流程, 描述了A和B之间想要互相通信, 又想让通信的内容安全 流程1 A将对称秘钥发送给B  B使用该秘钥加密数据, 并发送给A  A用秘钥解开B发送的内容, AB成功通信   缺陷: 当中间人C截获了首次通信时, A发送给B的秘钥, 则AB后续所有的交互信息都能被C解开 流程2 A将自己的公钥给B  B收到A的公钥后, 用">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-15T06:38:06.721Z">
+<meta property="og:updated_time" content="2019-12-03T06:19:16.156Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="k8s踩坑集锦">
-<meta name="twitter:description" content="踩坑集锦此篇文章用来记录维护k8s过程中的一系列问题  kubectl logs 超时错误类似： 1Error from server: Get https://172.31.27.3:10250/containerLogs/prod-sfox/a-group-miner-2hshz/miner-idx-1?follow=true&amp;amp;tailLines=20: dial tcp 172.31">
+<meta name="twitter:title" content="个人博客">
+<meta name="twitter:description" content="什么是https首先, 在讲我们为什么需要https之前, 先看看以下两个流程, 描述了A和B之间想要互相通信, 又想让通信的内容安全 流程1 A将对称秘钥发送给B  B使用该秘钥加密数据, 并发送给A  A用秘钥解开B发送的内容, AB成功通信   缺陷: 当中间人C截获了首次通信时, A发送给B的秘钥, 则AB后续所有的交互信息都能被C解开 流程2 A将自己的公钥给B  B收到A的公钥后, 用">
 
 
 
@@ -120,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/08/14/2019-08-15-k8s踩坑集锦/">
+  <link rel="canonical" href="http://yoursite.com/2019/12/03/2019-12-03-什么是https/">
 
 
 
 
 
-  <title>k8s踩坑集锦 | 个人博客</title>
+  <title> | 个人博客</title>
   
 
 
@@ -263,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/2019-08-15-k8s踩坑集锦/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/03/2019-12-03-什么是https/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="嘿嘿嘿">
@@ -280,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">k8s踩坑集锦</h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -292,8 +291,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-14T00:00:00+08:00">
-                2019-08-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-03T11:38:43+08:00">
+                2019-12-03
               </time>
             
 
@@ -304,6 +303,8 @@
 
           
 
+          
+            
           
 
           
@@ -322,7 +323,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  373
+                  852
                 </span>
               
 
@@ -338,7 +339,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  3
                 </span>
               
             </div>
@@ -359,43 +360,64 @@
       
 
       
-        <h2 id="踩坑集锦"><a href="#踩坑集锦" class="headerlink" title="踩坑集锦"></a>踩坑集锦</h2><p>此篇文章用来记录维护k8s过程中的一系列问题</p>
-<hr>
-<h3 id="kubectl-logs-超时"><a href="#kubectl-logs-超时" class="headerlink" title="kubectl logs 超时"></a>kubectl logs 超时</h3><p>错误类似：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error from server: Get https://172.31.27.3:10250/containerLogs/prod-sfox/a-group-miner-2hshz/miner-idx-1?follow=true&amp;tailLines=20: dial tcp 172.31.27.3:10250: connect: connection timed out</span><br></pre></td></tr></table></figure>
-
+        <h1 id="什么是https"><a href="#什么是https" class="headerlink" title="什么是https"></a>什么是https</h1><p>首先, 在讲我们为什么需要https之前, 先看看以下两个流程, 描述了A和B之间想要互相通信, 又想让通信的内容安全</p>
+<h3 id="流程1"><a href="#流程1" class="headerlink" title="流程1"></a>流程1</h3><ol>
+<li><p>A将对称秘钥发送给B</p>
+</li>
+<li><p>B使用该秘钥加密数据, 并发送给A</p>
+</li>
+<li><p>A用秘钥解开B发送的内容, AB成功通信</p>
+</li>
+</ol>
+<p>缺陷: 当中间人C截获了首次通信时, A发送给B的秘钥, 则AB后续所有的交互信息都能被C解开</p>
+<h3 id="流程2"><a href="#流程2" class="headerlink" title="流程2"></a>流程2</h3><ol>
+<li><p>A将自己的公钥给B</p>
+</li>
+<li><p>B收到A的公钥后, 用A的公钥加密了 <strong>B自己生成对称秘钥</strong>, 并将加密后的内容回给了B</p>
+</li>
+<li><p>当A收到来自B的回复, A用自己的私钥解开了B的加密内容, 从而得到了B的对称秘钥, 后续通信使用该对称秘钥加密内容</p>
+</li>
+</ol>
+<p>缺陷: </p>
+<p>中间人C可在截获了A和B的首次通信后, 用自己的公钥给了B, B收到请求后,他不知道公钥是C发过来的,从而用了C的公钥加密了对称秘钥并回给了C,<br>C拿到内容后,用自己的私钥解开内容,从而拿到了B的对称秘钥</p>
+<p>这个流程的缺陷主要是A和B都无法确定收到的数据是来源与对方的, 而不是来源于中间人的.</p>
+<h2 id="引入证书"><a href="#引入证书" class="headerlink" title="引入证书"></a>引入证书</h2><p>内容:</p>
 <ul>
-<li><p>该操作走内网ip，节点间内网不同</p>
+<li><p>证书颁发机构</p>
 </li>
-<li><p>10250端口未打开</p>
+<li><p>服务端网址</p>
+</li>
+<li><p>机构私钥加密(服务端公钥)</p>
+</li>
+<li><p>机构私钥加密(证书签名)</p>
 </li>
 </ul>
-<hr>
-<h3 id="DNS解析失败"><a href="#DNS解析失败" class="headerlink" title="DNS解析失败"></a>DNS解析失败</h3><p>具体错误信息一般如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">panic: dial tcp: lookup mysql on 10.96.0.10:53: no such host</span><br></pre></td></tr></table></figure>
-
+<h3 id="流程3"><a href="#流程3" class="headerlink" title="流程3"></a>流程3</h3><p><strong>此时假设A作为服务端</strong></p>
+<ol>
+<li><p>A把自己的公钥给证书颁发机构</p>
+</li>
+<li><p>机构也有自己的一对公钥私钥, 机构用私钥加密 <strong>A的公钥</strong>, 并通过服务端网址等信息生成了一个证书签名,证书签名同样经过<br> 机构的私钥加密.证书制作完成后把证书发给服务端的A</p>
+</li>
+<li><p>这时当A想和B通信时,A不再将自己的公钥给B, 而是将证书给B</p>
+</li>
+<li><p>B收到证书之后, 首先要辨别真伪</p>
+<p> 由于证书是机构签发的, 各大浏览器和操作系统都维护了所有权威证书机构的名称和公钥,所以B只要知道是哪个机构颁发的证书,就可以找到对应的公钥,<br> 解开证书得到证书签名</p>
+</li>
+<li><p>B利用CA的公钥解密数字签名，得到服务器信息的摘要，和原本的信息，再对原本的信息hash，和摘要对比来进行校验</p>
+</li>
+<li><p>B此时成功的拿到了来自于A的公钥,后续通信同流程2</p>
+</li>
+</ol>
+<p>流程3的关键在与, 引入了第三方权威机构, 从而让B确定自己收到的证书是来自于A的, 而不是中间人C伪造的.</p>
+<p>如果C在一开始劫持了证书为怎么样?</p>
 <ul>
-<li><p>查看coredns的日志，判断集群内的dns解析是否成功</p>
+<li><p>C替换为自己的证书</p>
+<p>  当B收到后,B会验证证书不通过</p>
 </li>
-<li><p>如果集群内成功，是往外网的dns解析出错，检查宿主机的 <code>/etc/resolv.conf</code> 配置</p>
+<li><p>C将证书再发给B, B回了信息后, 由于C无法没有A的私钥,即使收到了B的回复之后,也无法解开</p>
 </li>
 </ul>
-<hr>
-<h3 id="Helm报错"><a href="#Helm报错" class="headerlink" title="Helm报错"></a>Helm报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UPGRADE FAILED</span><br><span class="line">Error: &quot;dev-chain&quot; has no deployed releases</span><br><span class="line">Error: UPGRADE FAILED: &quot;dev-chain&quot; has no deployed releases</span><br></pre></td></tr></table></figure>
-
-<p>原因是helm的bug，如果helm有一次deploy的失败记录就没法重新deploy, 需要手动通过 <code>helm delete</code> 命令删除错误的记录</p>
-<hr>
-<h3 id="容器组里的服务获取不到客户端真实IP"><a href="#容器组里的服务获取不到客户端真实IP" class="headerlink" title="容器组里的服务获取不到客户端真实IP"></a>容器组里的服务获取不到客户端真实IP</h3><p>如果你的服务暴露方式是NodePort，当客户端访问IP所属的Node和服务所在的Node不是同一个Node时，因为内部有SNAT和DNAT的存在，<br>客户端的源IP会丢失，解决方法，在Service的配置中添加 <code>externalTrafficPolicy</code>, 并用 <code>nodeSelector</code> 将pod固定在nodePort对应的同一台机器上</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Service</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  namespace:</span> <span class="string">dev</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">signal</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  externalTrafficPolicy:</span> <span class="string">Local</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">NodePort</span></span><br><span class="line"><span class="attr">  ports:</span></span><br><span class="line"><span class="attr">    - port:</span> <span class="number">8080</span></span><br><span class="line"><span class="attr">      targetPort:</span> <span class="number">8080</span></span><br><span class="line"><span class="attr">      name:</span> <span class="string">http</span></span><br><span class="line"><span class="attr">      nodePort:</span> <span class="number">30010</span></span><br><span class="line"><span class="attr">  selector:</span></span><br><span class="line"><span class="attr">    app:</span> <span class="string">signal</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="公用解决方法"><a href="#公用解决方法" class="headerlink" title="公用解决方法"></a>公用解决方法</h3><ul>
-<li><p>查看kubelet日志</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl status kubelet</span><br><span class="line">journalctl -xu kubelet</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看docker的日志</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl status docker</span><br><span class="line">journalctl -xu docker</span><br></pre></td></tr></table></figure></li>
-</ul>
+<p>以上流程就是https的主体思想, https在http协议的基础上增加了ssl安全层, 以上所有的一系列认证流程都是在ssl中完成的</p>
 
       
     </div>
@@ -411,14 +433,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/k8s/" rel="tag"># k8s</a>
-          
-            <a href="/tags/docker/" rel="tag"># docker</a>
-          
-        </div>
-      
 
       
       
@@ -428,8 +442,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/14/2019-08-14-NodeJS与ES6的模块化/" rel="next" title="NodeJS与ES6的模块化">
-                <i class="fa fa-chevron-left"></i> NodeJS与ES6的模块化
+              <a href="/2019/09/16/2019-09-16-为typescript编写td文件/" rel="next" title="如何为Typescript编写td文件">
+                <i class="fa fa-chevron-left"></i> 如何为Typescript编写td文件
               </a>
             
           </div>
@@ -438,8 +452,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/08/14/Docker-杂记/" rel="prev" title="Docker 杂记">
-                Docker 杂记 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/12/09/2019-12-09-linux系统上的抓包/" rel="prev" title>
+                 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -468,6 +482,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -515,7 +533,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -527,10 +545,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">24</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">标签</span>
-                
+                </a>
               </div>
             
 
@@ -577,7 +595,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#踩坑集锦"><span class="nav-number">1.</span> <span class="nav-text">踩坑集锦</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#kubectl-logs-超时"><span class="nav-number">1.1.</span> <span class="nav-text">kubectl logs 超时</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS解析失败"><span class="nav-number">1.2.</span> <span class="nav-text">DNS解析失败</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Helm报错"><span class="nav-number">1.3.</span> <span class="nav-text">Helm报错</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器组里的服务获取不到客户端真实IP"><span class="nav-number">1.4.</span> <span class="nav-text">容器组里的服务获取不到客户端真实IP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#公用解决方法"><span class="nav-number">1.5.</span> <span class="nav-text">公用解决方法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是https"><span class="nav-number">1.</span> <span class="nav-text">什么是https</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#流程1"><span class="nav-number">1.0.1.</span> <span class="nav-text">流程1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流程2"><span class="nav-number">1.0.2.</span> <span class="nav-text">流程2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引入证书"><span class="nav-number">1.1.</span> <span class="nav-text">引入证书</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#流程3"><span class="nav-number">1.1.1.</span> <span class="nav-text">流程3</span></a></li></ol></li></ol></div>
             
 
           </div>
