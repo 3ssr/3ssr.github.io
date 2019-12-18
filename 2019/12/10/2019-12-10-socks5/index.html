@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Network,Linux,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Socks5概念Socks5是一种网络传输协议, 用于客户端与(代理)服务器通讯使用 三个阶段认证阶段socks5比socks4多了一个认证阶段, 客户端必须将自己使用的socks版本, 加密方式等信息发送给服务端(以节点为单位, 总共258)    VER NMETHODS METHODS    1 1 1-255    VER   使用的socks协议的版本号, 当前最新的版本号是5  NME">
+<meta name="keywords" content="Network,Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Socks5">
+<meta property="og:url" content="http://yoursite.com/2019/12/10/2019-12-10-socks5/index.html">
+<meta property="og:site_name" content="个人博客">
+<meta property="og:description" content="Socks5概念Socks5是一种网络传输协议, 用于客户端与(代理)服务器通讯使用 三个阶段认证阶段socks5比socks4多了一个认证阶段, 客户端必须将自己使用的socks版本, 加密方式等信息发送给服务端(以节点为单位, 总共258)    VER NMETHODS METHODS    1 1 1-255    VER   使用的socks协议的版本号, 当前最新的版本号是5  NME">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-12-18T09:12:13.288Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Socks5">
+<meta name="twitter:description" content="Socks5概念Socks5是一种网络传输协议, 用于客户端与(代理)服务器通讯使用 三个阶段认证阶段socks5比socks4多了一个认证阶段, 客户端必须将自己使用的socks版本, 加密方式等信息发送给服务端(以节点为单位, 总共258)    VER NMETHODS METHODS    1 1 1-255    VER   使用的socks协议的版本号, 当前最新的版本号是5  NME">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/12/10/2019-12-10-socks5/">
+
+
+
+
+
+  <title>Socks5 | 个人博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/10/2019-12-10-socks5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嘿嘿嘿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Socks5</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-10T00:00:00+08:00">
+                2019-12-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Socks5"><a href="#Socks5" class="headerlink" title="Socks5"></a>Socks5</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>Socks5是一种网络传输协议, 用于客户端与(代理)服务器通讯使用</p>
+<h2 id="三个阶段"><a href="#三个阶段" class="headerlink" title="三个阶段"></a>三个阶段</h2><h3 id="认证阶段"><a href="#认证阶段" class="headerlink" title="认证阶段"></a>认证阶段</h3><p>socks5比socks4多了一个认证阶段, 客户端必须将自己使用的socks版本, 加密方式等信息发送给服务端(以节点为单位, 总共258)</p>
+<table>
+<thead>
+<tr>
+<th>VER</th>
+<th>NMETHODS</th>
+<th>METHODS</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1</td>
+<td>1-255</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>VER</p>
+<p>  使用的socks协议的版本号, 当前最新的版本号是5</p>
+</li>
+<li><p>NMETHODS</p>
+<p>  METHODS 字段占用的字节数</p>
+</li>
+<li><p>METHODS</p>
+<p>  METHODS是客户端支持的认证方式列表，每个方法占1字节。当前的定义是：</p>
+<ul>
+<li><p>0x00 不需要认证</p>
+</li>
+<li><p>0x01 GSSAPI</p>
+</li>
+<li><p>0x02 用户名、密码认证</p>
+</li>
+<li><p>0x03 - 0x7F 由IANA分配（保留）</p>
+</li>
+<li><p>0x80 - 0xFE 为私人方法保留</p>
+</li>
+<li><p>0xFF 无可接受的方法</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>服务端从客户端提供的方法中选择一个并通过以下消息通知客户端: </p>
+<table>
+<thead>
+<tr>
+<th>VER</th>
+<th>METHOD</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>VER是使用的socks协议的版本号, 当前最新的版本号是5</p>
+</li>
+<li><p>METHOD是服务端选中的方法, 如果返回0xFF表示没有一个认证方法被选中, 客户端需要管理连接</p>
+</li>
+</ul>
+<h3 id="连接阶段"><a href="#连接阶段" class="headerlink" title="连接阶段"></a>连接阶段</h3><p>认证完成后, 客户端向服务器发送请求, 告诉服务器自己要连接的目标, 客户端请求信息如下:</p>
+<table>
+<thead>
+<tr>
+<th>VER</th>
+<th>CMD</th>
+<th>RSV</th>
+<th>ATYP</th>
+<th>DST.ADDR</th>
+<th>DST.PORT</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1</td>
+<td>0x00</td>
+<td>地址类型</td>
+<td>目标地址</td>
+<td>目标端口</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>CMD是sock的命令码</p>
+<ul>
+<li><p>0x01表示CONNECT请求</p>
+</li>
+<li><p>0x02表示BIND请求</p>
+</li>
+<li><p>0x03表示UDP转发</p>
+</li>
+</ul>
+</li>
+<li><p>RSV 0x00, 保留字段</p>
+</li>
+<li><p>ATYP </p>
+<ul>
+<li><p>0x01 IPV4地址</p>
+</li>
+<li><p>0x03 域名</p>
+</li>
+<li><p>0x04 IPV6地址</p>
+</li>
+</ul>
+</li>
+<li><p>DST.ADDR</p>
+<ul>
+<li><p>ATYP为0x01, 则为IPv4地址</p>
+</li>
+<li><p>ATYP为0x03，则DST.ADDR部分第一个字节为域名长度，DST.ADDR剩余的内容为域名，没有\0结尾。</p>
+</li>
+<li><p>ATYP为0x04, 则为IPv6地址</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>服务端响应如下:</p>
+<p>| VER | REP | RSV | ATYP | BND.ADDR | BND.PORT |<br>| - | - | - | - | - | - | - |<br>| 1 |1 | 0x00 | 地址类型 | 动态 | 2 |</p>
+<ul>
+<li><p>REP应答阶段</p>
+<ul>
+<li><p>X’00’ succeeded</p>
+</li>
+<li><p>X’01’ general SOCKS server failure</p>
+</li>
+<li><p>X’02’ connection not allowed by ruleset</p>
+</li>
+<li><p>X’03’ Network unreachable</p>
+</li>
+<li><p>X’04’ Host unreachable</p>
+</li>
+<li><p>X’05’ Connection refused</p>
+</li>
+<li><p>X’06’ TTL expired</p>
+</li>
+<li><p>X’07’ Command not supported</p>
+</li>
+<li><p>X’08’ Address type not supported</p>
+</li>
+<li><p>X’09’ to X’FF’ unassigned</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="传输阶段"><a href="#传输阶段" class="headerlink" title="传输阶段"></a>传输阶段</h3><p>传输阶段socks5服务器只做单纯的转发功能</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="远端代理实现"><a href="#远端代理实现" class="headerlink" title="远端代理实现"></a>远端代理实现</h3><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> ss</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"encoding/binary"</span></span><br><span class="line">	<span class="string">"io"</span></span><br><span class="line">	<span class="string">"log"</span></span><br><span class="line">	<span class="string">"net"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// LsServer ss服务</span></span><br><span class="line"><span class="keyword">type</span> LsServer <span class="keyword">struct</span> &#123;</span><br><span class="line">	ListenAddr *net.TCPAddr</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// NewLsServer 创建一个server</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewLsServer</span><span class="params">(address <span class="keyword">string</span>)</span> <span class="params">(*LsServer, error)</span></span> &#123;</span><br><span class="line">	addr, err := net.ResolveTCPAddr(<span class="string">"tcp"</span>, address)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span>, err</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> &amp;LsServer&#123;ListenAddr: addr&#125;, <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *LsServer)</span> <span class="title">handleConn</span><span class="params">(localConn *net.TCPConn)</span></span> &#123;</span><br><span class="line">	<span class="keyword">defer</span> localConn.Close()</span><br><span class="line">	buffer := <span class="built_in">make</span>([]<span class="keyword">byte</span>, <span class="number">256</span>)</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">		认证阶段</span></span><br><span class="line"><span class="comment">		+----+----------+----------+</span></span><br><span class="line"><span class="comment">		|VER | NMETHODS | METHODS  |</span></span><br><span class="line"><span class="comment">		+----+----------+----------+</span></span><br><span class="line"><span class="comment">		| 1  |    1     | 1 to 255 |</span></span><br><span class="line"><span class="comment">		+----+----------+----------+</span></span><br><span class="line"><span class="comment">	**/</span></span><br><span class="line">	_, err := localConn.Read(buffer)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 第一个字段VER代表Socks的版本，Socks5默认为0x05，其固定长度为1个字节</span></span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &amp;&amp; err != io.EOF &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> buffer[<span class="number">0</span>] != <span class="number">0x05</span> &#123;</span><br><span class="line">		log.Println(buffer)</span><br><span class="line">		log.Println(<span class="string">"仅支持socks5"</span>)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">		+----+--------+</span></span><br><span class="line"><span class="comment">		|VER | METHOD |</span></span><br><span class="line"><span class="comment">		+----+--------+</span></span><br><span class="line"><span class="comment">		| 1  |   1    |</span></span><br><span class="line"><span class="comment">		+----+--------+</span></span><br><span class="line"><span class="comment">	**/</span></span><br><span class="line">	<span class="comment">// 0x00表示不需要认证</span></span><br><span class="line">	localConn.Write([]<span class="keyword">byte</span>&#123;<span class="number">0x05</span>, <span class="number">0x00</span>&#125;)</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">		连接阶段</span></span><br><span class="line"><span class="comment">		+----+-----+-------+------+----------+----------+</span></span><br><span class="line"><span class="comment">		|VER | CMD |  RSV  | ATYP | DST.ADDR | DST.PORT |</span></span><br><span class="line"><span class="comment">		+----+-----+-------+------+----------+----------+</span></span><br><span class="line"><span class="comment">		| 1  |  1  | X'00' |  1   | Variable |    2     |</span></span><br><span class="line"><span class="comment">		+----+-----+-------+------+----------+----------+</span></span><br><span class="line"><span class="comment">	**/</span></span><br><span class="line">	n, err := localConn.Read(buffer)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &amp;&amp; n &lt; <span class="number">7</span> &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 判断CMD, 目前仅支持 CONNECT</span></span><br><span class="line">	<span class="keyword">if</span> buffer[<span class="number">1</span>] != <span class="number">0x01</span> &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 解析请求的IP端口</span></span><br><span class="line">	<span class="keyword">var</span> dstIP []<span class="keyword">byte</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">switch</span> buffer[<span class="number">3</span>] &#123;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">0x01</span>:</span><br><span class="line">		dstIP = buffer[<span class="number">4</span> : <span class="number">4</span>+net.IPv4len]</span><br><span class="line">	<span class="keyword">case</span> <span class="number">0x03</span>:</span><br><span class="line">		ipAddr, err := net.ResolveIPAddr(<span class="string">"ip"</span>, <span class="keyword">string</span>(buffer[<span class="number">5</span>:n<span class="number">-2</span>]))</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		dstIP = ipAddr.IP</span><br><span class="line">	<span class="keyword">case</span> <span class="number">0x04</span>:</span><br><span class="line">		dstIP = buffer[<span class="number">4</span> : <span class="number">4</span>+net.IPv6len]</span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	dstPort := buffer[n<span class="number">-2</span>:]</span><br><span class="line">	dstAddr := &amp;net.TCPAddr&#123;</span><br><span class="line">		IP:   dstIP,</span><br><span class="line">		Port: <span class="keyword">int</span>(binary.BigEndian.Uint16(dstPort)),</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 连接真正的远程服务器</span></span><br><span class="line">	serverConn, err := net.DialTCP(<span class="string">"tcp"</span>, <span class="literal">nil</span>, dstAddr)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Println(<span class="string">"连接目标地址错误"</span>, err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">defer</span> serverConn.Close()</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	+----+-----+-------+------+----------+----------+</span></span><br><span class="line"><span class="comment">	|VER | REP |  RSV  | ATYP | BND.ADDR | BND.PORT |</span></span><br><span class="line"><span class="comment">	+----+-----+-------+------+----------+----------+</span></span><br><span class="line"><span class="comment">	| 1  |  1  | X'00' |  1   | Variable |    2     |</span></span><br><span class="line"><span class="comment">	+----+-----+-------+------+----------+----------+</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	<span class="comment">// 响应客户端请求</span></span><br><span class="line">	localConn.Write([]<span class="keyword">byte</span>&#123;<span class="number">0x05</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x01</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>&#125;)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 传输阶段</span></span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		err := transferConnData(localConn, serverConn)</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			<span class="comment">// log.Println("传输数据错误", err)</span></span><br><span class="line">			localConn.Close()</span><br><span class="line">			serverConn.Close()</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;()</span><br><span class="line"></span><br><span class="line">	transferConnData(serverConn, localConn)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">transferConnData</span><span class="params">(conn1 *net.TCPConn, conn2 *net.TCPConn)</span> <span class="title">error</span></span> &#123;</span><br><span class="line">	buffer := <span class="built_in">make</span>([]<span class="keyword">byte</span>, <span class="number">1024</span>)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		readCount, err := conn1.Read(buffer)</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			<span class="comment">// 如果不是正常读完数据</span></span><br><span class="line">			<span class="keyword">if</span> err != io.EOF &#123;</span><br><span class="line">				<span class="keyword">return</span> err</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> readCount &gt; <span class="number">0</span> &#123;</span><br><span class="line">			writeCount, err := conn2.Write(buffer[<span class="number">0</span>:readCount])</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">				<span class="keyword">return</span> err</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> readCount != writeCount &#123;</span><br><span class="line">				<span class="keyword">return</span> io.ErrShortWrite</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Listen 启动监听</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *LsServer)</span> <span class="title">Listen</span><span class="params">()</span> <span class="title">error</span></span> &#123;</span><br><span class="line">	listener, err := net.ListenTCP(<span class="string">"tcp"</span>, s.ListenAddr)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> err</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">defer</span> listener.Close()</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		conn, err := listener.AcceptTCP()</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			log.Println(<span class="string">"监听tcp请求出错"</span>, err)</span><br><span class="line">			<span class="keyword">continue</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">go</span> s.handleConn(conn)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="本地代理实现"><a href="#本地代理实现" class="headerlink" title="本地代理实现"></a>本地代理实现</h3><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> ss</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"log"</span></span><br><span class="line">	<span class="string">"net"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// LsLocal 本地端</span></span><br><span class="line"><span class="keyword">type</span> LsLocal <span class="keyword">struct</span> &#123;</span><br><span class="line">	ListenAddr *net.TCPAddr</span><br><span class="line">	RemoteAddr *net.TCPAddr</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// NewLsLocal 创建一个本地端监听浏览器等请求</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewLsLocal</span><span class="params">(listenAddress <span class="keyword">string</span>, remoteAddress <span class="keyword">string</span>)</span> <span class="params">(*LsLocal, error)</span></span> &#123;</span><br><span class="line">	listenAddr, err := net.ResolveTCPAddr(<span class="string">"tcp"</span>, listenAddress)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span>, err</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	remoteAddr, err := net.ResolveTCPAddr(<span class="string">"tcp"</span>, remoteAddress)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span>, err</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> &amp;LsLocal&#123;ListenAddr: listenAddr, RemoteAddr: remoteAddr&#125;, <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(local *LsLocal)</span> <span class="title">handleConn</span><span class="params">(userConn *net.TCPConn)</span></span> &#123;</span><br><span class="line">	<span class="keyword">defer</span> userConn.Close()</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 先连接代理服务器</span></span><br><span class="line">	localConn, err := net.DialTCP(<span class="string">"tcp"</span>, <span class="literal">nil</span>, local.RemoteAddr)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Println(<span class="string">"连接代理服务器错误:　"</span>, err.Error())</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">defer</span> localConn.Close()</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 开始传输, local只需负责打通客户端程序和代理服务器</span></span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		err := transferConnData(userConn, localConn)</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			<span class="comment">// log.Println("传输数据错误", err.Error())</span></span><br><span class="line">			userConn.Close()</span><br><span class="line">			localConn.Close()</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;()</span><br><span class="line"></span><br><span class="line">	transferConnData(localConn, userConn)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Listen 监听来自浏览器等应用的请求</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(local *LsLocal)</span> <span class="title">Listen</span><span class="params">()</span> <span class="title">error</span></span> &#123;</span><br><span class="line">	listener, err := net.ListenTCP(<span class="string">"tcp"</span>, local.ListenAddr)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> err</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">defer</span> listener.Close()</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		conn, err := listener.AcceptTCP()</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			log.Println(<span class="string">"监听tcp请求出错"</span>, err)</span><br><span class="line">			<span class="keyword">continue</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">go</span> local.handleConn(conn)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="启动远端代理"><a href="#启动远端代理" class="headerlink" title="启动远端代理"></a>启动远端代理</h3><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"log"</span></span><br><span class="line"></span><br><span class="line">	<span class="string">"github.com/sfox/proxy/ss"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	address := <span class="string">"localhost:3000"</span></span><br><span class="line">	s, err := ss.NewLsServer(address)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Println(err)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	log.Println(<span class="string">"Server listen on "</span> + address)</span><br><span class="line">	err = s.Listen()</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Println(err)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="启动本地代理"><a href="#启动本地代理" class="headerlink" title="启动本地代理:"></a>启动本地代理:</h3><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"log"</span></span><br><span class="line"></span><br><span class="line">	<span class="string">"github.com/sfox/proxy/ss"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	local, err := ss.NewLsLocal(<span class="string">"localhost:3001"</span>, <span class="string">"localhost:3000"</span>)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Println(err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	err = local.Listen()</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Println(err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用curl测试"><a href="#使用curl测试" class="headerlink" title="使用curl测试"></a>使用curl测试</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl --socks5 localhost:3001 https://www.google.com/</span><br></pre></td></tr></table></figure>
+
+<p>curl可能会提前将请求的域名解析成IP从而造成访问不通, 可以使用以下命令替换:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -x socks5h://localhost:8080 https://www.google.com</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Network/" rel="tag"># Network</a>
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/09/2019-12-09-linux系统上的抓包/" rel="next" title="Linux系统上的网络抓包">
+                <i class="fa fa-chevron-left"></i> Linux系统上的网络抓包
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://s2.ax1x.com/2019/08/14/mFInYj.jpg" alt="嘿嘿嘿">
+            
+              <p class="site-author-name" itemprop="name">嘿嘿嘿</p>
+              <p class="site-description motion-element" itemprop="description">记录打怪升级之路</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/yourname" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:yourname@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Socks5"><span class="nav-number">1.</span> <span class="nav-text">Socks5</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三个阶段"><span class="nav-number">1.2.</span> <span class="nav-text">三个阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#认证阶段"><span class="nav-number">1.2.1.</span> <span class="nav-text">认证阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连接阶段"><span class="nav-number">1.2.2.</span> <span class="nav-text">连接阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#传输阶段"><span class="nav-number">1.2.3.</span> <span class="nav-text">传输阶段</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码实现"><span class="nav-number">1.3.</span> <span class="nav-text">代码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#远端代理实现"><span class="nav-number">1.3.1.</span> <span class="nav-text">远端代理实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地代理实现"><span class="nav-number">1.3.2.</span> <span class="nav-text">本地代理实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动远端代理"><span class="nav-number">1.3.3.</span> <span class="nav-text">启动远端代理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动本地代理"><span class="nav-number">1.3.4.</span> <span class="nav-text">启动本地代理:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用curl测试"><span class="nav-number">1.3.5.</span> <span class="nav-text">使用curl测试</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">嘿嘿嘿</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
