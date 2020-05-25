@@ -262,160 +262,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/15/2019-08-16-Linux下统计代码的工具Cloc/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="嘿嘿嘿">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/15/2019-08-16-Linux下统计代码的工具Cloc/" itemprop="url">Linux下统计代码的工具Cloc</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-15T00:00:00+08:00">
-                2019-08-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  161
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Cloc"><a href="#Cloc" class="headerlink" title="Cloc"></a>Cloc</h2><p>cloc是linux平台里可以统计代码的工具，并非简单的统计代码的行数，能同时针对各种语言做分类输出</p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install cloc</span><br></pre></td></tr></table></figure>
-
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cloc $filePath</span><br></pre></td></tr></table></figure>
-
-<p>返回结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">$ cloc .</span><br><span class="line">    1339 text files.</span><br><span class="line">    1302 unique files.                                          </span><br><span class="line">     160 files ignored.</span><br><span class="line"></span><br><span class="line">github.com/AlDanial/cloc v 1.74  T=3.75 s (321.1 files/s, 135799.4 lines/s)</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">Language                      files          blank        comment           code</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">Go                              940          39122          40781         354176</span><br><span class="line">C                                37           6806           9795          31924</span><br><span class="line">Markdown                         49           1854              0           6552</span><br><span class="line">C/C++ Header                     37           1330           3531           3864</span><br><span class="line">Assembly                         38            503            884           2402</span><br><span class="line">YAML                             70            145             18           1955</span><br><span class="line">Bourne Shell                     13            139            323            856</span><br><span class="line">JSON                              1              2              0            637</span><br><span class="line">make                              9             73             96            296</span><br><span class="line">Protocol Buffers                  3             38             27            165</span><br><span class="line">SQL                               1              1              0            155</span><br><span class="line">Python                            1             14             13             99</span><br><span class="line">Bourne Again Shell                1              8              3             52</span><br><span class="line">TOML                              2              5             45             11</span><br><span class="line">Dockerfile                        1              1              0              8</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">SUM:                           1203          50041          55516         403152</span><br><span class="line">--------------------------------------------------------------------------------</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/Docker-杂记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1339,6 +1185,183 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/04/2018-10-04-UTXO/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嘿嘿嘿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/04/2018-10-04-UTXO/" itemprop="url">UTXO</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-04T00:00:00+08:00">
+                2018-10-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="UTXO模型"><a href="#UTXO模型" class="headerlink" title="UTXO模型"></a>UTXO模型</h1><h2 id="什么是UXTO？"><a href="#什么是UXTO？" class="headerlink" title="什么是UXTO？"></a>什么是UXTO？</h2><p>在区块链里，账本里记录的是一笔又一笔的交易。每笔交易都有若干交易输入，也就是资金来源；也有若干交易输出，也就是资金去向。一般来说，每一笔交易都要花费一笔输入，产生一笔输出，而当其所产生的输出，并被其他交易所花费时，这笔输出就可以被称为 “未花费过的交易输出”，也就是UTXO。</p>
+<h2 id="比特币中交易过程的实现"><a href="#比特币中交易过程的实现" class="headerlink" title="比特币中交易过程的实现"></a>比特币中交易过程的实现</h2><p>在比特币的世界里，记录交易记录正是基于UTXO模型。要理解UTXO，最简单的方法就是把一枚比特币从诞生到交易的经历描述一下。</p>
+<p>假设，张三通过挖矿得到了12.5枚比特币。过了几天，他把其中2.5枚比特币交给了李四。再过几天，他和李四各出资2.5比特币凑成5比特币给王五，整个交易过程再UTXO模型里的记录是这样的：</p>
+<p><img src="https://camo.githubusercontent.com/ae0ba5ef28f5390fa49d22007bf9673b78cc0baf/687474703a2f2f386274632e636f6d2f646174612f6174746163686d656e742f706f7274616c2f3230313730322f30332f313430343437716537766f33767437673232736c65762e6a7067" alt="此处输入图片的描述"></p>
+<p>从图上可以看出，当张三付给李四2.5个比特币时这笔交易时，收款人有两个，分别是李四和张三他自己，张三收到了余额10枚比特币，李四收到了2.5枚比特币，此时，张三原有的挖矿所得的12.5的记录因为以及消费，已经不能算是UTXO的记录了，因此，张三此时的余额就是10枚比特币。</p>
+<blockquote>
+<p>可以看出，从消费这一点来看，UTXO类似日常生活中的纸币消费，当你拿10块钱买了3块钱的肥宅快乐水时，你需要付给老板3块，同时老板会找零给你7块。此时你原来的10块钱就不存在了。</p>
+</blockquote>
+<p>当李四给了王五2.5枚比特币之后，李四的已经没有比特币了，因此没有李四的交易输出了；同时，王五同时收到了两个人的比特币，收款数额直接计算总数，并合并成一条数额为5的记录。<strong>这里似乎是可以不合并分开成两条输出记录的，待确定 ！！！</strong></p>
+<blockquote>
+<p>由上面的例子说明，其实并没有什么比特币，只有 UTXO。当我们说张三拥有10枚比特币的时候，我实际上是说，当前区块链账本中，有若干笔交易的UTXO 项收款人写的是张三的地址，而这些UTXO项的数额总和是 10。</p>
+</blockquote>
+<h3 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h3><ul>
+<li><p>Coinbase交易是指矿工挖矿所得比特币的交易，这种交易比较特殊，交易输入并不是来自前面某一个或者某几个交易的UTXO。</p>
+</li>
+<li><p>每一笔交易的交易输入必须等于交易输出</p>
+</li>
+<li><p>计算某个人的账户余额时，只计算 <strong>未花费的</strong> 交易输出</p>
+</li>
+</ul>
+<h2 id="怎么确定交易输入是有效的？"><a href="#怎么确定交易输入是有效的？" class="headerlink" title="怎么确定交易输入是有效的？"></a>怎么确定交易输入是有效的？</h2><p>当节点接收到一笔交易的时候，它需要去 UTXO 数据库里查，看看这笔交易所引用的 UTXO 是否存在，它的收款人（拥有者）是不是当前新交易的付款者。</p>
+<h2 id="怎么保证一笔交易所引用的UTXO没有被重复消费？"><a href="#怎么保证一笔交易所引用的UTXO没有被重复消费？" class="headerlink" title="怎么保证一笔交易所引用的UTXO没有被重复消费？"></a>怎么保证一笔交易所引用的UTXO没有被重复消费？</h2><p>当某一笔比特币交易被创建—签名—广播到区块链网络之中后，每一个节点（比特币交易参与者）会对这笔交易进行验证，看交易的输出是否存在于UTXO。</p>
+<p>如果A拥有1枚比特币被证实确实是“未花费过的交易输出”，他要是将这1枚比特币同事转账给B1、B2两个人，挖矿节点会选择性的记录一笔交易，或许是最先收到的，或许是手续费更高的。</p>
+<p>情况1：</p>
+<p>如果这两笔交易是先后被挖矿节点接收到的，那依据时间戳（时间戳是矿工打包区块时的时间），先被接收到的交易会被验证成功，而后被接收到的交易则会因交易输入已经不存在于UTXO而验证失败。</p>
+<p>情况2：</p>
+<p>如果两个挖矿节点分别 <strong>同时</strong> 记录了这两笔交易，并且这两笔交易被分别证明是合法的，此时这两个挖矿节点会将各自挖到的新区块广播到全网。这时链就会 <strong>分叉</strong>。当其中一笔交易（是交易被确认还是新区块被确认？？？）被6个节点确认后，它将获得最终的确认，成为最长链，记录在最长链上的交易最终会被认证是成功的，而记录在另一条链上的交易则不会被认证。</p>
+<h2 id="UTXO模型是怎么计算余额的？"><a href="#UTXO模型是怎么计算余额的？" class="headerlink" title="UTXO模型是怎么计算余额的？"></a>UTXO模型是怎么计算余额的？</h2><p>我们知道，要计算A的余额，在UTXO模型里，其实就是计算有多少笔交易的收款人的地址写的A，且这条交易输出没有被花费，那么这个余额怎么才能快速计算出来呢？</p>
+<p>比特币客户端的实现维护一个UTXO数据库，也称UTXO池，是区块链中所有未支付交易输出的集合。“UTXO池”的名字听上去与交易池相似，但它代表了不同的数据集。UTXO池不同于交易池和孤立交易池的地方在于，它在初始化时不为空，而是包含了数以百万计的未支付交易输出条目，有些条目的历史甚至可以追溯至2009年。UTXO池可能会被安置在本地内存，或者作为一个包含索引的数据库表安置在永久性存储设备中。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/04/2018-10-04-Nat/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1519,368 +1542,6 @@
 <li><p>另外一种结果是，A的TCP实现没有像（1）中所讲的那么“智能”，它没有发现现在联入的B就是自己希望联入的。就好比在机场接人，明明遇到了自己想要接的人却不认识，误认为是其他的人，安排别人给接走了，后来才知道是自己错过了机会，但是无论如何，人已经接到了任务已经完成了。然后，A通过常规的listen()函数和accept()函数得到与B的连接，而由A发起的向B的公网地址二元组的连接会以失败告终。尽管A向B的连接失败，A仍然得到了B发起的向A的连接，等效于A与B之间已经联通，不管中间过程如何，A与B已经连接起来了，结果是A和B的基于TCP协议的P2P连接已经建立起来了。</p>
 </li>
 </ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/04/2018-10-04-UTXO/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="嘿嘿嘿">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/04/2018-10-04-UTXO/" itemprop="url">UTXO</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-04T00:00:00+08:00">
-                2018-10-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.4k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  4
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="UTXO模型"><a href="#UTXO模型" class="headerlink" title="UTXO模型"></a>UTXO模型</h1><h2 id="什么是UXTO？"><a href="#什么是UXTO？" class="headerlink" title="什么是UXTO？"></a>什么是UXTO？</h2><p>在区块链里，账本里记录的是一笔又一笔的交易。每笔交易都有若干交易输入，也就是资金来源；也有若干交易输出，也就是资金去向。一般来说，每一笔交易都要花费一笔输入，产生一笔输出，而当其所产生的输出，并被其他交易所花费时，这笔输出就可以被称为 “未花费过的交易输出”，也就是UTXO。</p>
-<h2 id="比特币中交易过程的实现"><a href="#比特币中交易过程的实现" class="headerlink" title="比特币中交易过程的实现"></a>比特币中交易过程的实现</h2><p>在比特币的世界里，记录交易记录正是基于UTXO模型。要理解UTXO，最简单的方法就是把一枚比特币从诞生到交易的经历描述一下。</p>
-<p>假设，张三通过挖矿得到了12.5枚比特币。过了几天，他把其中2.5枚比特币交给了李四。再过几天，他和李四各出资2.5比特币凑成5比特币给王五，整个交易过程再UTXO模型里的记录是这样的：</p>
-<p><img src="https://camo.githubusercontent.com/ae0ba5ef28f5390fa49d22007bf9673b78cc0baf/687474703a2f2f386274632e636f6d2f646174612f6174746163686d656e742f706f7274616c2f3230313730322f30332f313430343437716537766f33767437673232736c65762e6a7067" alt="此处输入图片的描述"></p>
-<p>从图上可以看出，当张三付给李四2.5个比特币时这笔交易时，收款人有两个，分别是李四和张三他自己，张三收到了余额10枚比特币，李四收到了2.5枚比特币，此时，张三原有的挖矿所得的12.5的记录因为以及消费，已经不能算是UTXO的记录了，因此，张三此时的余额就是10枚比特币。</p>
-<blockquote>
-<p>可以看出，从消费这一点来看，UTXO类似日常生活中的纸币消费，当你拿10块钱买了3块钱的肥宅快乐水时，你需要付给老板3块，同时老板会找零给你7块。此时你原来的10块钱就不存在了。</p>
-</blockquote>
-<p>当李四给了王五2.5枚比特币之后，李四的已经没有比特币了，因此没有李四的交易输出了；同时，王五同时收到了两个人的比特币，收款数额直接计算总数，并合并成一条数额为5的记录。<strong>这里似乎是可以不合并分开成两条输出记录的，待确定 ！！！</strong></p>
-<blockquote>
-<p>由上面的例子说明，其实并没有什么比特币，只有 UTXO。当我们说张三拥有10枚比特币的时候，我实际上是说，当前区块链账本中，有若干笔交易的UTXO 项收款人写的是张三的地址，而这些UTXO项的数额总和是 10。</p>
-</blockquote>
-<h3 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h3><ul>
-<li><p>Coinbase交易是指矿工挖矿所得比特币的交易，这种交易比较特殊，交易输入并不是来自前面某一个或者某几个交易的UTXO。</p>
-</li>
-<li><p>每一笔交易的交易输入必须等于交易输出</p>
-</li>
-<li><p>计算某个人的账户余额时，只计算 <strong>未花费的</strong> 交易输出</p>
-</li>
-</ul>
-<h2 id="怎么确定交易输入是有效的？"><a href="#怎么确定交易输入是有效的？" class="headerlink" title="怎么确定交易输入是有效的？"></a>怎么确定交易输入是有效的？</h2><p>当节点接收到一笔交易的时候，它需要去 UTXO 数据库里查，看看这笔交易所引用的 UTXO 是否存在，它的收款人（拥有者）是不是当前新交易的付款者。</p>
-<h2 id="怎么保证一笔交易所引用的UTXO没有被重复消费？"><a href="#怎么保证一笔交易所引用的UTXO没有被重复消费？" class="headerlink" title="怎么保证一笔交易所引用的UTXO没有被重复消费？"></a>怎么保证一笔交易所引用的UTXO没有被重复消费？</h2><p>当某一笔比特币交易被创建—签名—广播到区块链网络之中后，每一个节点（比特币交易参与者）会对这笔交易进行验证，看交易的输出是否存在于UTXO。</p>
-<p>如果A拥有1枚比特币被证实确实是“未花费过的交易输出”，他要是将这1枚比特币同事转账给B1、B2两个人，挖矿节点会选择性的记录一笔交易，或许是最先收到的，或许是手续费更高的。</p>
-<p>情况1：</p>
-<p>如果这两笔交易是先后被挖矿节点接收到的，那依据时间戳（时间戳是矿工打包区块时的时间），先被接收到的交易会被验证成功，而后被接收到的交易则会因交易输入已经不存在于UTXO而验证失败。</p>
-<p>情况2：</p>
-<p>如果两个挖矿节点分别 <strong>同时</strong> 记录了这两笔交易，并且这两笔交易被分别证明是合法的，此时这两个挖矿节点会将各自挖到的新区块广播到全网。这时链就会 <strong>分叉</strong>。当其中一笔交易（是交易被确认还是新区块被确认？？？）被6个节点确认后，它将获得最终的确认，成为最长链，记录在最长链上的交易最终会被认证是成功的，而记录在另一条链上的交易则不会被认证。</p>
-<h2 id="UTXO模型是怎么计算余额的？"><a href="#UTXO模型是怎么计算余额的？" class="headerlink" title="UTXO模型是怎么计算余额的？"></a>UTXO模型是怎么计算余额的？</h2><p>我们知道，要计算A的余额，在UTXO模型里，其实就是计算有多少笔交易的收款人的地址写的A，且这条交易输出没有被花费，那么这个余额怎么才能快速计算出来呢？</p>
-<p>比特币客户端的实现维护一个UTXO数据库，也称UTXO池，是区块链中所有未支付交易输出的集合。“UTXO池”的名字听上去与交易池相似，但它代表了不同的数据集。UTXO池不同于交易池和孤立交易池的地方在于，它在初始化时不为空，而是包含了数以百万计的未支付交易输出条目，有些条目的历史甚至可以追溯至2009年。UTXO池可能会被安置在本地内存，或者作为一个包含索引的数据库表安置在永久性存储设备中。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/03/2018-10-03-pow/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="嘿嘿嘿">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/03/2018-10-03-pow/" itemprop="url">Pow算法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-03T00:00:00+08:00">
-                2018-10-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  302
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="什么是Pow算法？"><a href="#什么是Pow算法？" class="headerlink" title="什么是Pow算法？"></a>什么是Pow算法？</h2><p>Pow的全称是Proof of Work，即工作量证明，是区块链中用来判断由哪个矿工获得区块打包权的算法。</p>
-<h2 id="区块链的块的结构"><a href="#区块链的块的结构" class="headerlink" title="区块链的块的结构"></a>区块链的块的结构</h2><p>在聊Pow之前，首先，必须先认识区块的结构，基本的区块结构如下</p>
-<table>
-<thead>
-<tr>
-<th>区块结构</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>当前块的hash值</td>
-</tr>
-<tr>
-<td>前一个区块的哈希值</td>
-</tr>
-<tr>
-<td>Merkle根哈希值</td>
-</tr>
-<tr>
-<td>时间戳</td>
-</tr>
-<tr>
-<td>难度值</td>
-</tr>
-<tr>
-<td>随机数Nonce</td>
-</tr>
-<tr>
-<td>区块包含的交易列表</td>
-</tr>
-</tbody></table>
-<h2 id="Merkle根"><a href="#Merkle根" class="headerlink" title="Merkle根"></a>Merkle根</h2><p>交易列表里记录的每一笔交易都有一个唯一的哈希值，将交易的hash值两两组合，最后生成Merkle根</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/14287187-67ad38c09a390d78.jpg" alt="图片发自简书App"></p>
-<p>Merkle保证了区块的交易信息不会被串改</p>
-<h2 id="Nonce值"><a href="#Nonce值" class="headerlink" title="Nonce值"></a>Nonce值</h2><p>矿工挖矿的过程其实就是对交易数据进行打包后，算出一个符合如下公式的Nonce值的过程</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CryptoJS.SHA256(index + previousHash + timestamp + data + nonce)</span><br></pre></td></tr></table></figure>
-
-<p>该公式的结果是一个hash值，而挖矿的难度就是这个hash值的前面有几个0，难度越大，即要求的0的个数越多，就越难算出来，这个算的过程就是矿工工作的过程，所以这个算法才叫工作量证明算法。</p>
 
           
         
@@ -2124,6 +1785,638 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/03/2018-10-03-pow/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嘿嘿嘿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/03/2018-10-03-pow/" itemprop="url">Pow算法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-03T00:00:00+08:00">
+                2018-10-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  302
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="什么是Pow算法？"><a href="#什么是Pow算法？" class="headerlink" title="什么是Pow算法？"></a>什么是Pow算法？</h2><p>Pow的全称是Proof of Work，即工作量证明，是区块链中用来判断由哪个矿工获得区块打包权的算法。</p>
+<h2 id="区块链的块的结构"><a href="#区块链的块的结构" class="headerlink" title="区块链的块的结构"></a>区块链的块的结构</h2><p>在聊Pow之前，首先，必须先认识区块的结构，基本的区块结构如下</p>
+<table>
+<thead>
+<tr>
+<th>区块结构</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>当前块的hash值</td>
+</tr>
+<tr>
+<td>前一个区块的哈希值</td>
+</tr>
+<tr>
+<td>Merkle根哈希值</td>
+</tr>
+<tr>
+<td>时间戳</td>
+</tr>
+<tr>
+<td>难度值</td>
+</tr>
+<tr>
+<td>随机数Nonce</td>
+</tr>
+<tr>
+<td>区块包含的交易列表</td>
+</tr>
+</tbody></table>
+<h2 id="Merkle根"><a href="#Merkle根" class="headerlink" title="Merkle根"></a>Merkle根</h2><p>交易列表里记录的每一笔交易都有一个唯一的哈希值，将交易的hash值两两组合，最后生成Merkle根</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/14287187-67ad38c09a390d78.jpg" alt="图片发自简书App"></p>
+<p>Merkle保证了区块的交易信息不会被串改</p>
+<h2 id="Nonce值"><a href="#Nonce值" class="headerlink" title="Nonce值"></a>Nonce值</h2><p>矿工挖矿的过程其实就是对交易数据进行打包后，算出一个符合如下公式的Nonce值的过程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CryptoJS.SHA256(index + previousHash + timestamp + data + nonce)</span><br></pre></td></tr></table></figure>
+
+<p>该公式的结果是一个hash值，而挖矿的难度就是这个hash值的前面有几个0，难度越大，即要求的0的个数越多，就越难算出来，这个算的过程就是矿工工作的过程，所以这个算法才叫工作量证明算法。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/04/2018-09-06-tcp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嘿嘿嘿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/04/2018-09-06-tcp/" itemprop="url">TCP协议</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-04T00:00:00+08:00">
+                2018-09-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.8k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="TCP协议"><a href="#TCP协议" class="headerlink" title="TCP协议"></a>TCP协议</h2><p>TCP（Transmission Control Protocol 传输控制协议）是一种面向连接的、可靠的、基于字节流的传输层通信协议，由IETF的RFC 793定义。在简化的计算机网络OSI模型中，它完成第四层传输层所指定的功能，用户数据报协议（UDP）是同一层内另一个重要的传输协议。</p>
+<h3 id="主要特点"><a href="#主要特点" class="headerlink" title="主要特点"></a>主要特点</h3><ul>
+<li>面向连接</li>
+<li>一对一</li>
+<li>可靠交付</li>
+<li>全双工</li>
+<li>面向字节流</li>
+</ul>
+<h3 id="套接字Socket的含义"><a href="#套接字Socket的含义" class="headerlink" title="套接字Socket的含义"></a>套接字Socket的含义</h3><ul>
+<li>Socket := IP + Port</li>
+<li>TCP连接 ：= {Socket1, Socket2} 解释为两个Socket之间的连接</li>
+</ul>
+<h3 id="TCP可靠传输的工作原理"><a href="#TCP可靠传输的工作原理" class="headerlink" title="TCP可靠传输的工作原理"></a>TCP可靠传输的工作原理</h3><ul>
+<li><p>停止等待协议</p>
+<ul>
+<li>超时重传</li>
+<li>超时计时器</li>
+<li>保留已发送分组的副本</li>
+<li>对数据分组和确认分组的编号</li>
+<li>重传时间的设置</li>
+<li>确认丢失和确认迟到</li>
+<li>信道利用率</li>
+</ul>
+</li>
+<li><p>连续ARQ协议</p>
+<ul>
+<li><p>发送方维持的滑动窗口</p>
+</li>
+<li><p>累计确认</p>
+<ul>
+<li><p>容易实现，即使确认丢失也不必重传</p>
+</li>
+<li><p>不能向发送方反映出接收方以及正确接收到的所有分组的信息</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="TCP报文段的首部格式"><a href="#TCP报文段的首部格式" class="headerlink" title="TCP报文段的首部格式"></a>TCP报文段的首部格式</h3><ul>
+<li><p>源端口和目的端口</p>
+</li>
+<li><p>序号</p>
+</li>
+<li><p>确认号ack</p>
+</li>
+<li><p>数据偏移</p>
+</li>
+<li><p>保留位</p>
+</li>
+<li><p>紧急URG</p>
+</li>
+<li><p>确认位ACK(TCP连接过程中会用到)</p>
+</li>
+<li><p>推送PSH</p>
+</li>
+<li><p>复位RST</p>
+</li>
+<li><p>同步位SYN(在TCP连接过程中会用到)</p>
+</li>
+<li><p>终止FIN (在TCP释放过程中会用到)</p>
+</li>
+<li><p>窗口</p>
+</li>
+<li><p>检验和</p>
+</li>
+<li><p>紧急指针</p>
+</li>
+<li><p>选项</p>
+<ul>
+<li><p>最大报文长度MSS</p>
+</li>
+<li><p>窗口扩大</p>
+</li>
+<li><p>时间戳</p>
+<ul>
+<li><p>计算往返时间RTT</p>
+</li>
+<li><p>防止序号绕回</p>
+</li>
+</ul>
+</li>
+<li><p>选择确认</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="TCP可靠传输的实现"><a href="#TCP可靠传输的实现" class="headerlink" title="TCP可靠传输的实现"></a>TCP可靠传输的实现</h3><ul>
+<li><p>滑动窗口</p>
+<ul>
+<li><p>以字节为单位的</p>
+</li>
+<li><p>结构划分</p>
+<ul>
+<li><p>已发送并收到确认部分</p>
+</li>
+<li><p>可发送部分</p>
+</li>
+<li><p>不允许发送部分</p>
+</li>
+</ul>
+</li>
+<li><p>发送窗口</p>
+<ul>
+<li><p>描述发送窗口状态的三个指针</p>
+<ul>
+<li><p>P1指向第一个已发送但未收到确认的字节的序号</p>
+</li>
+<li><p>P2指向第一个允许发送但尚未发送的字节的序号</p>
+</li>
+<li><p>P3指向第一个不允许发送的字节的序号</p>
+</li>
+</ul>
+</li>
+<li><p>P3 - P1 通知窗口</p>
+</li>
+<li><p>P2 - P1 已发送但尚未收到确认的字节数</p>
+</li>
+<li><p>P3 - P2 允许发送但尚未发送的字节数</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>超时重传</p>
+<ul>
+<li><p>TCP采用了一种自适应算法，该方法还在逐渐改进中</p>
+</li>
+<li><p>算法中声明的相关变量</p>
+<ul>
+<li><p>RTT(Round-Trip Time) 往返时间</p>
+</li>
+<li><p>RTT的加权平均往返时间RTTs</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>    * RTO(RetransmissionTime-Out)超时重传时间
+
+    * RTTd(RTT的偏差的加权平均值)
+
+* 相关公式
+
+    * 新的RTTs = (1 - a) * (旧的RTTs) + a * (新的RTT样本)，a推荐取值0.125
+
+    * RTO = RTTs + 4 * RTTd
+
+    * RTTd = (1 - b) * (旧的RTTd) + b * |RTTs - 新的RTT样本|， b的推荐值是0.25
+
+* 如何确定确认报文是对先发送的报文段的确认，还是对后来重传的报文段的确认？
+
+    * Kran算法
+
+    * 算法的改进
+
+* 选择确认SACK（Selective ACK）
+
+    * 目的： 只传输缺少的数据而不重传已经正确到达接收方的数据
+
+    * 前提：建立TCP连接时，需要在首部选项中加上“允许SACK”的选项</code></pre><ul>
+<li><p>流量控制</p>
+<ul>
+<li><p>接收窗口(rwnd)变化</p>
+</li>
+<li><p>持续计时器 + 零窗口探测报文段（解决非零窗口通知丢失造成死锁）</p>
+</li>
+<li><p>发送方缓存控制</p>
+<ul>
+<li><p>缓存达到MSS(最大报文段长度)后发送</p>
+</li>
+<li><p>发送方应用程序指明要求发送报文段</p>
+</li>
+<li><p>发送方的一个计时器期限到了</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>拥塞控制</p>
+<p>  只要网络没有出现拥塞，拥塞窗口就再增大一些，以便把更多的分组发送出去。但只要网络出现拥塞，拥塞窗口就减小一些，以减少注入到网络中的分组数</p>
+<ul>
+<li><p>原理</p>
+</li>
+<li><p>几种拥塞的控制方法</p>
+<ul>
+<li><p>慢开始</p>
+<p> 当主机开始发送数据时，如果立即所大量数据字节注入到网络，那么就有可能引起网络拥塞，因为现在并不清楚网络的负荷情况。因此，较好的方法是 先探测一下，即由小到大逐渐增大发送窗口，也就是说，由小到大逐渐增大拥塞窗口数值。通常在刚刚开始发送报文段时，先把拥塞窗口 cwnd 设置为一个最大报文段MSS的数值。而在每收到一个对新的报文段的确认后，把拥塞窗口增加至多一个MSS的数值。用这样的方法逐步增大发送方的拥塞窗口 cwnd ，可以使分组注入到网络的速率更加合理。每经过一个传输轮次，拥塞窗口 cwnd 就加倍。一个传输轮次所经历的时间其实就是往返时间RTT。不过“传输轮次”更加强调：把拥塞窗口cwnd所允许发送的报文段都连续发送出去，并收到了对已发送的最后一个字节的确认。另，慢开始的“慢”并不是指cwnd的增长速率慢，而是指在TCP开始发送报文段时先设置cwnd=1，使得发送方在开始时只发送一个报文段（目的是试探一下网络的拥塞情况），然后再逐渐增大cwnd。</p>
+</li>
+<li><p>拥塞避免</p>
+</li>
+<li><p>快重传</p>
+</li>
+<li><p>快恢复</p>
+</li>
+</ul>
+</li>
+<li><p>如何确定网络发生了拥塞？ 答：只要发送方没有按时收到应当到达的确认报名，就可以猜想网络可能出现问题了</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="运输连接管理"><a href="#运输连接管理" class="headerlink" title="运输连接管理"></a>运输连接管理</h3><ul>
+<li><p>三次握手建立连接</p>
+<ul>
+<li><p>建立连接的过程</p>
+<p>  <img src="https://s1.ax1x.com/2018/09/02/PzpWX8.png" alt="此处输入图片的描述"></p>
+</li>
+<li><p>涉及状态</p>
+<ul>
+<li><p>CLOSED</p>
+</li>
+<li><p>LISTEN</p>
+</li>
+<li><p>SYN-SENT 同步已发送</p>
+</li>
+<li><p>SYN-RCVD 同步确认</p>
+</li>
+<li><p>ESTABLISHED 连接建立</p>
+</li>
+</ul>
+</li>
+<li><p>涉及状态位</p>
+<ul>
+<li><p>SYN 同步位，置1代表请求连接</p>
+</li>
+<li><p>ACK 确认位，置1代表确认收到</p>
+</li>
+<li><p>seq 序号</p>
+</li>
+<li><p>ack 确认号</p>
+</li>
+</ul>
+</li>
+<li><p>为什么需要三次握手？最后A还需要再确认一次？</p>
+<ul>
+<li>为了防止已经失效的连接请求报文段传送到了B</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>四次挥手连接释放</p>
+<ul>
+<li><p>释放连接的过程</p>
+<p>  <img src="https://s1.ax1x.com/2018/09/02/Pz9kjK.png" alt="此处输入图片的描述"></p>
+</li>
+<li><p>涉及状态</p>
+<ul>
+<li><p>ESTABLISHED</p>
+</li>
+<li><p>FIN-WAIT-1 A请求关闭，但还没有收到B的确认</p>
+</li>
+<li><p>CLOSE-WAIT B收到了关闭请求，并且进行了确认，但是还有数据需要传送给A</p>
+</li>
+<li><p>FIN_WAIT-2 A收到了B的确认，但B的数据还没发送完，A还需要接收数据</p>
+</li>
+<li><p>LAST-ACK B没有数据要发送了，请求关闭连接</p>
+</li>
+<li><p>TIME-WAIT A收到了关闭请求，并确认</p>
+</li>
+<li><p>CLOSED B收到了A的关闭确认，A等待2MSL之后</p>
+</li>
+</ul>
+</li>
+<li><p>涉及状态位</p>
+<ul>
+<li>FIN 终止控制位，置1代表请求关闭连接</li>
+<li>ACK</li>
+<li>ack</li>
+<li>seq</li>
+</ul>
+</li>
+<li><p>时间等待计时器</p>
+<ul>
+<li><p>MSL 最长报文段寿命</p>
+</li>
+<li><p>为什么最后A要等2MSL?</p>
+<ul>
+<li>为了保证最后确认能被B收到，如果B没收到，B会超时重发关闭请求，如果A此时直接CLOSED了，就无法接受该请求</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>保活计时器</p>
+<ul>
+<li><p>作用：防止客户端发生故障时，服务器空等请求</p>
+</li>
+<li><p>每次接收请求时更新</p>
+</li>
+<li><p>2小时无响应，就每75分钟发送一个探测报文段，连发10次确认客户端是否出现故障</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -2176,7 +2469,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2189,7 +2482,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2242,7 +2535,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

@@ -262,6 +262,158 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/25/2020-05-25-shell分组计数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嘿嘿嘿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/05/25/2020-05-25-shell分组计数/" itemprop="url">Shell分组计数</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-25T00:00:00+08:00">
+                2020-05-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  48
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>先将内容排序, 排序后计数, 再按数量排序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sort | uniq -c | sort -rnk 1</span><br></pre></td></tr></table></figure>
+
+<p>r表示逆向排序， n表示按数值排序， k表示按第k列进行排序</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/27/2019-12-27-五种IO模型/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -406,157 +558,6 @@
 <p>当进程发起一个IO操作，会向内核注册一个信号处理函数，然后进程返回不阻塞；当内核数据就绪时会发送一个信号给进程，进程便在信号处理函数中调用IO读取数据。</p>
 <h3 id="异步IO"><a href="#异步IO" class="headerlink" title="异步IO"></a>异步IO</h3><p><img src="https://i.loli.net/2019/12/26/1qOlmF2t6iUwRXg.png" alt="异步IO"></p>
 <p>当进程发起一个IO操作，进程返回（不阻塞），但也不能返回结果；内核把整个IO处理完后，会通知进程结果。如果IO操作成功则进程直接获取到数据。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/24/2019-12-24-编程语言错误合集[golang篇]/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="嘿嘿嘿">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/12/24/2019-12-24-编程语言错误合集[golang篇]/" itemprop="url">编程语言错误合集[golang篇]</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-24T00:00:00+08:00">
-                2019-12-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  26
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="错误合集"><a href="#错误合集" class="headerlink" title="错误合集"></a>错误合集</h2><h3 id="错误1"><a href="#错误1" class="headerlink" title="错误1"></a>错误1</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">command: malformed module path &quot;command&quot;: missing dot in first path element</span><br></pre></td></tr></table></figure>
-
-<p>检查引用的包名</p>
 
           
         
@@ -1310,201 +1311,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/16/2019-09-16-为typescript编写td文件/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="嘿嘿嘿">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/09/16/2019-09-16-为typescript编写td文件/" itemprop="url">如何为Typescript编写td文件</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-16T00:00:00+08:00">
-                2019-09-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  510
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  2
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="确定库的类型"><a href="#确定库的类型" class="headerlink" title="确定库的类型"></a>确定库的类型</h2><h3 id="全局库"><a href="#全局库" class="headerlink" title="全局库"></a>全局库</h3><p>全局库是指能在全局命名空间下访问的（例如：不需要使用任何形式的import）, 例如JQuery的 <code>$</code></p>
-<p><strong>如何识别</strong>:</p>
-<ul>
-<li><p>顶级的var语句或function声明</p>
-</li>
-<li><p>一个或多个赋值语句到window.someName</p>
-</li>
-<li><p>假设DOM原始值像document或window是存在的</p>
-</li>
-</ul>
-<h3 id="模块化库"><a href="#模块化库" class="headerlink" title="模块化库"></a>模块化库</h3><p>一些库只能工作在模块加载器的环境下, 比如，像 express只能在Node.js里工作所以必须使用CommonJS的require函数加载。</p>
-<p><strong>如何识别</strong>:</p>
-<ul>
-<li><p>无条件的调用require或define</p>
-</li>
-<li><p>像import * as a from ‘b’; or export c;这样的声明</p>
-</li>
-<li><p>赋值给exports或module.exports</p>
-</li>
-</ul>
-<h3 id="UMD"><a href="#UMD" class="headerlink" title="UMD"></a>UMD</h3><p>UMD模块是指那些既可以作为模块使用（通过导入）又可以作为全局（在没有模块加载器的环境里）使用的模块。如 <code>Moment.js</code><br>在Node.js或RequireJS里，你可以这样写：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import moment = require(&quot;moment&quot;);</span><br><span class="line">console.log(moment.format());</span><br></pre></td></tr></table></figure>
-
-<p>在浏览器中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(moment.format());</span><br></pre></td></tr></table></figure>
-
-<p><strong>如何识别</strong></p>
-<p>UMD模块会检查是否存在模块加载器环境</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(function (root, factory) &#123;</span><br><span class="line">    if (typeof define === &quot;function&quot; &amp;&amp; define.amd) &#123;</span><br><span class="line">        define([&quot;libName&quot;], factory);</span><br><span class="line">    &#125; else if (typeof module === &quot;object&quot; &amp;&amp; module.exports) &#123;</span><br><span class="line">        module.exports = factory(require(&quot;libName&quot;));</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        root.returnExports = factory(root.libName);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;(this, function (b) &#123;&#125;)</span><br></pre></td></tr></table></figure>
-
-<h3 id="模块插件或UMD插件"><a href="#模块插件或UMD插件" class="headerlink" title="模块插件或UMD插件"></a>模块插件或UMD插件</h3><p>一个模块插件可以改变一个模块的结构（UMD或模块）</p>
-<h3 id="全局插件"><a href="#全局插件" class="headerlink" title="全局插件"></a>全局插件</h3><p>一个全局插件是全局代码，它们会改变全局对象的结构。比如，一些库往Array.prototype或String.prototype里添加新的方法。</p>
-<h2 id="使用依赖"><a href="#使用依赖" class="headerlink" title="使用依赖"></a>使用依赖</h2><h3 id="依赖全局库"><a href="#依赖全局库" class="headerlink" title="依赖全局库"></a>依赖全局库</h3><p>如果你的库依赖于某个全局库，使用 <code>/// &lt;reference types=&quot;...&quot; /&gt;</code> 指令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/// &lt;reference types=&quot;someLib&quot; /&gt;</span><br><span class="line">function getThing(): someLib.thing;</span><br></pre></td></tr></table></figure>
-
-<h3 id="依赖模块"><a href="#依赖模块" class="headerlink" title="依赖模块"></a>依赖模块</h3><p>如果你的库依赖于模块，使用import语句：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import * as moment from &quot;moment&quot;;</span><br><span class="line"></span><br><span class="line">function getThing(): moment;</span><br></pre></td></tr></table></figure>
-
-<h3 id="依赖UMD库"><a href="#依赖UMD库" class="headerlink" title="依赖UMD库"></a>依赖UMD库</h3><ul>
-<li>从全局库</li>
-</ul>
-<p>如果你的全局库依赖于某个UMD模块，使用<code>/// &lt;reference types</code>指令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/// &lt;reference types=&quot;moment&quot; /&gt;</span><br><span class="line">function getThing(): moment;</span><br></pre></td></tr></table></figure>
-
-<p>从一个模块或UMD库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import * as someLib from &apos;someLib&apos;;</span><br></pre></td></tr></table></figure>
-
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/26/2019-08-26-Kafka的基本命令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1812,191 +1618,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/15/2019-08-15-k8s踩坑集锦/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="嘿嘿嘿">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/15/2019-08-15-k8s踩坑集锦/" itemprop="url">k8s踩坑集锦</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-15T00:00:00+08:00">
-                2019-08-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  373
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="踩坑集锦"><a href="#踩坑集锦" class="headerlink" title="踩坑集锦"></a>踩坑集锦</h2><p>此篇文章用来记录维护k8s过程中的一系列问题</p>
-<hr>
-<h3 id="kubectl-logs-超时"><a href="#kubectl-logs-超时" class="headerlink" title="kubectl logs 超时"></a>kubectl logs 超时</h3><p>错误类似：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error from server: Get https://172.31.27.3:10250/containerLogs/prod-sfox/a-group-miner-2hshz/miner-idx-1?follow=true&amp;tailLines=20: dial tcp 172.31.27.3:10250: connect: connection timed out</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>该操作走内网ip，节点间内网不同</p>
-</li>
-<li><p>10250端口未打开</p>
-</li>
-</ul>
-<hr>
-<h3 id="DNS解析失败"><a href="#DNS解析失败" class="headerlink" title="DNS解析失败"></a>DNS解析失败</h3><p>具体错误信息一般如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">panic: dial tcp: lookup mysql on 10.96.0.10:53: no such host</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>查看coredns的日志，判断集群内的dns解析是否成功</p>
-</li>
-<li><p>如果集群内成功，是往外网的dns解析出错，检查宿主机的 <code>/etc/resolv.conf</code> 配置</p>
-</li>
-</ul>
-<hr>
-<h3 id="Helm报错"><a href="#Helm报错" class="headerlink" title="Helm报错"></a>Helm报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UPGRADE FAILED</span><br><span class="line">Error: &quot;dev-chain&quot; has no deployed releases</span><br><span class="line">Error: UPGRADE FAILED: &quot;dev-chain&quot; has no deployed releases</span><br></pre></td></tr></table></figure>
-
-<p>原因是helm的bug，如果helm有一次deploy的失败记录就没法重新deploy, 需要手动通过 <code>helm delete</code> 命令删除错误的记录</p>
-<hr>
-<h3 id="容器组里的服务获取不到客户端真实IP"><a href="#容器组里的服务获取不到客户端真实IP" class="headerlink" title="容器组里的服务获取不到客户端真实IP"></a>容器组里的服务获取不到客户端真实IP</h3><p>如果你的服务暴露方式是NodePort，当客户端访问IP所属的Node和服务所在的Node不是同一个Node时，因为内部有SNAT和DNAT的存在，<br>客户端的源IP会丢失，解决方法，在Service的配置中添加 <code>externalTrafficPolicy</code>, 并用 <code>nodeSelector</code> 将pod固定在nodePort对应的同一台机器上</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Service</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  namespace:</span> <span class="string">dev</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">signal</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  externalTrafficPolicy:</span> <span class="string">Local</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">NodePort</span></span><br><span class="line"><span class="attr">  ports:</span></span><br><span class="line"><span class="attr">    - port:</span> <span class="number">8080</span></span><br><span class="line"><span class="attr">      targetPort:</span> <span class="number">8080</span></span><br><span class="line"><span class="attr">      name:</span> <span class="string">http</span></span><br><span class="line"><span class="attr">      nodePort:</span> <span class="number">30010</span></span><br><span class="line"><span class="attr">  selector:</span></span><br><span class="line"><span class="attr">    app:</span> <span class="string">signal</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="公用解决方法"><a href="#公用解决方法" class="headerlink" title="公用解决方法"></a>公用解决方法</h3><ul>
-<li><p>查看kubelet日志</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl status kubelet</span><br><span class="line">journalctl -xu kubelet</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看docker的日志</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl status docker</span><br><span class="line">journalctl -xu docker</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/15/2019-08-15-Shell里的变量取值/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2134,6 +1755,354 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/15/2019-08-16-Linux下统计代码的工具Cloc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嘿嘿嘿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/15/2019-08-16-Linux下统计代码的工具Cloc/" itemprop="url">Linux下统计代码的工具Cloc</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-15T00:00:00+08:00">
+                2019-08-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  161
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Cloc"><a href="#Cloc" class="headerlink" title="Cloc"></a>Cloc</h2><p>cloc是linux平台里可以统计代码的工具，并非简单的统计代码的行数，能同时针对各种语言做分类输出</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install cloc</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cloc $filePath</span><br></pre></td></tr></table></figure>
+
+<p>返回结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">$ cloc .</span><br><span class="line">    1339 text files.</span><br><span class="line">    1302 unique files.                                          </span><br><span class="line">     160 files ignored.</span><br><span class="line"></span><br><span class="line">github.com/AlDanial/cloc v 1.74  T=3.75 s (321.1 files/s, 135799.4 lines/s)</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">Language                      files          blank        comment           code</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">Go                              940          39122          40781         354176</span><br><span class="line">C                                37           6806           9795          31924</span><br><span class="line">Markdown                         49           1854              0           6552</span><br><span class="line">C/C++ Header                     37           1330           3531           3864</span><br><span class="line">Assembly                         38            503            884           2402</span><br><span class="line">YAML                             70            145             18           1955</span><br><span class="line">Bourne Shell                     13            139            323            856</span><br><span class="line">JSON                              1              2              0            637</span><br><span class="line">make                              9             73             96            296</span><br><span class="line">Protocol Buffers                  3             38             27            165</span><br><span class="line">SQL                               1              1              0            155</span><br><span class="line">Python                            1             14             13             99</span><br><span class="line">Bourne Again Shell                1              8              3             52</span><br><span class="line">TOML                              2              5             45             11</span><br><span class="line">Dockerfile                        1              1              0              8</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">SUM:                           1203          50041          55516         403152</span><br><span class="line">--------------------------------------------------------------------------------</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/15/2019-08-15-k8s踩坑集锦/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嘿嘿嘿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/15/2019-08-15-k8s踩坑集锦/" itemprop="url">k8s踩坑集锦</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-15T00:00:00+08:00">
+                2019-08-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  450
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="踩坑集锦"><a href="#踩坑集锦" class="headerlink" title="踩坑集锦"></a>踩坑集锦</h2><p>此篇文章用来记录维护k8s过程中的一系列问题</p>
+<hr>
+<h3 id="kubectl-logs-超时"><a href="#kubectl-logs-超时" class="headerlink" title="kubectl logs 超时"></a>kubectl logs 超时</h3><p>错误类似：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error from server: Get https://172.31.27.3:10250/containerLogs/prod-sfox/a-group-miner-2hshz/miner-idx-1?follow=true&amp;tailLines=20: dial tcp 172.31.27.3:10250: connect: connection timed out</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>该操作走内网ip，节点间内网不同</p>
+</li>
+<li><p>10250端口未打开</p>
+</li>
+</ul>
+<hr>
+<h3 id="DNS解析失败"><a href="#DNS解析失败" class="headerlink" title="DNS解析失败"></a>DNS解析失败</h3><p>具体错误信息一般如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">panic: dial tcp: lookup mysql on 10.96.0.10:53: no such host</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>查看coredns的日志，判断集群内的dns解析是否成功</p>
+</li>
+<li><p>如果集群内成功，是往外网的dns解析出错，检查宿主机的 <code>/etc/resolv.conf</code> 配置</p>
+</li>
+</ul>
+<hr>
+<h3 id="Helm报错"><a href="#Helm报错" class="headerlink" title="Helm报错"></a>Helm报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UPGRADE FAILED</span><br><span class="line">Error: &quot;dev-chain&quot; has no deployed releases</span><br><span class="line">Error: UPGRADE FAILED: &quot;dev-chain&quot; has no deployed releases</span><br></pre></td></tr></table></figure>
+
+<p>原因是helm的bug，如果helm有一次deploy的失败记录就没法重新deploy, 需要手动通过 <code>helm delete</code> 命令删除错误的记录</p>
+<hr>
+<h3 id="容器组里的服务获取不到客户端真实IP"><a href="#容器组里的服务获取不到客户端真实IP" class="headerlink" title="容器组里的服务获取不到客户端真实IP"></a>容器组里的服务获取不到客户端真实IP</h3><p>如果你的服务暴露方式是NodePort，当客户端访问IP所属的Node和服务所在的Node不是同一个Node时，因为内部有SNAT和DNAT的存在，<br>客户端的源IP会丢失，解决方法，在Service的配置中添加 <code>externalTrafficPolicy</code>, 并用 <code>nodeSelector</code> 将pod固定在nodePort对应的同一台机器上</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Service</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  namespace:</span> <span class="string">dev</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">signal</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  externalTrafficPolicy:</span> <span class="string">Local</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">NodePort</span></span><br><span class="line"><span class="attr">  ports:</span></span><br><span class="line"><span class="attr">    - port:</span> <span class="number">8080</span></span><br><span class="line"><span class="attr">      targetPort:</span> <span class="number">8080</span></span><br><span class="line"><span class="attr">      name:</span> <span class="string">http</span></span><br><span class="line"><span class="attr">      nodePort:</span> <span class="number">30010</span></span><br><span class="line"><span class="attr">  selector:</span></span><br><span class="line"><span class="attr">    app:</span> <span class="string">signal</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="docker启动容器报错"><a href="#docker启动容器报错" class="headerlink" title="docker启动容器报错"></a>docker启动容器报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker: Error response from daemon: OCI runtime create failed: container_linux.go:348: starting container process caused &quot;process_linux.go:301: running exec setns process for init caused “exit status 40&quot;”: unknown.</span><br></pre></td></tr></table></figure>
+
+<p>解决方法:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo 1 &gt; /proc/sys/vm/drop_caches</span><br><span class="line">echo vm.min_free_kbytes=1048576 &gt;&gt; /etc/sysctl.conf</span><br><span class="line">sysctl -p</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="公用解决方法"><a href="#公用解决方法" class="headerlink" title="公用解决方法"></a>公用解决方法</h3><ul>
+<li><p>查看kubelet日志</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl status kubelet</span><br><span class="line">journalctl -xu kubelet</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看docker的日志</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl status docker</span><br><span class="line">journalctl -xu docker</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="starting-metrics-server-failed-listen-tcp-127-0-0-1-10249-bind-address-already-in-use"><a href="#starting-metrics-server-failed-listen-tcp-127-0-0-1-10249-bind-address-already-in-use" class="headerlink" title="starting metrics server failed: listen tcp 127.0.0.1:10249: bind: address already in use"></a>starting metrics server failed: listen tcp 127.0.0.1:10249: bind: address already in use</h3><p>重启kube-proxy</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -2186,7 +2155,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2199,7 +2168,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2252,7 +2221,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
