@@ -262,254 +262,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/04/2018-09-05-gulp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="嘿嘿嘿">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/04/2018-09-05-gulp/" itemprop="url">Gulp</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-04T00:00:00+08:00">
-                2018-09-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  4
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Gulp-杂记"><a href="#Gulp-杂记" class="headerlink" title="Gulp 杂记"></a>Gulp 杂记</h1><h3 id="什么是-gulp"><a href="#什么是-gulp" class="headerlink" title="什么是 gulp?"></a>什么是 gulp?</h3><p>gulp 是一个构建工具，可以通过它自动执行网站开发过程中的公共任务，比如编译 SASS/Less，编译压缩混淆 JavaScript,，合并编译模板和版本控制等。因为 gulp 是基于 Node.js 构建的，所以 gulp 源文件和开发者自己定义的 gulpfile 都被写进 JavaScript 里，前端开发者可以用自己熟悉的语言来编写 gulp 任务。</p>
-<p>gulp 本身并不能完成这么多种任务，不过它可以借助 npm 丰富的插件库。开发者可以在 npm 中搜索 gulpplugin 找到想要的插件。例如本文中将要提到的 gulp-cssmin, gulp-jshint, gulp-concat、gulp-inject 等等。</p>
-<h3 id="为什么选择-gulp？"><a href="#为什么选择-gulp？" class="headerlink" title="为什么选择 gulp？"></a>为什么选择 gulp？</h3><p>其实现有的基于 Node.js 的构建工具有很多，比如 Bower，Yeoman，grunt 等。而且自 2013 年 grunt v0.4.0 发布以后，grunt 已经改变了前端的开发方式。那么为什么我们要选 gulp？</p>
-<p>gulp 最大的特点是所有的任务都是以 Node.js Stream 的形式处理，构建流程可以由 Stream 之间的 pipe 来定义，省去了把中间文件写到磁盘再读取的过程，而且任务都是默认并行，速度比 grunt 快很多，配置也感觉更省心。</p>
-<ul>
-<li>易于使用：采用代码优于配置策略，gulp 让简单的事情继续简单，复杂的任务变得可管理。</li>
-<li>高效：gulp 基于 Node.js 流 Unix 管道连接的方式，不需要往磁盘写中间文件，可以更快地完成构建。</li>
-<li>高质量：gulp 每个 task 只完成一个任务，提高 task 的重用度。</li>
-<li>易于学习：gulp 核心 API 约 5 个，开发者能在很短的时间内学会，之后就可以通过管道流来组合自己需要的 task。</li>
-</ul>
-<h3 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h3><ol>
-<li><p>创建项目，初始化package.json文件，并安装gulp作为开发依赖</p>
-<blockquote>
-<p>$ mkdir gulp-app &amp;&amp; npm init<br>$ npm install –save-dev gulp</p>
-</blockquote>
-</li>
-<li><p>新建gulpfile.js文件，并写入以下内容</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var gulp = require(&apos;gulp&apos;)</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;default&apos;, () =&gt; &#123;</span><br><span class="line">    console.log(&apos;what the hell&apos;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>命令行执行gulp，会看到输出 ‘what the hell’</p>
-</li>
-</ol>
-<h3 id="gulp几个重要的api"><a href="#gulp几个重要的api" class="headerlink" title="gulp几个重要的api"></a>gulp几个重要的api</h3><h3 id="构建自动化流程"><a href="#构建自动化流程" class="headerlink" title="构建自动化流程"></a>构建自动化流程</h3><p>gulp提供了许多可以满足我们工作需求的插件，以下列举部分：</p>
-<ul>
-<li><p><a href="https://www.npmjs.com/package/gulp-uglify" title="gulp-uglify" target="_blank" rel="noopener">gulp-uglify</a></p>
-<ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install –save-dev gulp-uglify</p>
-</blockquote>
-</li>
-<li><p>配置task</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(&apos;default&apos;, () =&gt; &#123;</span><br><span class="line">  gulp</span><br><span class="line">  .src(&apos;src/app.js&apos;)</span><br><span class="line">  .pipe(uglify())</span><br><span class="line">  .pipe(gulp.dest(&apos;dist&apos;))</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><a href="https://www.npmjs.com/package/gulp-less" title="gulp-less" target="_blank" rel="noopener">gulp-less</a></p>
-<ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install –save-dev gulp-less</p>
-</blockquote>
-</li>
-<li><p>配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var less = require(&apos;gulp-less&apos;)</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;default&apos;, () =&gt; &#123;</span><br><span class="line">  gulp.src(&apos;src/styles/app.less&apos;)</span><br><span class="line">  .pipe(less())</span><br><span class="line">  .pipe(gulp.dest(&apos;dist/styles&apos;))</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><a href="https://www.npmjs.com/package/gulp-coffee" title="gulp-coffee" target="_blank" rel="noopener">gulp-coffee</a></p>
-<ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install –save-dev gulp-coffee</p>
-</blockquote>
-</li>
-<li><p>配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var coffee = require(&apos;gulp-coffee&apos;)</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;default&apos;, () =&gt; &#123;</span><br><span class="line">  gulp.src(&apos;src/scripts/app.coffee&apos;).pipe(coffee()).pipe(gulp.dest(&apos;dist/scripts&apos;))</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><a href="https://www.npmjs.com/package/gulp-clean" title="gulp-clean" target="_blank" rel="noopener">gulp-clean</a></p>
-<ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install –save-dev gulp-clean</p>
-</blockquote>
-</li>
-<li><p>配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var clean = require(&apos;gulp-clean&apos;)</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;clean&apos;, () =&gt; &#123;</span><br><span class="line">  gulp.src(&apos;dist/&apos;).pipe(clean())</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><a href="https://www.npmjs.com/package/gulp-autoprefixer" title="autoprefixer" target="_blank" rel="noopener">gulp-autoprefixer</a></p>
-<ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install –save-dev gulp-autoprefixer</p>
-</blockquote>
-</li>
-<li><p>配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var autoPrefixer = require(&apos;gulp-autoprefixer&apos;)</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;css&apos;, () =&gt; &#123;</span><br><span class="line">  gulp.src(&apos;src/styles/app.less&apos;).pipe(less()).pipe(autoPrefixer()).pipe(gulp.dest(&apos;dist/styles&apos;))</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><a href="http://www.gulpjs.com.cn/docs/recipes/server-with-livereload-and-css-injection/" target="_blank" rel="noopener">browser-sync</a> 拥有实时重载（live-reloading）和 CSS 注入的服务器</p>
-<ul>
-<li><p>安装</p>
-<blockquote>
-<p>$ npm install –save-dev browser-sync</p>
-</blockquote>
-</li>
-<li><p>配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">var gulp = require(&apos;gulp&apos;)</span><br><span class="line">var uglify = require(&apos;gulp-uglify&apos;)</span><br><span class="line">var less = require(&apos;gulp-less&apos;)</span><br><span class="line">var coffee = require(&apos;gulp-coffee&apos;)</span><br><span class="line">var clean = require(&apos;gulp-clean&apos;)</span><br><span class="line">var autoPrefixer = require(&apos;gulp-autoprefixer&apos;)</span><br><span class="line">var browserSync = require(&apos;browser-sync&apos;);</span><br><span class="line">var reload = browserSync.reload;</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;clean&apos;, () =&gt; &#123;</span><br><span class="line">  gulp.src(&apos;dist/&apos;).pipe(clean())</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;coffee&apos;, () =&gt; &#123;</span><br><span class="line">  gulp.src(&apos;src/scripts/*.coffee&apos;)</span><br><span class="line">  .pipe(coffee())</span><br><span class="line">  .pipe(uglify())</span><br><span class="line">  .pipe(gulp.dest(&apos;dist/scripts&apos;))</span><br><span class="line">  // .pipe(reload(&#123; stream: true &#125;))</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;less&apos;, () =&gt; &#123;</span><br><span class="line">  gulp.src(&apos;src/styles/app.less&apos;)</span><br><span class="line">  .pipe(less())</span><br><span class="line">  .pipe(autoPrefixer())</span><br><span class="line">  .pipe(gulp.dest(&apos;dist/styles&apos;))</span><br><span class="line">  .pipe(reload(&#123; stream: true &#125;))</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// 监视文件改动并重新载入</span><br><span class="line">gulp.task(&apos;serve&apos;, function() &#123;</span><br><span class="line">  browserSync(&#123;</span><br><span class="line">    server: &#123;</span><br><span class="line">      baseDir: &apos;./&apos;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  gulp.watch(&apos;src/styles/app.less&apos;, [&apos;less&apos;]);</span><br><span class="line">  gulp.watch(&apos;src/scripts/app.coffee&apos;, [&apos;coffee&apos;])</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;default&apos;,[&apos;clean&apos;, &apos;coffee&apos;, &apos;less&apos;, &apos;serve&apos;])</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/04/2018-09-04-grunt/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1172,6 +924,701 @@
 <li>入口起点：使用 entry 配置手动地分离代码。</li>
 <li>防止重复：使用 CommonsChunkPlugin 去重和分离 chunk。</li>
 <li>动态导入：通过模块的内联函数调用来分离代码。</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/04/2018-09-05-gulp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嘿嘿嘿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/04/2018-09-05-gulp/" itemprop="url">Gulp</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-04T00:00:00+08:00">
+                2018-09-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Gulp-杂记"><a href="#Gulp-杂记" class="headerlink" title="Gulp 杂记"></a>Gulp 杂记</h1><h3 id="什么是-gulp"><a href="#什么是-gulp" class="headerlink" title="什么是 gulp?"></a>什么是 gulp?</h3><p>gulp 是一个构建工具，可以通过它自动执行网站开发过程中的公共任务，比如编译 SASS/Less，编译压缩混淆 JavaScript,，合并编译模板和版本控制等。因为 gulp 是基于 Node.js 构建的，所以 gulp 源文件和开发者自己定义的 gulpfile 都被写进 JavaScript 里，前端开发者可以用自己熟悉的语言来编写 gulp 任务。</p>
+<p>gulp 本身并不能完成这么多种任务，不过它可以借助 npm 丰富的插件库。开发者可以在 npm 中搜索 gulpplugin 找到想要的插件。例如本文中将要提到的 gulp-cssmin, gulp-jshint, gulp-concat、gulp-inject 等等。</p>
+<h3 id="为什么选择-gulp？"><a href="#为什么选择-gulp？" class="headerlink" title="为什么选择 gulp？"></a>为什么选择 gulp？</h3><p>其实现有的基于 Node.js 的构建工具有很多，比如 Bower，Yeoman，grunt 等。而且自 2013 年 grunt v0.4.0 发布以后，grunt 已经改变了前端的开发方式。那么为什么我们要选 gulp？</p>
+<p>gulp 最大的特点是所有的任务都是以 Node.js Stream 的形式处理，构建流程可以由 Stream 之间的 pipe 来定义，省去了把中间文件写到磁盘再读取的过程，而且任务都是默认并行，速度比 grunt 快很多，配置也感觉更省心。</p>
+<ul>
+<li>易于使用：采用代码优于配置策略，gulp 让简单的事情继续简单，复杂的任务变得可管理。</li>
+<li>高效：gulp 基于 Node.js 流 Unix 管道连接的方式，不需要往磁盘写中间文件，可以更快地完成构建。</li>
+<li>高质量：gulp 每个 task 只完成一个任务，提高 task 的重用度。</li>
+<li>易于学习：gulp 核心 API 约 5 个，开发者能在很短的时间内学会，之后就可以通过管道流来组合自己需要的 task。</li>
+</ul>
+<h3 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h3><ol>
+<li><p>创建项目，初始化package.json文件，并安装gulp作为开发依赖</p>
+<blockquote>
+<p>$ mkdir gulp-app &amp;&amp; npm init<br>$ npm install –save-dev gulp</p>
+</blockquote>
+</li>
+<li><p>新建gulpfile.js文件，并写入以下内容</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var gulp = require(&apos;gulp&apos;)</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;default&apos;, () =&gt; &#123;</span><br><span class="line">    console.log(&apos;what the hell&apos;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>命令行执行gulp，会看到输出 ‘what the hell’</p>
+</li>
+</ol>
+<h3 id="gulp几个重要的api"><a href="#gulp几个重要的api" class="headerlink" title="gulp几个重要的api"></a>gulp几个重要的api</h3><h3 id="构建自动化流程"><a href="#构建自动化流程" class="headerlink" title="构建自动化流程"></a>构建自动化流程</h3><p>gulp提供了许多可以满足我们工作需求的插件，以下列举部分：</p>
+<ul>
+<li><p><a href="https://www.npmjs.com/package/gulp-uglify" title="gulp-uglify" target="_blank" rel="noopener">gulp-uglify</a></p>
+<ul>
+<li><p>安装</p>
+<blockquote>
+<p>$ npm install –save-dev gulp-uglify</p>
+</blockquote>
+</li>
+<li><p>配置task</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(&apos;default&apos;, () =&gt; &#123;</span><br><span class="line">  gulp</span><br><span class="line">  .src(&apos;src/app.js&apos;)</span><br><span class="line">  .pipe(uglify())</span><br><span class="line">  .pipe(gulp.dest(&apos;dist&apos;))</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><a href="https://www.npmjs.com/package/gulp-less" title="gulp-less" target="_blank" rel="noopener">gulp-less</a></p>
+<ul>
+<li><p>安装</p>
+<blockquote>
+<p>$ npm install –save-dev gulp-less</p>
+</blockquote>
+</li>
+<li><p>配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var less = require(&apos;gulp-less&apos;)</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;default&apos;, () =&gt; &#123;</span><br><span class="line">  gulp.src(&apos;src/styles/app.less&apos;)</span><br><span class="line">  .pipe(less())</span><br><span class="line">  .pipe(gulp.dest(&apos;dist/styles&apos;))</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><a href="https://www.npmjs.com/package/gulp-coffee" title="gulp-coffee" target="_blank" rel="noopener">gulp-coffee</a></p>
+<ul>
+<li><p>安装</p>
+<blockquote>
+<p>$ npm install –save-dev gulp-coffee</p>
+</blockquote>
+</li>
+<li><p>配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var coffee = require(&apos;gulp-coffee&apos;)</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;default&apos;, () =&gt; &#123;</span><br><span class="line">  gulp.src(&apos;src/scripts/app.coffee&apos;).pipe(coffee()).pipe(gulp.dest(&apos;dist/scripts&apos;))</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><a href="https://www.npmjs.com/package/gulp-clean" title="gulp-clean" target="_blank" rel="noopener">gulp-clean</a></p>
+<ul>
+<li><p>安装</p>
+<blockquote>
+<p>$ npm install –save-dev gulp-clean</p>
+</blockquote>
+</li>
+<li><p>配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var clean = require(&apos;gulp-clean&apos;)</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;clean&apos;, () =&gt; &#123;</span><br><span class="line">  gulp.src(&apos;dist/&apos;).pipe(clean())</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><a href="https://www.npmjs.com/package/gulp-autoprefixer" title="autoprefixer" target="_blank" rel="noopener">gulp-autoprefixer</a></p>
+<ul>
+<li><p>安装</p>
+<blockquote>
+<p>$ npm install –save-dev gulp-autoprefixer</p>
+</blockquote>
+</li>
+<li><p>配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var autoPrefixer = require(&apos;gulp-autoprefixer&apos;)</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;css&apos;, () =&gt; &#123;</span><br><span class="line">  gulp.src(&apos;src/styles/app.less&apos;).pipe(less()).pipe(autoPrefixer()).pipe(gulp.dest(&apos;dist/styles&apos;))</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><a href="http://www.gulpjs.com.cn/docs/recipes/server-with-livereload-and-css-injection/" target="_blank" rel="noopener">browser-sync</a> 拥有实时重载（live-reloading）和 CSS 注入的服务器</p>
+<ul>
+<li><p>安装</p>
+<blockquote>
+<p>$ npm install –save-dev browser-sync</p>
+</blockquote>
+</li>
+<li><p>配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">var gulp = require(&apos;gulp&apos;)</span><br><span class="line">var uglify = require(&apos;gulp-uglify&apos;)</span><br><span class="line">var less = require(&apos;gulp-less&apos;)</span><br><span class="line">var coffee = require(&apos;gulp-coffee&apos;)</span><br><span class="line">var clean = require(&apos;gulp-clean&apos;)</span><br><span class="line">var autoPrefixer = require(&apos;gulp-autoprefixer&apos;)</span><br><span class="line">var browserSync = require(&apos;browser-sync&apos;);</span><br><span class="line">var reload = browserSync.reload;</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;clean&apos;, () =&gt; &#123;</span><br><span class="line">  gulp.src(&apos;dist/&apos;).pipe(clean())</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;coffee&apos;, () =&gt; &#123;</span><br><span class="line">  gulp.src(&apos;src/scripts/*.coffee&apos;)</span><br><span class="line">  .pipe(coffee())</span><br><span class="line">  .pipe(uglify())</span><br><span class="line">  .pipe(gulp.dest(&apos;dist/scripts&apos;))</span><br><span class="line">  // .pipe(reload(&#123; stream: true &#125;))</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;less&apos;, () =&gt; &#123;</span><br><span class="line">  gulp.src(&apos;src/styles/app.less&apos;)</span><br><span class="line">  .pipe(less())</span><br><span class="line">  .pipe(autoPrefixer())</span><br><span class="line">  .pipe(gulp.dest(&apos;dist/styles&apos;))</span><br><span class="line">  .pipe(reload(&#123; stream: true &#125;))</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// 监视文件改动并重新载入</span><br><span class="line">gulp.task(&apos;serve&apos;, function() &#123;</span><br><span class="line">  browserSync(&#123;</span><br><span class="line">    server: &#123;</span><br><span class="line">      baseDir: &apos;./&apos;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  gulp.watch(&apos;src/styles/app.less&apos;, [&apos;less&apos;]);</span><br><span class="line">  gulp.watch(&apos;src/scripts/app.coffee&apos;, [&apos;coffee&apos;])</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;default&apos;,[&apos;clean&apos;, &apos;coffee&apos;, &apos;less&apos;, &apos;serve&apos;])</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/04/2018-09-06-tcp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嘿嘿嘿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/04/2018-09-06-tcp/" itemprop="url">TCP协议</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-04T00:00:00+08:00">
+                2018-09-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.8k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="TCP协议"><a href="#TCP协议" class="headerlink" title="TCP协议"></a>TCP协议</h2><p>TCP（Transmission Control Protocol 传输控制协议）是一种面向连接的、可靠的、基于字节流的传输层通信协议，由IETF的RFC 793定义。在简化的计算机网络OSI模型中，它完成第四层传输层所指定的功能，用户数据报协议（UDP）是同一层内另一个重要的传输协议。</p>
+<h3 id="主要特点"><a href="#主要特点" class="headerlink" title="主要特点"></a>主要特点</h3><ul>
+<li>面向连接</li>
+<li>一对一</li>
+<li>可靠交付</li>
+<li>全双工</li>
+<li>面向字节流</li>
+</ul>
+<h3 id="套接字Socket的含义"><a href="#套接字Socket的含义" class="headerlink" title="套接字Socket的含义"></a>套接字Socket的含义</h3><ul>
+<li>Socket := IP + Port</li>
+<li>TCP连接 ：= {Socket1, Socket2} 解释为两个Socket之间的连接</li>
+</ul>
+<h3 id="TCP可靠传输的工作原理"><a href="#TCP可靠传输的工作原理" class="headerlink" title="TCP可靠传输的工作原理"></a>TCP可靠传输的工作原理</h3><ul>
+<li><p>停止等待协议</p>
+<ul>
+<li>超时重传</li>
+<li>超时计时器</li>
+<li>保留已发送分组的副本</li>
+<li>对数据分组和确认分组的编号</li>
+<li>重传时间的设置</li>
+<li>确认丢失和确认迟到</li>
+<li>信道利用率</li>
+</ul>
+</li>
+<li><p>连续ARQ协议</p>
+<ul>
+<li><p>发送方维持的滑动窗口</p>
+</li>
+<li><p>累计确认</p>
+<ul>
+<li><p>容易实现，即使确认丢失也不必重传</p>
+</li>
+<li><p>不能向发送方反映出接收方以及正确接收到的所有分组的信息</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="TCP报文段的首部格式"><a href="#TCP报文段的首部格式" class="headerlink" title="TCP报文段的首部格式"></a>TCP报文段的首部格式</h3><ul>
+<li><p>源端口和目的端口</p>
+</li>
+<li><p>序号</p>
+</li>
+<li><p>确认号ack</p>
+</li>
+<li><p>数据偏移</p>
+</li>
+<li><p>保留位</p>
+</li>
+<li><p>紧急URG</p>
+</li>
+<li><p>确认位ACK(TCP连接过程中会用到)</p>
+</li>
+<li><p>推送PSH</p>
+</li>
+<li><p>复位RST</p>
+</li>
+<li><p>同步位SYN(在TCP连接过程中会用到)</p>
+</li>
+<li><p>终止FIN (在TCP释放过程中会用到)</p>
+</li>
+<li><p>窗口</p>
+</li>
+<li><p>检验和</p>
+</li>
+<li><p>紧急指针</p>
+</li>
+<li><p>选项</p>
+<ul>
+<li><p>最大报文长度MSS</p>
+</li>
+<li><p>窗口扩大</p>
+</li>
+<li><p>时间戳</p>
+<ul>
+<li><p>计算往返时间RTT</p>
+</li>
+<li><p>防止序号绕回</p>
+</li>
+</ul>
+</li>
+<li><p>选择确认</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="TCP可靠传输的实现"><a href="#TCP可靠传输的实现" class="headerlink" title="TCP可靠传输的实现"></a>TCP可靠传输的实现</h3><ul>
+<li><p>滑动窗口</p>
+<ul>
+<li><p>以字节为单位的</p>
+</li>
+<li><p>结构划分</p>
+<ul>
+<li><p>已发送并收到确认部分</p>
+</li>
+<li><p>可发送部分</p>
+</li>
+<li><p>不允许发送部分</p>
+</li>
+</ul>
+</li>
+<li><p>发送窗口</p>
+<ul>
+<li><p>描述发送窗口状态的三个指针</p>
+<ul>
+<li><p>P1指向第一个已发送但未收到确认的字节的序号</p>
+</li>
+<li><p>P2指向第一个允许发送但尚未发送的字节的序号</p>
+</li>
+<li><p>P3指向第一个不允许发送的字节的序号</p>
+</li>
+</ul>
+</li>
+<li><p>P3 - P1 通知窗口</p>
+</li>
+<li><p>P2 - P1 已发送但尚未收到确认的字节数</p>
+</li>
+<li><p>P3 - P2 允许发送但尚未发送的字节数</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>超时重传</p>
+<ul>
+<li><p>TCP采用了一种自适应算法，该方法还在逐渐改进中</p>
+</li>
+<li><p>算法中声明的相关变量</p>
+<ul>
+<li><p>RTT(Round-Trip Time) 往返时间</p>
+</li>
+<li><p>RTT的加权平均往返时间RTTs</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>    * RTO(RetransmissionTime-Out)超时重传时间
+
+    * RTTd(RTT的偏差的加权平均值)
+
+* 相关公式
+
+    * 新的RTTs = (1 - a) * (旧的RTTs) + a * (新的RTT样本)，a推荐取值0.125
+
+    * RTO = RTTs + 4 * RTTd
+
+    * RTTd = (1 - b) * (旧的RTTd) + b * |RTTs - 新的RTT样本|， b的推荐值是0.25
+
+* 如何确定确认报文是对先发送的报文段的确认，还是对后来重传的报文段的确认？
+
+    * Kran算法
+
+    * 算法的改进
+
+* 选择确认SACK（Selective ACK）
+
+    * 目的： 只传输缺少的数据而不重传已经正确到达接收方的数据
+
+    * 前提：建立TCP连接时，需要在首部选项中加上“允许SACK”的选项</code></pre><ul>
+<li><p>流量控制</p>
+<ul>
+<li><p>接收窗口(rwnd)变化</p>
+</li>
+<li><p>持续计时器 + 零窗口探测报文段（解决非零窗口通知丢失造成死锁）</p>
+</li>
+<li><p>发送方缓存控制</p>
+<ul>
+<li><p>缓存达到MSS(最大报文段长度)后发送</p>
+</li>
+<li><p>发送方应用程序指明要求发送报文段</p>
+</li>
+<li><p>发送方的一个计时器期限到了</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>拥塞控制</p>
+<p>  只要网络没有出现拥塞，拥塞窗口就再增大一些，以便把更多的分组发送出去。但只要网络出现拥塞，拥塞窗口就减小一些，以减少注入到网络中的分组数</p>
+<ul>
+<li><p>原理</p>
+</li>
+<li><p>几种拥塞的控制方法</p>
+<ul>
+<li><p>慢开始</p>
+<p> 当主机开始发送数据时，如果立即所大量数据字节注入到网络，那么就有可能引起网络拥塞，因为现在并不清楚网络的负荷情况。因此，较好的方法是 先探测一下，即由小到大逐渐增大发送窗口，也就是说，由小到大逐渐增大拥塞窗口数值。通常在刚刚开始发送报文段时，先把拥塞窗口 cwnd 设置为一个最大报文段MSS的数值。而在每收到一个对新的报文段的确认后，把拥塞窗口增加至多一个MSS的数值。用这样的方法逐步增大发送方的拥塞窗口 cwnd ，可以使分组注入到网络的速率更加合理。每经过一个传输轮次，拥塞窗口 cwnd 就加倍。一个传输轮次所经历的时间其实就是往返时间RTT。不过“传输轮次”更加强调：把拥塞窗口cwnd所允许发送的报文段都连续发送出去，并收到了对已发送的最后一个字节的确认。另，慢开始的“慢”并不是指cwnd的增长速率慢，而是指在TCP开始发送报文段时先设置cwnd=1，使得发送方在开始时只发送一个报文段（目的是试探一下网络的拥塞情况），然后再逐渐增大cwnd。</p>
+</li>
+<li><p>拥塞避免</p>
+</li>
+<li><p>快重传</p>
+</li>
+<li><p>快恢复</p>
+</li>
+</ul>
+</li>
+<li><p>如何确定网络发生了拥塞？ 答：只要发送方没有按时收到应当到达的确认报名，就可以猜想网络可能出现问题了</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="运输连接管理"><a href="#运输连接管理" class="headerlink" title="运输连接管理"></a>运输连接管理</h3><ul>
+<li><p>三次握手建立连接</p>
+<ul>
+<li><p>建立连接的过程</p>
+<p>  <img src="https://s1.ax1x.com/2018/09/02/PzpWX8.png" alt="此处输入图片的描述"></p>
+</li>
+<li><p>涉及状态</p>
+<ul>
+<li><p>CLOSED</p>
+</li>
+<li><p>LISTEN</p>
+</li>
+<li><p>SYN-SENT 同步已发送</p>
+</li>
+<li><p>SYN-RCVD 同步确认</p>
+</li>
+<li><p>ESTABLISHED 连接建立</p>
+</li>
+</ul>
+</li>
+<li><p>涉及状态位</p>
+<ul>
+<li><p>SYN 同步位，置1代表请求连接</p>
+</li>
+<li><p>ACK 确认位，置1代表确认收到</p>
+</li>
+<li><p>seq 序号</p>
+</li>
+<li><p>ack 确认号</p>
+</li>
+</ul>
+</li>
+<li><p>为什么需要三次握手？最后A还需要再确认一次？</p>
+<ul>
+<li>为了防止已经失效的连接请求报文段传送到了B</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>四次挥手连接释放</p>
+<ul>
+<li><p>释放连接的过程</p>
+<p>  <img src="https://s1.ax1x.com/2018/09/02/Pz9kjK.png" alt="此处输入图片的描述"></p>
+</li>
+<li><p>涉及状态</p>
+<ul>
+<li><p>ESTABLISHED</p>
+</li>
+<li><p>FIN-WAIT-1 A请求关闭，但还没有收到B的确认</p>
+</li>
+<li><p>CLOSE-WAIT B收到了关闭请求，并且进行了确认，但是还有数据需要传送给A</p>
+</li>
+<li><p>FIN_WAIT-2 A收到了B的确认，但B的数据还没发送完，A还需要接收数据</p>
+</li>
+<li><p>LAST-ACK B没有数据要发送了，请求关闭连接</p>
+</li>
+<li><p>TIME-WAIT A收到了关闭请求，并确认</p>
+</li>
+<li><p>CLOSED B收到了A的关闭确认，A等待2MSL之后</p>
+</li>
+</ul>
+</li>
+<li><p>涉及状态位</p>
+<ul>
+<li>FIN 终止控制位，置1代表请求关闭连接</li>
+<li>ACK</li>
+<li>ack</li>
+<li>seq</li>
+</ul>
+</li>
+<li><p>时间等待计时器</p>
+<ul>
+<li><p>MSL 最长报文段寿命</p>
+</li>
+<li><p>为什么最后A要等2MSL?</p>
+<ul>
+<li>为了保证最后确认能被B收到，如果B没收到，B会超时重发关闭请求，如果A此时直接CLOSED了，就无法接受该请求</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>保活计时器</p>
+<ul>
+<li><p>作用：防止客户端发生故障时，服务器空等请求</p>
+</li>
+<li><p>每次接收请求时更新</p>
+</li>
+<li><p>2小时无响应，就每75分钟发送一个探测报文段，连发10次确认客户端是否出现故障</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
           
@@ -2104,276 +2551,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/02/2018-09-01-操作系统引论/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="嘿嘿嘿">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://s2.ax1x.com/2019/08/14/mFInYj.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/02/2018-09-01-操作系统引论/" itemprop="url">操作系统引论</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-02T00:00:00+08:00">
-                2018-09-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2.4k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  8
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="第一章-操作系统引论"><a href="#第一章-操作系统引论" class="headerlink" title="第一章 操作系统引论"></a>第一章 操作系统引论</h1><ul>
-<li><p>操作系统的目标和作用</p>
-<ul>
-<li>OS 作为用户与计算机硬件系统之间的接口</li>
-<li>OS 作为计算机系统资源(处理器、存储器、I/O 设备以及信息(数据和程序))的管理者</li>
-<li>OS 实现了对计算机资源的抽象</li>
-</ul>
-</li>
-<li><p>操作系统的基本特性</p>
-<ul>
-<li><p>并发性</p>
-<p>   并行性是指两个或多个事件在同一时刻发生；而并发性是指两个或多个事件在同一时间间隔内发生。</p>
-</li>
-<li><p>共享性</p>
-<p>   指系统中的资源可供内存中多个并发执行的进程(线程)共同使用</p>
-<ul>
-<li><p>虚拟技术</p>
-<ul>
-<li>时分复用技术</li>
-<li>空分复用技术</li>
-</ul>
-</li>
-<li><p>异步性</p>
-<p> 由于资源等因素的限制，使进程的执行通常都不是“一气呵成”，而是以“停停走走”的方式运行</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>操作系统的主要功能</p>
-<ul>
-<li><p><a href="#处理机管理功能">处理机管理功能</a></p>
-<p>  在传统的多道程序系统中，处理机的分配和运行都是以进程为基本单位，因而对处理机的管理可归结为对进程的管理；在引入了线程的 OS 中，也包含对线程的管理。处理机管理的主要功能是创建和撤消进程(线程)，对诸进程(线程)的运行进行协调，实现进程(线程)之间的信息交换，以及按照一定的算法把处理机分配给进程(线程)。</p>
-</li>
-<li><p><a href="#存储器的功能">存储器的功能</a></p>
-<p>  存储器管理应具有内存分配、内存保护、地址映射和内存扩充</p>
-</li>
-<li><p><a href="#设备管理功能">设备管理功能</a></p>
-<p>  设备管理用于管理计算机系统中所有的外围设备，而设备管理的主要任务是：完成用户进程提出的 I/O 请求；为用户进程分配其所需的 I/O 设备；提高 CPU 和 I/O 设备的利用率；提高 I/O 速度；方便用户使用 I/O 设备。为实现上述任务，设备管理应具有缓冲管理、设备分配和设备处理以及虚拟设备等功能。</p>
-</li>
-<li><p><a href="#文件管理功能">文件管理功能</a></p>
-<p> 文件管理的主要任务是对用户文件和系统文件进行管理，以方便用户使用，并保证文件的安全性。</p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="处理机管理功能"><a href="#处理机管理功能" class="headerlink" title="处理机管理功能"></a><span id="p1">处理机管理功能</span></h3><ul>
-<li><p>进程控制</p>
-<p>  进程控制的主要功能是为作业创建进程，撤消已结束的进程</p>
-</li>
-<li><p>进程同步</p>
-<ul>
-<li>进程互斥方式<br>  指诸进程(线程)在对临界资源进行访问时，应采用互斥方式；</li>
-<li>进程同步方式<br>  指在相互合作去完成共同任务的诸进程(线程)间，由同步机构对它们的执行次序加以协调。</li>
-</ul>
-</li>
-<li><p>进程通信</p>
-<p>  进程通信的任务就是用来实现在相互合作的进程之间的信息交换。由源进程利用发送命令直接将消息(Message)挂到目标进程的消息队列上，以后由目标进程利用接收命令从其消息队列中取出消息</p>
-</li>
-<li><p>调度</p>
-<ul>
-<li>作业调度<br>  作业调度的基本任务是从后备队列中按照一定的算法，选择出若干个作业，为它们分配运行所需的资源(首先是分配内存)。在将它们调入内存后，便分别为它们建立进程，使它们都成为可能获得处理机的就绪进程，并按照一定的算法将它们插入就绪队列。</li>
-<li>进程调度<br>  进程调度的任务是从进程的就绪队列中，按照一定的算法选出一个进程，把处理机分配给它，并为它设置运行现场，使进程投入执行。值得提出的是，在多线程OS中，通常是把线程作为独立运行和分配处理机的基本单位，为此，须把就绪线程排成一个队列，每次调度时，是从就绪线程队列中选出一个线程，把处理机分配给它。</li>
-</ul>
-</li>
-</ul>
-<h3 id="存储器的功能"><a href="#存储器的功能" class="headerlink" title="存储器的功能"></a><span id="p2">存储器的功能</span></h3><ul>
-<li><p>内存分配</p>
-<p>  主要任务是为每道程序分配内存空间</p>
-<ul>
-<li><p>静态分配</p>
-<p>  静态分配方式中，每个作业的内存空间是在作业装入时确定的，的整个运行期间，不允许该作业再申请新的内存空间</p>
-</li>
-<li><p>动态分配</p>
-<p>  每个作业所要求的基本内存空间也是在装入时确定的，但允许作业在运行过程中继续申请新的附加内存空间，以适应程序和数据的动态增长，也允许作业在内存中“移动”。</p>
-<ul>
-<li>内存分配数据结构。该结构用于记录内存空间的使用情况，作为内存分配的依据；</li>
-<li>内存分配功能。系统按照一定的内存分配算法为用户程序分配内存空间；</li>
-<li>内存回收功能。系统对于用户不再需要的内存，通过用户的释放请求去完成系统的回收功能。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>内存保护</p>
-<p>  内存保护的主要任务是确保每道用户程序都只在自己的内存空间内运行，彼此互不干扰；为了确保每道程序都只在自己的内存区中运行，必须设置内存保护机制。一种比较简单的内存保护机制是设置两个界限寄存器，分别用于存放正在执行程序的上界和下界。系统须对每条指令所要访问的地址进行检查，如果发生越界，便发出越界中断请求，以停止该程序的执行。</p>
-</li>
-<li><p>地址映射</p>
-<p>  一个应用程序(源程序)经编译后，通常会形成若干个目标程序；这些目标程序再经过链接便形成了可装入程序。这些程序的地址都是从“0”开始的，程序中的其它地址都是相对于起始地址计算的。由这些地址所形成的地址范围称为“地址空间”，其中的地址称为“逻辑地址”或“相对地址”。</p>
-</li>
-<li><p>内存扩充</p>
-<p>  存储器管理中的内存扩充任务并非是去扩大物理内存的容量，而是借助于虚拟存储技术，从逻辑上去扩充内存容量，使用户所感觉到的内存容量比实际内存容量大得多，以便让更多的用户程序并发运行。这样，既满足了用户的需要，又改善了系统的性能。为此，只需增加少量的硬件。为了能在逻辑上扩充内存，系统必须具有内存扩充机制，用于实现下述各功能：</p>
-<ul>
-<li><p>请求调入功能。允许在装入一部分用户程序和数据的情况下，便能启动该程序运行。在程序运行过程中，若发现要继续运行时所需的程序和数据尚未装入内存，可向OS发出请求，由OS从磁盘中将所需部分调入内存，以便继续运行。</p>
-</li>
-<li><p>置换功能。若发现在内存中已无足够的空间来装入需要调入的程序和数据时，系统应能将内存中的一部分暂时不用的程序和数据调至盘上，以腾出内存空间，然后再将所需调入的部分装入内存。</p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="设备管理功能"><a href="#设备管理功能" class="headerlink" title="设备管理功能"></a><span id="p3">设备管理功能</span></h3><ul>
-<li><p>缓冲管理</p>
-<p>  如果在 I/O 设备和 CPU之间引入缓冲，则可有效地缓和 CPU 与 I/O 设备速度不匹配的矛盾，提高 CPU 的利用率，进而提高系统吞吐量。</p>
-</li>
-<li><p>设备分配</p>
-<p>  是根据用户进程的 I/O 请求、系统的现有资源情况以及按照某种设备的分配策略，为之分配其所需的设备。</p>
-</li>
-<li><p>设备处理</p>
-<p>  其基本任务是用于实现 CPU 和设备控制器之间的通信，即由 CPU 向设备控制器发出 I/O 命令，要求它完成指定的 I/O 操作；反之，由 CPU接收从控制器发来的中断请求，并给予迅速的响应和相应的处理</p>
-</li>
-</ul>
-<h3 id="文件管理功能"><a href="#文件管理功能" class="headerlink" title="文件管理功能"></a><span id="p4">文件管理功能</span></h3><ul>
-<li><p>文件存储空间的管理</p>
-<p>  为了方便用户的使用，对于一些当前需要使用的系统文件和用户文件，都必须放在可随机存取的磁盘上。在多用户环境下，若由用户自己对文件的存储进行管理，不仅非常困难，而且也必然是十分低效的。因而，需要由文件系统对诸多文件及文件的存储空间实施统一的管理。其主要任务是为每个文件分配必要的外存空间，提高外存的利用率，并能有助于提高文件系统的存、取速度。</p>
-<p>  为此，系统应设置相应的数据结构，用于记录文件存储空间的使用情况，以供分配存储空间时参考；系统还应具有对存储空间进行分配和回收的功能。为了提高存储空间的利用率，对存储空间的分配，通常是采用离散分配方式，以减少外存零头，并以盘块为基本分配单位。盘块的大小通常为 1～8 KB。</p>
-</li>
-<li><p>目录管理</p>
-</li>
-<li><p>文件的读/写管理和保护</p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2426,7 +2603,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
